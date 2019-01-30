@@ -11,7 +11,8 @@
 import React from 'react'
 import { Component } from 'react'
 import {Platform, StyleSheet, Text, View} from 'react-native'
-import { Hello } from './app/components/hello'
+// import Test from './app/page/mine/Test'
+import SignIn from './app/page/mine/SignIn'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,13 +25,8 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-      <Text style={{fontSize: 40}}>Hello World!</Text>
-      <Text style={{fontSize: 40}}>See you Tommrow!</Text>
-        <Hello name="World" enthusiasmLevel={1} />
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View>
+        <SignIn></SignIn>
       </View>
     );
   }
