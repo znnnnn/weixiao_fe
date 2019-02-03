@@ -29,20 +29,20 @@ export default class SignIn extends React.Component<Props, State> {
   public readonly state: Readonly<State> = {
     phone: '',
     password: '',
-    inputBorderColor:'#EEEEEE'
+    inputBorderColor: '#EEEEEE'
   }
 
   constructor(props: {}) {
     super(props);
   }
 
-  inputItemFocus():void{
+  inputItemFocus(): void {
     this.setState({
       inputBorderColor: '#29A1F7'
     })
   }
 
-  inputItemBlur():void{
+  inputItemBlur(): void {
     this.setState({
       inputBorderColor: '#EEEEEE'
     })
@@ -52,8 +52,8 @@ export default class SignIn extends React.Component<Props, State> {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
-        <Text style={{ fontSize: 40 }}>微校</Text>
-        <View style={styles.inputContainer}>
+          <Text style={{ fontSize: 40 }}>微校</Text>
+          <View style={styles.inputContainer}>
             <InputItem
               clear
               type="phone"
@@ -65,11 +65,11 @@ export default class SignIn extends React.Component<Props, State> {
               }}
               editable={true}
               disabled={false}
-              autoFocus={true}
-              placeholder="1111"
+              // autoFocus={true}
+              placeholder="手机号"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
-              style={{borderWidth:0}}
+              style={{ borderWidth: 0 }}
             >
             </InputItem>
             <InputItem
@@ -84,28 +84,28 @@ export default class SignIn extends React.Component<Props, State> {
               placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
-              style={{borderBottomColor: this.state.inputBorderColor}}
+              style={{ borderBottomColor: this.state.inputBorderColor }}
             >
             </InputItem>
-        </View>
-        <Button type="primary" style={styles.loginBtn}>登录</Button>
-        <View style={styles.actions}>
-          <TouchableOpacity>
-            <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
-          </TouchableOpacity>
+          </View>
+          <Button type="primary" style={styles.loginBtn}>登录</Button>
+          <View style={styles.actions}>
+            <TouchableOpacity>
+              <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity>
-            <Text>注册</Text>
-          </TouchableOpacity>
+            <TouchableOpacity>
+              <Text>注册</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-        <View style={styles.socialContainer}>
+        <View style={styles.socialLogin}>
           <View style={styles.social}>
             <Text>QQ</Text>
             <Text>微信</Text>
             <Text>微博</Text>
           </View>
-        <Text style={{ justifyContent: 'center', fontSize: 16, color: '#333' }}>我是游客</Text>
+          <Text style={styles.visitor}>我是游客</Text>
         </View>
       </View>
     );
@@ -117,11 +117,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     height: hp('100%'),
+    position: 'relative'
   },
   container: {
-    // marginTop: hp('10%'),
-    // alignItems: 'center',
-    // width: wp('90%')
+    marginTop: hp('10%'),
+    alignItems: 'center'
   },
   inputContainer: {
     height: 140,
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 10
   },
-  socialContainer: {
-    backgroundColor: '#eee',
+  socialLogin: {
+    alignItems: 'center',
     position: 'absolute',
     bottom: 0
   },
@@ -154,5 +154,12 @@ const styles = StyleSheet.create({
     width: wp('80%'),
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  visitor: {
+    marginTop: 20,
+    justifyContent: 'center',
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 20
   }
 })
