@@ -1,6 +1,6 @@
 // 此文件用来解决vscode stylesheet 自动补全问题
 
-import { StyleSheet as RnStyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { ImageStyle, StyleSheet as RnStyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 type StyleProps = Partial<ViewStyle | TextStyle | ImageStyle>;
 

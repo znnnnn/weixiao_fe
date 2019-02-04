@@ -8,8 +8,7 @@
  */
 
 // import React, {Component} from 'react';
-import React from 'react'
-import { Component } from 'react'
+import React,{ Component } from 'react'
 import {Platform, StyleSheet, Text, View} from 'react-native'
 // import Test from './app/page/mine/Test'
 import SignIn from './app/page/mine/SignIn'
@@ -21,9 +20,11 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
+interface Props {
+  "name": string
+}
 export default class App extends Component<Props> {
-  render() {
+  public render() {
     return (
       <View>
         <SignIn></SignIn>

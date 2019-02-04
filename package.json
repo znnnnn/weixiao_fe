@@ -22,12 +22,17 @@
     "babel-jest": "24.0.0",
     "jest": "24.0.0",
     "metro-react-native-babel-preset": "0.51.1",
+    "prettier": "^1.16.4",
     "react-addons-test-utils": "^15.6.2",
     "react-native-responsive-screen": "^1.2.0",
     "react-native-typescript-transformer": "^1.2.11",
     "react-test-renderer": "16.6.3",
     "ts-jest": "^23.10.5",
-    "typescript": "^3.2.4"
+    "tslint": "^5.12.1",
+    "tslint-config-alloy": "^0.2.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.3.1"
   },
   "jest": {
     "preset": "react-native",

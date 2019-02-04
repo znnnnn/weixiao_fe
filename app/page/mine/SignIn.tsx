@@ -1,17 +1,17 @@
-import React from 'react';
-import {
-  Platform,
-  Text,
-  View,
-  ScrollView,
-  Linking,
-  Image,
-  TouchableOpacity
-} from 'react-native'
-import StyleSheet from '@util/stylesheet'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Button, InputItem, List } from '@ant-design/react-native';
 import px2dp from '@util/px2dp'
+import StyleSheet from '@util/stylesheet'
+import React from 'react';
+import {
+  Image,
+  Linking,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 
 export interface State {
@@ -20,7 +20,8 @@ export interface State {
   inputBorderColor: string
 }
 
-interface Props {
+export interface Props {
+  "defalutProps": string
 }
 
 
@@ -32,23 +33,11 @@ export default class SignIn extends React.Component<Props, State> {
     inputBorderColor: '#EEEEEE'
   }
 
-  constructor(props: {}) {
+  private constructor(props: {}) {
     super(props);
   }
 
-  inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
-
-  inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
-  }
-
-  render() {
+  public render() {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
@@ -84,7 +73,7 @@ export default class SignIn extends React.Component<Props, State> {
               placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
-              style={{ borderBottomColor: this.state.inputBorderColor }}
+              multiline={true}
             >
             </InputItem>
           </View>
@@ -110,6 +99,18 @@ export default class SignIn extends React.Component<Props, State> {
       </View>
     );
   }
+
+  private inputItemFocus(): void {
+    this.setState({
+      inputBorderColor: '#29A1F7'
+    })
+  }
+
+  private inputItemBlur(): void {
+    this.setState({
+      inputBorderColor: '#EEEEEE'
+    })
+  }
 }
 
 const styles = StyleSheet.create({
@@ -130,6 +131,9 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'blue',
     marginTop: 10
+  },
+  passwd: {
+    borderBottomColor: 'red',
   },
   loginBtn: {
     borderRadius: 20,
