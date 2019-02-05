@@ -1,41 +1,33 @@
-import { Button, InputItem, List } from '@ant-design/react-native';
+import { Button, InputItem, List } from '@ant-design/react-native'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
-import React from 'react';
+import React from 'react'
+import { Image, Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native'
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 
 export interface State {
-  phone: string,
+  phone: string
   password: string
   inputBorderColor: string
 }
 
 export interface Props {
-  "defalutProps": string
+  defalutProps: string
 }
 
-
-export default class SignIn extends React.Component<Props, State> {
-
+export default class SignIn extends React.Component /*<Props, State>*/ {
   public readonly state: Readonly<State> = {
     phone: '',
     password: '',
     inputBorderColor: '#EEEEEE'
   }
 
-  private constructor(props: {}) {
-    super(props);
-  }
+  // private constructor(props: {}) {
+  //   super(props);
+  // }
 
   public render() {
     return (
@@ -47,10 +39,10 @@ export default class SignIn extends React.Component<Props, State> {
               clear
               type="phone"
               value={this.state.phone}
-              onChange={value => {
+              onChange={(value) => {
                 this.setState({
-                  phone: value,
-                });
+                  phone: value
+                })
               }}
               editable={true}
               disabled={false}
@@ -59,25 +51,23 @@ export default class SignIn extends React.Component<Props, State> {
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
               style={{ borderWidth: 0 }}
-            >
-            </InputItem>
+            />
             <InputItem
-              clear
               type="password"
               value={this.state.password}
-              onChange={value => {
+              onChange={(value) => {
                 this.setState({
-                  password: value,
-                });
+                  password: value
+                })
               }}
               placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
-              multiline={true}
-            >
-            </InputItem>
+            />
           </View>
-          <Button type="primary" style={styles.loginBtn}>登录</Button>
+          <Button type="primary" style={styles.loginBtn}>
+            登录
+          </Button>
           <View style={styles.actions}>
             <TouchableOpacity>
               <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
@@ -97,7 +87,7 @@ export default class SignIn extends React.Component<Props, State> {
           <Text style={styles.visitor}>我是游客</Text>
         </View>
       </View>
-    );
+    )
   }
 
   private inputItemFocus(): void {
@@ -117,8 +107,9 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: hp('100%'),
-    position: 'relative'
+    borderWidth: 1,
+    borderColor: 'red',
+    height: hp('100%')
   },
   container: {
     marginTop: hp('10%'),
@@ -133,7 +124,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   passwd: {
-    borderBottomColor: 'red',
+    borderBottomColor: 'red'
   },
   loginBtn: {
     borderRadius: 20,
@@ -157,7 +148,7 @@ const styles = StyleSheet.create({
   social: {
     width: wp('80%'),
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   visitor: {
     marginTop: 20,
