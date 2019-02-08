@@ -67,19 +67,20 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
               extra={
-                <Icon
-                  name="faxian_"
-                  style={{ fontSize: 30 }}
-                  onPress={() =>
-                    this.setState({
-                      passCanSee: !this.state.passCanSee
-                    })
-                  }
-                />
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Icon
+                    name="faxian_"
+                    style={{ fontSize: 30 }}
+                    onPress={() =>
+                      this.setState({
+                        passCanSee: !this.state.passCanSee
+                      })
+                    }
+                  />
+                  <Text>忘记密码</Text>
+                </View>
               }
-            >
-              <Text style={{ position: 'absolute', right: 20 }}>忘记密码</Text>
-            </InputItem>
+            />
           </View>
           <Button type="primary" style={styles.loginBtn}>
             登录
