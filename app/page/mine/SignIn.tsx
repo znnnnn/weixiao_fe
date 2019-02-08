@@ -1,4 +1,5 @@
 import { Button, InputItem, List } from '@ant-design/react-native'
+import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
@@ -12,6 +13,7 @@ export interface State {
   phone: string
   password: string
   inputBorderColor: string
+  passCanSee: boolean
 }
 
 export interface Props {
@@ -19,10 +21,11 @@ export interface Props {
 }
 
 export default class SignIn extends React.Component /*<Props, State>*/ {
-  public readonly state: Readonly<State> = {
+  public state = {
     phone: '',
     password: '',
-    inputBorderColor: '#EEEEEE'
+    inputBorderColor: '#EEEEEE',
+    passCanSee: true
   }
 
   // private constructor(props: {}) {
@@ -53,7 +56,7 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
               style={{ borderWidth: 0 }}
             />
             <InputItem
-              type="password"
+              type={this.state.passCanSee ? 'password' : 'digit'}
               value={this.state.password}
               onChange={(value) => {
                 this.setState({
@@ -63,7 +66,20 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
               placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
-            />
+              extra={
+                <Icon
+                  name="faxian_"
+                  style={{ fontSize: 30 }}
+                  onPress={() =>
+                    this.setState({
+                      passCanSee: !this.state.passCanSee
+                    })
+                  }
+                />
+              }
+            >
+              <Text style={{ position: 'absolute', right: 20 }}>忘记密码</Text>
+            </InputItem>
           </View>
           <Button type="primary" style={styles.loginBtn}>
             登录
