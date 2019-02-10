@@ -145,3 +145,11 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+
+//使用内置的iconSets
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+//使用自定义iconSets
+project.ext.vectoricons = [
+   iconFontNames: [ 'iconfont.ttf'] // Name of the font files you want to copy
+]
