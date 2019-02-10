@@ -134,6 +134,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -147,9 +148,9 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 
-//使用内置的iconSets
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 //使用自定义iconSets
 project.ext.vectoricons = [
-   iconFontNames: [ 'iconfont.ttf'] // Name of the font files you want to copy
+    iconFontNames: ['iconfont.ttf' ] //添加你需要赋值的字符文件
 ]
+//使用内置的iconSets
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
