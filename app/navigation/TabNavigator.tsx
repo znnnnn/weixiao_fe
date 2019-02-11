@@ -4,11 +4,13 @@ import Find from '@page/find/index'
 import Home from '@page/home/Index'
 import Mine from '@page/mine/Index'
 import Publish from '@page/publish/Index'
+import React from 'react'
 import { Image, StyleSheet } from 'react-native'
-import { NavigationContainer, TabNavigator } from 'react-navigation'
+import { createBottomTabNavigator } from 'react-navigation'
 
-let MainTab: NavigationContainer
-export default (MainTab = TabNavigator(
+// let MainTab: NavigationContainer
+let MainTab: {}
+export default (MainTab = createBottomTabNavigator(
   {
     Home: {
       screen: Home,
@@ -24,10 +26,10 @@ export default (MainTab = TabNavigator(
 
         // 这里设置Tabbar不同页面可能会不同的属性
         tabBarVisible: true,
-        tabBarLabel: '首页'
-        // tabBarIcon: ({ tintColor, focused }) => {
-        //   return <Icon name="faxian_" style={{ fontSize: 30 }} />
-        // }
+        tabBarLabel: '首页',
+        tabBarIcon: ({ tintColor, focused }) => {
+          return <Icon name="shouye" style={{ fontSize: 28 }} />
+        }
       })
     },
     Find: {
@@ -44,10 +46,10 @@ export default (MainTab = TabNavigator(
 
         // 这里设置Tabbar不同页面可能会不同的属性
         tabBarVisible: true,
-        tabBarLabel: '发现'
-        // tabBarIcon: ({ tintColor, focused }) => {
-        //   return <Icon name="faxian_" style={{ fontSize: 30 }} />
-        // }
+        tabBarLabel: '发现',
+        tabBarIcon: ({ tintColor, focused }) => {
+          return <Icon name="iconfontzhizuobiaozhun023103" style={{ fontSize: 24 }} />
+        }
       })
     },
     Publish: {
@@ -64,10 +66,10 @@ export default (MainTab = TabNavigator(
 
         // 这里设置Tabbar不同页面可能会不同的属性
         tabBarVisible: true,
-        tabBarLabel: '发布'
-        // tabBarIcon: ({ tintColor, focused }) => {
-        //   return <Icon name="faxian_" style={{ fontSize: 30 }} />
-        // }
+        tabBarLabel: '发布',
+        tabBarIcon: ({ tintColor, focused }) => {
+          return <Icon name="fabu" style={{ fontSize: 24 }} />
+        }
       })
     },
     Contact: {
@@ -84,10 +86,10 @@ export default (MainTab = TabNavigator(
 
         // 这里设置Tabbar不同页面可能会不同的属性
         tabBarVisible: true,
-        tabBarLabel: '朋友'
-        // tabBarIcon: ({ tintColor, focused }) => {
-        //   return <Icon name="faxian_" style={{ fontSize: 30 }} />
-        // }
+        tabBarLabel: '朋友',
+        tabBarIcon: ({ tintColor, focused }) => {
+          return <Icon name="xingqiu" style={{ fontSize: 24 }} />
+        }
       })
     },
     Mine: {
@@ -104,10 +106,10 @@ export default (MainTab = TabNavigator(
 
         // 这里设置Tabbar不同页面可能会不同的属性
         tabBarVisible: true,
-        tabBarLabel: '我的'
-        // tabBarIcon: ({ tintColor, focused }) => {
-        //   return <Icon name="faxian_" style={{ fontSize: 30 }} />
-        // }
+        tabBarLabel: '我的',
+        tabBarIcon: ({ tintColor, focused }) => {
+          return <Icon name="wo" style={{ fontSize: 24 }} />
+        }
       })
     }
   },

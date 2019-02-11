@@ -1,3 +1,4 @@
+import { createBottomTabNavigator } from 'react-navigation'
 /*
  * 导入视图
  */
@@ -35,4 +36,4 @@ const RouteConfig = {
   // }
 }
 
-export default RouteConfig
+export default createBottomTabNavigator(RouteConfig)
