@@ -11,3 +11,9 @@
 - https://www.vanadis.cn/2016/07/01/react-native-iconfont/
 - https://juejin.im/post/5ac80a265188255569193bb0
 - https://www.jianshu.com/p/c900f6a0797f
+
+### React Navigation 参考
+
+- https://www.jianshu.com/p/aca22ef29bfe
+- https://www.kancloud.cn/daiji/webapp/509781
+- https://github.com/react-navigation/react-navigation/issues/888

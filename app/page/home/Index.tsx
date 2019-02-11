@@ -9,6 +9,8 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
+import { SafeAreaView } from 'react-navigation'
+
 export interface State {
   phone: string
   password: string
@@ -70,7 +72,7 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Icon
                     name="faxian_"
-                    style={{ fontSize: 30 }}
+                    style={{ fontSize: 24 }}
                     onPress={() =>
                       this.setState({
                         passCanSee: !this.state.passCanSee

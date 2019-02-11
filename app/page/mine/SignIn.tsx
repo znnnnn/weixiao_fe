@@ -70,7 +70,7 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Icon
                     name="faxian_"
-                    style={{ fontSize: 30 }}
+                    style={{ fontSize: 24 }}
                     onPress={() =>
                       this.setState({
                         passCanSee: !this.state.passCanSee
