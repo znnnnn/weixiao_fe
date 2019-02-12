@@ -14,6 +14,18 @@
 
 ### React Navigation 参考
 
+本项目使用的版本为：`"@types/react-navigation": "^3.0.1"`和`"react-navigation": "^3.2.1"`，由于版本更新部分 API 已有变动，所以本项目只参考配置和设计，具体实现在本项目`/app/navigation/`中。
+
 - https://www.jianshu.com/p/aca22ef29bfe
+- https://juejin.im/post/5af12a836fb9a07aa11425a0#heading-4
 - https://www.kancloud.cn/daiji/webapp/509781
 - https://github.com/react-navigation/react-navigation/issues/888
+- Tab Bar 问题：https://github.com/react-navigation/react-navigation/issues/581 、 https://github.com/react-navigation/react-navigation/issues/464
+
+### 架构设计参考
+
+- https://juejin.im/post/59f83c33f265da433226e0f4
+
+### 状态管理
+
+- https://www.jianshu.com/p/2a327a235f2d
