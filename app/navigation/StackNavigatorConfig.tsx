@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, StackNavigatorConfig } from 'react-navigation'
 
 // 默认横向跳转
 // 如果即将要跳转到的页面需要其它跳转方式
@@ -10,7 +10,7 @@ import { createStackNavigator } from 'react-navigation'
 //   const transition = params.transition || 'forHorizontal'
 // }
 
-const StackNavigationConfig = {
+const StackNavigationConfig: StackNavigatorConfig = {
   initialRouteName: 'MainTab',
   headerMode: 'float'
   // transitionConfig: () => ({
@@ -18,4 +18,4 @@ const StackNavigationConfig = {
   // })
 }
 
-export default createStackNavigator(StackNavigationConfig)
+export default StackNavigationConfig

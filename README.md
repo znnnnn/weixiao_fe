@@ -2,13 +2,21 @@
 
 本项目用于毕业设计的前端文件，基于`React Native`和`SpringBoot`开发
 
+## 参考文献
+
+踩坑不易，走在前人的肩上砥砺前行，以下为本项目全程开发所参考过的文章，感谢你们。
+
 ### 项目规范
 
 基于 Alloy Team 的代码风格，详情可看这里：https://github.com/AlloyTeam/tslint-config-alloy
 
 ### TypeScript + React Native
 
+本项目在开始使用这两者结合的时候比较陌生，所以踩了许多坑，参考了大量文章配置。
+
 - 请参考：https://github.com/Microsoft/TypeScript-React-Native-Starter
+- TypeScript 在 React 中使用总结：https://juejin.im/post/5bab4d59f265da0aec22629b#heading-10
+- TypeScript 实践：https://juejin.im/post/5a9c004a6fb9a028b92c9e91
 
 ### 本项目实现 Iconfont 参考了以下几篇文章
 
@@ -26,6 +34,7 @@
 - https://github.com/react-navigation/react-navigation/issues/888
 - Tab Bar 问题：https://github.com/react-navigation/react-navigation/issues/581 、 https://github.com/react-navigation/react-navigation/issues/464
 - Redux 和 React Navigation 结合： https://stackoverflow.com/questions/53846615/react-native-navigation-v3-with-redux
+- Add strong typing for react navigation props： https://stackoverflow.com/questions/47924501/add-strong-typing-for-react-navigation-props
 
 ### 架构设计参考
 

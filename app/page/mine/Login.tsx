@@ -70,7 +70,7 @@ export default class Login extends React.Component /*<Props, State>*/ {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Icon
                     name="faxian_"
-                    style={{ fontSize: 24 }}
+                    style={{ fontSize: 24, marginRight: 10 }}
                     onPress={() =>
                       this.setState({
                         passCanSee: !this.state.passCanSee
@@ -97,9 +97,21 @@ export default class Login extends React.Component /*<Props, State>*/ {
         </View>
         <View style={styles.socialLogin}>
           <View style={styles.social}>
-            <Text>QQ</Text>
-            <Text>微信</Text>
-            <Text>微博</Text>
+            <Icon
+              name="qq"
+              style={[styles.socialIcon, { color: '#5EAADE' }]}
+              onPress={() => console.log('QQ')}
+            />
+            <Icon
+              name="weixin"
+              style={[styles.socialIcon, { color: '#50B674' }]}
+              onPress={() => console.log('weixin')}
+            />
+            <Icon
+              name="weibo"
+              style={[styles.socialIcon, { color: '#EA5D5C' }]}
+              onPress={() => console.log('weibo')}
+            />
           </View>
           <Text style={styles.visitor}>我是游客</Text>
         </View>
@@ -167,11 +179,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
+  socialIcon: {
+    borderRadius: 35,
+    fontSize: 35
+  },
   visitor: {
-    marginTop: 20,
+    marginTop: 30,
+    marginBottom: 30,
     justifyContent: 'center',
     fontSize: 16,
-    color: '#333',
-    marginBottom: 20
+    color: '#333'
   }
 })

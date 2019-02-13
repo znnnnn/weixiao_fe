@@ -1,4 +1,4 @@
-import { Button, InputItem, List, Toast } from '@ant-design/react-native'
+import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
@@ -19,7 +19,7 @@ import {
 } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
 
-import { SafeAreaView } from 'react-navigation'
+import { NavigationScreenProps } from 'react-navigation'
 
 export interface State {
   phone: string
@@ -28,7 +28,7 @@ export interface State {
   passCanSee: boolean
 }
 
-export interface Props {
+export interface Props extends NavigationScreenProps {
   defalutProps: string
   token: string
 }
@@ -44,90 +44,90 @@ class SignIn extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props)
     // console.log(this.props.token)
-    if (this.props.token === '') {
-      console.log(this.props.token)
-      // this.props.navigation.navigate('Login')
-    }
   }
 
   public componentDidMount() {
-    Alert.alert('11111')
-    Toast.info('Toast without mask !!!', 1, undefined, false)
+    if (this.props.token === '') {
+      console.log(this.props.token)
+      this.props.navigation.navigate('Login')
+      // Toast.info('您还没有登录哦', 3, undefined, false)
+    }
   }
-  public showToastNoMask() {}
 
   public render() {
     return (
-      <View style={styles.root}>
-        <View style={styles.container}>
-          <Text style={{ fontSize: 40 }}>首页</Text>
-          <View style={styles.inputContainer}>
-            <InputItem
-              clear
-              type="phone"
-              value={this.state.phone}
-              onChange={(value) => {
-                this.setState({
-                  phone: value
-                })
-              }}
-              editable={true}
-              disabled={false}
-              // autoFocus={true}
-              placeholder="手机号"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
-              style={{ borderWidth: 0 }}
-            />
-            <InputItem
-              type={this.state.passCanSee ? 'password' : 'digit'}
-              value={this.state.password}
-              onChange={(value) => {
-                this.setState({
-                  password: value
-                })
-              }}
-              placeholder="密码"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
-              extra={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Icon
-                    name="faxian_"
-                    style={{ fontSize: 24 }}
-                    onPress={() =>
-                      this.setState({
-                        passCanSee: !this.state.passCanSee
-                      })
-                    }
-                  />
-                  <Text>忘记密码</Text>
-                </View>
-              }
-            />
-          </View>
-          <Button type="primary" style={styles.loginBtn} onPress={this.showToastNoMask}>
-            登录
-          </Button>
-          <View style={styles.actions}>
-            <TouchableOpacity>
-              <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
-            </TouchableOpacity>
+      <Provider>
+        <View style={styles.root}>
+          <View style={styles.container}>
+            <Text style={{ fontSize: 40 }}>首页</Text>
+            <View style={styles.inputContainer}>
+              <InputItem
+                clear
+                type="phone"
+                value={this.state.phone}
+                onChange={(value) => {
+                  this.setState({
+                    phone: value
+                  })
+                }}
+                editable={true}
+                disabled={false}
+                // autoFocus={true}
+                placeholder="手机号"
+                onFocus={() => this.inputItemFocus()}
+                onBlur={() => this.inputItemBlur()}
+                style={{ borderWidth: 0 }}
+              />
+              <InputItem
+                type={this.state.passCanSee ? 'password' : 'digit'}
+                value={this.state.password}
+                onChange={(value) => {
+                  this.setState({
+                    password: value
+                  })
+                }}
+                placeholder="密码"
+                onFocus={() => this.inputItemFocus()}
+                onBlur={() => this.inputItemBlur()}
+                extra={
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Icon
+                      name="faxian_"
+                      style={{ fontSize: 24 }}
+                      onPress={() =>
+                        this.setState({
+                          passCanSee: !this.state.passCanSee
+                        })
+                      }
+                    />
+                    <Text>忘记密码</Text>
+                  </View>
+                }
+              />
+            </View>
+            <Button type="primary" style={styles.loginBtn}>
+              登录
+            </Button>
+            <View style={styles.actions}>
+              <TouchableOpacity>
+                <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Text>注册</Text>
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <Text>注册</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.socialLogin}>
+            <View style={styles.social}>
+              <Text>QQ</Text>
+              <Text>微信</Text>
+              <Text>微博</Text>
+            </View>
+            <Text style={styles.visitor}>我是游客</Text>
           </View>
         </View>
-        <View style={styles.socialLogin}>
-          <View style={styles.social}>
-            <Text>QQ</Text>
-            <Text>微信</Text>
-            <Text>微博</Text>
-          </View>
-          <Text style={styles.visitor}>我是游客</Text>
-        </View>
-      </View>
+      </Provider>
     )
   }
 

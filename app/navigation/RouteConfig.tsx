@@ -2,6 +2,8 @@
  * 导入视图
  */
 import Login from '@app/page/mine/Login'
+import Register from '@app/page/mine/Register'
+import { NavigationRouteConfigMap } from 'react-navigation'
 import MainTab from './TabNavigator'
 /*
 
@@ -12,13 +14,17 @@ import MainTab from './TabNavigator'
    * 该配置文件会在App.js里的StackNavigator(导航组件)里使用。
 
 */
-const RouteConfig = {
+const RouteConfig: NavigationRouteConfigMap = {
   MainTab: {
     screen: MainTab
     // navigationOptions: ({navigation}) => ({header: null})
   },
   Login: {
     screen: Login,
+    navigationOptions: ({ navigation }) => ({ header: null })
+  },
+  Register: {
+    screen: Register,
     navigationOptions: ({ navigation }) => ({ header: null })
   }
   // 下面三个页面我需要隐藏导航栏
