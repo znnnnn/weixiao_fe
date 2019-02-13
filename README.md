@@ -6,6 +6,10 @@
 
 基于 Alloy Team 的代码风格，详情可看这里：https://github.com/AlloyTeam/tslint-config-alloy
 
+### TypeScript + React Native
+
+- 请参考：https://github.com/Microsoft/TypeScript-React-Native-Starter
+
 ### 本项目实现 Iconfont 参考了以下几篇文章
 
 - https://www.vanadis.cn/2016/07/01/react-native-iconfont/
@@ -21,11 +25,16 @@
 - https://www.kancloud.cn/daiji/webapp/509781
 - https://github.com/react-navigation/react-navigation/issues/888
 - Tab Bar 问题：https://github.com/react-navigation/react-navigation/issues/581 、 https://github.com/react-navigation/react-navigation/issues/464
+- Redux 和 React Navigation 结合： https://stackoverflow.com/questions/53846615/react-native-navigation-v3-with-redux
 
 ### 架构设计参考
 
 - https://juejin.im/post/59f83c33f265da433226e0f4
 
-### 状态管理
+### 状态管理 Redux
 
-- https://www.jianshu.com/p/2a327a235f2d
+- React Nativa 中使用 Redux https://www.jianshu.com/p/2a327a235f2d
+- React Redux 中 connect()详解：
+  - http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html
+  - http://taobaofed.org/blog/2016/08/18/react-redux-connect/
+  - https://www.redux.org.cn/docs/basics/UsageWithReact.html

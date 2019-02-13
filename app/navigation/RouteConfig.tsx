@@ -1,12 +1,8 @@
-import { createBottomTabNavigator } from 'react-navigation'
 /*
  * 导入视图
  */
-// import NewsDetail from './pages/subPages/NewsDetail'
-// import NewsSearch from './pages/subPages/NewsSearch'
-// import VideoDetail from './pages/subPages/VideoDetail'
+import Login from '@app/page/mine/Login'
 import MainTab from './TabNavigator'
-
 /*
 
     --- 路由配置 ---
@@ -20,6 +16,10 @@ const RouteConfig = {
   MainTab: {
     screen: MainTab
     // navigationOptions: ({navigation}) => ({header: null})
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: ({ navigation }) => ({ header: null })
   }
   // 下面三个页面我需要隐藏导航栏
   // NewsDetail: {
@@ -36,4 +36,4 @@ const RouteConfig = {
   // }
 }
 
-export default createBottomTabNavigator(RouteConfig)
+export default RouteConfig

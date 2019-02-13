@@ -1,17 +1,15 @@
+import Home from '@app/page/home/Index'
 import Icon from '@app/util/icon'
 import Contact from '@page/contact/Index'
 import Find from '@page/find/index'
-import Home from '@page/home/Index'
 import Mine from '@page/mine/Index'
 import Publish from '@page/publish/Index'
 import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
-import TabBar from './TabBar'
 
 // let MainTab: NavigationContainer
-let MainTab: {}
-export default (MainTab = createBottomTabNavigator(
+const MainTab = createBottomTabNavigator(
   {
     Home: {
       screen: Home,
@@ -139,4 +137,5 @@ export default (MainTab = createBottomTabNavigator(
       }
     }
   }
-))
+)
+export default MainTab

@@ -1,13 +1,23 @@
-import { Button, InputItem, List } from '@ant-design/react-native'
+import { Button, InputItem, List, Toast } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { Image, Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import {
+  Alert,
+  Image,
+  Linking,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { connect } from 'react-redux'
 
 import { SafeAreaView } from 'react-navigation'
 
@@ -20,19 +30,31 @@ export interface State {
 
 export interface Props {
   defalutProps: string
+  token: string
 }
 
-export default class SignIn extends React.Component /*<Props, State>*/ {
-  public state = {
+class SignIn extends React.Component<Props, State> {
+  public state: State = {
     phone: '',
     password: '',
     inputBorderColor: '#EEEEEE',
     passCanSee: true
   }
 
-  // private constructor(props: {}) {
-  //   super(props);
-  // }
+  public constructor(props: Props) {
+    super(props)
+    // console.log(this.props.token)
+    if (this.props.token === '') {
+      console.log(this.props.token)
+      // this.props.navigation.navigate('Login')
+    }
+  }
+
+  public componentDidMount() {
+    Alert.alert('11111')
+    Toast.info('Toast without mask !!!', 1, undefined, false)
+  }
+  public showToastNoMask() {}
 
   public render() {
     return (
@@ -84,7 +106,7 @@ export default class SignIn extends React.Component /*<Props, State>*/ {
               }
             />
           </View>
-          <Button type="primary" style={styles.loginBtn}>
+          <Button type="primary" style={styles.loginBtn} onPress={this.showToastNoMask}>
             登录
           </Button>
           <View style={styles.actions}>
@@ -177,3 +199,23 @@ const styles = StyleSheet.create({
     marginBottom: 20
   }
 })
+
+const mapStateToProps = (state: any): Object => {
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token
+  }
+}
+
+// 发送行为
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    // 发送行为
+  }
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn)

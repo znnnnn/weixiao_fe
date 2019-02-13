@@ -20,7 +20,7 @@ export interface Props {
   defalutProps: string
 }
 
-export default class SignIn extends React.Component /*<Props, State>*/ {
+export default class Login extends React.Component /*<Props, State>*/ {
   public state = {
     phone: '',
     password: '',

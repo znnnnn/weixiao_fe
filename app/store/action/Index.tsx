@@ -1,13 +1,13 @@
 // 初始化 CHECK_LOGIN 对象
-export const login = (token: string) => {
+export const handleLogin = (token: string) => {
   return {
-    type: 'LOGIN',
+    type: 'HANDLE_LOGIN',
     token
   }
 }
 
-export const logOut = () => {
+export const handleLogout = () => {
   return {
-    type: 'LOGOUT'
+    type: 'HANDLE_LOGOUT'
   }
 }

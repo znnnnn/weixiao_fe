@@ -7,16 +7,18 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 // import React, {Component} from 'react';
-import mainTab from '@app/navigation/TabNavigator'
+import RouteConfig from '@app/navigation/RouteConfig'
+import StackNavigatorConfig from '@app/navigation/StackNavigatorConfig'
+import Home from '@page/home/Index'
 import rootReducer from '@store/reducer/index'
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
-import { createAppContainer } from 'react-navigation'
-import { Provider } from 'react-redux'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
+import { connect, Provider } from 'react-redux'
 import { createStore } from 'redux'
-const store = createStore(rootReducer)
 
-const RootNavigator = createAppContainer(mainTab)
+const store = createStore(rootReducer)
+const RootNavigator = createAppContainer(createStackNavigator(RouteConfig, StackNavigatorConfig))
 export default class App extends React.Component {
   public render() {
     return (

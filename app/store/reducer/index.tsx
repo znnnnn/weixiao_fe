@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import changeLoginState from './ChangeLoginState'
+import handleLogin from './HandleLogin'
 
 export default combineReducers({
-  changeLoginState
+  handleLogin
 })
