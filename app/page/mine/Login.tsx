@@ -121,7 +121,9 @@ export default class Login extends React.Component<Props, State> {
               onPress={() => console.log('weibo')}
             />
           </View>
-          <Text style={styles.visitor}>我是游客</Text>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('首页')}>
+            <Text style={styles.visitor}>我是游客</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -144,7 +146,7 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: hp('100%')
+    height: hp('100%') - 50
   },
   container: {
     marginTop: hp('10%'),

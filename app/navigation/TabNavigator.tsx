@@ -163,10 +163,17 @@ tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
   const { routeName } = navigation.state.routes[navigation.state.index]
 
   // You can do whatever you like here to pick the title based on the route name
-  const headerTitle = routeName
+  // 返回名称
+  const headerTruncatedBackTitle = routeName
+  // header栏
+  let header
+  if (routeName === '首页') {
+    header = null
+  }
 
   return {
-    headerTitle
+    headerTruncatedBackTitle,
+    header
   }
 }
 
