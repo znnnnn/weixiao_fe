@@ -1,8 +1,9 @@
 /*
  * 导入视图
  */
-import Login from '@app/page/mine/Login'
-import Register from '@app/page/mine/Register'
+import Login from '@page/mine/Login'
+import Register from '@page/mine/Register'
+import SetPwd from '@page/mine/SetPwd'
 import { NavigationRouteConfigMap } from 'react-navigation'
 import MainTab from './TabNavigator'
 /*
@@ -20,13 +21,17 @@ const RouteConfig: NavigationRouteConfigMap = {
     // 嵌套tab 因此header要在此关闭
     // navigationOptions: ({ navigation }) => ({ header: null })
   },
-  Login: {
+  登录: {
     screen: Login,
-    navigationOptions: ({ navigation }) => ({ header: null })
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '登录' })
   },
-  Register: {
+  注册: {
     screen: Register,
-    navigationOptions: ({ navigation }) => ({ header: null })
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '注册' })
+  },
+  设置密码: {
+    screen: SetPwd,
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '设置密码' })
   }
   // 下面三个页面我需要隐藏导航栏
   // NewsDetail: {

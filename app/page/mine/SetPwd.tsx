@@ -8,23 +8,24 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { NavigationScreenProps } from 'react-navigation'
 
 export interface State {
   phone: string
   code: string
   inputBorderColor: string
+  passCanSee: boolean
 }
 
-export interface Props extends NavigationScreenProps {
+export interface Props {
   defalutProps: string
 }
 
-export default class Register extends React.Component<Props, State> {
+export default class Register extends React.Component /*<Props, State>*/ {
   public state = {
     phone: '',
     code: '',
-    inputBorderColor: '#EEEEEE'
+    inputBorderColor: '#EEEEEE',
+    passCanSee: true
   }
 
   // private constructor(props: {}) {
@@ -35,62 +36,45 @@ export default class Register extends React.Component<Props, State> {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
-          <Text style={{ fontSize: 35 }}>注册</Text>
+          <Text style={{ fontSize: 35 }}>设置登录密码</Text>
           <View style={styles.inputContainer}>
             <InputItem
-              clear
-              type="phone"
-              value={this.state.phone}
+              type={this.state.passCanSee ? 'password' : 'digit'}
+              value={this.state.password}
               onChange={(value) => {
                 this.setState({
-                  phone: value
+                  password: value
                 })
               }}
-              editable={true}
-              disabled={false}
-              // autoFocus={true}
-              placeholder="手机号"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
-              style={{ borderWidth: 0 }}
-            />
-            <InputItem
-              value={this.state.code}
-              onChange={(value) => {
-                this.setState({
-                  code: value
-                })
-              }}
-              maxLength={6}
-              placeholder="验证码"
+              maxLength={16}
+              placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
               extra={
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Icon
+                    name="faxian_"
+                    style={{ fontSize: 24, marginRight: 10 }}
+                    onPress={() =>
+                      this.setState({
+                        passCanSee: !this.state.passCanSee
+                      })
+                    }
+                  />
                   <TouchableOpacity activeOpacity={0.5}>
-                    <Text>获取验证码</Text>
+                    <Text>忘记密码</Text>
                   </TouchableOpacity>
                 </View>
               }
             />
           </View>
-          <Button
-            type="primary"
-            style={styles.RegisterBtn}
-            onPress={() => this.props.navigation.navigate('设置密码')}
-          >
+          <Button type="primary" style={styles.RegisterBtn}>
             下一步
           </Button>
           <View style={styles.actions}>
-            <Text style={{ lineHeight: 20 }}>注册登录即表明你同意</Text>
-            <TouchableOpacity>
-              <Text style={{ color: '#1B82D2', lineHeight: 20 }}>《微校服务使用协议》</Text>
-            </TouchableOpacity>
-            <Text style={{ lineHeight: 20 }}>及</Text>
-            <TouchableOpacity>
-              <Text style={{ color: '#1B82D2', lineHeight: 20 }}>《微校隐私政策》</Text>
-            </TouchableOpacity>
-            <Text style={{ lineHeight: 20 }}>中的全部内容</Text>
+            <Text style={{ lineHeight: 20 }}>
+              密码由6-16位字母，数字，下划线组成，不包含空格，不能是9 位以下的纯数字
+            </Text>
           </View>
         </View>
       </View>

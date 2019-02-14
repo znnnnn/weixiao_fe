@@ -14,7 +14,7 @@ import {
 
 // let MainTab: NavigationContainer
 const tabRoute: NavigationRouteConfigMap = {
-  Home: {
+  首页: {
     screen: Home,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
@@ -43,7 +43,7 @@ const tabRoute: NavigationRouteConfigMap = {
       }
     })
   },
-  Find: {
+  发现: {
     screen: Find,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
@@ -68,7 +68,7 @@ const tabRoute: NavigationRouteConfigMap = {
       }
     })
   },
-  Publish: {
+  发布: {
     screen: Publish,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
@@ -88,7 +88,7 @@ const tabRoute: NavigationRouteConfigMap = {
       }
     })
   },
-  Contact: {
+  朋友: {
     screen: Contact,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
@@ -108,7 +108,7 @@ const tabRoute: NavigationRouteConfigMap = {
       }
     })
   },
-  Mine: {
+  我的: {
     screen: Mine,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性

@@ -49,7 +49,7 @@ class SignIn extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log(this.props.token)
-      this.props.navigation.navigate('Register')
+      this.props.navigation.navigate('登录')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
   }

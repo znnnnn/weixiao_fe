@@ -9,7 +9,6 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
-import { goToRegister } from './RouterUitl'
 
 export interface State {
   phone: string
@@ -66,6 +65,7 @@ export default class Login extends React.Component<Props, State> {
                   password: value
                 })
               }}
+              maxLength={16}
               placeholder="密码"
               onFocus={() => this.inputItemFocus()}
               onBlur={() => this.inputItemBlur()}
@@ -80,7 +80,7 @@ export default class Login extends React.Component<Props, State> {
                       })
                     }
                   />
-                  <TouchableOpacity activeOpacity={1 / 2}>
+                  <TouchableOpacity activeOpacity={0.5}>
                     <Text>忘记密码</Text>
                   </TouchableOpacity>
                 </View>
@@ -91,13 +91,13 @@ export default class Login extends React.Component<Props, State> {
             登录
           </Button>
           <View style={styles.actions}>
-            <TouchableOpacity activeOpacity={1 / 2} onPress={() => Linking.openURL('#')}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => Linking.openURL('#')}>
               <Text>验证码快速登录</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              activeOpacity={1 / 2}
-              onPress={() => this.props.navigation.navigate('Register')}
+              activeOpacity={0.5}
+              onPress={() => this.props.navigation.navigate('注册')}
             >
               <Text>注册</Text>
             </TouchableOpacity>
@@ -144,8 +144,6 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
     height: hp('100%')
   },
   container: {
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   passwd: {
-    borderBottomColor: 'red'
+    // borderBottomColor: 'red'
   },
   loginBtn: {
     borderRadius: 20,
@@ -172,8 +170,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: wp('80%'),
-    borderWidth: 1,
-    borderColor: 'red',
     marginTop: 20,
     fontSize: 10
   },
