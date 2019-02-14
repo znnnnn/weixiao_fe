@@ -8,20 +8,29 @@ import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 import {
   createBottomTabNavigator,
-  NavigationRouteConfig,
+  NavigationRouteConfigMap,
   TabNavigatorConfig
 } from 'react-navigation'
 
 // let MainTab: NavigationContainer
-const tabRoute: NavigationRouteConfig = {
+const tabRoute: NavigationRouteConfigMap = {
   Home: {
     screen: Home,
     navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
-      header: null,
+      // header：可以设置一些导航的属性，如果隐藏顶部导航栏只要将这个属性设置为null
       headerTitle: '首页',
+      // headerBackTitle：'设置跳转页面左侧返回箭头后面的文字，默认是上一个页面的标题。可以自定义，也可以设置为null'
+      // headerTruncatedBackTitle：设置当上个页面标题不符合返回箭头后的文字时，默认改成"返回"
+      // headerRight：设置导航条右侧。可以是按钮或者其他视图控件
+      // headerLeft：设置导航条左侧。可以是按钮或者其他视图控件
+      headerStyle: {
+        backgroundColor: 'red'
+      },
+      // headerTitleStyle：设置导航栏文字样式
+      // headerBackTitleStyle：设置导航栏‘返回’文字样式
       // headerStyle: styles.navigator,
       // headerTitleStyle: styles.navigatorTitle,
       gesturesEnabled: true,
@@ -40,7 +49,7 @@ const tabRoute: NavigationRouteConfig = {
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
-      header: null,
+      // header: null,
       headerTitle: '发现',
       // headerStyle: styles.navigator,
       // headerTitleStyle: styles.navigatorTitle,
@@ -122,6 +131,12 @@ const tabRoute: NavigationRouteConfig = {
 }
 
 const tabConfig: TabNavigatorConfig = {
+  // return {
+  //   title:
+  //     navigation.state.params && navigation.state.params.title
+  //       ? navigation.state.params.title
+  //       : 'No Title'
+  // }
   // 这里设置的是一般情况下Tabbar共同的属性
   tabBarPosition: 'bottom', // 设置tabbar的位置，iOS默认在底部，安卓默认在顶部。（属性值：'top'，'bottom')
   swipeEnabled: true, // 是否允许在标签之间进行滑动。
@@ -142,4 +157,17 @@ const tabConfig: TabNavigatorConfig = {
   }
 }
 
-export default createBottomTabNavigator(tabRoute, tabConfig)
+const tabNavigation = createBottomTabNavigator(tabRoute, tabConfig)
+tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
+  // console.log(navigation)
+  const { routeName } = navigation.state.routes[navigation.state.index]
+
+  // You can do whatever you like here to pick the title based on the route name
+  const headerTitle = routeName
+
+  return {
+    headerTitle
+  }
+}
+
+export default tabNavigation

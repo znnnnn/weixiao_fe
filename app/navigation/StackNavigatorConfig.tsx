@@ -1,4 +1,4 @@
-import { createStackNavigator, StackNavigatorConfig } from 'react-navigation'
+import { StackNavigatorConfig } from 'react-navigation'
 
 // 默认横向跳转
 // 如果即将要跳转到的页面需要其它跳转方式
@@ -11,8 +11,8 @@ import { createStackNavigator, StackNavigatorConfig } from 'react-navigation'
 // }
 
 const StackNavigationConfig: StackNavigatorConfig = {
-  initialRouteName: 'MainTab',
-  headerMode: 'float'
+  initialRouteName: 'MainTab'
+  // headerMode: 'float'
   // transitionConfig: () => ({
   //   screenInterpolater
   // })

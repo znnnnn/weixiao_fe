@@ -50,6 +50,7 @@
       "@util/*": ["app/util/*"],
       "@page/*": ["app/page/*"],
       "@store/*": ["app/store/*"],
+      "@image/*": ["app/image/*"],
     },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */

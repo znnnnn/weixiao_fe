@@ -35,6 +35,9 @@
 - Tab Bar 问题：https://github.com/react-navigation/react-navigation/issues/581 、 https://github.com/react-navigation/react-navigation/issues/464
 - Redux 和 React Navigation 结合： https://stackoverflow.com/questions/53846615/react-native-navigation-v3-with-redux
 - Add strong typing for react navigation props： https://stackoverflow.com/questions/47924501/add-strong-typing-for-react-navigation-props
+- navigationOptions from nested TabNavigator inside StackNavigator:
+  - https://github.com/react-navigation/react-navigation/issues/4357
+  - https://github.com/react-navigation/react-navigation-tabs/issues/19
 
 ### 架构设计参考
 

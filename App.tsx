@@ -10,6 +10,7 @@
 import RouteConfig from '@app/navigation/RouteConfig'
 import StackNavigatorConfig from '@app/navigation/StackNavigatorConfig'
 import Home from '@page/home/Index'
+import Login from '@page/mine/Login'
 import rootReducer from '@store/reducer/index'
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'

@@ -17,7 +17,8 @@ import MainTab from './TabNavigator'
 const RouteConfig: NavigationRouteConfigMap = {
   MainTab: {
     screen: MainTab
-    // navigationOptions: ({navigation}) => ({header: null})
+    // 嵌套tab 因此header要在此关闭
+    // navigationOptions: ({ navigation }) => ({ header: null })
   },
   Login: {
     screen: Login,

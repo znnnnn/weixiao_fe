@@ -8,6 +8,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { NavigationScreenProps } from 'react-navigation'
+import { goToRegister } from './RouterUitl'
 
 export interface State {
   phone: string
@@ -16,11 +18,11 @@ export interface State {
   passCanSee: boolean
 }
 
-export interface Props {
+export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
-export default class Login extends React.Component /*<Props, State>*/ {
+export default class Login extends React.Component<Props, State> {
   public state = {
     phone: '',
     password: '',
@@ -36,7 +38,8 @@ export default class Login extends React.Component /*<Props, State>*/ {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
-          <Text style={{ fontSize: 40 }}>微校</Text>
+          {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
+          <Image source={require('../../image/logo.png')} />
           <View style={styles.inputContainer}>
             <InputItem
               clear
@@ -77,7 +80,9 @@ export default class Login extends React.Component /*<Props, State>*/ {
                       })
                     }
                   />
-                  <Text>忘记密码</Text>
+                  <TouchableOpacity activeOpacity={1 / 2}>
+                    <Text>忘记密码</Text>
+                  </TouchableOpacity>
                 </View>
               }
             />
@@ -86,11 +91,14 @@ export default class Login extends React.Component /*<Props, State>*/ {
             登录
           </Button>
           <View style={styles.actions}>
-            <TouchableOpacity>
-              <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
+            <TouchableOpacity activeOpacity={1 / 2} onPress={() => Linking.openURL('#')}>
+              <Text>验证码快速登录</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={1 / 2}
+              onPress={() => this.props.navigation.navigate('Register')}
+            >
               <Text>注册</Text>
             </TouchableOpacity>
           </View>
