@@ -10,6 +10,7 @@ import {
 } from 'react-native-responsive-screen'
 
 export interface State {
+  password: string
   phone: string
   code: string
   inputBorderColor: string
@@ -20,8 +21,9 @@ export interface Props {
   defalutProps: string
 }
 
-export default class Register extends React.Component /*<Props, State>*/ {
+export default class SetPwd extends React.Component /*<Props, State>*/ {
   public state = {
+    password: '',
     phone: '',
     code: '',
     inputBorderColor: '#EEEEEE',
@@ -48,8 +50,8 @@ export default class Register extends React.Component /*<Props, State>*/ {
               }}
               maxLength={16}
               placeholder="密码"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
+              // onFocus={() => this.inputItemFocus()}
+              // onBlur={() => this.inputItemBlur()}
               extra={
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Icon
@@ -68,7 +70,7 @@ export default class Register extends React.Component /*<Props, State>*/ {
               }
             />
           </View>
-          <Button type="primary" style={styles.RegisterBtn}>
+          <Button type="primary" style={styles.nextBtn}>
             下一步
           </Button>
           <View style={styles.actions}>
@@ -81,17 +83,17 @@ export default class Register extends React.Component /*<Props, State>*/ {
     )
   }
 
-  private inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
+  // private inputItemFocus(): void {
+  //   this.setState({
+  //     inputBorderColor: '#29A1F7'
+  //   })
+  // }
 
-  private inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
-  }
+  // private inputItemBlur(): void {
+  //   this.setState({
+  //     inputBorderColor: '#EEEEEE'
+  //   })
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
   passwd: {
     // borderBottomColor: 'red'
   },
-  RegisterBtn: {
+  nextBtn: {
     borderRadius: 20,
     width: wp('80'),
     marginTop: 20

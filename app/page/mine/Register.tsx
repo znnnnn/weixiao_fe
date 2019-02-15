@@ -50,8 +50,8 @@ export default class Register extends React.Component<Props, State> {
               disabled={false}
               // autoFocus={true}
               placeholder="手机号"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
+              // onFocus={() => this.inputItemFocus()}
+              // onBlur={() => this.inputItemBlur()}
               style={{ borderWidth: 0 }}
             />
             <InputItem
@@ -63,8 +63,8 @@ export default class Register extends React.Component<Props, State> {
               }}
               maxLength={6}
               placeholder="验证码"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
+              // onFocus={() => this.inputItemFocus()}
+              // onBlur={() => this.inputItemBlur()}
               extra={
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <TouchableOpacity activeOpacity={0.5}>
@@ -97,17 +97,17 @@ export default class Register extends React.Component<Props, State> {
     )
   }
 
-  private inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
+  // private inputItemFocus(): void {
+  //   this.setState({
+  //     inputBorderColor: '#29A1F7'
+  //   })
+  // }
 
-  private inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
-  }
+  // private inputItemBlur(): void {
+  //   this.setState({
+  //     inputBorderColor: '#EEEEEE'
+  //   })
+  // }
 }
 
 const styles = StyleSheet.create({
