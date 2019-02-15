@@ -67,7 +67,7 @@ export default class SetPwd extends React.Component /*<Props, State>*/ {
                     onChange={() => {}}
                     // onImageClick={() => {}}
                     // onAddImageClick={() => {}}
-                    getPhotos={() => {}}
+                    // getPhotos={() => {}}
                     onImageClick={() => {
                       if (this.state.avatar[0].url !== '') this.state.avatarSelectable = false
                     }}
