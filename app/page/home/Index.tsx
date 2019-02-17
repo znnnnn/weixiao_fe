@@ -1,4 +1,4 @@
-import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
+import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
@@ -17,9 +17,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
-import { NavigationScreenProps } from 'react-navigation'
+import {NavigationScreenProps} from 'react-navigation'
 
 export interface State {
   phone: string
@@ -49,7 +49,7 @@ class SignIn extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log(this.props.token)
-      this.props.navigation.navigate('完善资料')
+      this.props.navigation.navigate('完善学历信息')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
   }
@@ -59,7 +59,7 @@ class SignIn extends React.Component<Props, State> {
       <Provider>
         <View style={styles.root}>
           <View style={styles.container}>
-            <Text style={{ fontSize: 40 }}>首页</Text>
+            <Text style={{fontSize: 40}}>首页</Text>
             <View style={styles.inputContainer}>
               <InputItem
                 clear
@@ -76,7 +76,7 @@ class SignIn extends React.Component<Props, State> {
                 placeholder="手机号"
                 onFocus={() => this.inputItemFocus()}
                 onBlur={() => this.inputItemBlur()}
-                style={{ borderWidth: 0 }}
+                style={{borderWidth: 0}}
               />
               <InputItem
                 type={this.state.passCanSee ? 'password' : 'digit'}
@@ -90,10 +90,10 @@ class SignIn extends React.Component<Props, State> {
                 onFocus={() => this.inputItemFocus()}
                 onBlur={() => this.inputItemBlur()}
                 extra={
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Icon
                       name="faxian_"
-                      style={{ fontSize: 24 }}
+                      style={{fontSize: 24}}
                       onPress={() =>
                         this.setState({
                           passCanSee: !this.state.passCanSee

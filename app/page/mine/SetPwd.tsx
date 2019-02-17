@@ -1,13 +1,14 @@
-import { Button, InputItem, List } from '@ant-design/react-native'
+import {Button, InputItem, List} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import {Text, TouchableOpacity, View} from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import {NavigationScreenProps} from 'react-navigation'
 
 export interface State {
   password: string
@@ -17,11 +18,11 @@ export interface State {
   passCanSee: boolean
 }
 
-export interface Props {
+export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
-export default class SetPwd extends React.Component /*<Props, State>*/ {
+export default class SetPwd extends React.Component <Props, State> {
   public state = {
     password: '',
     phone: '',
@@ -38,7 +39,7 @@ export default class SetPwd extends React.Component /*<Props, State>*/ {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
-          <Text style={{ fontSize: 35 }}>设置登录密码</Text>
+          <Text style={{fontSize: 35}}>设置登录密码</Text>
           <View style={styles.inputContainer}>
             <InputItem
               type={this.state.passCanSee ? 'password' : 'digit'}
@@ -53,10 +54,10 @@ export default class SetPwd extends React.Component /*<Props, State>*/ {
               // onFocus={() => this.inputItemFocus()}
               // onBlur={() => this.inputItemBlur()}
               extra={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <Icon
                     name="faxian_"
-                    style={{ fontSize: 24, marginRight: 10 }}
+                    style={{fontSize: 24, marginRight: 10}}
                     onPress={() =>
                       this.setState({
                         passCanSee: !this.state.passCanSee
@@ -70,11 +71,12 @@ export default class SetPwd extends React.Component /*<Props, State>*/ {
               }
             />
           </View>
-          <Button type="primary" style={styles.nextBtn}>
+          <Button type="primary" style={styles.nextBtn}
+                  onPress={() => this.props.navigation.navigate('完善资料')}>
             下一步
           </Button>
           <View style={styles.actions}>
-            <Text style={{ lineHeight: 20 }}>
+            <Text style={{lineHeight: 20}}>
               密码由6-16位字母，数字，下划线组成，不包含空格，不能是9 位以下的纯数字
             </Text>
           </View>

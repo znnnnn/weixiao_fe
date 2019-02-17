@@ -1,0 +1,34 @@
+[
+  {
+    "label": "小学",
+    "value": "1"
+  },
+  {
+    "label": "初中",
+    "value": "2"
+  },
+  {
+    "label": "高中",
+    "value": "3"
+  },
+  {
+    "label": "大专",
+    "value": "4"
+  },
+  {
+    "label": "本科",
+    "value": "5"
+  },
+  {
+    "label": "硕士",
+    "value": "6"
+  },
+  {
+    "label": "博士",
+    "value": "7"
+  },
+  {
+    "label": "博士后",
+    "value": "8"
+  }
+]

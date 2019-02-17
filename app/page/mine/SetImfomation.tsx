@@ -8,8 +8,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import {NavigationScreenProps} from "react-navigation";
 
-const RadioItem = Radio.RadioItem
 
 export interface State {
   nickName: string
@@ -20,7 +20,7 @@ export interface State {
   avatarSelectable: boolean
 }
 
-export interface Props {
+export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
@@ -64,7 +64,7 @@ export default class SetInformation extends React.Component<Props, State> {
     return (
       <View style={styles.root}>
         <View style={styles.container}>
-          <Text style={{fontSize: 35, marginBottom: 25}}>完善资料</Text>
+          <Text style={{fontSize: 35, marginBottom: 80}}>完善资料</Text>
           <View style={styles.inputContainer}>
             <InputItem
               value={this.state.nickName}
@@ -125,7 +125,7 @@ export default class SetInformation extends React.Component<Props, State> {
               }
             />
           </View>
-          <Button type="primary" style={styles.nextBtn}>
+          <Button type="primary" style={styles.nextBtn} onPress={() => this.props.navigation.navigate('完善学历信息')}>
             下一步
           </Button>
         </View>
