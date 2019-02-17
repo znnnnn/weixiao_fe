@@ -1,6 +1,8 @@
 import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
+import Avatar from '@components/home/Avatar'
 import px2dp from '@util/px2dp'
+
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
 import {
@@ -49,7 +51,7 @@ class SignIn extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log(this.props.token)
-      this.props.navigation.navigate('完善学历信息')
+      // this.props.navigation.navigate('完善学历信息')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
   }
@@ -58,6 +60,26 @@ class SignIn extends React.Component<Props, State> {
     return (
       <Provider>
         <View style={styles.root}>
+          <View style={{height: 80}}>
+            <ScrollView horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        style={{borderColor: 'green', borderWidth: 1}}>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+            </ScrollView>
+          </View>
           <View style={styles.container}>
             <Text style={{fontSize: 40}}>首页</Text>
             <View style={styles.inputContainer}>
@@ -148,13 +170,13 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
     height: hp('100%')
   },
   container: {
     marginTop: hp('10%'),
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'red',
   },
   inputContainer: {
     height: 140,
