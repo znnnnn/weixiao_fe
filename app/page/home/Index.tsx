@@ -1,6 +1,8 @@
 import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
+import PostUserCard from "@components/home/PostUserCard";
+
 import px2dp from '@util/px2dp'
 
 import StyleSheet from '@util/stylesheet'
@@ -80,6 +82,7 @@ class SignIn extends React.Component<Props, State> {
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
             </ScrollView>
           </View>
+          <PostUserCard>111111</PostUserCard>
           <View style={styles.container}>
             <Text style={{fontSize: 40}}>首页</Text>
             <View style={styles.inputContainer}>
@@ -185,9 +188,6 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'blue',
     marginTop: 10
-  },
-  passwd: {
-    borderBottomColor: 'red'
   },
   loginBtn: {
     borderRadius: 20,
