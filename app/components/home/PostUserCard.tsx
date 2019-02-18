@@ -2,18 +2,16 @@
 import {string} from 'prop-types'
 import React, {Component} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import DeviceInfo from 'react-native-device-info'
 
-const device = {
-  DeviceID: string
-}
 
-console.log(DeviceInfo.getDeviceId())
+// console.log(model)
 
 export interface Props {
-  uri: string
-  nickname: string
-  time: undefined
+  avatarUri: string
+  nickname: string,
+  tag: string,
+  postTime: string,
+  deviceName: string
 }
 
 class PostUserCard extends Component<Props> {
@@ -28,18 +26,18 @@ class PostUserCard extends Component<Props> {
       <View style={{alignItems: 'center', flexDirection: 'row'}}>
         <Image
           source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+            uri: this.props.avatarUri
           }}
           style={{width: 35, height: 35, borderRadius: 17.5}}
         />
         <View style={{marginLeft: 5, marginTop: 3}}>
           <View style={{flexDirection: 'row'}}>
-            <Text>Alice</Text>
-            <Text style={styles.tag}>工程师</Text>
+            <Text>{this.props.nickname}</Text>
+            <Text style={styles.tag}>{this.props.tag}</Text>
           </View>
           <View style={{flexDirection: 'row', marginTop: 3}}>
-            <Text style={styles.postFrom}>昨天 12：32</Text>
-            <Text style={styles.postFrom}>来自 iPhone7</Text>
+            <Text style={[styles.postFrom, {marginRight: 5}]}>{this.props.postTime}</Text>
+            <Text style={styles.postFrom}>来自 {this.props.deviceName}</Text>
           </View>
         </View>
       </View>

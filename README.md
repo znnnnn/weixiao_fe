@@ -17,6 +17,7 @@
 - 请参考：https://github.com/Microsoft/TypeScript-React-Native-Starter
 - TypeScript 在 React 中使用总结：https://juejin.im/post/5bab4d59f265da0aec22629b#heading-10
 - TypeScript 实践：https://juejin.im/post/5a9c004a6fb9a028b92c9e91
+- React + TS 2.8：终极组件设计模式指南：https://segmentfault.com/a/1190000015326439#articleHeader2
 
 ### 本项目实现 Iconfont 参考了以下几篇文章
 
@@ -50,3 +51,7 @@
   - http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html
   - http://taobaofed.org/blog/2016/08/18/react-redux-connect/
   - https://www.redux.org.cn/docs/basics/UsageWithReact.html
+
+### React Native获取设备信息组件
+
+- https://github.com/rebeccahughes/react-native-device-info

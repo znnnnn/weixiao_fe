@@ -22,8 +22,12 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import {connect} from 'react-redux'
-
+import DeviceInfo from 'react-native-device-info';
 import {NavigationScreenProps} from 'react-navigation'
+import getTimeDiff from '@util/time'
+
+const deviceName = DeviceInfo.getDeviceName();
+console.log(deviceName)
 
 export interface State {
   phone: string
@@ -82,7 +86,12 @@ class SignIn extends React.Component<Props, State> {
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
             </ScrollView>
           </View>
-          <PostUserCard>111111</PostUserCard>
+          <PostUserCard
+            avatarUri='https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+            nickname='Alice'
+            tag='工程师'
+            postTime={getTimeDiff(1356470770)}
+            deviceName={deviceName}/>
           <View style={styles.container}>
             <Text style={{fontSize: 40}}>首页</Text>
             <View style={styles.inputContainer}>

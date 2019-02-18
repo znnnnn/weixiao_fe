@@ -8,8 +8,8 @@ export interface Props {
 class Avatar extends Component<Props> {
   private constructor(props: Props) {
     super(props)
-    console.log(11111)
-    console.log(this.props.uri)
+    // console.log(11111)
+    // console.log(this.props.uri)
   }
 
   public render() {
