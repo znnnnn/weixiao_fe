@@ -1,4 +1,4 @@
-import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
+import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
@@ -22,8 +22,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import {NavigationScreenProps} from 'react-navigation'
-import {connect} from 'react-redux'
+import { NavigationScreenProps } from 'react-navigation'
+import { connect } from 'react-redux'
 
 export interface State {
   phone: string
@@ -62,29 +62,37 @@ class SignIn extends React.Component<Props, State> {
     return (
       <Provider>
         <View style={styles.root}>
-          <View style={{height: 80}}>
+          <View
+            style={{
+              paddingTop: 10,
+              backgroundColor: '#fff',
+              height: 90,
+              borderBottomWidth: 1,
+              borderBottomColor: '#f0f0f0'
+            }}
+          >
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              style={{borderColor: 'green', borderWidth: 1}}
+              // style={{ borderColor: 'green', borderWidth: 1 }}
             >
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
             </ScrollView>
           </View>
-          <PostCard/>
+          <PostCard />
         </View>
       </Provider>
     )
@@ -106,7 +114,7 @@ class SignIn extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#EEEEEE',
     height: hp('100%')
   },
   container: {

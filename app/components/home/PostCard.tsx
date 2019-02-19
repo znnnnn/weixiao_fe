@@ -1,126 +1,141 @@
+import Icon from '@app/util/icon'
 import PostUserCard from '@components/home/PostUserCard'
+import ImageCard from '@components/ImageCard'
 import getTimeDiff from '@util/time'
-import React, {Component} from 'react'
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {Modal} from 'react-native'
+import React, { Component } from 'react'
+import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-// console.log(model)
 
 const deviceName = DeviceInfo.getDeviceName()
 
-export interface Props {
+export interface State {
+  modalVisible: boolean
+  images: { url: string }[]
+  initIndex: number
 }
 
-const images = [
-  {
-    // Simplest usage.
-    url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
-
-    // width: number
-    // height: number
-    // Optional, if you know the image size, you can set the optimization performance
-
-    // You can pass props to <Image />.
-    props: {
-      // headers: ...
-      headers: 1111111111111111111
-    }
-  },
-  {
-    // Simplest usage.
-    url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
-
-    // width: number
-    // height: number
-    // Optional, if you know the image size, you can set the optimization performance
-
-    // You can pass props to <Image />.
-    props: {
-      // headers: ...
-      headers: 1111111111111111111
-    }
-  }
-]
-
-class PostCard extends Component<Props> {
+class PostCard extends Component {
   public state = {
-    modalVisible: false,
-    thumbUrl: [
-      'https://avatars2.githubusercontent.com/u/7970947',
-      'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    images: [
+      { url: 'https://avatars2.githubusercontent.com/u/7970947' },
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' },
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
     ],
+    modalVisible: false,
     initIndex: 0
   }
 
-  private constructor(props: Props) {
+  private constructor(props) {
     super(props)
   }
 
   public render() {
     return (
       <View
-        style={{alignItems: 'flex-start', borderWidth: 1, borderColor: 'red', width: wp('90%')}}
+        style={{
+          width: wp('100%'),
+          alignItems: 'center',
+          backgroundColor: '#fff',
+          paddingTop: 10
+        }}
       >
-        <PostUserCard
-          avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-          nickname="Alice"
-          tag="工程师"
-          postTime={getTimeDiff(1356470770)}
-          deviceName={deviceName}
-        />
-        <Text style={{marginTop: 20, marginBottom: 20}}>我爱编程我爱编程我爱编程我爱编程我爱编程！</Text>
-        <View style={{width: wp('90%'), alignItems: 'center'}}>
-          <View style={{flexDirection: 'row'}}>
-            {this.state.thumbUrl.map((item, index) => {
-              // console.log(item)
-              return (
-                <TouchableOpacity onPress={(index) => {
-                  this.setState({
-                    modalVisible: true,
-                    index: index
-                  })
-                }}>
-                  <Image
-                    source={{uri: item}}
-                    key={index}
-                    style={{
-                      width: 110,
-                      height: 110,
-                      marginRight: (wp('90%') - 330) / 12,
-                      marginLeft: (wp('90%') - 330) / 12
+        <View
+          style={{
+            alignItems: 'flex-start',
+            /*borderWidth: 1, borderColor: 'red',*/
+            width: wp('90%')
+          }}
+        >
+          <PostUserCard
+            avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
+            nickname="Alice"
+            tag="工程师"
+            postTime={getTimeDiff(1356470770)}
+            deviceName={deviceName}
+          />
+          <Text style={{ marginTop: 20, marginBottom: 20 }}>
+            我爱编程我爱编程我爱编程我爱编程我爱编程！
+          </Text>
+          <View style={{ width: wp('90%'), alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
+              {this.state.images.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      console.log(index)
+                      this.setState({
+                        modalVisible: true,
+                        initIndex: index
+                      })
                     }}
-                  />
-                </TouchableOpacity>
-              )
-            })}
+                    key={index}
+                  >
+                    <Image
+                      source={{ uri: item.url }}
+                      key={index}
+                      style={{
+                        width: 110,
+                        height: 110,
+                        marginRight: (wp('90%') - 330) / 12,
+                        marginLeft: (wp('90%') - 330) / 12
+                      }}
+                    />
+                  </TouchableOpacity>
+                )
+              })}
+            </View>
           </View>
-        </View>
 
-        <Modal visible={this.state.modalVisible} transparent={true}>
-          <ImageViewer
-            imageUrls={images}
-            // renderImage={}
-            // renderHeader={() => (<Text style={{fontSize: 10, color: '#fff'}}>返回</Text>)}
+          <ImageCard
+            modalVisible={this.state.modalVisible}
+            images={this.state.images}
+            initIndex={this.state.initIndex}
             onClick={() =>
               this.setState({
-                modalVisible: false
+                modalVisible: !this.state.modalVisible
               })
             }
-            enableSwipeDown={true}
             onSwipeDown={() =>
               this.setState({
-                modalVisible: false
+                modalVisible: !this.state.modalVisible
               })
             }
-            index={this.state.initIndex}
           />
-        </Modal>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: wp('100%'),
+            justifyContent: 'space-around',
+            marginTop: 10,
+            borderTopWidth: 1,
+            borderTopColor: '#f0f0f0'
+          }}
+        >
+          <TouchableOpacity>
+            <View style={styles.actionButton}>
+              <Icon name="fenxiang" style={styles.actions} onPress={() => console.log('QQ')} />
+              <Text style={styles.actions}>666</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.actionButton}>
+              <Icon name="pinglun" style={styles.actions} onPress={() => console.log('QQ')} />
+              <Text style={styles.actions}>555</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.actionButton}>
+              <Icon name="dianzan" style={styles.actions} onPress={() => console.log('QQ')} />
+              <Text style={styles.actions}>333</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -141,6 +156,21 @@ const styles = StyleSheet.create({
   postFrom: {
     fontSize: 10,
     color: '#9E9E9E'
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: wp(`${100 / 3}%`),
+    height: 35
+    // borderWidth: 1,
+    // borderColor: 'red'
+  },
+  actions: {
+    fontSize: 14,
+    color: '#9E9E9E',
+    // marginRight: 4,
+    lineHeight: 14
   }
 })
 

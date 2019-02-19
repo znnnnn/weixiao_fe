@@ -52,8 +52,10 @@
   - http://taobaofed.org/blog/2016/08/18/react-redux-connect/
   - https://www.redux.org.cn/docs/basics/UsageWithReact.html
 
-### React Native获取设备信息组件
+### React Native 获取设备信息组件
 
 - https://github.com/rebeccahughes/react-native-device-info
 
 ### React Native 第三方组件
+
+- React Native 常用三方组件库大全：https://juejin.im/post/5b915770e51d450e9f66de40#heading-85
