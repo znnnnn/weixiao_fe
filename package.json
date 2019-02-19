@@ -17,6 +17,7 @@
     "react-native": "^0.58.4",
     "react-native-device-info": "^0.26.3",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-image-zoom-viewer": "^2.2.25",
     "react-native-vector-icons": "^6.2.0",
     "react-navigation": "^3.2.1",
     "react-redux": "^6.0.0",

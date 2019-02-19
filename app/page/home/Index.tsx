@@ -1,10 +1,11 @@
 import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
-import PostUserCard from "@components/home/PostUserCard";
+import PostUserCard from '@components/home/PostUserCard'
 
 import px2dp from '@util/px2dp'
 
+import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
 import {
@@ -21,13 +22,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import {connect} from 'react-redux'
-import DeviceInfo from 'react-native-device-info';
 import {NavigationScreenProps} from 'react-navigation'
-import getTimeDiff from '@util/time'
-
-const deviceName = DeviceInfo.getDeviceName();
-console.log(deviceName)
+import {connect} from 'react-redux'
 
 export interface State {
   phone: string
@@ -67,9 +63,11 @@ class SignIn extends React.Component<Props, State> {
       <Provider>
         <View style={styles.root}>
           <View style={{height: 80}}>
-            <ScrollView horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        style={{borderColor: 'green', borderWidth: 1}}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={{borderColor: 'green', borderWidth: 1}}
+            >
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
@@ -86,80 +84,7 @@ class SignIn extends React.Component<Props, State> {
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
             </ScrollView>
           </View>
-          <PostUserCard
-            avatarUri='https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-            nickname='Alice'
-            tag='工程师'
-            postTime={getTimeDiff(1356470770)}
-            deviceName={deviceName}/>
-          <View style={styles.container}>
-            <Text style={{fontSize: 40}}>首页</Text>
-            <View style={styles.inputContainer}>
-              <InputItem
-                clear
-                type="phone"
-                value={this.state.phone}
-                onChange={(value) => {
-                  this.setState({
-                    phone: value
-                  })
-                }}
-                editable={true}
-                disabled={false}
-                // autoFocus={true}
-                placeholder="手机号"
-                onFocus={() => this.inputItemFocus()}
-                onBlur={() => this.inputItemBlur()}
-                style={{borderWidth: 0}}
-              />
-              <InputItem
-                type={this.state.passCanSee ? 'password' : 'digit'}
-                value={this.state.password}
-                onChange={(value) => {
-                  this.setState({
-                    password: value
-                  })
-                }}
-                placeholder="密码"
-                onFocus={() => this.inputItemFocus()}
-                onBlur={() => this.inputItemBlur()}
-                extra={
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Icon
-                      name="faxian_"
-                      style={{fontSize: 24}}
-                      onPress={() =>
-                        this.setState({
-                          passCanSee: !this.state.passCanSee
-                        })
-                      }
-                    />
-                    <Text>忘记密码</Text>
-                  </View>
-                }
-              />
-            </View>
-            <Button type="primary" style={styles.loginBtn}>
-              登录
-            </Button>
-            <View style={styles.actions}>
-              <TouchableOpacity>
-                <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity>
-                <Text>注册</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.socialLogin}>
-            <View style={styles.social}>
-              <Text>QQ</Text>
-              <Text>微信</Text>
-              <Text>微博</Text>
-            </View>
-            <Text style={styles.visitor}>我是游客</Text>
-          </View>
+          <PostCard/>
         </View>
       </Provider>
     )
@@ -188,7 +113,7 @@ const styles = StyleSheet.create({
     marginTop: hp('10%'),
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'red',
+    borderColor: 'red'
   },
   inputContainer: {
     height: 140,
