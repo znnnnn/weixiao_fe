@@ -11,15 +11,20 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
+
 const deviceName = DeviceInfo.getDeviceName()
 
+export interface Props extends NavigationScreenProps {
+  token: string
+}
 export interface State {
   modalVisible: boolean
   images: { url: string }[]
   initIndex: number
 }
 
-class PostCard extends Component {
+class PostCard extends Component<Props> {
   public state = {
     images: [
       { url: 'https://avatars2.githubusercontent.com/u/7970947' },
@@ -30,7 +35,7 @@ class PostCard extends Component {
     initIndex: 0
   }
 
-  private constructor(props) {
+  public constructor(props: Props) {
     super(props)
   }
 
@@ -58,7 +63,10 @@ class PostCard extends Component {
             postTime={getTimeDiff(1356470770)}
             deviceName={deviceName}
           />
-          <Text style={{ marginTop: 20, marginBottom: 20 }}>
+          <Text
+            style={{ marginTop: 20, marginBottom: 20 }}
+            onPress={() => this.props.navigation.navigate('微校正文')}
+          >
             我爱编程我爱编程我爱编程我爱编程我爱编程！
           </Text>
           <View style={{ width: wp('90%'), alignItems: 'center' }}>
@@ -170,8 +178,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#9E9E9E',
     // marginRight: 4,
-    lineHeight: 14
+    lineHeight: 14,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
-export default PostCard
+export default withNavigation(PostCard)

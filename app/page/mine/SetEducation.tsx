@@ -1,12 +1,12 @@
-import {Button, Provider, InputItem, List, Picker, DatePicker} from '@ant-design/react-native'
+import { Button, DatePicker, InputItem, List, Picker, Provider } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import React from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import {NavigationScreenProps} from "react-navigation";
+import { NavigationScreenProps } from 'react-navigation'
 
 const MAJOR_DATA = require('./SetEducationMajor.json')
 const SCHOOL_DATA = require('./SetEducationSchool.json')
@@ -21,7 +21,6 @@ const data = require('./data.json')
 //   value: "2"
 // }
 // ]
-
 
 export interface Props extends NavigationScreenProps {
   defalutProps: string
@@ -45,7 +44,7 @@ export interface Props extends NavigationScreenProps {
 //   </TouchableOpacity>
 // );
 
-export default class SetInformation extends React.Component<Props /*State*/> {
+export default class SetInformation extends React.Component<Props> /*State*/ {
   public state = {
     // value: ["温州职业技术学院", "温州大学"]
     data: [],
@@ -62,12 +61,12 @@ export default class SetInformation extends React.Component<Props /*State*/> {
   //   super(props);
   // }
 
-  onPress = () => {
+  public onPress = () => {
     setTimeout(() => {
       this.setState({
-        data: data,
-      });
-    }, 500);
+        data
+      })
+    }, 500)
   }
 
   public render() {
@@ -75,8 +74,8 @@ export default class SetInformation extends React.Component<Props /*State*/> {
       <Provider>
         <View style={styles.root}>
           <View style={styles.container}>
-            <Text style={{fontSize: 35, marginBottom: 25}}>完善学历信息</Text>
-            <List style={{height: hp('35%'), width: wp('90%')}}>
+            <Text style={{ fontSize: 35, marginBottom: 25 }}>完善学历信息</Text>
+            <List style={{ height: hp('35%'), width: wp('90%') }}>
               <Picker
                 data={SCHOOL_DATA}
                 cols={1}
@@ -101,9 +100,7 @@ export default class SetInformation extends React.Component<Props /*State*/> {
                   })
                 }}
               >
-                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>
-                  专业
-                </List.Item>
+                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>专业</List.Item>
               </Picker>
               <Picker
                 data={EDU_DATA}
@@ -115,9 +112,7 @@ export default class SetInformation extends React.Component<Props /*State*/> {
                   })
                 }}
               >
-                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>
-                  学历
-                </List.Item>
+                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>学历</List.Item>
               </Picker>
               <DatePicker
                 value={this.state.admission}
@@ -142,7 +137,7 @@ export default class SetInformation extends React.Component<Props /*State*/> {
                 }}
                 clear
                 // maxLength={16}
-                style={{paddingLeft: 30}}
+                style={{ paddingLeft: 30 }}
                 // placeholder="昵称"
               >
                 就业岗位
@@ -158,9 +153,11 @@ export default class SetInformation extends React.Component<Props /*State*/> {
               {/*<CustomChildren>Customized children</CustomChildren>*/}
               {/*</Picker>*/}
             </List>
-            <Button type="primary"
-                    style={styles.nextBtn}
-                    onPress={() => this.props.navigation.navigate("登录")}>
+            <Button
+              type="primary"
+              style={styles.nextBtn}
+              onPress={() => this.props.navigation.navigate('登录')}
+            >
               下一步
             </Button>
           </View>
@@ -178,12 +175,12 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp('10%'),
-    alignItems: 'center',
+    alignItems: 'center'
     // backgroundColor: 'red'
   },
   nextBtn: {
     borderRadius: 20,
     width: wp('80'),
     marginTop: 20
-  },
+  }
 })

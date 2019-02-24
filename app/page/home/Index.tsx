@@ -37,7 +37,7 @@ export interface Props extends NavigationScreenProps {
   token: string
 }
 
-class SignIn extends React.Component<Props, State> {
+class Home extends React.Component<Props, State> {
   public state: State = {
     phone: '',
     password: '',
@@ -92,7 +92,11 @@ class SignIn extends React.Component<Props, State> {
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
             </ScrollView>
           </View>
-          <PostCard />
+          <ScrollView>
+            <PostCard />
+            <PostCard />
+            <PostCard />
+          </ScrollView>
         </View>
       </Provider>
     )
@@ -182,4 +186,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn)
+)(Home)
