@@ -1,10 +1,8 @@
 import Icon from '@app/util/icon'
 import PostUserCard from '@components/home/PostUserCard'
 import ImageCard from '@components/ImageCard'
-import getTimeDiff from '@util/time'
 import React, { Component } from 'react'
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import DeviceInfo from 'react-native-device-info'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   heightPercentageToDP as hp,
@@ -13,6 +11,8 @@ import {
 
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+import getTimeDiff from '@util/time'
+import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
 export interface Props extends NavigationScreenProps {

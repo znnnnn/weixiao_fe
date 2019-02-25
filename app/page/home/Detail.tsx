@@ -1,12 +1,10 @@
-import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
+import { Provider, Tabs } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
 
 // import Video from 'react-native-video'
-import PostCard from '@app/components/home/PostCard'
-import px2dp from '@util/px2dp'
-import StyleSheet from '@util/stylesheet'
+
 import React from 'react'
 import { Alert, Image, Linking, Platform, Text, TouchableOpacity, View } from 'react-native'
 // import Video from 'react-native-af-video-player'
@@ -19,10 +17,15 @@ import {
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
 // import VideoPlayer from 'react-native-video-controls'
-import VideoPlayerScreen from './VideoPlayerScreen'
 
 import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
+
+import PostCard from '@app/components/home/PostCard'
+import Comment from '@components/Comment'
+import px2dp from '@util/px2dp'
+import StyleSheet from '@util/stylesheet'
+import VideoPlayerScreen from './VideoPlayerScreen'
 
 const deviceName = DeviceInfo.getDeviceName()
 
@@ -79,8 +82,8 @@ export default class PostCardDetail extends React.Component<Props, State> {
               flex: 1,
               width: wp('100%'),
               backgroundColor: '#fff',
-              borderColor: 'red',
-              borderWidth: 1,
+              // borderColor: 'red',
+              // borderWidth: 1,
               alignItems: 'center'
             }}
           >
@@ -127,6 +130,30 @@ export default class PostCardDetail extends React.Component<Props, State> {
               }}
             />
           </Container>
+          <View style={styles.shareText}>
+            <Text style={{ color: '#CCCCCC', fontSize: 14, lineHeight: 24 }}>分享到</Text>
+            <Icon
+              name="weixin"
+              style={[styles.shareIcon, { color: '#50B674' }]}
+              onPress={() => console.log('weibo')}
+            />
+            <Icon
+              name="pengyouquan"
+              style={[styles.shareIcon, { color: '#50B674' }]}
+              onPress={() => console.log('weibo')}
+            />
+            <Icon
+              name="kongjian"
+              style={[styles.shareIcon, { color: '#F7D11E' }]}
+              onPress={() => console.log('weibo')}
+            />
+            <Icon
+              name="qq"
+              style={[styles.shareIcon, { color: '#5EAADE' }]}
+              onPress={() => console.log('weibo')}
+            />
+          </View>
+          <Comment />
         </ScrollView>
       </Provider>
     )
@@ -140,5 +167,19 @@ const styles = StyleSheet.create({
     flex: 1,
     height: hp('100%')
     // width: wp('100%')
+  },
+  shareText: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: wp('100%'),
+    backgroundColor: '#fff',
+    lineHeight: 24,
+    paddingLeft: wp('10%'),
+    paddingRight: wp('10%'),
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  shareIcon: {
+    fontSize: 24
   }
 })

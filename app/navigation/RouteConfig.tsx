@@ -8,9 +8,10 @@ import SetEducation from '@page/mine/SetEducation'
 import SetInformation from '@page/mine/SetImfomation'
 import SetPwd from '@page/mine/SetPwd'
 
+import CommentTest from '@components/Comment'
 import Test from '@page/home/VideoPlayerScreen'
 
-import {NavigationRouteConfigMap} from 'react-navigation'
+import { NavigationRouteConfigMap } from 'react-navigation'
 import MainTab from './TabNavigator'
 /*
 
@@ -29,31 +30,31 @@ const RouteConfig: NavigationRouteConfigMap = {
   },
   登录: {
     screen: Login,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '登录'})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '登录' })
   },
   注册: {
     screen: Register,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '注册'})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '注册' })
   },
   设置密码: {
     screen: SetPwd,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '设置密码'})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '设置密码' })
   },
   完善资料: {
     screen: SetInformation,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '完善资料'})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '完善资料' })
   },
   完善学历信息: {
     screen: SetEducation,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '完善学历信息'})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '完善学历信息' })
   },
   微校正文: {
     screen: PostCardDetail,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: ''})
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '' })
   },
   测试: {
-    screen: Test,
-    navigationOptions: ({navigation}) => ({headerTruncatedBackTitle: '', header: null})
+    screen: CommentTest,
+    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '', header: null })
   }
   // 下面三个页面我需要隐藏导航栏
   // NewsDetail: {
