@@ -39,6 +39,7 @@
 - navigationOptions from nested TabNavigator inside StackNavigator:
   - https://github.com/react-navigation/react-navigation/issues/4357
   - https://github.com/react-navigation/react-navigation-tabs/issues/19
+- 子组件没有 this.navigation.navigate()：https://stackoverflow.com/questions/45978679/react-native-cannot-read-property-navigate-of-undefined
 
 ### 架构设计参考
 
@@ -59,3 +60,7 @@
 ### React Native 第三方组件
 
 - React Native 常用三方组件库大全：https://juejin.im/post/5b915770e51d450e9f66de40#heading-85
+- 视频全屏播放：
+  - https://github.com/abbasfreestyle/react-native-af-video-player#fullscreen-videos-inside-a-scrollview
+  - 最外层宽度不能写死
+  - 用了组件的 ScrollView 之后，不能与其他内容部分同层，不然会有内容在全屏后无法消失

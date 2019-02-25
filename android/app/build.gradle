@@ -134,6 +134,11 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-linear-gradient')
+    implementation project(':react-native-orientation')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-keep-awake')
+    implementation project(':react-native-video')
     implementation project(':react-native-device-info')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])

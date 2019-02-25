@@ -3,38 +3,33 @@ import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
 
-import px2dp from '@util/px2dp'
-
+// import Video from 'react-native-video'
 import PostCard from '@app/components/home/PostCard'
+import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import {
-  Alert,
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native'
+import { Alert, Image, Linking, Platform, Text, TouchableOpacity, View } from 'react-native'
+// import Video from 'react-native-af-video-player'
+import Video, { Container, ScrollView } from 'react-native-af-video-player'
+import Orientation from 'react-native-orientation'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
+// import VideoPlayer from 'react-native-video-controls'
+import VideoPlayerScreen from './VideoPlayerScreen'
 
 import getTimeDiff from '@util/time'
-
 import DeviceInfo from 'react-native-device-info'
+
 const deviceName = DeviceInfo.getDeviceName()
 
 export interface State {
-  phone: string
-  password: string
-  inputBorderColor: string
-  passCanSee: boolean
+  videoWidth: number
+  videoHeight: number
+  isFullScreen: boolean
 }
 
 export interface Props extends NavigationScreenProps {
@@ -43,11 +38,22 @@ export interface Props extends NavigationScreenProps {
 }
 
 export default class PostCardDetail extends React.Component<Props, State> {
+  public static navigationOptions = ({ navigation }) => {
+    const { state } = navigation
+    // Setup the header and tabBarVisible status
+    const header = state.params && (state.params.fullscreen ? undefined : null)
+    const tabBarVisible = state.params ? state.params.fullscreen : true
+    return {
+      // For stack navigators, you can hide the header bar like so
+      header,
+      // For the tab navigators, you can hide the tab bar like so
+      tabBarVisible
+    }
+  }
   public state: State = {
-    phone: '',
-    password: '',
-    inputBorderColor: '#EEEEEE',
-    passCanSee: true
+    videoWidth: 40,
+    videoHeight: 40,
+    isFullScreen: false
   }
 
   public constructor(props: Props) {
@@ -55,14 +61,30 @@ export default class PostCardDetail extends React.Component<Props, State> {
     // console.log(this.props.token)
   }
 
+  public onFullScreen(status) {
+    // Set the params to pass in fullscreen status to navigationOptions
+    this.props.navigation.setParams({
+      fullscreen: !status
+    })
+  }
+
   public componentDidMount() {}
 
   public render() {
     return (
       <Provider>
-        <View style={styles.root}>
-          <View style={{ flex: 1, background: '#fff' }}>
-            <View style={{ alignItems: 'flex-start', width: wp('90%'), background: '#fff' }}>
+        <ScrollView style={styles.root}>
+          <View
+            style={{
+              flex: 1,
+              width: wp('100%'),
+              backgroundColor: '#fff',
+              borderColor: 'red',
+              borderWidth: 1,
+              alignItems: 'center'
+            }}
+          >
+            <View style={{ alignItems: 'flex-start', width: wp('90%'), marginTop: 15 }}>
               <PostUserCard
                 avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
                 nickname="Alice"
@@ -71,29 +93,52 @@ export default class PostCardDetail extends React.Component<Props, State> {
                 deviceName={deviceName}
               />
             </View>
+            <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
+              我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程。
+            </Text>
           </View>
-        </View>
+          <Container
+            style={{
+              flex: 1,
+              width: wp('100%'),
+              // borderWidth: 1,
+              // borderColor: 'red',
+              backgroundColor: '#fff',
+              paddingLeft: wp('5%'),
+              paddingTop: 15
+            }}
+          >
+            <Video
+              // autoPlay
+              url={'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'}
+              // title={title}
+              // logo={logo}
+              // placeholder={placeholder}
+              // onMorePress={() => this.onMorePress()}
+              resizeMode="contain"
+              rotateToFullScreen={true}
+              onFullScreen={(status) => this.onFullScreen(status)}
+              // fullScreenOnly
+              style={{
+                height: 150,
+                borderRadius: 10,
+                width: wp('90%'),
+                overflow: 'hidden'
+              }}
+            />
+          </Container>
+        </ScrollView>
       </Provider>
     )
-  }
-
-  private inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
-
-  private inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
   }
 }
 
 const styles = StyleSheet.create({
   root: {
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#EEEEEE',
+    flex: 1,
     height: hp('100%')
+    // width: wp('100%')
   }
 })

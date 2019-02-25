@@ -53,7 +53,7 @@ class Home extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log(this.props.token)
-      // this.props.navigation.navigate('完善学历信息')
+      this.props.navigation.navigate('微校正文')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
   }

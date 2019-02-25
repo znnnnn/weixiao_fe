@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
     // marginRight: 4,
     lineHeight: 14,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 5
   }
 })
 
