@@ -27,7 +27,7 @@ export interface State {
 class PostCard extends Component<Props> {
   public state = {
     images: [
-      { url: 'https://avatars2.githubusercontent.com/u/7970947' },
+      { url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png' },
       { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' },
       { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
     ],

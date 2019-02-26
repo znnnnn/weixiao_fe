@@ -5,7 +5,7 @@ import Find from '@page/find/index'
 import Mine from '@page/mine/Index'
 import Publish from '@page/publish/Index'
 import React from 'react'
-import {Image, StyleSheet} from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import {
   createBottomTabNavigator,
   NavigationRouteConfigMap,
@@ -16,7 +16,7 @@ import {
 const tabRoute: NavigationRouteConfigMap = {
   首页: {
     screen: Home,
-    navigationOptions: ({navigation, screeProps}) => ({
+    navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
@@ -38,14 +38,14 @@ const tabRoute: NavigationRouteConfigMap = {
       // 这里设置Tabbar不同页面可能会不同的属性
       tabBarVisible: true,
       tabBarLabel: '首页',
-      tabBarIcon: ({tintColor, focused}) => {
-        return <Icon name="shouye" style={{marginTop: 3, fontSize: 28, color: tintColor}}/>
+      tabBarIcon: ({ tintColor, focused }) => {
+        return <Icon name="shouye" style={{ marginTop: 3, fontSize: 28, color: tintColor }} />
       }
     })
   },
   发现: {
     screen: Find,
-    navigationOptions: ({navigation, screeProps}) => ({
+    navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
@@ -58,11 +58,11 @@ const tabRoute: NavigationRouteConfigMap = {
       // 这里设置Tabbar不同页面可能会不同的属性
       tabBarVisible: true,
       tabBarLabel: '发现',
-      tabBarIcon: ({tintColor, focused}) => {
+      tabBarIcon: ({ tintColor, focused }) => {
         return (
           <Icon
             name="iconfontzhizuobiaozhun023103"
-            style={{marginTop: 5, fontSize: 23, color: tintColor}}
+            style={{ marginTop: 5, fontSize: 23, color: tintColor }}
           />
         )
       }
@@ -70,7 +70,7 @@ const tabRoute: NavigationRouteConfigMap = {
   },
   发布: {
     screen: Publish,
-    navigationOptions: ({navigation, screeProps}) => ({
+    navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
@@ -83,14 +83,14 @@ const tabRoute: NavigationRouteConfigMap = {
       // 这里设置Tabbar不同页面可能会不同的属性
       tabBarVisible: true,
       tabBarLabel: '发布',
-      tabBarIcon: ({tintColor, focused}) => {
-        return <Icon name="fabu" style={{marginTop: 6, fontSize: 25, color: tintColor}}/>
+      tabBarIcon: ({ tintColor, focused }) => {
+        return <Icon name="fabu" style={{ marginTop: 6, fontSize: 25, color: tintColor }} />
       }
     })
   },
   朋友: {
     screen: Contact,
-    navigationOptions: ({navigation, screeProps}) => ({
+    navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
@@ -103,14 +103,14 @@ const tabRoute: NavigationRouteConfigMap = {
       // 这里设置Tabbar不同页面可能会不同的属性
       tabBarVisible: true,
       tabBarLabel: '朋友',
-      tabBarIcon: ({tintColor, focused}) => {
-        return <Icon name="xingqiu" style={{marginTop: 5, fontSize: 26, color: tintColor}}/>
+      tabBarIcon: ({ tintColor, focused }) => {
+        return <Icon name="xingqiu" style={{ marginTop: 5, fontSize: 26, color: tintColor }} />
       }
     })
   },
   我的: {
     screen: Mine,
-    navigationOptions: ({navigation, screeProps}) => ({
+    navigationOptions: ({ navigation, screeProps }) => ({
       // 这里设置StackNavigator属性和一般情况下Tabbar不同页面可能会不同的属性
 
       // 设置StackNavigator属性
@@ -123,8 +123,8 @@ const tabRoute: NavigationRouteConfigMap = {
       // 这里设置Tabbar不同页面可能会不同的属性
       tabBarVisible: true,
       tabBarLabel: '我的',
-      tabBarIcon: ({tintColor, focused}) => {
-        return <Icon name="wo" style={{marginTop: 6, fontSize: 23, color: tintColor}}/>
+      tabBarIcon: ({ tintColor, focused }) => {
+        return <Icon name="wo" style={{ marginTop: 6, fontSize: 23, color: tintColor }} />
       }
     })
   }
@@ -158,9 +158,9 @@ const tabConfig: TabNavigatorConfig = {
 }
 
 const tabNavigation = createBottomTabNavigator(tabRoute, tabConfig)
-tabNavigation.navigationOptions = ({navigation, screeProps}) => {
+tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
   // console.log(navigation)
-  const {routeName} = navigation.state.routes[navigation.state.index]
+  const { routeName } = navigation.state.routes[navigation.state.index]
 
   // You can do whatever you like here to pick the title based on the route name
   // 返回名称
@@ -169,6 +169,13 @@ tabNavigation.navigationOptions = ({navigation, screeProps}) => {
   let header
   if (routeName === '首页') {
     // header = null
+  }
+  switch (routeName) {
+    case '发现':
+      header = null
+      break
+    default:
+      break
   }
 
   return {

@@ -23,7 +23,7 @@ const renderContent = (tab: any, index: any) => {
   return <View style={{ backgroundColor: '#fff' }}>{content}</View>
 }
 
-export default class BasicTabsExample extends React.Component<any, any> {
+export default class Comment extends React.Component<any, any> {
   public render() {
     // const tabs = [{ title: 'First Tab' }, { title: 'Second Tab' }, { title: 'Third Tab' }]
     const tabs2 = [{ title: '评论' }, { title: '转发' }]
