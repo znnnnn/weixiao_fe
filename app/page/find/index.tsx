@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
     height: hp('100%'),
     flex: 1,
     paddingTop: 20

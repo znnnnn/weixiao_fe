@@ -11,6 +11,7 @@ import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
+import BottomTabTopicItem from './BottomTabTopicItem'
 
 const renderContent = (tab: any, index: any) => {
   // const content = [1, 2, 3, 4, 5, 6, 7, 8].map((i) => {
@@ -46,7 +47,13 @@ export default class IconTab extends React.Component<any, any> {
     //   backgroundColor: '#fff'
     // } as any
     return (
-      <View style={{ flex: 1, borderWidth: 1, borderColor: 'green' }}>
+      <View
+        style={{
+          flex: 1
+          // borderWidth: 1,
+          // borderColor: 'green'
+        }}
+      >
         {/* <Tabs tabs={tabs}>
           <View style={style}>
             <Text>Content of First Tab</Text>
@@ -65,70 +72,11 @@ export default class IconTab extends React.Component<any, any> {
               style={{
                 flexDirection: 'row',
                 // width: wp('90%'),
-                paddingLeft: wp('5%'),
+                // paddingLeft: wp('5%'),
                 flexWrap: 'wrap'
               }}
             >
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.iconItem}>
-                  <Icon name="meishi" style={styles.icon} onPress={() => console.log('weibo')} />
-                  <Text>美食</Text>
-                </View>
-              </TouchableOpacity>
+              <BottomTabTopicItem />
             </View>
             <View>
               <Text>Content of Second Tab</Text>
