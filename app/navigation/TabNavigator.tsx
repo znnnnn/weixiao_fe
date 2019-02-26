@@ -1,3 +1,4 @@
+import { Button } from '@ant-design/react-native'
 import Home from '@app/page/home/Index'
 import Icon from '@app/util/icon'
 import Contact from '@page/contact/Index'
@@ -161,12 +162,16 @@ const tabNavigation = createBottomTabNavigator(tabRoute, tabConfig)
 tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
   // console.log(navigation)
   const { routeName } = navigation.state.routes[navigation.state.index]
+  const { params } = navigation.state.routes[navigation.state.index]
 
   // You can do whatever you like here to pick the title based on the route name
   // 返回名称
   const headerTruncatedBackTitle = routeName
   // header栏
   let header
+  let headerTitle
+  let navigationOptions = {}
+  let headerRight
   if (routeName === '首页') {
     // header = null
   }
@@ -174,13 +179,35 @@ tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
     case '发现':
       header = null
       break
+    case '发布':
+      headerTitle = '发布'
+      headerRight = (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            params.publish()
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          发布
+        </Button>
+      )
+      break
     default:
       break
   }
 
+  // 设置的变量需在这里return
   return {
     headerTruncatedBackTitle,
-    header
+    header,
+    headerTitle,
+    headerRight
   }
 }
 
