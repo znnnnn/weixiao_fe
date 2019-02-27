@@ -1,177 +1,114 @@
-import { Button, InputItem, List } from '@ant-design/react-native'
-import Icon from '@app/util/icon'
-import px2dp from '@util/px2dp'
-import StyleSheet from '@util/stylesheet'
-import React from 'react'
-import { Image, Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
 
-export interface State {
-  phone: string
-  password: string
-  inputBorderColor: string
-  passCanSee: boolean
-}
+import _ from 'lodash'
+import randomcolor from 'randomcolor'
+import React, { Component } from 'react'
+import { AppRegistry, StyleSheet, Text, View } from 'react-native'
+import AlphabetListView from 'react-native-alphabetlistview'
+import { ListItem } from 'react-native-elements'
 
-export interface Props {
-  defalutProps: string
-}
-
-export default class SignIn extends React.Component /*<Props, State>*/ {
-  public state = {
-    phone: '',
-    password: '',
-    inputBorderColor: '#EEEEEE',
-    passCanSee: true
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
   }
+]
 
-  // private constructor(props: {}) {
-  //   super(props);
-  // }
-
+class SectionHeader extends Component {
   public render() {
-    return (
-      <View style={styles.root}>
-        <View style={styles.container}>
-          <Text style={{ fontSize: 40 }}>朋友</Text>
-          <View style={styles.inputContainer}>
-            <InputItem
-              clear
-              type="phone"
-              value={this.state.phone}
-              onChange={(value) => {
-                this.setState({
-                  phone: value
-                })
-              }}
-              editable={true}
-              disabled={false}
-              // autoFocus={true}
-              placeholder="手机号"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
-              style={{ borderWidth: 0 }}
-            />
-            <InputItem
-              type={this.state.passCanSee ? 'password' : 'digit'}
-              value={this.state.password}
-              onChange={(value) => {
-                this.setState({
-                  password: value
-                })
-              }}
-              placeholder="密码"
-              onFocus={() => this.inputItemFocus()}
-              onBlur={() => this.inputItemBlur()}
-              extra={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Icon
-                    name="faxian_"
-                    style={{ fontSize: 30 }}
-                    onPress={() =>
-                      this.setState({
-                        passCanSee: !this.state.passCanSee
-                      })
-                    }
-                  />
-                  <Text>忘记密码</Text>
-                </View>
-              }
-            />
-          </View>
-          <Button type="primary" style={styles.loginBtn}>
-            登录
-          </Button>
-          <View style={styles.actions}>
-            <TouchableOpacity>
-              <Text onPress={() => Linking.openURL('#')}>验证码快速登录</Text>
-            </TouchableOpacity>
+    // inline styles used for brevity, use a stylesheet when possible
+    let textStyle = {
+      textAlign: 'center',
+      color: '#fff',
+      fontWeight: '700',
+      fontSize: 16
+    }
 
-            <TouchableOpacity>
-              <Text>注册</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.socialLogin}>
-          <View style={styles.social}>
-            <Text>QQ</Text>
-            <Text>微信</Text>
-            <Text>微博</Text>
-          </View>
-          <Text style={styles.visitor}>我是游客</Text>
-        </View>
+    let viewStyle = {
+      backgroundColor: '#ccc'
+    }
+    return (
+      <View style={viewStyle}>
+        <Text>{this.props.title}</Text>
       </View>
     )
   }
+}
 
-  private inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
-
-  private inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
+class SectionItem extends Component {
+  public render() {
+    return <Text style={{ color: '#3E3E3E', lineHeight: 20 }}> {this.props.title} </Text>
   }
 }
 
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
-    height: hp('100%')
-  },
-  container: {
-    marginTop: hp('10%'),
-    alignItems: 'center'
-  },
-  inputContainer: {
-    height: 140,
-    width: wp('90%'),
-    justifyContent: 'space-around',
-    // borderWidth: 1,
-    // borderColor: 'blue',
-    marginTop: 10
-  },
-  passwd: {
-    borderBottomColor: 'red'
-  },
-  loginBtn: {
-    borderRadius: 20,
-    width: wp('80'),
-    marginTop: 20
-  },
-  actions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: wp('80%'),
-    borderWidth: 1,
-    borderColor: 'red',
-    marginTop: 20,
-    fontSize: 10
-  },
-  socialLogin: {
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0
-  },
-  social: {
-    width: wp('80%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  visitor: {
-    marginTop: 20,
-    justifyContent: 'center',
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 20
+class Cell extends Component {
+  public render() {
+    return (
+      <View style={{ height: 50 }}>
+        <Text>{this.props.item}</Text>
+      </View>
+    )
   }
-})
+}
+
+// 姓名分组
+// let names = _.groupBy(list, (name: []) => name[0].toUpperCase())
+// console.log(object)
+export default class SignIn extends React.Component {
+  public state = {
+    data: {
+      A: ['some', 'entries', 'are here'],
+      B: ['some', 'entries', 'are here'],
+      C: ['some', 'entries', 'are here'],
+      D: ['some', 'entries', 'are here'],
+      E: ['some', 'entries', 'are here'],
+      F: ['some', 'entries', 'are here'],
+      G: ['some', 'entries', 'are here'],
+      H: ['some', 'entries', 'are here'],
+      I: ['some', 'entries', 'are here'],
+      J: ['some', 'entries', 'are here'],
+      K: ['some', 'entries', 'are here'],
+      L: ['some', 'entries', 'are here'],
+      M: ['some', 'entries', 'are here'],
+      N: ['some', 'entries', 'are here'],
+      O: ['some', 'entries', 'are here'],
+      P: ['some', 'entries', 'are here'],
+      Q: ['some', 'entries', 'are here'],
+      R: ['some', 'entries', 'are here'],
+      S: ['some', 'entries', 'are here'],
+      T: ['some', 'entries', 'are here'],
+      U: ['some', 'entries', 'are here'],
+      V: ['some', 'entries', 'are here'],
+      W: ['some', 'entries', 'are here'],
+      X: ['some', 'entries', 'are here'],
+      Y: ['some', 'entries', 'are here'],
+      Z: ['some', 'entries', 'are here']
+    }
+  }
+  public constructor(props, context) {
+    super(props, context)
+  }
+
+  public render() {
+    return (
+      <AlphabetListView
+        data={this.state.data}
+        cell={Cell}
+        cellHeight={49}
+        sectionListItem={SectionItem}
+        sectionHeader={SectionHeader}
+        sectionHeaderHeight={22.5}
+      />
+    )
+  }
+}

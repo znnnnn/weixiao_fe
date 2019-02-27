@@ -1,7 +1,7 @@
 import { Button } from '@ant-design/react-native'
+import Contact from '@app/page/contact/Index'
 import Home from '@app/page/home/Index'
 import Icon from '@app/util/icon'
-import Contact from '@page/contact/Index'
 import Find from '@page/find/index'
 import Mine from '@page/mine/Index'
 import Publish from '@page/publish/Index'
