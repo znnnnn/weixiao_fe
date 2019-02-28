@@ -1,6 +1,7 @@
 /*
  * 导入视图
  */
+import Contact from '@page/contact/Contact'
 import PostCardDetail from '@page/home/Detail'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
@@ -13,6 +14,10 @@ import Test from '@page/home/VideoPlayerScreen'
 
 import { NavigationRouteConfigMap } from 'react-navigation'
 import MainTab from './TabNavigator'
+
+import { Button } from '@ant-design/react-native'
+import Icon from '@app/util/icon'
+import React from 'react'
 /*
 
     --- 路由配置 ---
@@ -52,10 +57,37 @@ const RouteConfig: NavigationRouteConfigMap = {
     screen: PostCardDetail,
     navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '' })
   },
+  通讯录: {
+    screen: Contact,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '通讯录',
+      headerTitle: '通讯录',
+      headerRight: (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.navigate('首页')
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          添加好友
+        </Button>
+      )
+    })
+  },
   测试: {
     screen: CommentTest,
-    navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '', header: null })
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '',
+      header: null
+    })
   }
+
   // 下面三个页面我需要隐藏导航栏
   // NewsDetail: {
   //   screen: NewsDetail,

@@ -1,114 +1,101 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import _ from 'lodash'
-import randomcolor from 'randomcolor'
+import { Button, Container, Content, Header, Icon, List, Text } from 'native-base'
 import React, { Component } from 'react'
-import { AppRegistry, StyleSheet, Text, View } from 'react-native'
-import AlphabetListView from 'react-native-alphabetlistview'
+import { ListView,ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
+const datas = [
+  'Simon Mignolet',
+  'Nathaniel Clyne',
+  'Dejan Lovren',
+  'Mama Sakho',
+  'Alberto Moreno',
+  'Emre Can',
+  'Joe Allen',
+  'Phil Coutinho'
+]
 
-const list = [
+const data = [
   {
     name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
+    avatar_url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png',
+    msg: 'Vice President'
   },
   {
     name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
+    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+    msg: 'Vice Chairman'
   }
 ]
-
-class SectionHeader extends Component {
-  public render() {
-    // inline styles used for brevity, use a stylesheet when possible
-    let textStyle = {
-      textAlign: 'center',
-      color: '#fff',
-      fontWeight: '700',
-      fontSize: 16
-    }
-
-    let viewStyle = {
-      backgroundColor: '#ccc'
-    }
-    return (
-      <View style={viewStyle}>
-        <Text>{this.props.title}</Text>
-      </View>
-    )
-  }
-}
-
-class SectionItem extends Component {
-  public render() {
-    return <Text style={{ color: '#3E3E3E', lineHeight: 20 }}> {this.props.title} </Text>
-  }
-}
-
-class Cell extends Component {
-  public render() {
-    return (
-      <View style={{ height: 50 }}>
-        <Text>{this.props.item}</Text>
-      </View>
-    )
-  }
-}
-
-// 姓名分组
-// let names = _.groupBy(list, (name: []) => name[0].toUpperCase())
-// console.log(object)
-export default class SignIn extends React.Component {
-  public state = {
-    data: {
-      A: ['some', 'entries', 'are here'],
-      B: ['some', 'entries', 'are here'],
-      C: ['some', 'entries', 'are here'],
-      D: ['some', 'entries', 'are here'],
-      E: ['some', 'entries', 'are here'],
-      F: ['some', 'entries', 'are here'],
-      G: ['some', 'entries', 'are here'],
-      H: ['some', 'entries', 'are here'],
-      I: ['some', 'entries', 'are here'],
-      J: ['some', 'entries', 'are here'],
-      K: ['some', 'entries', 'are here'],
-      L: ['some', 'entries', 'are here'],
-      M: ['some', 'entries', 'are here'],
-      N: ['some', 'entries', 'are here'],
-      O: ['some', 'entries', 'are here'],
-      P: ['some', 'entries', 'are here'],
-      Q: ['some', 'entries', 'are here'],
-      R: ['some', 'entries', 'are here'],
-      S: ['some', 'entries', 'are here'],
-      T: ['some', 'entries', 'are here'],
-      U: ['some', 'entries', 'are here'],
-      V: ['some', 'entries', 'are here'],
-      W: ['some', 'entries', 'are here'],
-      X: ['some', 'entries', 'are here'],
-      Y: ['some', 'entries', 'are here'],
-      Z: ['some', 'entries', 'are here']
+export default class SwipeableListExample extends Component {
+  public constructor(props) {
+    super(props)
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+    this.state = {
+      basic: true,
+      listViewData: data
     }
   }
-  public constructor(props, context) {
-    super(props, context)
+  public deleteRow(secId, rowId, rowMap) {
+    rowMap[`${secId}${rowId}`].props.closeRow()
+    const newData = [...this.state.listViewData]
+    newData.splice(rowId, 1)
+    this.setState({ listViewData: newData })
   }
-
   public render() {
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     return (
-      <AlphabetListView
-        data={this.state.data}
-        cell={Cell}
-        cellHeight={49}
-        sectionListItem={SectionItem}
-        sectionHeader={SectionHeader}
-        sectionHeaderHeight={22.5}
-      />
+      <ScrollView>
+        <ListItem
+          title={'团学'}
+          // subtitle={item.subtitle}
+          leftAvatar={{ source: require('@image/contact/tuanxue.png') }}
+          bottomDivider
+        />
+        <ListItem
+          title={'社团'}
+          // subtitle={item.subtitle}
+          leftAvatar={{ source: require('@image/contact/shetuan.png') }}
+        />
+        <ListItem
+          title={'工作室'}
+          // subtitle={item.subtitle}
+          leftAvatar={{ source: require('@image/contact/gongzuoshi.png') }}
+          bottomDivider
+        />
+        <ListItem
+          title={'校友圈'}
+          // subtitle={item.subtitle}
+          leftAvatar={{ source: require('@image/contact/xiaoyouquan.png') }}
+          bottomDivider
+        />
+        <Content>
+          <List
+            leftOpenValue={75}
+            rightOpenValue={-75}
+            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+            renderRow={(data) => (
+              <ListItem
+                title={data.name}
+                subtitle={data.msg}
+                subtitleStyle={{ color: '#848484' }}
+                leftAvatar={{ source: { uri: data.avatar_url } }}
+                badge={{ value: 3 }}
+                rightTitle={new Date().getTime()}
+                bottomDivider
+              />
+            )}
+            renderLeftHiddenRow={(data) => (
+              <Button full onPress={() => alert(data)}>
+                <Icon active name="information-circle" />
+              </Button>
+            )}
+            renderRightHiddenRow={(data, secId, rowId, rowMap) => (
+              <Button full danger onPress={(_) => this.deleteRow(secId, rowId, rowMap)}>
+                <Icon active name="trash" />
+              </Button>
+            )}
+          />
+        </Content>
+      </ScrollView>
     )
   }
 }

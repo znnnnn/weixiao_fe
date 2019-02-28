@@ -198,6 +198,19 @@ tabNavigation.navigationOptions = ({ navigation, screeProps }) => {
         </Button>
       )
       break
+      case '朋友':
+        headerTitle = '朋友'
+        headerRight = (
+          <Icon
+              name="pengyou"
+              style={{fontSize: 24, marginRight: 10}}
+              onPress={() => navigation.navigate('通讯录')}
+            />
+        )
+        break
+      case '我的':
+      headerTitle = '我的'
+      break
     default:
       break
   }
