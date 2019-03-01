@@ -23,7 +23,7 @@ export interface Props {
   defalutProps: string
 }
 
-export default class SignIn extends React.Component<State> /*<Props, State>*/ {
+export default class Find extends React.Component<State> /*<Props, State>*/ {
   public state: State = {
     searchValue: ''
   }
