@@ -2,6 +2,7 @@
  * 导入视图
  */
 import Contact from '@page/contact/Contact'
+import FindDetail from '@page/find/Detail'
 import PostCardDetail from '@page/home/Detail'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
@@ -78,6 +79,14 @@ const RouteConfig: NavigationRouteConfigMap = {
           添加好友
         </Button>
       )
+    })
+  },
+  发现详情页: {
+    screen: FindDetail,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '',
+      // header: null,
+      headerTitle: navigation.getParam('headerTitle', 'some default value')
     })
   },
   测试: {

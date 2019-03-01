@@ -23,57 +23,6 @@ export interface Props {
   defalutProps: string
 }
 
-// const Data = [
-//   {
-//     title: '美食',
-//     thumb: require('@image/find/meishi.png')
-//   },
-//   {
-//     title: '玩乐',
-//     thumb: require('@image/find/wanle.png')
-//   },
-//   {
-//     title: '约电影',
-//     thumb: require('@image/find/dianying.png')
-//   },
-//   {
-//     title: '约吃饭',
-//     thumb: require('@image/find/chifan.png')
-//   },
-//   {
-//     title: '演出',
-//     thumb: require('@image/find/yanchu.png')
-//   },
-//   {
-//     title: '社团活动',
-//     thumb: require('@image/find/shetuan.png')
-//   },
-//   {
-//     title: '讲座培训',
-//     thumb: require('@image/find/jiangzuo.png')
-//   },
-//   {
-//     title: '约出游',
-//     thumb: require('@image/find/chuyou.png')
-//   },
-//   {
-//     title: '约运动',
-//     thumb: require('@image/find/yundong.png')
-//   },
-//   {
-//     title: '约泡吧',
-//     thumb: require('@image/find/paoba.png')
-//   },
-//   {
-//     title: '约购物',
-//     thumb: require('@image/find/gouwu.png')
-//   },
-//   {
-//     title: '约开黑',
-//     thumb: require('@image/find/kaihei.png')
-//   }
-// ]
-
 export default class Find extends React.Component<State> /*<Props, State>*/ {
   public state: State = {
     searchValue: ''
@@ -95,7 +44,7 @@ export default class Find extends React.Component<State> /*<Props, State>*/ {
           }}
         />
         <View style={{ flex: 1 }}>
-          <IconTab/>
+          <IconTab />
         </View>
         <View style={{ flex: 2 }}>
           <BottomTab />
