@@ -1,21 +1,22 @@
 import { SearchBar } from '@ant-design/react-native'
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-} from 'native-base'
+import { Body, CardItem, Container, Content, Left } from 'native-base'
 import React from 'react'
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
+import { Button, Card, Icon, ListItem } from 'react-native-elements'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
-import Icon from '@app/util/icon'
+// import Icon from '@app/util/icon'
 import BottomTab from '@components/find/BottomTab'
 import IconTab from '@components/find/IconTab'
+import PostUserCard from '@components/home/PostUserCard'
 import StyleSheet from '@util/stylesheet'
+
+import getTimeDiff from '@util/time'
+import DeviceInfo from 'react-native-device-info'
+const deviceName = DeviceInfo.getDeviceName()
 
 export interface State {
   // phone: string
@@ -25,61 +26,18 @@ export interface State {
   searchValue: string
 }
 
+
+
 export interface Props {
   defalutProps: string
 }
 
-// const Data = [
-//   {
-//     title: '美食',
-//     thumb: require('@image/find/meishi.png')
-//   },
-//   {
-//     title: '玩乐',
-//     thumb: require('@image/find/wanle.png')
-//   },
-//   {
-//     title: '约电影',
-//     thumb: require('@image/find/dianying.png')
-//   },
-//   {
-//     title: '约吃饭',
-//     thumb: require('@image/find/chifan.png')
-//   },
-//   {
-//     title: '演出',
-//     thumb: require('@image/find/yanchu.png')
-//   },
-//   {
-//     title: '社团活动',
-//     thumb: require('@image/find/shetuan.png')
-//   },
-//   {
-//     title: '讲座培训',
-//     thumb: require('@image/find/jiangzuo.png')
-//   },
-//   {
-//     title: '约出游',
-//     thumb: require('@image/find/chuyou.png')
-//   },
-//   {
-//     title: '约运动',
-//     thumb: require('@image/find/yundong.png')
-//   },
-//   {
-//     title: '约泡吧',
-//     thumb: require('@image/find/paoba.png')
-//   },
-//   {
-//     title: '约购物',
-//     thumb: require('@image/find/gouwu.png')
-//   },
-//   {
-//     title: '约开黑',
-//     thumb: require('@image/find/kaihei.png')
-//   }
-// ]
-
+const users = [
+  {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  }
+]
 export default class Find extends React.Component<State> /*<Props, State>*/ {
   public state: State = {
     searchValue: ''
@@ -92,20 +50,46 @@ export default class Find extends React.Component<State> /*<Props, State>*/ {
   public render() {
     return (
       <Container style={styles.root}>
-        <SearchBar
-          placeholder="输入你感兴趣的事"
-          onSubmit={(value) => Alert.alert(value)}
-          onCancel={() => this.setState({ searchValue: '' })}
-          onChange={(value) => {
-            this.setState({ value })
-          }}
-        />
-        <View style={{ flex: 1 }}>
-          <IconTab/>
-        </View>
-        <View style={{ flex: 2 }}>
-          <BottomTab />
-        </View>
+          <View>
+            <View style={{width:wp('100%'), padding:wp('2%'),marginTop: 10}}>
+              <PostUserCard
+                avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
+                nickname="Alice"
+                tag="工程师"
+                postTime={getTimeDiff(1356470770)}
+                deviceName={deviceName}
+              />
+            </View>
+          <Card
+            // title='HELLO WORLD'
+            image={require('@image/find/Detail/food.png')}
+          >
+            <Text style={{ marginBottom: 10 }}>
+              The idea with React Native Elements is more about component structure than actual
+              design.
+            </Text>
+          </Card>
+          </View>
+          <View>
+            <View style={{width:wp('100%'), padding:wp('2%')}}>
+              <PostUserCard
+                avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
+                nickname="Alice"
+                tag="工程师"
+                postTime={getTimeDiff(1356470770)}
+                deviceName={deviceName}
+              />
+            </View>
+          <Card
+            // title='HELLO WORLD'
+            image={require('@image/find/Detail/food.png')}
+          >
+            <Text style={{ marginBottom: 10 }}>
+              The idea with React Native Elements is more about component structure than actual
+              design.
+            </Text>
+          </Card>
+          </View>
       </Container>
     )
   }

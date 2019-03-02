@@ -1,55 +1,88 @@
 import { SearchBar } from '@ant-design/react-native'
+import { Body, Button, Card, CardItem, Container, Content, Header, Icon, Left, Right, Text, Thumbnail } from 'native-base';
 import React from 'react'
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, TouchableOpacity, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { NavigationScreenProps } from 'react-navigation'
 
-import Icon from '@app/util/icon'
+// import Icon from '@app/util/icon'
 import BottomTab from '@components/find/BottomTab'
 import IconTab from '@components/find/IconTab'
+import PostUserCard from '@components/home/PostUserCard'
 import StyleSheet from '@util/stylesheet'
 
-export interface State {
-  // phone: string
-  // password: string
-  // inputBorderColor: string
-  // passCanSee: boolean
-  searchValue: string
-}
+import getTimeDiff from '@util/time'
+import DeviceInfo from 'react-native-device-info'
+const deviceName = DeviceInfo.getDeviceName()
 
-export interface Props {
+
+export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
-export default class Find extends React.Component<State> /*<Props, State>*/ {
-  public state: State = {
-    searchValue: ''
+const users = [
+  {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
   }
+]
+export default class Find extends React.Component<Props> /*<Props, State>*/ {
 
-  // private constructor(props: {}) {
-  //   super(props);
-  // }
+  public constructor(props: Props) {
+    super(props);
+  }
 
   public render() {
     return (
-      <View style={styles.root}>
-        <SearchBar
-          placeholder="输入你感兴趣的事"
-          onSubmit={(value) => Alert.alert(value)}
-          onCancel={() => this.setState({ searchValue: '' })}
-          onChange={(value) => {
-            this.setState({ value })
-          }}
-        />
-        <View style={{ flex: 1 }}>
-          <IconTab />
-        </View>
-        <View style={{ flex: 2 }}>
-          <BottomTab />
-        </View>
-      </View>
+      <Container>
+        {/* <Header /> */}
+        <Content>
+          <Card >
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'}} />
+                <Body>
+                  <Text>NativeBase</Text>
+                  <Text note>GeekyAnts</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <TouchableOpacity onPress={() =>
+                    this.props.navigation.navigate('发现详情文章页')}>
+            <CardItem cardBody >
+              <Image source={require('@image/find/Detail/food.png')} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+            <CardItem>
+            <Body>
+                <Text>
+                   //Your text here
+                </Text>
+              </Body>
+            </CardItem>
+            </TouchableOpacity>
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="thumbs-up" />
+                  <Text>12 Likes</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="chatbubbles" />
+                  <Text>4 Comments</Text>
+                </Button>
+              </Body>
+              <Right>
+                <Text>11h ago</Text>
+              </Right>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
     )
   }
 

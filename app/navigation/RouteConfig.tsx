@@ -1,8 +1,9 @@
 /*
  * 导入视图
  */
+import FindDetail from '@app/page/find/Detail'
 import Contact from '@page/contact/Contact'
-import FindDetail from '@page/find/Detail'
+import DetailPost from '@page/find/DetailPost'
 import PostCardDetail from '@page/home/Detail'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
@@ -88,6 +89,9 @@ const RouteConfig: NavigationRouteConfigMap = {
       // header: null,
       headerTitle: navigation.getParam('headerTitle', 'some default value')
     })
+  },
+  发现详情文章页: {
+    screen: DetailPost
   },
   测试: {
     screen: CommentTest,
