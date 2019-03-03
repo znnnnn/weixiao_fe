@@ -2,6 +2,7 @@
  * 导入视图
  */
 import FindDetail from '@app/page/find/Detail'
+import UserHome from '@app/page/mine/UserHome'
 import Contact from '@page/contact/Contact'
 import DetailPost from '@page/find/DetailPost'
 import PostCardDetail from '@page/home/Detail'
@@ -10,6 +11,7 @@ import Register from '@page/mine/Register'
 import SetEducation from '@page/mine/SetEducation'
 import SetInformation from '@page/mine/SetImfomation'
 import SetPwd from '@page/mine/SetPwd'
+import UserInfoSetting from '@page/mine/UserInfoSetting'
 
 import CommentTest from '@components/Comment'
 import Test from '@page/home/VideoPlayerScreen'
@@ -92,6 +94,33 @@ const RouteConfig: NavigationRouteConfigMap = {
   },
   发现详情文章页: {
     screen: DetailPost
+  },
+  用户中心: {
+    screen: UserHome,
+    header: null
+  },
+  编辑个人资料: {
+    screen: UserInfoSetting,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '编辑个人资料',
+      headerTitle: '编辑个人资料',
+      headerRight: (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.navigate('首页')
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          保存
+        </Button>
+      )
+    })
   },
   测试: {
     screen: CommentTest,

@@ -16,15 +16,25 @@ import {
 } from 'native-base'
 import React, { Component } from 'react'
 import { Image } from 'react-native'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
-export default class ListIconExample extends Component {
+interface Props extends NavigationScreenProps {
+  defaultProps: string
+}
+
+export default class UserHome extends Component<Props> {
+
+  public constructor(props:Props) {
+    super(props)
+  }
+
   public render() {
     return (
       <Container>
         {/* <Separa
         +tor/> */}
         <Content>
-          <ListItem thumbnail>
+          <ListItem thumbnail onPress={()=>this.props.navigation.navigate('用户中心')}>
             <Left>
               <Thumbnail
                 source={{
@@ -43,7 +53,7 @@ export default class ListIconExample extends Component {
             </Body>
             <Right style={{ justifyContent: 'center' }}>
               {/* <Text note>3:43 pm</Text> */}
-              <Button hasText transparent>
+              <Button hasText transparent onPress={()=>this.props.navigation.navigate('用户中心')}>
                 <Text style={{ color: '#333' }}>个人主页 ></Text>
               </Button>
             </Right>
