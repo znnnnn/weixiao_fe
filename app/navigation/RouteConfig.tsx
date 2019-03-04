@@ -17,6 +17,8 @@ import ChangePhoneNumber from '@page/mine/ChangePhoneNumber'
 import FeedBack from '@page/mine/FeedBack'
 import Gerneral from '@page/mine/Gerneral'
 import Login from '@page/mine/Login'
+import Privacy from '@page/mine/Privacy'
+import PrivacyRadio from '@page/mine/PrivacyRadio'
 import Register from '@page/mine/Register'
 import SetEducation from '@page/mine/SetEducation'
 import SetInformation from '@page/mine/SetImfomation'
@@ -216,13 +218,30 @@ const RouteConfig: NavigationRouteConfigMap = {
       headerTitle: '帮助与反馈'
     })
   },
-  测试: {
-    screen: CommentTest,
+  隐私: {
+    screen: Privacy,
     navigationOptions: ({ navigation }) => ({
-      headerTruncatedBackTitle: '',
-      header: null
+      headerTruncatedBackTitle: '隐私',
+      headerTitle: '隐私'
+    })
+  },
+  权限设置: {
+    screen: PrivacyRadio,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '权限设置',
+      headerTitle: '权限设置'
     })
   }
+
+
+
+  // 测试: {
+  //   screen: CommentTest,
+  //   navigationOptions: ({ navigation }) => ({
+  //     headerTruncatedBackTitle: '',
+  //     header: null
+  //   })
+  // }
 
   // 下面三个页面我需要隐藏导航栏
   // NewsDetail: {

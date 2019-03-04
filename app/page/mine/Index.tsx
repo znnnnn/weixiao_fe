@@ -9,10 +9,12 @@ import {
   List,
   ListItem,
   Right,
+  Root,
   Separator,
   Switch,
   Text,
-  Thumbnail
+  Thumbnail,
+  Toast
 } from 'native-base'
 import React, { Component } from 'react'
 import { Image } from 'react-native'
@@ -29,40 +31,41 @@ export default class UserHome extends Component<Props> {
 
   public render() {
     return (
-      <Container>
-        {/* <Separa
+      <Root>
+        <Container>
+          {/* <Separa
         +tor/> */}
-        <Content>
-          <ListItem thumbnail onPress={() => this.props.navigation.navigate('用户中心')}>
-            <Left>
-              <Thumbnail
-                source={{
-                  uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-                }}
-              />
-            </Left>
-            <Body>
-              <Text style={{ lineHeight: 30, fontSize: 16 }}>Kumar Pratik</Text>
-              <Text note style={{ lineHeight: 14, fontSize: 10 }}>
-                温州职业技术学院
-              </Text>
-              <Text note style={{ lineHeight: 14, fontSize: 10 }}>
-                在校学生
-              </Text>
-            </Body>
-            <Right style={{ justifyContent: 'center' }}>
-              {/* <Text note>3:43 pm</Text> */}
-              <Button
-                hasText
-                transparent
-                onPress={() => this.props.navigation.navigate('用户中心')}
-              >
-                <Text style={{ color: '#333' }}>个人主页 ></Text>
-              </Button>
-            </Right>
-          </ListItem>
+          <Content>
+            <ListItem thumbnail onPress={() => this.props.navigation.navigate('用户中心')}>
+              <Left>
+                <Thumbnail
+                  source={{
+                    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+                  }}
+                />
+              </Left>
+              <Body>
+                <Text style={{ lineHeight: 30, fontSize: 16 }}>Kumar Pratik</Text>
+                <Text note style={{ lineHeight: 14, fontSize: 10 }}>
+                  温州职业技术学院
+                </Text>
+                <Text note style={{ lineHeight: 14, fontSize: 10 }}>
+                  在校学生
+                </Text>
+              </Body>
+              <Right style={{ justifyContent: 'center' }}>
+                {/* <Text note>3:43 pm</Text> */}
+                <Button
+                  hasText
+                  transparent
+                  onPress={() => this.props.navigation.navigate('用户中心')}
+                >
+                  <Text style={{ color: '#333' }}>个人主页 ></Text>
+                </Button>
+              </Right>
+            </ListItem>
 
-          {/* <ListItem thumbnail>
+            {/* <ListItem thumbnail>
               <Left>
               <Thumbnail
                 source={{
@@ -80,59 +83,69 @@ export default class UserHome extends Component<Props> {
                 </Button>
               </Right>
             </ListItem> */}
-          <ListItem itemDivider />
-          <ListItem icon onPress={()=>this.props.navigation.navigate('个人经历')}>
-            <Left>
-              <Button transparent>
-                <Icon name="paper-plane" active style={{ color: '#707070' }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>个人经历</Text>
-            </Body>
-          </ListItem>
-          <ListItem icon onPress={()=>this.props.navigation.navigate('帮助与反馈')}>
-            <Left>
-              <Button transparent>
-                <Icon name="heart" style={{ color: '#707070' }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>帮助与反馈</Text>
-            </Body>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button transparent>
-                <Icon active name="man" style={{ color: '#707070' }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>邀请好友</Text>
-            </Body>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button transparent>
-                <Icon active name="finger-print" style={{ color: '#707070' }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>隐私</Text>
-            </Body>
-          </ListItem>
-          <ListItem icon onPress={() => this.props.navigation.navigate('设置')}>
-            <Left>
-              <Button transparent>
-                <Icon active name="build" style={{ color: '#707070' }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>设置</Text>
-            </Body>
-          </ListItem>
-        </Content>
-      </Container>
+            <ListItem itemDivider />
+            <ListItem icon onPress={() => this.props.navigation.navigate('个人经历')}>
+              <Left>
+                <Button transparent>
+                  <Icon name="paper-plane" active style={{ color: '#707070' }} />
+                </Button>
+              </Left>
+              <Body>
+                <Text>个人经历</Text>
+              </Body>
+            </ListItem>
+            <ListItem icon onPress={() => this.props.navigation.navigate('帮助与反馈')}>
+              <Left>
+                <Button transparent>
+                  <Icon name="heart" style={{ color: '#707070' }} />
+                </Button>
+              </Left>
+              <Body>
+                <Text>帮助与反馈</Text>
+              </Body>
+            </ListItem>
+            <ListItem
+              icon
+              onPress={() =>
+                Toast.show({
+                  text: '该功能暂未开放',
+                  type: 'warning',
+                  textStyle: { textAlign: 'center' }
+                })
+              }
+            >
+              <Left>
+                <Button transparent>
+                  <Icon active name="man" style={{ color: '#707070' }} />
+                </Button>
+              </Left>
+              <Body>
+                <Text>邀请好友</Text>
+              </Body>
+            </ListItem>
+            <ListItem icon onPress={() => this.props.navigation.navigate('隐私')}>
+              <Left>
+                <Button transparent>
+                  <Icon active name="finger-print" style={{ color: '#707070' }} />
+                </Button>
+              </Left>
+              <Body>
+                <Text>隐私</Text>
+              </Body>
+            </ListItem>
+            <ListItem icon onPress={() => this.props.navigation.navigate('设置')}>
+              <Left>
+                <Button transparent>
+                  <Icon active name="build" style={{ color: '#707070' }} />
+                </Button>
+              </Left>
+              <Body>
+                <Text>设置</Text>
+              </Body>
+            </ListItem>
+          </Content>
+        </Container>
+      </Root>
     )
   }
 }

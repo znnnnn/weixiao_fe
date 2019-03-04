@@ -21,8 +21,18 @@ class SectionHeader extends Component {
     }
 
     return (
-      <View style={{ height: 35, justifyContent: 'center',paddingLeft: 10 }}>
-        <Text style={{fontSize:18,fontWeight:'300'}}>{this.props.title}</Text>
+      <View style={{ height: 35, justifyContent: 'center', paddingLeft: 10 }}>
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: '300',
+            backgroundColor: '#fff',
+            height: 35,
+            lineHeight: 35
+          }}
+        >
+          {this.props.title}
+        </Text>
       </View>
     )
   }
@@ -153,18 +163,18 @@ export default class Contact extends React.Component {
   public render() {
     return (
       // <ScrollView>
-      
+
       //   <View>
-          <AlphabetListView
-          // data={this.state.data}
-          data={this.generateData()}
-          cell={Cell}
-          cellHeight={49}
-          sectionListItem={SectionItem}
-          sectionHeader={SectionHeader}
-          sectionHeaderHeight={35}
-        />
-        // </View>
+      <AlphabetListView
+        // data={this.state.data}
+        data={this.generateData()}
+        cell={Cell}
+        cellHeight={49}
+        sectionListItem={SectionItem}
+        sectionHeader={SectionHeader}
+        sectionHeaderHeight={35}
+      />
+      // </View>
       // </ScrollView>
     )
   }
