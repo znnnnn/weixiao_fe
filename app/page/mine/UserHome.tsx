@@ -81,7 +81,6 @@ export default class UserHome extends Component<Props> {
                 flexWrap: 'wrap'
               }}
             >
-             
             </View>
             <View>
               <Text>Content of Second Tab</Text>

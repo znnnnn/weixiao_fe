@@ -23,8 +23,7 @@ interface Props extends NavigationScreenProps {
 }
 
 export default class UserHome extends Component<Props> {
-
-  public constructor(props:Props) {
+  public constructor(props: Props) {
     super(props)
   }
 
@@ -34,7 +33,7 @@ export default class UserHome extends Component<Props> {
         {/* <Separa
         +tor/> */}
         <Content>
-          <ListItem thumbnail onPress={()=>this.props.navigation.navigate('用户中心')}>
+          <ListItem thumbnail onPress={() => this.props.navigation.navigate('用户中心')}>
             <Left>
               <Thumbnail
                 source={{
@@ -53,7 +52,11 @@ export default class UserHome extends Component<Props> {
             </Body>
             <Right style={{ justifyContent: 'center' }}>
               {/* <Text note>3:43 pm</Text> */}
-              <Button hasText transparent onPress={()=>this.props.navigation.navigate('用户中心')}>
+              <Button
+                hasText
+                transparent
+                onPress={() => this.props.navigation.navigate('用户中心')}
+              >
                 <Text style={{ color: '#333' }}>个人主页 ></Text>
               </Button>
             </Right>
@@ -118,7 +121,7 @@ export default class UserHome extends Component<Props> {
               <Text>隐私</Text>
             </Body>
           </ListItem>
-          <ListItem icon>
+          <ListItem icon onPress={() => this.props.navigation.navigate('设置')}>
             <Left>
               <Button transparent>
                 <Icon active name="build" style={{ color: '#707070' }} />

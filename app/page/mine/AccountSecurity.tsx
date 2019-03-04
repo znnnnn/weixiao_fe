@@ -24,14 +24,13 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-const DATA = require('./data.json')
 
 
 interface Props extends NavigationScreenProps {
   defaultProps: string
 }
 
-export default class ListItemSelectedExample extends Component<Props> {
+export default class AccountSecurity extends Component<Props> {
   public constructor(props: Props) {
     super(props)
   }
@@ -41,7 +40,7 @@ export default class ListItemSelectedExample extends Component<Props> {
       <Container>
         <Content>
           <List>
-            <ListItem>
+            <ListItem onPress={() => this.props.navigation.navigate('修改密码')}>
               <Left>
                 <Text>修改密码</Text>
               </Left>
@@ -49,7 +48,7 @@ export default class ListItemSelectedExample extends Component<Props> {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
-            <ListItem>
+            <ListItem onPress={() => this.props.navigation.navigate('修改手机号')}>
               <Left>
                 <Text>修改手机号</Text>
               </Left>

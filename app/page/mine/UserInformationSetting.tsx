@@ -22,7 +22,7 @@ import React, { Component } from 'react'
 
 const DATA = require('./data.json')
 
-export default class UserInfoSetting extends Component {
+export default class UserInformationSetting extends Component {
   public state = {
     avatar: [
       // {

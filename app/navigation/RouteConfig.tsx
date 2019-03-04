@@ -1,12 +1,19 @@
 /*
  * 导入视图
  */
-import FindDetail from '@app/page/find/Detail'
-import UserHome from '@app/page/mine/UserHome'
+import PostCardDetail from '@page/home/Detail'
+
 import Contact from '@page/contact/Contact'
 import DetailPost from '@page/find/DetailPost'
-import PostCardDetail from '@page/home/Detail'
+
+import FindDetail from '@app/page/find/Detail'
+
+import UserHome from '@app/page/mine/UserHome'
+import About from '@page/mine/About'
 import AccountSecurity from '@page/mine/AccountSecurity'
+import ChangePassword from '@page/mine/ChangePassword'
+import ChangePhoneNumber from '@page/mine/ChangePhoneNumber'
+import Gerneral from '@page/mine/Gerneral'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
 import SetEducation from '@page/mine/SetEducation'
@@ -152,14 +159,42 @@ const RouteConfig: NavigationRouteConfigMap = {
     screen: Setting,
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '设置',
-      headerTitle: '设置',
+      headerTitle: '设置'
     })
   },
   账号安全: {
     screen: AccountSecurity,
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '账号安全',
-      headerTitle: '账号安全',
+      headerTitle: '账号安全'
+    })
+  },
+  修改密码: {
+    screen: ChangePassword,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '修改密码',
+      headerTitle: '修改密码'
+    })
+  },
+  修改手机号: {
+    screen: ChangePhoneNumber,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '修改手机号',
+      headerTitle: '修改手机号'
+    })
+  },
+  通用: {
+    screen: Gerneral,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '通用',
+      headerTitle: '通用'
+    })
+  },
+  关于微校: {
+    screen: About,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '关于微校',
+      headerTitle: '关于微校'
     })
   },
   测试: {

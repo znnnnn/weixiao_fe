@@ -44,7 +44,7 @@ export interface Props extends NavigationScreenProps {
 //   </TouchableOpacity>
 // );
 
-export default class SetInformation extends React.Component<Props> /*State*/ {
+export default class SetEducation extends React.Component<Props> /*State*/ {
   public state = {
     // value: ["温州职业技术学院", "温州大学"]
     data: [],
