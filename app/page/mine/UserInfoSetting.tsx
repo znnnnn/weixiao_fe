@@ -1,4 +1,4 @@
-import { Checkbox, ImagePicker, Picker } from '@ant-design/react-native'
+import { Checkbox, ImagePicker, List,Picker,Provider } from '@ant-design/react-native'
 import {
   Body,
   Button,
@@ -10,7 +10,6 @@ import {
   Input,
   Item,
   Left,
-  List,
   ListItem,
   Right,
   Switch,
@@ -18,9 +17,10 @@ import {
   Textarea,
   View
 } from 'native-base'
+import { string } from 'prop-types';
 import React, { Component } from 'react'
 
-const SCHOOL_DATA = require('./SetEducationSchool.json')
+const DATA = require('./data.json')
 
 export default class UserInfoSetting extends Component {
   public state = {
@@ -32,7 +32,7 @@ export default class UserInfoSetting extends Component {
     ],
     avatarSelectable: true,
     sex: true,
-    school: ''
+    address: []
   }
 
   public handleFileChange = (avatar: any) => {
@@ -52,8 +52,10 @@ export default class UserInfoSetting extends Component {
     // console.log(avatar)
   }
 
+
   public render() {
     return (
+      <Provider>
       <Container>
         <Content>
           <ListItem style={{ height: 100 }}>
@@ -106,38 +108,37 @@ export default class UserInfoSetting extends Component {
               </Checkbox>
             </Right>
           </ListItem>
-          <ListItem icon>
-            <Left>
-              <Text>所在地区</Text>
-            </Left>
-            <Body />
-            <Right>
-              <Picker
-                data={SCHOOL_DATA}
-                cols={1}
-                value={this.state.school}
-                onChange={(value) => {
-                  this.setState({
-                    school: value
-                  })
-                }}
-              />
-            </Right>
-          </ListItem>
-          <Item style={{ paddingLeft: 15 }}>
+          <View>
+          <Picker
+            data={DATA}
+            cols={2}
+            value={this.state.address}
+            onChange={(value) => this.setState({
+              address:value
+            })}
+          >
+            <List.Item arrow="horizontal">
+              所在地区
+            </List.Item>
+          </Picker>
+          </View>
+          <Item style={{  marginLeft: 15 }}>
             <Icon active name="home" />
             <Input placeholder="公司" />
           </Item>
-          <Item style={{ paddingLeft: 15 }}>
+          <Item style={{  marginLeft: 15 }}>
             <Icon active name="school" />
             <Input placeholder="学校" />
           </Item>
-          <Form>
-            {/* 多行收入 */}
-            {/* <Textarea rowSpan={5} bordered placeholder="Textarea" /> */}
-          </Form>
+          <Item style={{ marginLeft: 15}}>
+            <Form>
+              {/* 多行收入 */}
+              <Textarea rowSpan={5}  placeholder="我的格言" />
+            </Form>
+          </Item>
         </Content>
       </Container>
+      </Provider>
     )
   }
 }
