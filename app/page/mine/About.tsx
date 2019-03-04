@@ -9,9 +9,11 @@ import {
   Left,
   ListItem,
   Right,
+  Root,
   Switch,
   Text,
-  Thumbnail
+  Thumbnail,
+  Toast
 } from 'native-base'
 import { Alert } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
@@ -36,64 +38,45 @@ export default class About extends Component<Props> {
 
   public render() {
     return (
-      <Container>
-        <Content>
-          <Thumbnail
-            square
-            large
-            source={{
-              uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-            }}
-            style={{ alignSelf: 'center', marginTop: 30 }}
-          />
+      <Root>
+        <Container>
+          <Content>
+            <Thumbnail
+              square
+              large
+              source={{
+                uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+              }}
+              style={{ alignSelf: 'center', marginTop: 30 }}
+            />
 
-          <Text note style={{ alignSelf: 'center', margin: 15 }}>
-            V 0.0.1
-          </Text>
+            <Text note style={{ alignSelf: 'center', margin: 15 }}>
+              V 0.0.1
+            </Text>
 
-          <ListItem icon style={{ backgroundColor: '#fff' }}>
-            <Left>
-              <Button style={{ backgroundColor: '#FF9501' }}>
-                <Icon active name="chatbubbles" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>新消息通知</Text>
-            </Body>
-            <Right>
-              <Switch
-                value={this.state.newMsg}
-                onValueChange={() => {
-                  console.log(1111)
-                  this.setState({
-                    newMsg: !this.state.newMsg
-                  })
-                }}
-              />
-            </Right>
-          </ListItem>
-          <ListItem icon style={{ backgroundColor: '#fff' }}>
-            <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
-                <Icon active name="paper-plane" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>未读消息短信提醒</Text>
-            </Body>
-            <Right>
-              <Switch
-                onValueChange={() => {
-                  this.setState({
-                    unReadMsg: !this.state.unReadMsg
-                  })
-                }}
-                value={this.state.unReadMsg}
-              />
-            </Right>
-          </ListItem>
-        </Content>
-      </Container>
+            <ListItem onPress={() => this.props.navigation.navigate('欢迎页')}>
+              <Left>
+                <Text>欢迎页</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem
+              onPress={() => Toast.show({
+                text: '更多精彩即将到来'
+              })}
+            >
+              <Left>
+                <Text>常见问题和帮助</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          </Content>
+        </Container>
+      </Root>
     )
   }
 }

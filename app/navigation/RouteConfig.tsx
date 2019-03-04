@@ -8,11 +8,13 @@ import DetailPost from '@page/find/DetailPost'
 
 import FindDetail from '@app/page/find/Detail'
 
+import UserExperience from '@app/page/mine/UserExperience'
 import UserHome from '@app/page/mine/UserHome'
 import About from '@page/mine/About'
 import AccountSecurity from '@page/mine/AccountSecurity'
 import ChangePassword from '@page/mine/ChangePassword'
 import ChangePhoneNumber from '@page/mine/ChangePhoneNumber'
+import FeedBack from '@page/mine/FeedBack'
 import Gerneral from '@page/mine/Gerneral'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
@@ -20,8 +22,8 @@ import SetEducation from '@page/mine/SetEducation'
 import SetInformation from '@page/mine/SetImfomation'
 import SetPwd from '@page/mine/SetPwd'
 import Setting from '@page/mine/Setting'
-import UserInformationSetting from '@page/mine/UserInformationSetting'
 import UserInfoSetting from '@page/mine/UserInfoSetting'
+import Welcome from '@page/mine/Welcome'
 
 import CommentTest from '@components/Comment'
 import Test from '@page/home/VideoPlayerScreen'
@@ -89,7 +91,7 @@ const RouteConfig: NavigationRouteConfigMap = {
             // navigation.state.routes[2].params._publish()
           }}
         >
-          添加好友
+          添加
         </Button>
       )
     })
@@ -107,7 +109,10 @@ const RouteConfig: NavigationRouteConfigMap = {
   },
   用户中心: {
     screen: UserHome,
-    header: null
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '用户中心',
+      headerTitle: '用户中心',
+    })
   },
   编辑个人资料: {
     screen: UserInfoSetting,
@@ -121,7 +126,7 @@ const RouteConfig: NavigationRouteConfigMap = {
           style={{ height: 30, width: 50, marginRight: 10 }}
           onPress={() => {
             // console.log(params)
-            navigation.navigate('首页')
+            navigation.goBack()
             // console.log(navigation)
             // console.log(navigation.getParam('publish'))
             // navigation.state.routes[2].params._publish()
@@ -132,8 +137,8 @@ const RouteConfig: NavigationRouteConfigMap = {
       )
     })
   },
-  编辑个人经历: {
-    screen: UserInformationSetting,
+  个人经历: {
+    screen: UserExperience,
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '编辑个人经历',
       headerTitle: '编辑个人经历',
@@ -144,7 +149,7 @@ const RouteConfig: NavigationRouteConfigMap = {
           style={{ height: 30, width: 50, marginRight: 10 }}
           onPress={() => {
             // console.log(params)
-            navigation.navigate('首页')
+            navigation.goBack()
             // console.log(navigation)
             // console.log(navigation.getParam('publish'))
             // navigation.state.routes[2].params._publish()
@@ -195,6 +200,20 @@ const RouteConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '关于微校',
       headerTitle: '关于微校'
+    })
+  },
+  欢迎页: {
+    screen: Welcome,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '欢迎',
+      headerTitle: '欢迎'
+    })
+  },
+  帮助与反馈: {
+    screen: FeedBack,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '帮助与反馈',
+      headerTitle: '帮助与反馈'
     })
   },
   测试: {

@@ -81,7 +81,7 @@ export default class UserHome extends Component<Props> {
               </Right>
             </ListItem> */}
           <ListItem itemDivider />
-          <ListItem icon>
+          <ListItem icon onPress={()=>this.props.navigation.navigate('个人经历')}>
             <Left>
               <Button transparent>
                 <Icon name="paper-plane" active style={{ color: '#707070' }} />
@@ -91,7 +91,7 @@ export default class UserHome extends Component<Props> {
               <Text>个人经历</Text>
             </Body>
           </ListItem>
-          <ListItem icon>
+          <ListItem icon onPress={()=>this.props.navigation.navigate('帮助与反馈')}>
             <Left>
               <Button transparent>
                 <Icon name="heart" style={{ color: '#707070' }} />
