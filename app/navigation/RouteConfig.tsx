@@ -6,11 +6,14 @@ import UserHome from '@app/page/mine/UserHome'
 import Contact from '@page/contact/Contact'
 import DetailPost from '@page/find/DetailPost'
 import PostCardDetail from '@page/home/Detail'
+import AccountSecurity from '@page/mine/AccountSecurity'
 import Login from '@page/mine/Login'
 import Register from '@page/mine/Register'
 import SetEducation from '@page/mine/SetEducation'
 import SetInformation from '@page/mine/SetImfomation'
 import SetPwd from '@page/mine/SetPwd'
+import Setting from '@page/mine/Setting'
+import UserInformationSetting from '@page/mine/UserInformationSetting'
 import UserInfoSetting from '@page/mine/UserInfoSetting'
 
 import CommentTest from '@components/Comment'
@@ -120,6 +123,43 @@ const RouteConfig: NavigationRouteConfigMap = {
           保存
         </Button>
       )
+    })
+  },
+  编辑个人经历: {
+    screen: UserInformationSetting,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '编辑个人经历',
+      headerTitle: '编辑个人经历',
+      headerRight: (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.navigate('首页')
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          保存
+        </Button>
+      )
+    })
+  },
+  设置: {
+    screen: Setting,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '设置',
+      headerTitle: '设置',
+    })
+  },
+  账号安全: {
+    screen: AccountSecurity,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '账号安全',
+      headerTitle: '账号安全',
     })
   },
   测试: {
