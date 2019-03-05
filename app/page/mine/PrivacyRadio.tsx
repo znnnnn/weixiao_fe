@@ -11,7 +11,8 @@ import {
   Right,
   Root,
   Switch,
-  Text
+  Text,
+  Toast
 } from 'native-base'
 import { Alert } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
@@ -66,9 +67,12 @@ export default class Privacy extends Component<Props> {
               </ListItem>
               <ListItem
                 onPress={() =>
-                  this.setState({
-                    radio: 'someFriend'
-                  }, ()=> this.props.navigation.navigate('选择好友'))
+                  // this.setState({
+                  //   radio: 'someFriend'
+                  // }, ()=> this.props.navigation.navigate('选择好友'))
+                  Toast.show({
+                    text: '该功能还暂未开放'
+                  })
                 }
               >
                 <Left>

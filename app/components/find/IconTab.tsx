@@ -39,7 +39,7 @@ export default withNavigation(
               <View style={styles.tabs}>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '美食'
                     })
                   }
@@ -51,7 +51,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '玩乐'
                     })
                   }
@@ -63,7 +63,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约电影'
                     })
                   }
@@ -75,7 +75,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约吃饭'
                     })
                   }
@@ -87,7 +87,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '演出'
                     })
                   }
@@ -99,7 +99,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '社团活动'
                     })
                   }
@@ -111,7 +111,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '社团活动'
                     })
                   }
@@ -123,7 +123,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约出游'
                     })
                   }
@@ -135,7 +135,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约运动'
                     })
                   }
@@ -147,7 +147,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约泡吧'
                     })
                   }
@@ -161,7 +161,7 @@ export default withNavigation(
               <View style={styles.tabs}>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约购物'
                     })
                   }
@@ -173,7 +173,7 @@ export default withNavigation(
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('发现详情页', {
+                    this.props.navigation.navigate('卡片文章列表', {
                       headerTitle: '约开黑'
                     })
                   }

@@ -40,7 +40,7 @@ export interface Props extends NavigationScreenProps {
   token: string
 }
 
-export default class PostCardDetail extends React.Component<Props, State> {
+export default class SingPost extends React.Component<Props, State> {
   public static navigationOptions = ({ navigation }) => {
     const { state } = navigation
     // Setup the header and tabBarVisible status

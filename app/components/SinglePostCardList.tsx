@@ -29,7 +29,7 @@ const users = [
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
   }
 ]
-export default class Find extends React.Component<Props> /*<Props, State>*/ {
+export default class SinglePostCardList extends React.Component<Props> /*<Props, State>*/ {
 
   public constructor(props: Props) {
     super(props);

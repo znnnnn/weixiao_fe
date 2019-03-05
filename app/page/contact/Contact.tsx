@@ -9,7 +9,11 @@ import React, { Component } from 'react'
 import { AppRegistry, ScrollView, StyleSheet, Text, View } from 'react-native'
 import AlphabetListView from 'react-native-alphabetlistview'
 import { ListItem } from 'react-native-elements'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+interface Props extends NavigationScreenProps {
+  defualtProps: string
+}
 class SectionHeader extends Component {
   public render() {
     // inline styles used for brevity, use a stylesheet when possible
@@ -44,13 +48,19 @@ class SectionItem extends Component {
   }
 }
 
-class Cell extends Component {
+class Cell extends Component<Props> {
+
+  public constructor(props: Props) {
+    super(props)
+  }
+
   public render() {
     return (
       <ListItem
         title={this.props.item.name}
         // subtitle={item.subtitle}
         leftAvatar={{ source: { uri: this.props.item.avatar_url } }}
+        onPress={() => this.props.navigation.navigate('卡片文章列表')}
         bottomDivider
       />
     )
@@ -59,34 +69,6 @@ class Cell extends Component {
 
 export default class Contact extends React.Component {
   public state = {
-    // data: {
-    //   A: ['some', 'entries', 'are here'],
-    //   B: ['some', 'entries', 'are here'],
-    //   C: ['some', 'entries', 'are here'],
-    //   D: ['some', 'entries', 'are here'],
-    //   E: ['some', 'entries', 'are here'],
-    //   F: ['some', 'entries', 'are here'],
-    //   G: ['some', 'entries', 'are here'],
-    //   H: ['some', 'entries', 'are here'],
-    //   I: ['some', 'entries', 'are here'],
-    //   J: ['some', 'entries', 'are here'],
-    //   K: ['some', 'entries', 'are here'],
-    //   L: ['some', 'entries', 'are here'],
-    //   M: ['some', 'entries', 'are here'],
-    //   N: ['some', 'entries', 'are here'],
-    //   O: ['some', 'entries', 'are here'],
-    //   P: ['some', 'entries', 'are here'],
-    //   Q: ['some', 'entries', 'are here'],
-    //   R: ['some', 'entries', 'are here'],
-    //   S: ['some', 'entries', 'are here'],
-    //   T: ['some', 'entries', 'are here'],
-    //   U: ['some', 'entries', 'are here'],
-    //   V: ['some', 'entries', 'are here'],
-    //   W: ['some', 'entries', 'are here'],
-    //   X: ['some', 'entries', 'are here'],
-    //   Y: ['some', 'entries', 'are here'],
-    //   Z: ['some', 'entries', 'are here']
-    // }
     data: [
       {
         name: 'Amy Farha',
@@ -99,55 +81,11 @@ export default class Contact extends React.Component {
         avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
         subtitle: 'Vice Chairman'
       },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
-      }
     ]
   }
   public constructor(props, context) {
     super(props, context)
+    console.log(context)
   }
 
   public componentDidMount = () => {}
@@ -168,7 +106,7 @@ export default class Contact extends React.Component {
       <AlphabetListView
         // data={this.state.data}
         data={this.generateData()}
-        cell={Cell}
+        cell={withNavigation(Cell)}
         cellHeight={49}
         sectionListItem={SectionItem}
         sectionHeader={SectionHeader}

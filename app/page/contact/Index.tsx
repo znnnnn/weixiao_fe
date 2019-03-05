@@ -2,6 +2,7 @@ import { Button, Container, Content, Header, Icon, List, Text } from 'native-bas
 import React, { Component } from 'react'
 import { ListView,ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 const datas = [
   'Simon Mignolet',
   'Nathaniel Clyne',
@@ -25,8 +26,13 @@ const data = [
     msg: 'Vice Chairman'
   }
 ]
-export default class SwipeableListExample extends Component {
-  public constructor(props) {
+
+interface Props extends NavigationScreenProps {
+  defaultProps: string
+}
+
+export default class ContactIndex extends Component<Props> {
+  public constructor(props: Props) {
     super(props)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
@@ -48,23 +54,27 @@ export default class SwipeableListExample extends Component {
           title={'团学'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/tuanxue.png') }}
+          onPress={()=> this.props.navigation.navigate('通讯录', { part: '团学' })}
           bottomDivider
         />
         <ListItem
           title={'社团'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/shetuan.png') }}
+          onPress={()=> this.props.navigation.navigate('通讯录', { part: '社团' })}
         />
         <ListItem
           title={'工作室'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/gongzuoshi.png') }}
+          onPress={()=> this.props.navigation.navigate('通讯录', { part: '工作室' })}
           bottomDivider
         />
         <ListItem
           title={'校友圈'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/xiaoyouquan.png') }}
+          onPress={()=> this.props.navigation.navigate('通讯录', { part: '校友圈' })}
           bottomDivider
         />
         <Content>
@@ -79,7 +89,7 @@ export default class SwipeableListExample extends Component {
                 subtitleStyle={{ color: '#848484' }}
                 leftAvatar={{ source: { uri: data.avatar_url } }}
                 badge={{ value: 3 }}
-                rightTitle={new Date().getTime()}
+                rightTitle={new Date().getTime().toString()}
                 bottomDivider
               />
             )}

@@ -1,12 +1,10 @@
 /*
  * 导入视图
  */
-import PostCardDetail from '@page/home/Detail'
 
 import Contact from '@page/contact/Contact'
-import DetailPost from '@page/find/DetailPost'
 
-import FindDetail from '@app/page/find/Detail'
+import SinglePostCardList from '@components/SinglePostCardList'
 
 import UserExperience from '@app/page/mine/UserExperience'
 import UserHome from '@app/page/mine/UserHome'
@@ -29,6 +27,8 @@ import UserInfoSetting from '@page/mine/UserInfoSetting'
 import Welcome from '@page/mine/Welcome'
 
 import CommentTest from '@components/Comment'
+import SinglePost from '@components/SinglePost'
+
 import Test from '@page/home/VideoPlayerScreen'
 
 import { NavigationRouteConfigMap } from 'react-navigation'
@@ -73,7 +73,7 @@ const RouteConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '完善学历信息' })
   },
   微校正文: {
-    screen: PostCardDetail,
+    screen: SinglePost,
     navigationOptions: ({ navigation }) => ({ headerTruncatedBackTitle: '' })
   },
   通讯录: {
@@ -99,16 +99,13 @@ const RouteConfig: NavigationRouteConfigMap = {
       )
     })
   },
-  发现详情页: {
-    screen: FindDetail,
+  卡片文章列表: {
+    screen: SinglePostCardList,
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '',
       // header: null,
       headerTitle: navigation.getParam('headerTitle', 'some default value')
     })
-  },
-  发现详情文章页: {
-    screen: DetailPost
   },
   用户中心: {
     screen: UserHome,
