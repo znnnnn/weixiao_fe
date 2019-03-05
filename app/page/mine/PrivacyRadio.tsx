@@ -68,7 +68,7 @@ export default class Privacy extends Component<Props> {
                 onPress={() =>
                   this.setState({
                     radio: 'someFriend'
-                  }, ()=> this.props.navigation.navigate('通讯录'))
+                  }, ()=> this.props.navigation.navigate('选择好友'))
                 }
               >
                 <Left>

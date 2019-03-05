@@ -18,6 +18,7 @@ import FeedBack from '@page/mine/FeedBack'
 import Gerneral from '@page/mine/Gerneral'
 import Login from '@page/mine/Login'
 import Privacy from '@page/mine/Privacy'
+import PrivacyContact from '@page/mine/PrivacyContact'
 import PrivacyRadio from '@page/mine/PrivacyRadio'
 import Register from '@page/mine/Register'
 import SetEducation from '@page/mine/SetEducation'
@@ -230,6 +231,29 @@ const RouteConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }) => ({
       headerTruncatedBackTitle: '权限设置',
       headerTitle: '权限设置'
+    })
+  },
+  选择好友: {
+    screen: PrivacyContact,
+    navigationOptions: ({ navigation }) => ({
+      headerTruncatedBackTitle: '选择好友',
+      headerTitle: '选择好友',
+      headerRight: (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.goBack()
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          保存
+        </Button>
+      )
     })
   }
 
