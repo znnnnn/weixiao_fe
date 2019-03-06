@@ -39,8 +39,8 @@ export default class SinglePostCardList extends React.Component<Props> /*<Props,
     return (
       <Container>
         {/* <Header /> */}
-        <Content>
-          <Card >
+          <Content>
+          {/* <Card >
             <CardItem>
               <Left>
                 <Thumbnail source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'}} />
@@ -80,7 +80,13 @@ export default class SinglePostCardList extends React.Component<Props> /*<Props,
                 <Text>11h ago</Text>
               </Right>
             </CardItem>
-          </Card>
+          </Card> */}
+
+          {/* <Body style={{ paddingTop: (hp('100%')-300)/2, height: hp('100%')-65}}> */}
+          <Body style={{ paddingTop: (hp('100%')-300)/2}}>
+            <Image source={require('@image/404.png')} style={{width:150, height:150}}></Image>
+            <Text note style ={{ fontSize: 18, lineHeight: 30}}>暂无活动</Text>
+          </Body>
         </Content>
       </Container>
     )

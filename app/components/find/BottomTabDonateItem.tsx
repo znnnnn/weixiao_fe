@@ -17,24 +17,22 @@ import {
 } from 'native-base'
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 
 interface Item {
-  job: string
-  address: {
-    value: string
-    children: {
-      value?: string
-    }
-  }
-  experience: string
-  edu: string
-  salary: string
+  title: string
+  subTitle: string
+  count: number
+  tag: []
   thumb: string
-  HR: string
-  HRPosition: string
 }
 
-export default class BottomtabOfferItem extends React.Component {
+const tagColor = ['#ff5e5c', '#ffbb50', '#1ac756', '#19B5FE', '#fb7da9', '#666', '#a26ff9']
+
+export default class BottomTabDonateItem extends React.Component {
   public state = {
     layout: 'list'
   }
@@ -54,6 +52,11 @@ export default class BottomtabOfferItem extends React.Component {
       // ]
       for (let index = 0; index < pageLimit; index++) {
         rowData.push({
+          title: '校园安全饮水计划',
+          subTitle: '修建校园安全饮水工程，改善农村在校中小学生的饮水...',
+          count: 542324,
+          tag: ['山区儿童', '安全饮水', '留守建设','山区儿童', '安全饮水', '留守建设','山区儿童', '安全饮水', '留守建设'],
+          thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
           job: '平面设计师',
           address: {
             value: '杭州',
@@ -64,7 +67,6 @@ export default class BottomtabOfferItem extends React.Component {
           experience: '1-3年',
           edu: '大专',
           salary: '5K - 8K',
-          thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
           HR: 'alice',
           HRPosition: 'CEO'
         })
@@ -85,36 +87,34 @@ export default class BottomtabOfferItem extends React.Component {
 
   public renderItem = (item: Item) => {
     return (
-      <List>
-        <ListItem>
-          <Left style={{ flexDirection: 'column' }}>
-            <Title style={{fontSize: 20 ,color: '#3E3E3E', fontWeight: '400'}}>{item.job}</Title>
-            <Subtitle>
-              <Text note style={styles.subTitle}>
-                {item.address.value}
-                {item.address.children.value ? ` · ${item.address.children.value}` : ``}
+      <ListItem style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        <Left style={{ flexDirection: 'column', backgroundColor: '#eee', width: wp('70%') }}>
+          <Title style={{ fontSize: 18, color: '#3E3E3E', fontWeight: '400' }}>{item.title}</Title>
+          <Subtitle style={styles.subTitle}>{item.subTitle}</Subtitle>
+          <Subtitle style={{ fontSize: 10, color: '#848484', lineHeight: 10, height: 10 }}>
+            已有..
+            <Text style={{ fontSize: 10, lineHeight: 10, height: 10, color: '#29A1F7' }}>
+              {item.count}
+            </Text>
+            份爱心
+          </Subtitle>
+          {/* <View style={{ flexDirection: 'row' }}>
+              <Text style={{ color: '#29A1F7', fontSize: 10, alignSelf: 'flex-start' }}>
+                已有{item.count}份爱心
               </Text>
-              <Text style={styles.subTitle}> | </Text>
-              <Text note style={styles.subTitle}>
-                {item.experience}
-              </Text>
-              <Text style={styles.subTitle}> | </Text>
-              <Text note style={styles.subTitle}>
-                {item.edu}
-              </Text>
-            </Subtitle>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Thumbnail small source={{ uri: item.thumb }} />
-              <Text style={{ marginLeft: 10, color: '#3E3E3E' }}>
-                {item.HR} {item.HRPosition ? ` · ${item.HRPosition}` : ``}
-              </Text>
-            </View>
-          </Left>
-          <Right>
-            <H3 style={{ color: '#1B82D2' }}>{item.salary}</H3>
-          </Right>
-        </ListItem>
-      </List>
+            </View> */}
+          <View style={{ flexDirection: 'row', flexWrap:'wrap',marginTop: 4 }}>
+            {item.tag.map((item, index) => (
+              <View style={{ backgroundColor: tagColor[index], padding: 4, margin: 4 }} key={index}>
+                <Text style={{ color: '#fff', fontSize: 10 }}>{item}</Text>
+              </View>
+            ))}
+          </View>
+        </Left>
+        <Right>
+          <Thumbnail square large source={{ uri: item.thumb }} style={{}} />
+        </Right>
+      </ListItem>
     )
   }
 
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#848484',
     lineHeight: 30,
-    height:30
+    height: 30,
+    flexWrap: 'wrap'
   }
 })

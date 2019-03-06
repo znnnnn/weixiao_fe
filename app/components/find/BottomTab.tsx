@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
 import { Tabs } from '@ant-design/react-native'
-import {H2} from 'native-base'
+import { H2 } from 'native-base'
 import React from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -12,6 +12,10 @@ import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
+import { List } from 'native-base'
+
+import BottomTabDonateItem from './BottomTabDonateItem'
+import BottomtabOfferItem from './BottomTabOfferItem'
 import BottomTabTopicItem from './BottomTabTopicItem'
 
 const renderContent = (tab: any, index: any) => {
@@ -55,20 +59,15 @@ export default class IconTab extends React.Component<any, any> {
           // borderColor: 'green'
         }}
       >
-        {/* <Tabs tabs={tabs}>
-          <View style={style}>
-            <Text>Content of First Tab</Text>
-          </View>
-          <View style={style}>
-            <Text>Content of Second Tab</Text>
-          </View>
-          <View style={style}>
-            <Text>Content of Third Tab</Text>
-          </View>
-        </Tabs> */}
         <View style={{ flex: 1 }}>
           <Tabs tabs={iconTab} initialPage={0} tabBarPosition="top">
             {/* {renderContent} */}
+            <List>
+              <BottomTabDonateItem />
+            </List>
+            <View>
+              <BottomtabOfferItem />
+            </View>
             <View
               style={{
                 flexDirection: 'row',
@@ -80,13 +79,7 @@ export default class IconTab extends React.Component<any, any> {
               <BottomTabTopicItem />
             </View>
             <View>
-              <Text>Content of Second Tab</Text>
-            </View>
-            <View>
-              <Text>Content of Second Tab</Text>
-            </View>
-            <View>
-            <H2 style={{alignSelf: 'center',marginTop: 150}}>更多精彩即将到来^_^</H2>
+              <H2 style={{ alignSelf: 'center', marginTop: 150 }}>更多精彩即将到来^_^</H2>
             </View>
           </Tabs>
         </View>

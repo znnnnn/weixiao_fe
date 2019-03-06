@@ -40,7 +40,7 @@ export default class Find extends React.Component<Props> /*<Props, State>*/ {
       <Container>
         {/* <Header /> */}
         <Content>
-          <Card >
+          {/* <Card >
             <CardItem>
               <Left>
                 <Thumbnail source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'}} />
@@ -80,7 +80,10 @@ export default class Find extends React.Component<Props> /*<Props, State>*/ {
                 <Text>11h ago</Text>
               </Right>
             </CardItem>
-          </Card>
+          </Card> */}
+          <View>
+            <Image source={require('@image/404.png')}></Image>
+          </View>
         </Content>
       </Container>
     )
