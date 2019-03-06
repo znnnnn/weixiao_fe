@@ -26,11 +26,8 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class FeedBack extends Component<Props> {
+export default class FeedBack extends Component<any> {
   public render() {
     return (
       <Container>

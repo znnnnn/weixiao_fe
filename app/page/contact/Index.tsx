@@ -27,12 +27,9 @@ const data = [
   }
 ]
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class ContactIndex extends Component<Props> {
-  public constructor(props: Props) {
+export default class ContactIndex extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {

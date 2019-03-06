@@ -12,6 +12,7 @@ import StackNavigatorConfig from '@app/navigation/StackNavigatorConfig'
 import Home from '@page/home/Index'
 import Login from '@page/mine/Login'
 import rootReducer from '@store/reducer/index'
+import { Root } from 'native-base'
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
@@ -23,9 +24,11 @@ const RootNavigator = createAppContainer(createStackNavigator(RouteConfig, Stack
 export default class App extends React.Component {
   public render() {
     return (
-      <Provider store={store}>
-        <RootNavigator />
-      </Provider>
+      <Root>
+        <Provider store={store}>
+          <RootNavigator />
+        </Provider>
+      </Root>
     )
   }
 }

@@ -26,12 +26,9 @@ const deviceName = DeviceInfo.getDeviceName()
 
 
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class AccountSecurity extends Component<Props> {
-  public constructor(props: Props) {
+export default class AccountSecurity extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 

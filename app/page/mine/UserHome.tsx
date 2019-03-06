@@ -25,52 +25,47 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
-
 const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
 
-export default class UserHome extends Component<Props> {
-  public constructor(props: Props) {
+export default class UserHome extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
   public render() {
     return (
-      <Root>
-        <Container>
-          {/* <Separa
+      <Container>
+        {/* <Separa
         +tor/> */}
-          <Content>
-            <View style={{ height: 165 }}>
-              <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
-            </View>
-            <Body>
-              <Thumbnail
-                large
-                source={{
-                  uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-                }}
-              />
-              <Text>ZNNNNNNN</Text>
-              <Text note style={{ fontSize: 12 }}>
-                16级温州职业技术学院
+        <Content>
+          <View style={{ height: 165 }}>
+            <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
+          </View>
+          <Body>
+            <Thumbnail
+              large
+              source={{
+                uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+              }}
+            />
+            <Text>ZNNNNNNN</Text>
+            <Text note style={{ fontSize: 12 }}>
+              16级温州职业技术学院
+            </Text>
+            <Button
+              style={{ margin: 5, alignSelf: 'center' }}
+              small
+              primary
+              onPress={() => this.props.navigation.navigate('编辑个人资料')}
+            >
+              <Text>编辑个人资料</Text>
+            </Button>
+            <View style={styles.underLine}>
+              <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
+                {1}关注 {12}粉丝 {2}动态 {0}收藏
               </Text>
-              <Button
-                style={{ margin: 5, alignSelf: 'center' }}
-                small
-                primary
-                onPress={()=>this.props.navigation.navigate('编辑个人资料')}
-              >
-                <Text>编辑个人资料</Text>
-              </Button>
-              <View style={styles.underLine}>
-                <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
-                  {1}关注 {12}粉丝 {2}动态 {0}收藏
-                </Text>
-              </View>
-            </Body>
+            </View>
+          </Body>
           <Tabs tabs={iconTab} initialPage={0} tabBarPosition="top">
             {/* {renderContent} */}
             <View
@@ -80,15 +75,13 @@ export default class UserHome extends Component<Props> {
                 // paddingLeft: wp('5%'),
                 flexWrap: 'wrap'
               }}
-            >
-            </View>
+            />
             <View>
               <Text>Content of Second Tab</Text>
             </View>
           </Tabs>
-          </Content>
-        </Container>
-      </Root>
+        </Content>
+      </Container>
     )
   }
 }

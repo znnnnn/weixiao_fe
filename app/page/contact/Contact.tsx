@@ -60,7 +60,7 @@ class Cell extends Component<Props> {
         title={this.props.item.name}
         // subtitle={item.subtitle}
         leftAvatar={{ source: { uri: this.props.item.avatar_url } }}
-        onPress={() => this.props.navigation.navigate('卡片文章列表')}
+        onPress={() => this.props.navigation.navigate('卡片文章列表', {headerTitle: this.props.item.name})}
         bottomDivider
       />
     )
@@ -85,7 +85,6 @@ export default class Contact extends React.Component {
   }
   public constructor(props, context) {
     super(props, context)
-    console.log(context)
   }
 
   public componentDidMount = () => {}

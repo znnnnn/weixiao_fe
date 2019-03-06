@@ -17,21 +17,18 @@ import {
   Toast
 } from 'native-base'
 import React, { Component } from 'react'
-import { Image } from 'react-native'
+import { AppRegistry,Image } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class UserHome extends Component<Props> {
-  public constructor(props: Props) {
+
+export default class MineIndex extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
   public render() {
     return (
-      <Root>
         <Container>
           {/* <Separa
         +tor/> */}
@@ -145,7 +142,8 @@ export default class UserHome extends Component<Props> {
             </ListItem>
           </Content>
         </Container>
-      </Root>
     )
   }
 }
+
+AppRegistry.registerComponent('MineIndex', () => MineIndex);

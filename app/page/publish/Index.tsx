@@ -32,11 +32,8 @@ export interface State {
   images: { url: string; id: string }[]
 }
 
-export interface Props extends NavigationScreenProps {
-  defaultProps: ''
-}
 
-class Publish extends React.Component<Props, State> {
+class Publish extends React.Component<any, State> {
   public state: State = {
     inputContent: '',
     images: [
@@ -51,7 +48,7 @@ class Publish extends React.Component<Props, State> {
     ]
   }
 
-  public constructor(props: Props) {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
   public componentDidMount() {

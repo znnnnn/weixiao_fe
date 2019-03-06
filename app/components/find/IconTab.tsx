@@ -13,13 +13,10 @@ import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
 export default withNavigation(
-  class IconTab extends React.Component<Props, any> {
-    public constructor(props: Props) {
+  class IconTab extends React.Component<any, any> {
+    public constructor(props: NavigationScreenProps) {
       super(props)
     }
 
@@ -202,8 +199,8 @@ const styles = StyleSheet.create({
     borderColor: 'red'
   },
   icon: {
-    fontSize: 24,
-    color: '#D14747',
+    // fontSize: 24,
+    // color: '#D14747',
     width: 30,
     height: 30,
     margin: 4

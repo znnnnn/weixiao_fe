@@ -15,30 +15,26 @@ import {
   Thumbnail,
   Toast
 } from 'native-base'
-import { Alert } from 'react-native'
+import { Alert, AppRegistry } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class About extends Component<Props> {
+export default class About extends Component<any> {
   public state = {
     newMsg: true,
     unReadMsg: true
   }
 
-  public constructor(props: Props) {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
   public render() {
     return (
-      <Root>
         <Container>
           <Content>
             <Thumbnail
@@ -76,7 +72,8 @@ export default class About extends Component<Props> {
             </ListItem>
           </Content>
         </Container>
-      </Root>
     )
   }
 }
+
+AppRegistry.registerComponent('About', () => About);

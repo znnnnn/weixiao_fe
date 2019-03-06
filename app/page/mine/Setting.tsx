@@ -19,23 +19,20 @@ import {
   Toast,
   View
 } from 'native-base'
-import { Alert } from 'react-native'
+import { Alert, AppRegistry } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class ListItemSelectedExample extends Component<Props> {
-  public constructor(props: Props) {
+export default class Setting extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
+
   public render() {
     return (
-      <Root>
         <Container>
           <Content>
             <List>
@@ -58,9 +55,9 @@ export default class ListItemSelectedExample extends Component<Props> {
                   Toast.show({
                     text: '清除缓存成功！',
                     type: 'success',
-                    textStyle: {
-                      textAlign: 'center'
-                    },
+                    // textStyle: {
+                    //   textAlign: 'center'
+                    // },
                     position: 'bottom'
                   })
                 }
@@ -86,7 +83,8 @@ export default class ListItemSelectedExample extends Component<Props> {
             </List>
           </Content>
         </Container>
-      </Root>
     )
   }
 }
+
+AppRegistry.registerComponent('Setting', () => Setting);

@@ -24,18 +24,14 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class Privacy extends Component<Props> {
-  public constructor(props: Props) {
+export default class Privacy extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
   public render() {
     return (
-      <Root>
         <Container>
           <Content>
             <List>
@@ -76,7 +72,6 @@ export default class Privacy extends Component<Props> {
             </List>
           </Content>
         </Container>
-      </Root>
     )
   }
 }

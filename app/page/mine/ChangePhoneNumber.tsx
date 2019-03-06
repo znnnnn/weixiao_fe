@@ -25,12 +25,9 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-interface Props extends NavigationScreenProps {
-  defaultProps: string
-}
 
-export default class ChangePhoneNumber extends Component<Props> {
-  public constructor(props: Props) {
+export default class ChangePhoneNumber extends Component<any> {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 

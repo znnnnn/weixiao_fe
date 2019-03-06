@@ -7,6 +7,7 @@ import px2dp from '@util/px2dp'
 
 import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
+import { Container, Content } from 'native-base'
 import React from 'react'
 import {
   Alert,
@@ -53,7 +54,7 @@ class Home extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log('token:', this.props.token)
-      this.props.navigation.navigate('我的')
+      this.props.navigation.navigate('发现')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
@@ -62,7 +63,7 @@ class Home extends React.Component<Props, State> {
   public render() {
     return (
       <Provider>
-        <View style={styles.root}>
+        <Container style={styles.root}>
           <View
             style={{
               paddingTop: 10,
@@ -93,12 +94,12 @@ class Home extends React.Component<Props, State> {
               <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
             </ScrollView>
           </View>
-          <ScrollView>
+          <Content>
             <PostCard />
             <PostCard />
             <PostCard />
-          </ScrollView>
-        </View>
+          </Content>
+        </Container>
       </Provider>
     )
   }
