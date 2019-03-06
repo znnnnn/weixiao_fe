@@ -12,6 +12,7 @@
         // "indent": [true, "spaces", 2]
         "no-implicit-dependencies": false,
         "no-magic-numbers": false,
-        "no-var-requires": false
+        "no-var-requires": false,
+        "no-empty-interface": false
     }
 }

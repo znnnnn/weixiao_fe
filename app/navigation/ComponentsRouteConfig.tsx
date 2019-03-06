@@ -33,7 +33,7 @@ const RouteComponentsConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }:NavigationScreenProps) => ({
       headerTruncatedBackTitle: '',
       // header: null,
-      headerTitle: navigation.getParam('headerTitle', 'some default value'),
+      headerTitle: navigation.getParam('headerTitle', '列表'),
       headerRight: (
         // <Button
         //   type="primary"

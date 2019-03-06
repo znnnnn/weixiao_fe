@@ -25,14 +25,15 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-
-export default class Gerneral extends Component<any> {
+interface Props extends NavigationScreenProps {
+}
+export default class Gerneral extends Component<Props> {
   public state = {
     newMsg: true,
     unReadMsg: true
   }
 
-  public constructor(props: NavigationScreenProps) {
+  public constructor(props: Props) {
     super(props)
   }
 

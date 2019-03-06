@@ -20,10 +20,11 @@ import React, { Component } from 'react'
 import { AppRegistry,Image } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+interface Props extends NavigationScreenProps {
+}
 
-
-export default class MineIndex extends Component<any> {
-  public constructor(props: NavigationScreenProps) {
+export default class MineIndex extends Component<Props> {
+  public constructor(props: Props) {
     super(props)
   }
 

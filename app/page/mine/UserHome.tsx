@@ -27,8 +27,10 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
 
-export default class UserHome extends Component<any> {
-  public constructor(props: NavigationScreenProps) {
+interface Props extends NavigationScreenProps {
+}
+export default class UserHome extends Component<Props> {
+  public constructor(props: Props) {
     super(props)
   }
 

@@ -25,9 +25,10 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-
-export default class ChangePassword extends Component<any> {
-  public constructor(props: NavigationScreenProps) {
+interface Props extends NavigationScreenProps {
+}
+export default class ChangePassword extends Component<Props> {
+  public constructor(props: Props) {
     super(props)
   }
 

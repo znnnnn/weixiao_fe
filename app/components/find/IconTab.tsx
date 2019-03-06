@@ -13,10 +13,12 @@ import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
 
+interface Props extends NavigationScreenProps {
+}
 
 export default withNavigation(
-  class IconTab extends React.Component<any, any> {
-    public constructor(props: NavigationScreenProps) {
+  class IconTab extends React.Component<Props, any> {
+    public constructor(props: Props) {
       super(props)
     }
 

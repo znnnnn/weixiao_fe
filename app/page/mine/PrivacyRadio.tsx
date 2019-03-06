@@ -19,11 +19,13 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 
-export default class Privacy extends Component<any> {
+interface Props extends NavigationScreenProps {
+}
+export default class Privacy extends Component<Props> {
   public state = {
     radio: ''
   }
-  public constructor(props: NavigationScreenProps) {
+  public constructor(props: Props) {
     super(props)
   }
 

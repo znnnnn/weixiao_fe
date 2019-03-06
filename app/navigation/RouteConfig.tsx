@@ -4,10 +4,10 @@
 // import Test from '@page/home/VideoPlayerScreen'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
-import RouteComponentsConfig from './RouteComponentsConfig'
-import RouteContactConfig from './RouteContactConfig'
-import RouteFindConfig from './RouteFindConfig'
-import RouteMineConfig from './RouteMineConfig'
+import ComponentsRouteConfig from './ComponentsRouteConfig'
+import ContactRouteConfig from './ContactRouteConfig'
+import FindRouteConfig from './FindRouteConfig'
+import MineRouteConfig from './MineRouteConfig'
 import MainTab from './TabNavigator'
 
 import { Button } from '@ant-design/react-native'
@@ -29,10 +29,10 @@ const RouteConfig: NavigationRouteConfigMap = {
     // 嵌套tab 因此header要在此关闭
     // navigationOptions: ({ navigation }) => ({ header: null })
   },
-  ...RouteFindConfig,
-  ...RouteContactConfig,
-  ...RouteMineConfig,
-  ...RouteComponentsConfig
+  ...FindRouteConfig,
+  ...ContactRouteConfig,
+  ...MineRouteConfig,
+  ...ComponentsRouteConfig
 }
 
 // 测试: {

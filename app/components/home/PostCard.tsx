@@ -21,7 +21,9 @@ export interface State {
   initIndex: number
 }
 
-class PostCard extends Component<any> {
+interface Props extends NavigationScreenProps {
+}
+class PostCard extends Component<Props> {
   public state = {
     images: [
       { url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png' },
@@ -32,7 +34,7 @@ class PostCard extends Component<any> {
     initIndex: 0
   }
 
-  public constructor(props: NavigationScreenProps) {
+  public constructor(props: Props) {
     super(props)
   }
 

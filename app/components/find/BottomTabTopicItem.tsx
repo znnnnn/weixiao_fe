@@ -8,13 +8,17 @@ interface Item {
   hot: number
 }
 
+interface Props extends NavigationScreenProps {
+  color: string
+}
+
 export default withNavigation(
-  class BottomTabTopicItem extends React.Component<any> {
+  class BottomTabTopicItem extends React.Component<Props> {
     public state = {
       layout: 'list'
     }
 
-    public constructor(props: NavigationScreenProps) {
+    public constructor(props: Props) {
       super(props)
     }
 

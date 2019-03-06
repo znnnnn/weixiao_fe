@@ -24,9 +24,10 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 
-
-export default class Setting extends Component<any> {
-  public constructor(props: NavigationScreenProps) {
+interface Props extends NavigationScreenProps {
+}
+export default class Setting extends Component<Props> {
+  public constructor(props: Props) {
     super(props)
   }
 
