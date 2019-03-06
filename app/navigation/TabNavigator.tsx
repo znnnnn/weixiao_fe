@@ -165,7 +165,7 @@ const tabNavigation = createBottomTabNavigator(tabRoute, tabConfig)
 tabNavigation.navigationOptions = ({ navigation, screenProps }:NavigationScreenProps) => {
   // console.log(navigation)
   const { routeName } = navigation.state.routes[navigation.state.index]
-  const { params } = navigation.state.routes[navigation.state.index]
+  const { params }:any = navigation.state.routes[navigation.state.index]
 
   // You can do whatever you like here to pick the title based on the route name
   // 返回名称

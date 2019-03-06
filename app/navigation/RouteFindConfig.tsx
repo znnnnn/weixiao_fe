@@ -6,7 +6,6 @@
 import Topic from '@page/find/Topic'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
-import MainTab from './TabNavigator'
 
 import { Button } from '@ant-design/react-native'
 import Icon from '@app/util/icon'

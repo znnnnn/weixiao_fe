@@ -24,7 +24,6 @@ import UserInfoSetting from '@page/mine/UserInfoSetting'
 import Welcome from '@page/mine/Welcome'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
-import MainTab from './TabNavigator'
 
 import { Button } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
@@ -207,5 +206,6 @@ const RouteMineConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }:NavigationScreenProps) => ({ headerTruncatedBackTitle: '完善学历信息' })
   }
 }
+
 
 export default RouteMineConfig
