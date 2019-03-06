@@ -21,11 +21,11 @@ import React from 'react'
 
 */
 const RouteFindConfig: NavigationRouteConfigMap = {
-  卡片文章列表: {
+  话题: {
     screen: Topic,
     navigationOptions: ({ navigation }:NavigationScreenProps) => ({
+      header: null,
       headerTruncatedBackTitle: '',
-      // header: null,
       headerTitle: navigation.getParam('headerTitle', 'some default value'),
       headerRight: (
         // <Button

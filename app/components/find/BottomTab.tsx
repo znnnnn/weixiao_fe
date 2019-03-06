@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
 import { Tabs } from '@ant-design/react-native'
-import { H2 } from 'native-base'
+import { H2, List } from 'native-base'
 import React from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -12,7 +12,6 @@ import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
-import { List } from 'native-base'
 
 import BottomTabDonateItem from './BottomTabDonateItem'
 import BottomtabOfferItem from './BottomTabOfferItem'
@@ -61,23 +60,16 @@ export default class IconTab extends React.Component<any, any> {
       >
         <View style={{ flex: 1 }}>
           <Tabs tabs={iconTab} initialPage={0} tabBarPosition="top">
-            {/* {renderContent} */}
+            <List>
+              <BottomTabTopicItem />
+            </List>
             <List>
               <BottomTabDonateItem />
             </List>
-            <View>
+            <List>
               <BottomtabOfferItem />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                // width: wp('90%'),
-                // paddingLeft: wp('5%'),
-                flexWrap: 'wrap'
-              }}
-            >
-              <BottomTabTopicItem />
-            </View>
+            </List>
+
             <View>
               <H2 style={{ alignSelf: 'center', marginTop: 150 }}>更多精彩即将到来^_^</H2>
             </View>

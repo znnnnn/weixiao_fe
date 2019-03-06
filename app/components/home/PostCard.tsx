@@ -15,16 +15,13 @@ import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-export interface Props extends NavigationScreenProps {
-  token: string
-}
 export interface State {
   modalVisible: boolean
   images: { url: string }[]
   initIndex: number
 }
 
-class PostCard extends Component<Props> {
+class PostCard extends Component<any> {
   public state = {
     images: [
       { url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png' },
@@ -35,7 +32,7 @@ class PostCard extends Component<Props> {
     initIndex: 0
   }
 
-  public constructor(props: Props) {
+  public constructor(props: NavigationScreenProps) {
     super(props)
   }
 
