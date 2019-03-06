@@ -3,10 +3,9 @@
  */
 
 
-import Topic from '@page/find/Topic'
+import Contact from '@page/contact/Contact'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
-import MainTab from './TabNavigator'
 
 import { Button } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
@@ -21,34 +20,30 @@ import React from 'react'
    * 该配置文件会在App.js里的StackNavigator(导航组件)里使用。
 
 */
-const RouteFindConfig: NavigationRouteConfigMap = {
-  卡片文章列表: {
-    screen: Topic,
+const RouteContactConfig: NavigationRouteConfigMap = {
+  通讯录: {
+    screen: Contact,
     navigationOptions: ({ navigation }:NavigationScreenProps) => ({
-      headerTruncatedBackTitle: '',
-      // header: null,
-      headerTitle: navigation.getParam('headerTitle', 'some default value'),
+      headerTruncatedBackTitle: '通讯录',
+      headerTitle: '通讯录',
       headerRight: (
-        // <Button
-        //   type="primary"
-        //   size="small"
-        //   style={{ height: 30, width: 50, marginRight: 10 }}
-        //   onPress={() => {
-        //     // console.log(params)
-        //     navigation.goBack()
-        //     // console.log(navigation)
-        //     // console.log(navigation.getParam('publish'))
-        //     // navigation.state.routes[2].params._publish()
-        //   }}
-        // >
-        //   保存
-        // </Button>
-        <BaseIcon active name="brush" style={{color:'#333', fontSize: 24, alignSelf: 'center',marginRight: 10}} onPress={() => {
-          navigation.navigate('发布')
-        }} />
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.navigate('首页')
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          添加
+        </Button>
       )
     })
-  }
+  },
 }
 
-export default RouteFindConfig
+export default RouteContactConfig

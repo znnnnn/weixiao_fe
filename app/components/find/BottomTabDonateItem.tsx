@@ -90,7 +90,7 @@ export default class BottomTabDonateItem extends React.Component {
       <ListItem style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         <Left style={{ flexDirection: 'column', backgroundColor: '#eee', width: wp('70%') }}>
           <Title style={{ fontSize: 18, color: '#3E3E3E', fontWeight: '400' }}>{item.title}</Title>
-          <Subtitle style={styles.subTitle}>{item.subTitle}</Subtitle>
+          <Text numberOfLines={2} style={styles.subTitle}>{item.subTitle}</Text>
           <Subtitle style={{ fontSize: 10, color: '#848484', lineHeight: 10, height: 10 }}>
             已有..
             <Text style={{ fontSize: 10, lineHeight: 10, height: 10, color: '#29A1F7' }}>

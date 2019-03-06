@@ -1,7 +1,21 @@
 import { InputItem, List, Provider, Toast } from '@ant-design/react-native'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
-import { Button,Container, Content, Header, Icon, Input, Item, Text } from 'native-base'
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Header,
+  Icon,
+  Input,
+  Item,
+  Left,
+  ListItem,
+  Right,
+  Text,
+  Thumbnail
+} from 'native-base'
 
 import px2dp from '@util/px2dp'
 
@@ -51,17 +65,38 @@ class Topic extends React.Component<Props, State> {
     return (
       <Provider>
         <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search" />
-            <Icon name="ios-people" />
-          </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
-        </Header>
+          <Header searchBar rounded>
+            <Item>
+              <Icon name="ios-search" />
+              <Input placeholder="Search" />
+              <Icon name="ios-people" />
+            </Item>
+            <Button transparent>
+              <Text>Search</Text>
+            </Button>
+          </Header>
           <Content>
+            <ListItem thumbnail>
+              <Left style={{ borderWidth: 1, borderColor: 'red' }}>
+                <Thumbnail
+                  source={{
+                    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+                  }}
+                />
+              </Left>
+              <Body>
+                <Text>Sankhadeep</Text>
+                <Text note numberOfLines={1}>
+                  Its time to build a difference . .
+                </Text>
+              </Body>
+              <Right style={{ borderWidth: 0 }}>
+                <Button transparent>
+                  <Text>View</Text>
+                </Button>
+              </Right>
+            </ListItem>
+            <ListItem itemDivider />
             <PostCard />
             <PostCard />
             <PostCard />
@@ -84,7 +119,6 @@ class Topic extends React.Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
-})
+const styles = StyleSheet.create({})
 
 export default Topic
