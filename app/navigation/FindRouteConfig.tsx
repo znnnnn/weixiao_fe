@@ -55,6 +55,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
       // header: null,
       headerTruncatedBackTitle: '',
       headerTitle: navigation.getParam('headerTitle', '发布'),
+      tabBarVisible: false,
       headerRight: (
         <Button
           type="primary"
