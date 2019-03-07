@@ -8,12 +8,14 @@ import {
   Content,
   Footer,
   FooterTab,
+  Form,
   Header,
   Icon,
   Input,
   Item,
   Left,
   ListItem,
+  Picker,
   Right,
   Text,
   Thumbnail
@@ -32,26 +34,47 @@ import {
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
 
+import { ItemProps } from '@components/find/BottomTabOfferItem'
+import OfferItem from '@components/find/OfferItem'
+
 export interface State {
-  thumb: string
-  title: string
-  pv: number
-  comment: number
+  data: ItemProps[]
+  selected: string
 }
 
 interface Props extends NavigationScreenProps {}
 
-class Topic extends React.Component<Props, State> {
+class Offer extends React.Component<Props, State> {
   public state: State = {
-    thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-    title: '温州职业学院元旦晚会',
-    pv: 6660000,
-    comment: 20000
+    data: [
+      {
+        job: '平面设计师',
+        address: {
+          value: '杭州',
+          children: {
+            value: '长河'
+          }
+        },
+        experience: '1-3年',
+        edu: '大专',
+        salary: '5K - 8K',
+        thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        HR: 'alice',
+        HRPosition: 'CEO'
+      }
+    ],
+    selected: 'key1'
   }
 
   public constructor(props: Props) {
     super(props)
     // console.log(this.props.token)
+  }
+
+  public onValueChange(value: string) {
+    this.setState({
+      selected: value
+    })
   }
 
   // public componentDidMount() {
@@ -67,7 +90,7 @@ class Topic extends React.Component<Props, State> {
           <Header searchBar rounded>
             <Item>
               <Icon name="ios-search" />
-              <Input placeholder="Search" value={this.state.title} />
+              <Input placeholder="Search" />
               <Icon name="ios-people" />
             </Item>
             {/* <Button small style={{paddingLeft: 0, paddingRight: 0,marginLeft:5}}>
@@ -76,7 +99,7 @@ class Topic extends React.Component<Props, State> {
             <Button transparent>
               <Icon
                 active
-                name="brush"
+                name="add-circle"
                 style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
                 onPress={() => {
                   // this.props.navigation.navigation.navigate('发布')
@@ -88,38 +111,27 @@ class Topic extends React.Component<Props, State> {
             </Button>
           </Header>
           <Content>
-            <ListItem thumbnail>
-              <Left style={{ borderWidth: 1, borderColor: 'red' }}>
-                <Thumbnail
-                  source={{
-                    uri: this.state.thumb
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>#{this.state.title}#</Text>
-                <Text
-                  note
-                  numberOfLines={1}
-                  style={{ color: '#3E3E3E', fontSize: 10, marginTop: 5 }}
-                >
-                  阅读：{this.state.pv > 10000 ? `${this.state.pv / 10000}万` : this.state.pv}{' '}
-                  讨论：
-                  {this.state.comment > 10000
-                    ? `${this.state.comment / 10000}万`
-                    : this.state.comment}
-                </Text>
-              </Body>
-              {/*<Right>*/}
-              {/*<Button transparent>*/}
-              {/*<Text>View</Text>*/}
-              {/*</Button>*/}
-              {/*</Right>*/}
-            </ListItem>
-            <ListItem itemDivider />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {/* <Form> */}
+            {/* <Picker
+                note
+                mode="dropdown"
+                style={{ width: 120 }}
+                selectedValue={this.state.selected}
+                onValueChange={this.onValueChange.bind(this)}
+                iosHeader="Select your SIM"
+                iosIcon={<Icon name="arrow-down" />}
+              >
+                <Picker.Item label="Wallet" value="key0" />
+                <Picker.Item label="ATM Card" value="key1" />
+                <Picker.Item label="Debit Card" value="key2" />
+                <Picker.Item label="Credit Card" value="key3" />
+                <Picker.Item label="Net Banking" value="key4" />
+              </Picker>
+            </Form> */}
+            <OfferItem data={this.state.data[0]} />
+            <OfferItem data={this.state.data[0]} />
+            <OfferItem data={this.state.data[0]} />
+            <OfferItem data={this.state.data[0]} />
           </Content>
           <Footer>
             <FooterTab>
@@ -141,4 +153,4 @@ class Topic extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({})
 
-export default Topic
+export default Offer

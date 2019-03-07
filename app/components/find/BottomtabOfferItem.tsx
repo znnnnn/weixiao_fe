@@ -16,9 +16,11 @@ import {
   View
 } from 'native-base'
 import React from 'react'
-import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet } from 'react-native'
 
-interface Item {
+import OfferItem from './OfferItem'
+
+export interface ItemProps {
   job: string
   address: {
     value: string
@@ -34,10 +36,33 @@ interface Item {
   HRPosition: string
 }
 
-export default class BottomtabOfferItem extends React.Component {
-  public state = {
+interface State {
+  data: ItemProps[]
+  layout: string
+}
+
+export default class BottomtabOfferItem extends React.Component<any, State> {
+  public state: State = {
+    data: [
+      {
+        job: '平面设计师',
+        address: {
+          value: '杭州',
+          children: {
+            value: '长河'
+          }
+        },
+        experience: '1-3年',
+        edu: '大专',
+        salary: '5K - 8K',
+        thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        HR: 'alice',
+        HRPosition: 'CEO'
+      }
+    ],
     layout: 'list'
   }
+
   public sleep = (time: any) => new Promise((resolve) => setTimeout(() => resolve(), time))
   public onFetch = async (page = 1, startFetch: any, abortFetch: any) => {
     try {
@@ -53,21 +78,7 @@ export default class BottomtabOfferItem extends React.Component {
 
       // ]
       for (let index = 0; index < pageLimit; index++) {
-        rowData.push({
-          job: '平面设计师',
-          address: {
-            value: '杭州',
-            children: {
-              value: '长河'
-            }
-          },
-          experience: '1-3年',
-          edu: '大专',
-          salary: '5K - 8K',
-          thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-          HR: 'alice',
-          HRPosition: 'CEO'
-        })
+        rowData.push(this.state)
       }
 
       // Simulate the end of the list if there is no more data returned from the server
@@ -83,37 +94,10 @@ export default class BottomtabOfferItem extends React.Component {
     }
   }
 
-  public renderItem = (item: Item) => {
+  public renderItem = (data: State) => {
     return (
       <List>
-        <ListItem>
-          <Left style={{ flexDirection: 'column' }}>
-            <Title style={{fontSize: 20 ,color: '#3E3E3E', fontWeight: '400'}}>{item.job}</Title>
-            <Subtitle>
-              <Text note style={styles.subTitle}>
-                {item.address.value}
-                {item.address.children.value ? ` · ${item.address.children.value}` : ``}
-              </Text>
-              <Text style={styles.subTitle}> | </Text>
-              <Text note style={styles.subTitle}>
-                {item.experience}
-              </Text>
-              <Text style={styles.subTitle}> | </Text>
-              <Text note style={styles.subTitle}>
-                {item.edu}
-              </Text>
-            </Subtitle>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Thumbnail small source={{ uri: item.thumb }} />
-              <Text style={{ marginLeft: 10, color: '#3E3E3E' }}>
-                {item.HR} {item.HRPosition ? ` · ${item.HRPosition}` : ``}
-              </Text>
-            </View>
-          </Left>
-          <Right>
-            <H3 style={{ color: '#1B82D2' }}>{item.salary}</H3>
-          </Right>
-        </ListItem>
+        <OfferItem data={this.state.data[0]} />
       </List>
     )
   }
@@ -135,6 +119,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#848484',
     lineHeight: 30,
-    height:30
+    height: 30
   }
 })

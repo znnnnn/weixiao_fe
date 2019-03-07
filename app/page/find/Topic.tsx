@@ -76,7 +76,7 @@ class Topic extends React.Component<Props, State> {
             <Button transparent>
               <Icon
                 active
-                name="brush"
+                name="add-circle"
                 style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
                 onPress={() => {
                   // this.props.navigation.navigation.navigate('发布')
