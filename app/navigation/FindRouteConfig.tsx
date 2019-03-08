@@ -130,7 +130,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     })
   },
   招聘详情: {
-    screen: Recruit,
+    screen: OfferDetail,
     navigationOptions: ({navigation}: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '招聘详情',
