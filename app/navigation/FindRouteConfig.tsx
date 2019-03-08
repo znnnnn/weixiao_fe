@@ -3,13 +3,13 @@
  */
 
 
-import BusinessCard from '@page/find/BusinessCard'
+import OfferBusinessCard from '@app/page/find/OfferBusinessCard'
+import OfferRealNameAuth from '@app/page/find/OfferRealNameAuth'
+import Recruit from '@app/page/find/OfferRecruit'
+import Topic from '@app/page/find/Topic'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
 import OfferIdentityAuth from "@page/find/OfferIdentityAuth"
-import RealNameAuth from '@page/find/RealNameAuth'
-import Recruit from '@page/find/Recruit'
-import Topic from '@page/find/Topic'
 
 
 import {NavigationRouteConfigMap, NavigationScreenProps} from 'react-navigation'
@@ -102,7 +102,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     })
   },
   名片创建: {
-    screen: BusinessCard,
+    screen: OfferBusinessCard,
     navigationOptions: ({navigation}: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '名片创建',
@@ -111,7 +111,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     })
   },
   实名认证: {
-    screen: RealNameAuth,
+    screen: OfferRealNameAuth,
     navigationOptions: ({navigation}: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '实名认证',

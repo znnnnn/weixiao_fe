@@ -4,10 +4,6 @@ import StyleSheet from '@util/stylesheet'
 import { Button, Container, Content, Form, Header, Input, Item, Text } from 'native-base'
 import { number } from 'prop-types'
 import React from 'react'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
 export interface State {
@@ -19,7 +15,7 @@ export interface State {
 
 export interface Props extends NavigationScreenProps {}
 
-export default class Login extends React.Component<Props, State> {
+export default class OfferRealNameAuth extends React.Component<Props, State> {
   public state = {
     name: '',
     IDnumber: '',

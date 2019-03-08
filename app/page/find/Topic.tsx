@@ -25,10 +25,6 @@ import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
 import { Alert, Image, Linking, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -41,7 +37,7 @@ export interface State {
 
 interface Props extends NavigationScreenProps {}
 
-class Topic extends React.Component<Props, State> {
+class OfferTopic extends React.Component<Props, State> {
   public state: State = {
     thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
     title: '温州职业学院元旦晚会',
@@ -141,4 +137,4 @@ class Topic extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({})
 
-export default Topic
+export default OfferTopic

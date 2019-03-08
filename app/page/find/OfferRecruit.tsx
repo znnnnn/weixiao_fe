@@ -33,7 +33,7 @@ const EDU_DATA = require('../mine/SetEducationEdu.json')
 const MAJOR_DATA = require('../mine/SetEducationMajor.json')
 const SCHOOL_DATA = require('../mine/SetEducationSchool.json')
 
-export default class UserExperience extends Component {
+export default class OfferRecruit extends Component {
   public state = {
     edu: [],
     admission: undefined,
