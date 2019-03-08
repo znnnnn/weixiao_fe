@@ -1,0 +1,190 @@
+[
+  {
+    "label": "互联网/IT",
+    "value": "1",
+    "children": [
+      {
+        "label": "电子商务",
+        "value": "11"
+      },
+      {
+        "label": "信息安全",
+        "value": "12"
+      },
+      {
+        "label": "数据服务",
+        "value": "13"
+      },
+      {
+        "label": "O2O",
+        "value": "14"
+      },
+      {
+        "label": "计算机软件",
+        "value": "15"
+      }
+    ]
+  },
+  {
+    "label": "金融",
+    "value": "2",
+    "children": [
+      {
+        "label": "银行",
+        "value": "21"
+      },
+      {
+        "label": "保险",
+        "value": "22"
+      },
+      {
+        "label": "基金",
+        "value": "23"
+      },
+      {
+        "label": "信托",
+        "value": "24"
+      },
+      {
+        "label": "互联网金融",
+        "value": "25"
+      }
+    ]
+  },
+  {
+    "label": "专业服务",
+    "value": "3",
+    "children": [
+      {
+        "label": "咨询",
+        "value": "31"
+      },
+      {
+        "label": "法律",
+        "value": "32"
+      },
+      {
+        "label": "翻译",
+        "value": "33"
+      },
+      {
+        "label": "财务",
+        "value": "34"
+      },
+      {
+        "label": "人力资源服务",
+        "value": "35"
+      },
+      {
+        "label": "专利/商标",
+        "value": "36"
+      }
+    ]
+  },
+  {
+    "label": "房地产",
+    "value": "4",
+    "children": [
+      {
+        "label": "房地产开发",
+        "value": "41"
+      },
+      {
+        "label": "工程施工",
+        "value": "42"
+      },
+      {
+        "label": "建筑设计",
+        "value": "43"
+      },
+      {
+        "label": "装修装饰",
+        "value": "44"
+      },
+      {
+        "label": "建材",
+        "value": "45"
+      }
+    ]
+  },
+  {
+    "label": "服务业",
+    "value": "5",
+    "children": [
+      {
+        "label": "餐饮",
+        "value": "51"
+      },
+      {
+        "label": "酒店",
+        "value": "52"
+      },
+      {
+        "label": "旅游",
+        "value": "53"
+      },
+      {
+        "label": "美容",
+        "value": "54"
+      },
+      {
+        "label": "婚庆",
+        "value": "55"
+      }
+    ]
+  },
+  {
+    "label": "能源",
+    "value": "6",
+    "children": [
+      {
+        "label": "石油",
+        "value": "61"
+      },
+      {
+        "label": "化工",
+        "value": "62"
+      },
+      {
+        "label": "矿产",
+        "value": "63"
+      },
+      {
+        "label": "新能源",
+        "value": "64"
+      }
+    ]
+  },
+  {
+    "label": "政府",
+    "value": "7",
+    "children": [
+      {
+        "label": "公共事业",
+        "value": "71"
+      },
+      {
+        "label": "非盈利机构",
+        "value": "72"
+      }
+    ]
+  },
+  {
+    "label": "传媒",
+    "value": "8",
+    "children": [
+      {
+        "label": "广告",
+        "value": "81"
+      },
+      {
+        "label": "新闻",
+        "value": "82"
+      },
+      {
+        "label": "广播/影视",
+        "value": "83"
+      }
+    ]
+  }
+]

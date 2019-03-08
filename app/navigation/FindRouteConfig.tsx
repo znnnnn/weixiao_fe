@@ -3,10 +3,13 @@
  */
 
 
+import BusinessCard from '@page/find/BusinessCard'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
+import OfferIdentityAuth from "@page/find/OfferIdentityAuth"
+import RealNameAuth from '@page/find/RealNameAuth'
+import Recruit from '@page/find/Recruit'
 import Topic from '@page/find/Topic'
-import OfferIdentityAuth from "@page/find/OfferIdentityAuth";
 
 
 import {NavigationRouteConfigMap, NavigationScreenProps} from 'react-navigation'
@@ -95,6 +98,33 @@ const RouteFindConfig: NavigationRouteConfigMap = {
       // header: null,
       headerTruncatedBackTitle: '身份认证',
       headerTitle: '身份认证',
+      tabBarVisible: false,
+    })
+  },
+  名片创建: {
+    screen: BusinessCard,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // header: null,
+      headerTruncatedBackTitle: '名片创建',
+      headerTitle: '名片创建',
+      tabBarVisible: false,
+    })
+  },
+  实名认证: {
+    screen: RealNameAuth,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // header: null,
+      headerTruncatedBackTitle: '实名认证',
+      headerTitle: '实名认证',
+      tabBarVisible: false,
+    })
+  },
+  招聘要求: {
+    screen: Recruit,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // header: null,
+      headerTruncatedBackTitle: '招聘要求',
+      headerTitle: '招聘要求',
       tabBarVisible: false,
     })
   }
