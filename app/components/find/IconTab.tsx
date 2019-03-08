@@ -182,6 +182,46 @@ export default withNavigation(
                     <Text>约开黑</Text>
                   </View>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('话题')
+                  }
+                >
+                  <View style={styles.iconItem}>
+                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Text>话题</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('招聘')
+                  }
+                >
+                  <View style={styles.iconItem}>
+                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Text>招聘</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('招聘')
+                  }
+                >
+                  <View style={styles.iconItem}>
+                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Text>招聘</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('招聘')
+                  }
+                >
+                  <View style={styles.iconItem}>
+                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Text>招聘</Text>
+                  </View>
+                </TouchableOpacity> */}
               </View>
             </Carousel>
           </View>

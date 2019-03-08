@@ -1,7 +1,6 @@
 import { InputItem, List } from '@ant-design/react-native'
-import Icon from '@app/util/icon'
 import StyleSheet from '@util/stylesheet'
-import { Button, Container, Content, Form, Header, Input, Item, Text } from 'native-base'
+import {Button,Container, Content,Form, H1, Header, Icon, Input, Item, Text, View } from 'native-base'
 import { number } from 'prop-types'
 import React from 'react'
 import { NavigationScreenProps } from 'react-navigation'
@@ -15,7 +14,7 @@ export interface State {
 
 export interface Props extends NavigationScreenProps {}
 
-export default class OfferRealNameAuth extends React.Component<Props, State> {
+export default class OfferDetail extends React.Component<Props, State> {
   public state = {
     name: '',
     IDnumber: '',
@@ -32,71 +31,10 @@ export default class OfferRealNameAuth extends React.Component<Props, State> {
       <Container>
         <Content padder>
           <Form>
-            <InputItem
-              clear
-              // error
-              value={this.state.name}
-              placeholder="请输入"
-              onChange={(value) => {
-                this.setState({
-                  name: value
-                })
-              }}
-            >
-              真实姓名
-            </InputItem>
-            <InputItem
-              clear
-              type="number"
-              value={this.state.IDnumber}
-              placeholder="请输入"
-              onChange={(value) => {
-                this.setState({
-                  IDnumber: value
-                })
-              }}
-              // placeholder="number"
-            >
-              数字
-            </InputItem>
-            <InputItem
-              clear
-              type="phone"
-              value={this.state.phone}
-              placeholder="请输入"
-              onChange={(value) => {
-                this.setState({
-                  phone: value
-                })
-              }}
-              // placeholder="phone"
-            >
-              手机号
-            </InputItem>
-            <InputItem
-              value={this.state.code}
-              onChange={(value) => {
-                this.setState({
-                  code: value
-                })
-              }}
-              placeholder="请输入"
-              maxLength={16}
-              extra={
-                <Button small>
-                  <Text>获取验证码</Text>
-                </Button>
-              }
-            >
-              验证码
-            </InputItem>
-            <Button
-              block
-              style={{ marginTop: 30 }}
-              onPress={() => this.props.navigation.navigate('招聘要求')}
-            >
-              <Text>完成</Text>
-            </Button>
+            <View>
+              <H1>平面设计师</H1>
+
+            </View>
           </Form>
         </Content>
       </Container>

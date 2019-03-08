@@ -9,6 +9,7 @@ import Recruit from '@app/page/find/OfferRecruit'
 import Topic from '@app/page/find/Topic'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
+import OfferDetail from '@page/find/OfferDetail'
 import OfferIdentityAuth from "@page/find/OfferIdentityAuth"
 
 
@@ -125,6 +126,15 @@ const RouteFindConfig: NavigationRouteConfigMap = {
       // header: null,
       headerTruncatedBackTitle: '招聘要求',
       headerTitle: '招聘要求',
+      tabBarVisible: false,
+    })
+  },
+  招聘详情: {
+    screen: Recruit,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // header: null,
+      headerTruncatedBackTitle: '招聘详情',
+      headerTitle: '招聘详情',
       tabBarVisible: false,
     })
   }

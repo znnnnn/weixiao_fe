@@ -4,18 +4,10 @@ import {
   Button,
   Container,
   Content,
-  Header,
-  Icon,
-  Left,
-  List,
-  ListItem,
-  Right,
-  Root,
-  Separator,
-  Switch,
+  Footer,
+  FooterTab,
   Text,
-  Thumbnail,
-  Toast
+  Thumbnail
 } from 'native-base'
 import React, { Component } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
@@ -23,12 +15,12 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
 
-interface Props extends NavigationScreenProps {
-}
+interface Props extends NavigationScreenProps {}
 export default class UserHome extends Component<Props> {
   public constructor(props: Props) {
     super(props)
@@ -83,6 +75,17 @@ export default class UserHome extends Component<Props> {
             </View>
           </Tabs>
         </Content>
+        <Footer>
+          <FooterTab>
+            <Button vertical>
+              <Icon
+                name="message"
+                style={{fontSize:20}}
+              />
+              <Text>和他聊天</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
       </Container>
     )
   }

@@ -140,7 +140,7 @@ class Offer extends React.Component<Props, State> {
                 <Icon name="people"/>
                 <Text>我要招人</Text>
               </Button>
-              <Button active>
+              <Button active onPress={() => this.props.navigation.navigate('个人经历')}>
                 <Icon name="brush"/>
                 <Text>我要求职</Text>
               </Button>
