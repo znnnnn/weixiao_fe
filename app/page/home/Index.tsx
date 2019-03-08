@@ -1,4 +1,4 @@
-import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
+import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
@@ -7,7 +7,7 @@ import px2dp from '@util/px2dp'
 
 import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
-import { Container, Content } from 'native-base'
+import {Container, Content} from 'native-base'
 import React from 'react'
 import {
   Alert,
@@ -23,8 +23,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { NavigationScreenProps } from 'react-navigation'
-import { connect } from 'react-redux'
+import {NavigationScreenProps} from 'react-navigation'
+import {connect} from 'react-redux'
 
 export interface State {
   phone: string
@@ -54,7 +54,7 @@ class Home extends React.Component<Props, State> {
   public componentDidMount() {
     if (this.props.token === '') {
       console.log('token:', this.props.token)
-      this.props.navigation.navigate('招聘')
+      this.props.navigation.navigate('身份认证')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
@@ -78,26 +78,26 @@ class Home extends React.Component<Props, State> {
               showsHorizontalScrollIndicator={false}
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
             </ScrollView>
           </View>
           <Content>
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            <PostCard/>
+            <PostCard/>
+            <PostCard/>
           </Content>
         </Container>
       </Provider>

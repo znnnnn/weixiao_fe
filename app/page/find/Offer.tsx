@@ -1,4 +1,4 @@
-import { InputItem, List, Provider, Toast } from '@ant-design/react-native'
+import {InputItem, List, Provider, Toast} from '@ant-design/react-native'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
 import {
@@ -26,15 +26,15 @@ import px2dp from '@util/px2dp'
 import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { Alert, Image, Linking, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
+import {Alert, Image, Linking, Platform, ScrollView, TouchableOpacity, View} from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { NavigationScreenProps } from 'react-navigation'
-import { connect } from 'react-redux'
+import {NavigationScreenProps} from 'react-navigation'
+import {connect} from 'react-redux'
 
-import { ItemProps } from '@components/find/BottomTabOfferItem'
+import {ItemProps} from '@components/find/BottomTabOfferItem'
 import OfferItem from '@components/find/OfferItem'
 
 export interface State {
@@ -42,7 +42,8 @@ export interface State {
   selected: string
 }
 
-interface Props extends NavigationScreenProps {}
+interface Props extends NavigationScreenProps {
+}
 
 class Offer extends React.Component<Props, State> {
   public state: State = {
@@ -89,9 +90,9 @@ class Offer extends React.Component<Props, State> {
         <Container>
           <Header searchBar rounded>
             <Item>
-              <Icon name="ios-search" />
-              <Input placeholder="Search" />
-              <Icon name="ios-people" />
+              <Icon name="ios-search"/>
+              <Input placeholder="Search"/>
+              <Icon name="ios-people"/>
             </Item>
             {/* <Button small style={{paddingLeft: 0, paddingRight: 0,marginLeft:5}}>
               <Text>搜索</Text>
@@ -100,7 +101,7 @@ class Offer extends React.Component<Props, State> {
               <Icon
                 active
                 name="add-circle"
-                style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
+                style={{color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10}}
                 onPress={() => {
                   // this.props.navigation.navigation.navigate('发布')
                   this.props.navigation.navigate('发现发布', {
@@ -128,20 +129,20 @@ class Offer extends React.Component<Props, State> {
                 <Picker.Item label="Net Banking" value="key4" />
               </Picker>
             </Form> */}
-            <OfferItem data={this.state.data[0]} />
-            <OfferItem data={this.state.data[0]} />
-            <OfferItem data={this.state.data[0]} />
-            <OfferItem data={this.state.data[0]} />
+            <OfferItem data={this.state.data[0]}/>
+            <OfferItem data={this.state.data[0]}/>
+            <OfferItem data={this.state.data[0]}/>
+            <OfferItem data={this.state.data[0]}/>
           </Content>
           <Footer>
             <FooterTab>
-              <Button>
-                <Icon name="share-alt" />
-                <Text>分享</Text>
+              <Button onPress={() => this.props.navigation.navigate('身份认证')}>
+                <Icon name="people"/>
+                <Text>我要招人</Text>
               </Button>
               <Button active>
-                <Icon name="brush" />
-                <Text>参与讨论</Text>
+                <Icon name="brush"/>
+                <Text>我要求职</Text>
               </Button>
             </FooterTab>
           </Footer>
