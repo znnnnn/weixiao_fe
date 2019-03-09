@@ -8,6 +8,7 @@ import OfferRealNameAuth from '@app/page/find/OfferRealNameAuth'
 import Recruit from '@app/page/find/OfferRecruit'
 import Topic from '@app/page/find/Topic'
 import Donate from '@page/find/Donate'
+import DonateDetail from '@page/find/DonateDetail'
 import DonateOfMine from '@page/find/DonateOfMine'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
@@ -150,7 +151,15 @@ const RouteFindConfig: NavigationRouteConfigMap = {
   我的捐赠: {
     screen: DonateOfMine,
     navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '我的捐赠',
       headerTitle: '我的捐赠',
+      tabBarVisible: false,
+    })
+  },
+  捐赠详情: {
+    screen: DonateDetail,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      headerTruncatedBackTitle:'捐赠详情',
       tabBarVisible: false,
     })
   }

@@ -46,7 +46,7 @@ class CommentList extends Component<Props> {
           style={{ width: 35, height: 35, borderRadius: 17.5, marginTop: 5 }}
         />
         <View style={{ marginLeft: 5, marginTop: 3, flex: 9 }}>
-          <View style={{ flexDirection: 'row',marginTop:2 }}>
+          <View style={{ flexDirection: 'row',marginTop:5 }}>
             <Text>{this.props.nickname}</Text>
             <Text style={styles.tag}>{this.props.tag}</Text>
           </View>
