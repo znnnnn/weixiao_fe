@@ -10,6 +10,7 @@ import Topic from '@app/page/find/Topic'
 import Donate from '@page/find/Donate'
 import DonateDetail from '@page/find/DonateDetail'
 import DonateOfMine from '@page/find/DonateOfMine'
+import DonatePay from '@page/find/DonatePay'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
 import OfferDetail from '@page/find/OfferDetail'
@@ -159,7 +160,18 @@ const RouteFindConfig: NavigationRouteConfigMap = {
   捐赠详情: {
     screen: DonateDetail,
     navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // headerTitle: navigation.getParam('headerTitle', '详情'),
+      headerTitle: navigation.getParam('headerTitle', '详情'),
       headerTruncatedBackTitle:'捐赠详情',
+      tabBarVisible: false,
+    })
+  },
+  爱心捐款: {
+    screen: DonatePay,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      // headerTitle: navigation.getParam('headerTitle', '详情'),
+      headerTitle: '爱心捐款',
+      headerTruncatedBackTitle:'爱心捐款',
       tabBarVisible: false,
     })
   }

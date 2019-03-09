@@ -80,7 +80,7 @@ export default class DonateDetail extends Component<Props> {
           <FooterTab>
             <Button
               style={{ backgroundColor: '#3CB881' }}
-              onPress={() => this.props.navigation.navigate('个人经历')}
+              onPress={() => this.props.navigation.navigate('爱心捐款')}
             >
               <Icon name="heart" style={{ color: '#fff' }} />
               <Text style={{ color: '#fff' }}>立即捐赠</Text>

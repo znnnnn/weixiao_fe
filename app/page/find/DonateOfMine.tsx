@@ -13,29 +13,43 @@ import {
   View
 } from 'native-base'
 import React, { Component } from 'react'
-import { Image, ScrollView, StyleSheet } from 'react-native'
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { widthPercentageToDP } from 'react-native-responsive-screen'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
-export default class DonateOfMine extends Component {
+interface Props extends NavigationScreenProps {}
+export default class DonateOfMine extends Component<Props> {
+  public constructor(props: Props) {
+    super(props)
+  }
   public helpItem() {
     return (
-      <View style={{ width: 150, marginRight: 10, shadowColor: '#333' }}>
-        <Image
-          style={{ height: 80, width: 150 }}
-          source={{
-            uri: 'http://111.231.116.130/wp-content/uploads/2019/03/microsoft_office_2019.jpg'
-          }}
-        />
-        <Text
-          numberOfLines={1}
-          style={{ fontSize: 14, marginTop: 10, marginBottom: 5, color: '#3E3E3E' }}
-        >
-          让孩子远离校园食品安...
-        </Text>
-        <Text note style={{ fontSize: 12 }}>
-          已有<Text style={{ color: '#3CB881' }}>6575</Text>人帮助
-        </Text>
-      </View>
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate('捐赠详情', {
+            headerTitle: '校园安全饮水计划'
+          })
+        }
+        activeOpacity={0.7}
+      >
+        <View style={{ width: 150, marginRight: 10, shadowColor: '#333' }}>
+          <Image
+            style={{ height: 80, width: 150 }}
+            source={{
+              uri: 'http://111.231.116.130/wp-content/uploads/2019/03/microsoft_office_2019.jpg'
+            }}
+          />
+          <Text
+            numberOfLines={1}
+            style={{ fontSize: 14, marginTop: 10, marginBottom: 5, color: '#3E3E3E' }}
+          >
+            校园安全饮水计划
+          </Text>
+          <Text note style={{ fontSize: 12 }}>
+            已有<Text style={{ color: '#3CB881' }}>6575</Text>人帮助
+          </Text>
+        </View>
+      </TouchableOpacity>
     )
   }
 
