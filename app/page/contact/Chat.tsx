@@ -1,9 +1,9 @@
 import React from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 
 export default class Example extends React.Component {
   public state = {
-    messages: [],
+    messages: []
   }
 
   public componentWillMount() {
@@ -16,26 +16,28 @@ export default class Example extends React.Component {
           user: {
             _id: 2,
             name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
-        },
-      ],
+            avatar: 'https://placeimg.com/140/140/any'
+          }
+        }
+      ]
     })
   }
 
   public onSend(messages = []) {
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }))
+    this.setState((previousState: { messages: IMessage[] }) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, messages)
+      }
+    })
   }
 
   public render() {
     return (
       <GiftedChat
         messages={this.state.messages}
-        onSend={messages => this.onSend(messages)}
+        onSend={(messages:never[]) => this.onSend(messages)}
         user={{
-          _id: 1,
+          _id: 1
         }}
       />
     )

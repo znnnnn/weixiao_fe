@@ -60,7 +60,7 @@ class Cell extends Component<Props> {
         title={this.props.item.name}
         // subtitle={item.subtitle}
         leftAvatar={{ source: { uri: this.props.item.avatar_url } }}
-        onPress={() => this.props.navigation.navigate('卡片文章列表', {headerTitle: this.props.item.name})}
+        onPress={() => this.props.navigation.navigate('用户中心', {headerTitle: this.props.item.name})}
         bottomDivider
       />
     )

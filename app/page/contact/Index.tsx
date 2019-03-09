@@ -89,6 +89,9 @@ export default class ContactIndex extends Component<Props> {
                 badge={{ value: 3 }}
                 rightTitle={new Date().getTime().toString()}
                 bottomDivider
+                onPress={()=>this.props.navigation.navigate('聊天',{
+                  headerTitle: data.name
+                })}
               />
             )}
             renderLeftHiddenRow={(data) => (
