@@ -134,6 +134,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-ksyvideo')
+    implementation project(':react-native-maps')
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-orientation')
     implementation project(':react-native-vector-icons')

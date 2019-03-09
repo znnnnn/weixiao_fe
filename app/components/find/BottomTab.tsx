@@ -14,7 +14,7 @@ const deviceName = DeviceInfo.getDeviceName()
 import Icon from '@app/util/icon'
 
 import BottomTabDonateItem from './BottomTabDonateItem'
-import BottomtabOfferItem from './BottomTabOfferItem'
+import BottomtabOfferItem from './BottomtabOfferItem'
 import BottomTabTopicItem from './BottomTabTopicItem'
 
 const renderContent = (tab: any, index: any) => {
@@ -64,10 +64,10 @@ export default class IconTab extends React.Component<any, any> {
               <BottomTabTopicItem />
             </List>
             <List>
-              <BottomTabDonateItem />
+              <BottomtabOfferItem />
             </List>
             <List>
-              <BottomtabOfferItem />
+              <BottomTabDonateItem />
             </List>
 
             <View>

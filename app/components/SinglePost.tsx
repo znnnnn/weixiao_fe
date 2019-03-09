@@ -5,27 +5,39 @@ import PostUserCard from '@components/home/PostUserCard'
 
 // import Video from 'react-native-video'
 
+import { Content } from 'native-base'
 import React from 'react'
-import { Alert, Image, Linking, Platform, Text, TouchableOpacity, View } from 'react-native'
+import {
+  Alert,
+  Image,
+  Linking,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+  WebView
+} from 'react-native'
+import KSYVideo from 'react-native-ksyvideo'
 // import Video from 'react-native-af-video-player'
-import Video, { Container, ScrollView } from 'react-native-af-video-player'
+// import Video, { Container, ScrollView } from 'react-native-af-video-player'
 import Orientation from 'react-native-orientation'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+// import VideoPlayer from 'react-native-video-controls'
+import Video from 'react-native-video'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
-// import VideoPlayer from 'react-native-video-controls'
 
 import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 
 import PostCard from '@app/components/home/PostCard'
 import Comment from '@components/Comment'
+// import VideoPlayerScreen from '@page/home/VideoPlayerScreen'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
-import VideoPlayerScreen from './VideoPlayerScreen'
 
 const deviceName = DeviceInfo.getDeviceName()
 
@@ -76,7 +88,7 @@ export default class SingPost extends React.Component<Props, State> {
   public render() {
     return (
       <Provider>
-        <ScrollView style={styles.root}>
+        <Content style={styles.root}>
           <View
             style={{
               flex: 1,
@@ -100,7 +112,7 @@ export default class SingPost extends React.Component<Props, State> {
               我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程。
             </Text>
           </View>
-          <Container
+          <View
             style={{
               flex: 1,
               width: wp('100%'),
@@ -111,7 +123,37 @@ export default class SingPost extends React.Component<Props, State> {
               paddingTop: 15
             }}
           >
+            {/* <WebView
+              style={{ height: 150,width: wp('90%') }}
+              source={{
+                html:
+                  "<video controls src='http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'></video>"
+              }}
+              allowsInlineMediaPlayback={true}
+              mediaPlaybackRequiresUserAction={true}
+            /> */}
+            {/* <WebView
+              style={{ width: wp('90%'), height: 150 }}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+              allowsInlineMediaPlayback={true}
+              mediaPlaybackRequiresUserAction={true}
+              source={{
+                uri: 'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'
+              }}
+            /> */}
             <Video
+              source={{ uri: 'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4' }} // Can be a URL or a local file.
+              // ref={(ref) => {
+              //   this.player = ref
+              // }} // Store reference
+              // onBuffer={this.onBuffer} // Callback when remote video is buffering
+              // onError={this.videoError} // Callback when video cannot be loaded
+              controls
+              style={{width: wp('90%'),height:150}}
+            />
+
+            {/* <Video
               // autoPlay
               url={'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'}
               // title={title}
@@ -128,8 +170,8 @@ export default class SingPost extends React.Component<Props, State> {
                 width: wp('90%'),
                 overflow: 'hidden'
               }}
-            />
-          </Container>
+            /> */}
+          </View>
           <View style={styles.shareText}>
             <Text style={{ color: '#CCCCCC', fontSize: 14, lineHeight: 24 }}>分享到</Text>
             <Icon
@@ -154,7 +196,7 @@ export default class SingPost extends React.Component<Props, State> {
             />
           </View>
           <Comment />
-        </ScrollView>
+        </Content>
       </Provider>
     )
   }

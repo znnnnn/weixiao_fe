@@ -91,7 +91,7 @@ export default class OfferDetail extends React.Component<Props, State> {
             <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
             <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
           </View>
-          <Button block style={{ margin: 10 }}>
+          <Button block style={{ margin: 10 }} onPress={() => this.props.navigation.navigate('聊天')}>
             <Text>立即沟通</Text>
           </Button>
         </Content>

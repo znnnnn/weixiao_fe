@@ -9,7 +9,7 @@ interface Item {
 }
 
 interface Props extends NavigationScreenProps {
-  color: string
+  // color: string
 }
 
 export default withNavigation(

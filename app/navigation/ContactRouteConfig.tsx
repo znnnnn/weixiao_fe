@@ -3,6 +3,7 @@
  */
 
 
+import Chat from '@page/contact/Chat'
 import Contact from '@page/contact/Contact'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
@@ -26,6 +27,29 @@ const RouteContactConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }:NavigationScreenProps) => ({
       headerTruncatedBackTitle: '通讯录',
       headerTitle: '通讯录',
+      headerRight: (
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
+          onPress={() => {
+            // console.log(params)
+            navigation.navigate('首页')
+            // console.log(navigation)
+            // console.log(navigation.getParam('publish'))
+            // navigation.state.routes[2].params._publish()
+          }}
+        >
+          添加
+        </Button>
+      )
+    })
+  },
+  聊天: {
+    screen: Chat,
+    navigationOptions: ({ navigation }:NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '聊天',
+      headerTitle: '聊天',
       headerRight: (
         <Button
           type="primary"
