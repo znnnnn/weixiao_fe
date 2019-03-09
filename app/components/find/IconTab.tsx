@@ -202,6 +202,16 @@ export default withNavigation(
                     <Text>招聘</Text>
                   </View>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('捐赠')
+                  }
+                >
+                  <View style={styles.iconItem}>
+                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Text>捐赠</Text>
+                  </View>
+                </TouchableOpacity>
                 {/* <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('招聘')

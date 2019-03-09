@@ -7,6 +7,8 @@ import OfferBusinessCard from '@app/page/find/OfferBusinessCard'
 import OfferRealNameAuth from '@app/page/find/OfferRealNameAuth'
 import Recruit from '@app/page/find/OfferRecruit'
 import Topic from '@app/page/find/Topic'
+import Donate from '@page/find/Donate'
+import DonateOfMine from '@page/find/DonateOfMine'
 import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
 import OfferDetail from '@page/find/OfferDetail'
@@ -135,6 +137,20 @@ const RouteFindConfig: NavigationRouteConfigMap = {
       // header: null,
       headerTruncatedBackTitle: '招聘详情',
       headerTitle: '招聘详情',
+      tabBarVisible: false,
+    })
+  },
+  捐赠: {
+    screen: Donate,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      header: null,
+      tabBarVisible: false,
+    })
+  },
+  我的捐赠: {
+    screen: DonateOfMine,
+    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+      headerTitle: '我的捐赠',
       tabBarVisible: false,
     })
   }
