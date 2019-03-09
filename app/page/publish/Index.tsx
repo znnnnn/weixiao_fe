@@ -58,6 +58,7 @@ class Publish extends React.Component<Props, State> {
   }
   public publish = () => {
     console.log(this.state.inputContent)
+    console.log(this.props.navigation)
     console.log('publish内部')
   }
 

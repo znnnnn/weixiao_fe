@@ -34,7 +34,8 @@ export interface State {
 
 interface Props extends NavigationScreenProps {
 }
-class Publish extends React.Component<Props, State> {
+class FindPublish extends React.Component<Props, State> {
+  
   public state: State = {
     inputContent: '',
     images: [
@@ -53,9 +54,12 @@ class Publish extends React.Component<Props, State> {
     super(props)
   }
   public componentDidMount() {
-    this.props.navigation.setParams({ publish: this.publish })
-    console.log(this.state.inputContent)
+    // this.props.navigation.setParams({ publish: this.publish })
+    // console.log(this.state.inputContent)
+    // console.log(this.props.navigation.getParam('headerTitle'))
+    console.log(this.props.navigation)
   }
+
   public publish = () => {
     console.log(this.state.inputContent)
     console.log('publish内部')
@@ -106,4 +110,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Publish
+export default FindPublish

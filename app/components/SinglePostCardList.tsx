@@ -1,5 +1,18 @@
 import { SearchBar } from '@ant-design/react-native'
-import { Body, Button, Card, CardItem, Container, Content, Header, Icon, Left, Right, Text, Thumbnail } from 'native-base';
+import {
+  Body,
+  Button,
+  Card,
+  CardItem,
+  Container,
+  Content,
+  Header,
+  Icon,
+  Left,
+  Right,
+  Text,
+  Thumbnail
+} from 'native-base'
 import React from 'react'
 import { Alert, Image, TouchableOpacity, View } from 'react-native'
 import {
@@ -18,7 +31,6 @@ import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-
 export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
@@ -30,42 +42,69 @@ const users = [
   }
 ]
 export default class SinglePostCardList extends React.Component<Props> /*<Props, State>*/ {
-
   public constructor(props: Props) {
-    super(props);
+    super(props)
   }
+
+  public componentDidMount() {
+    // console.log(this.props.navigation.getParam('headerTitle'))
+    // this.props.navigation.setParams({
+    //   findPublishTitle: this.props.navigation.getParam('headerTitle')
+    // })
+    // console.log(this.props.navigation)
+  }
+
+  // public getHeaderTitle = () => {
+  //   console.log({
+  //     headerTitle: this.props.navigation.getParam('headerTitle')
+  //   })
+  //   return {
+  //     headerTitle: this.props.navigation.getParam('headerTitle')
+  //   }
+  // }
 
   public render() {
     return (
       <Container>
         {/* <Header /> */}
-          <Content>
-          <Card >
+        <Content>
+          <Card>
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'}} />
+                <Thumbnail
+                  source={{
+                    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+                  }}
+                />
                 <Body>
                   <Text>NativeBase</Text>
                   <Text note>GeekyAnts</Text>
                 </Body>
               </Left>
             </CardItem>
-            <TouchableOpacity onPress={() =>
-                    this.props.navigation.navigate('微校正文')}>
-            <CardItem cardBody >
-              <Image source={require('@image/find/Detail/food.png')} style={{height: 200, flex: 1}}/>
-            </CardItem>
-            <CardItem>
-            <Body>
-                <Text>
-                   //Your text here
-                </Text>
-              </Body>
-            </CardItem>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('微校正文')}>
+              <CardItem cardBody>
+                <Image
+                  source={require('@image/find/Detail/food.png')}
+                  style={{ height: 200, flex: 1 }}
+                />
+              </CardItem>
+              <CardItem>
+                <Body>
+                  <Text>//Your text here</Text>
+                </Body>
+              </CardItem>
             </TouchableOpacity>
             <CardItem>
               <Left>
-                <Button transparent>
+                <Button
+                  transparent
+                  // onPress={() => console.log(this.props.navigation.getParam('headerTitle'))}
+                  // onPress={() => {
+                  //   this.props.navigation.setParams({ findPublishTitle: this.props.navigation.getParam('headerTitle') })
+                  //   console.log(this.props.navigation)
+                  // }}
+                >
                   <Icon active name="thumbs-up" />
                   <Text>12 Likes</Text>
                 </Button>

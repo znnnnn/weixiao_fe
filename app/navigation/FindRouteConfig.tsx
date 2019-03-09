@@ -81,7 +81,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '',
-      headerTitle: navigation.getParam('headerTitle', '发布'),
+      headerTitle: `${navigation.getParam('findPublishTitle', '发布')} - 发布`,
       tabBarVisible: false,
       headerRight: (
         <Button

@@ -2,13 +2,11 @@
  * 导入视图
  */
 
-
-
 import SinglePost from '@app/components/SinglePost'
 import CommentTest from '@components/Comment'
 import SinglePostCardList from '@components/SinglePostCardList'
 
-import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
+import { NavigationRouteConfigMap, NavigationScreenProps } from 'react-navigation'
 
 import { Button } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
@@ -26,11 +24,11 @@ import React from 'react'
 const RouteComponentsConfig: NavigationRouteConfigMap = {
   微校正文: {
     screen: SinglePost,
-    navigationOptions: ({ navigation }:NavigationScreenProps) => ({ headerTruncatedBackTitle: '' })
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({ headerTruncatedBackTitle: '' })
   },
   卡片文章列表: {
     screen: SinglePostCardList,
-    navigationOptions: ({ navigation }:NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       headerTruncatedBackTitle: '',
       // header: null,
       headerTitle: navigation.getParam('headerTitle', '列表'),
@@ -54,13 +52,14 @@ const RouteComponentsConfig: NavigationRouteConfigMap = {
           name="brush"
           style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
           onPress={() => {
-            navigation.navigate('发布')
+            navigation.navigate('发现发布', {
+              findPublishTitle: navigation.getParam('headerTitle')
+            })
           }}
         />
       )
     })
   }
 }
-
 
 export default RouteComponentsConfig
