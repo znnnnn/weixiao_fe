@@ -4,8 +4,8 @@
 
 
 
+import SinglePost from '@app/components/SinglePost'
 import CommentTest from '@components/Comment'
-import SinglePost from '@components/SinglePost'
 import SinglePostCardList from '@components/SinglePostCardList'
 
 import { NavigationRouteConfigMap,NavigationScreenProps } from 'react-navigation'
