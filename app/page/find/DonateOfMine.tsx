@@ -74,11 +74,11 @@ export default class DonateOfMine extends Component<Props> {
             </Text>
           </Text>
         </Body>
-        {/* <Right>
-        <Button transparent>
-          <Text>View</Text>
+        <Right>
+        <Button transparent onPress={()=>this.props.navigation.navigate('爱心留言')}>
+          <Text>留言</Text>
         </Button>
-      </Right> */}
+      </Right>
       </ListItem>
     )
   }

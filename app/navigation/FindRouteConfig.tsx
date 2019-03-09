@@ -2,26 +2,29 @@
  * 导入视图
  */
 
+import FindPublish from '@page/find/FindPublish'
+
+import Topic from '@app/page/find/Topic'
+
+import Donate from '@page/find/Donate'
+import DonateComment from '@page/find/DonateComment'
+import DonateDetail from '@page/find/DonateDetail'
+import DonateOfMine from '@page/find/DonateOfMine'
+import DonatePay from '@page/find/DonatePay'
+import DonatePaySuccess from '@page/find/DonatePaySuccess'
 
 import OfferBusinessCard from '@app/page/find/OfferBusinessCard'
 import OfferRealNameAuth from '@app/page/find/OfferRealNameAuth'
 import Recruit from '@app/page/find/OfferRecruit'
-import Topic from '@app/page/find/Topic'
-import Donate from '@page/find/Donate'
-import DonateDetail from '@page/find/DonateDetail'
-import DonateOfMine from '@page/find/DonateOfMine'
-import DonatePay from '@page/find/DonatePay'
-import FindPublish from '@page/find/FindPublish'
 import Offer from '@page/find/Offer'
 import OfferDetail from '@page/find/OfferDetail'
-import OfferIdentityAuth from "@page/find/OfferIdentityAuth"
+import OfferIdentityAuth from '@page/find/OfferIdentityAuth'
 
+import { NavigationRouteConfigMap, NavigationScreenProps } from 'react-navigation'
 
-import {NavigationRouteConfigMap, NavigationScreenProps} from 'react-navigation'
-
-import {Button} from '@ant-design/react-native'
+import { Button } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
-import {Icon as BaseIcon} from 'native-base'
+import { Icon as BaseIcon } from 'native-base'
 import React from 'react'
 /*
 
@@ -35,7 +38,7 @@ import React from 'react'
 const RouteFindConfig: NavigationRouteConfigMap = {
   话题: {
     screen: Topic,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       header: null,
       headerTruncatedBackTitle: '',
       headerTitle: navigation.getParam('headerTitle', '话题'),
@@ -54,24 +57,28 @@ const RouteFindConfig: NavigationRouteConfigMap = {
         // >
         //   保存
         // </Button>
-        <BaseIcon active name="brush" style={{color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10}}
-                  onPress={() => {
-                    navigation.navigate('发布')
-                  }}/>
+        <BaseIcon
+          active
+          name="brush"
+          style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
+          onPress={() => {
+            navigation.navigate('发布')
+          }}
+        />
       )
     })
   },
   招聘: {
     screen: Offer,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       header: null,
       // headerTruncatedBackTitle: '',
-      headerTitle: navigation.getParam('headerTitle', '招聘'),
+      headerTitle: navigation.getParam('headerTitle', '招聘')
     })
   },
   发现发布: {
     screen: FindPublish,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '',
       headerTitle: navigation.getParam('headerTitle', '发布'),
@@ -80,7 +87,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
         <Button
           type="primary"
           size="small"
-          style={{height: 30, width: 50, marginRight: 10}}
+          style={{ height: 30, width: 50, marginRight: 10 }}
           onPress={() => {
             // console.log(params)
             navigation.goBack()
@@ -99,80 +106,98 @@ const RouteFindConfig: NavigationRouteConfigMap = {
   },
   身份认证: {
     screen: OfferIdentityAuth,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '身份认证',
       headerTitle: '身份认证',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   名片创建: {
     screen: OfferBusinessCard,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '名片创建',
       headerTitle: '名片创建',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   实名认证: {
     screen: OfferRealNameAuth,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '实名认证',
       headerTitle: '实名认证',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   招聘要求: {
     screen: Recruit,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '招聘要求',
       headerTitle: '招聘要求',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   招聘详情: {
     screen: OfferDetail,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '招聘详情',
       headerTitle: '招聘详情',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   捐赠: {
     screen: Donate,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       header: null,
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   我的捐赠: {
     screen: DonateOfMine,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       headerTruncatedBackTitle: '我的捐赠',
       headerTitle: '我的捐赠',
-      tabBarVisible: false,
+      tabBarVisible: false
     })
   },
   捐赠详情: {
     screen: DonateDetail,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // headerTitle: navigation.getParam('headerTitle', '详情'),
       headerTitle: navigation.getParam('headerTitle', '详情'),
-      headerTruncatedBackTitle:'捐赠详情',
-      tabBarVisible: false,
+      headerTruncatedBackTitle: '捐赠详情',
+      tabBarVisible: false
     })
   },
   爱心捐款: {
     screen: DonatePay,
-    navigationOptions: ({navigation}: NavigationScreenProps) => ({
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // headerTitle: navigation.getParam('headerTitle', '详情'),
       headerTitle: '爱心捐款',
-      headerTruncatedBackTitle:'爱心捐款',
-      tabBarVisible: false,
+      headerTruncatedBackTitle: '爱心捐款',
+      tabBarVisible: false
+    })
+  },
+  捐款成功: {
+    screen: DonatePaySuccess,
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      // headerTitle: navigation.getParam('headerTitle', '详情'),
+      headerTitle: '捐款成功',
+      headerTruncatedBackTitle: '',
+      tabBarVisible: false
+    })
+  },
+  爱心留言: {
+    screen: DonateComment,
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      // headerTitle: navigation.getParam('headerTitle', '详情'),
+      headerTitle: '爱心留言',
+      headerTruncatedBackTitle: '爱心留言',
+      tabBarVisible: false
     })
   }
 }
