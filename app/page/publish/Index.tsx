@@ -88,7 +88,7 @@ class Publish extends React.Component<Props, State> {
             rows={4}
             style={{ height: 200, width: wp('100%') }}
           />
-          <View style={{ width: wp('83%'), borderWidth: 1, borderColor: 'red', marginTop: 5 }}>
+          <View style={{ width: wp('83%'),/* borderWidth: 1, borderColor: 'red',*/ marginTop: 5 }}>
             <ImagePicker onChange={this.handleFileChange} files={this.state.images} />
           </View>
         </View>
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
     height: hp('100%')
   }
 })
