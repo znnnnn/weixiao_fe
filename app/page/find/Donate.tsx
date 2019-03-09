@@ -24,10 +24,6 @@ import {
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
 import { View } from 'react-native'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
 

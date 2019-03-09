@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   passwd: {
-    borderBottomColor: 'red'
+    // borderBottomColor: 'red'
   },
   loginBtn: {
     borderRadius: 20,
@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: wp('80%'),
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
     marginTop: 20,
     fontSize: 10
   },

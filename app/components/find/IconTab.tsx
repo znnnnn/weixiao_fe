@@ -25,13 +25,13 @@ export default withNavigation(
     public render() {
       return (
         <View style={{ flex: 1 }}>
-          <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: 'green' }}>
+          <View style={{ flex: 1, /*borderBottomWidth: 1, borderBottomColor: 'green'*/ }}>
             <Carousel
               style={{
                 borderWidth: 1,
                 borderColor: '#fff',
-                borderBottomWidth: 1,
-                borderBottomColor: 'red'
+                // borderBottomWidth: 1,
+                // borderBottomColor: 'red'
               }}
               dotActiveStyle={{ backgroundColor: '#1B82D2' }}
             >
@@ -247,8 +247,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     // marginBottom: 30
-    borderWidth: 1,
-    borderColor: 'red'
+    // borderWidth: 1,
+    // borderColor: 'red'
   },
   icon: {
     // fontSize: 24,
