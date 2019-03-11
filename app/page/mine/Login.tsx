@@ -80,7 +80,7 @@ export default class Login extends React.Component<Props, State> {
                       })
                     }
                   />
-                  <TouchableOpacity activeOpacity={0.5}>
+                  <TouchableOpacity activeOpacity={0.5} onPress={()=>this.props.navigation.navigate('忘记密码')}>
                     <Text>忘记密码</Text>
                   </TouchableOpacity>
                 </View>
