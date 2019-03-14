@@ -11,12 +11,12 @@ import base from '../base' // 导入接口域名列表
 const login = {
   // 排行排名
   login(userLogin:string, userPass:string) {
-    console.log(qs.stringify(
-      {
-        userLogin,
-        userPass
-      }
-    ))
+    // console.log(qs.stringify(
+    //   {
+    //     userLogin,
+    //     userPass
+    //   }
+    // ))
     return axios.post(`${base.bd}/user/login`, JSON.stringify({
       userLogin,
       userPass

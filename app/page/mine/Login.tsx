@@ -10,6 +10,10 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
+import { handleLogin } from '@store/action/Index'
+import { Toast } from 'native-base'
+import { connect, DispatchProp } from 'react-redux'
+
 import api from '@app/api/index'
 import axios from 'axios'
 export interface State {
@@ -21,9 +25,10 @@ export interface State {
 
 export interface Props extends NavigationScreenProps {
   defalutProps: string
+  handleLogin: Function
 }
 
-export default class Login extends React.Component<Props, State> {
+class Login extends React.Component<Props, State> {
   public state = {
     phone: '',
     password: '',
@@ -82,18 +87,42 @@ export default class Login extends React.Component<Props, State> {
                       })
                     }
                   />
-                  <TouchableOpacity activeOpacity={0.5} onPress={()=>this.props.navigation.navigate('忘记密码')}>
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    onPress={() => this.props.navigation.navigate('忘记密码')}
+                  >
                     <Text>忘记密码</Text>
                   </TouchableOpacity>
                 </View>
               }
             />
           </View>
-          <Button type="primary" style={styles.loginBtn} onPress={()=>      api.login.login('123', '123')
-        .then(res => {
-          console.log(res)
-        }
-        )}>
+          <Button
+            type="primary"
+            style={styles.loginBtn}
+            onPress={() =>
+              api.login
+                .login(this.state.phone, this.state.password)
+                .then((res) => {
+                  console.log(res)
+                  console.log(this.props.handleLogin(res.data.data))
+                  Toast.show({
+                    text: '登录成功',
+                    type: 'success'
+                  })
+                  // mapDispatchToProps.handleLogin(res.data.data)
+                })
+                .then((res) => {
+                  this.props.navigation.navigate('首页')
+                })
+                .catch((error) =>{
+                  Toast.show({
+                    text: '密码错误',
+                    type: 'danger'
+                  })
+                })
+            }
+          >
             登录
           </Button>
           <View style={styles.actions}>
@@ -203,3 +232,29 @@ const styles = StyleSheet.create({
     color: '#333'
   }
 })
+
+// 获取store中的state，并传入容器组件的Props中
+const mapStateToProps = (state: any): Object => {
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token
+  }
+}
+
+// 将本发送action的函数绑定到容器组件的Props中
+// 发送行为
+function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
+  return {
+    handleLogin: (token: string) =>
+      dispatch({
+        type: 'HANDLE_LOGIN',
+        token
+      })
+  }
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

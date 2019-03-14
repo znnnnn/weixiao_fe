@@ -48,6 +48,7 @@ class Home extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
+    
     // console.log(this.props.token)
   }
 
@@ -84,6 +85,7 @@ class Home extends React.Component<Props, State> {
               borderBottomColor: '#f0f0f0'
             }}
           >
+          <Button onPress={()=>console.log(this.props.token)}><Text>111111111</Text></Button>
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}

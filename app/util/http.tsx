@@ -112,7 +112,7 @@ instance.interceptors.response.use(
     setTimeout(() => {
       // loadinginstace.close()
     }, 300)
-    return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
+    return res.data.code === 200 ? Promise.resolve(res) : Promise.reject(res)
   },
   // 请求失败
   (error) => {

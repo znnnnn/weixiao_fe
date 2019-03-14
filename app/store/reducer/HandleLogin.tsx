@@ -1,5 +1,5 @@
 interface LoginState {
-  token: String
+  token: string
 }
 
 const loginState: LoginState = {
@@ -7,8 +7,10 @@ const loginState: LoginState = {
 }
 
 const handleLogin = (state = loginState, action: any) => {
+  // console.log('store里:',action)
   switch (action.type) {
     case 'HANDLE_LOGIN':
+      // return { ...state, token: action.token }
       return { ...state, token: action.token }
     case 'HANDLE_LOGOUT':
       return { ...state, token: '' }
