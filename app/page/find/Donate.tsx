@@ -126,14 +126,14 @@ class Donate extends React.Component<Props, State> {
             <DonateItem data={this.state.data[0]} />
             <DonateItem data={this.state.data[0]} />
           </Content>
-          <Footer>
+          {/* <Footer>
             <FooterTab>
               <Button style={{backgroundColor: '#3CB881'}} onPress={() => this.props.navigation.navigate('个人经历')}>
                 <Icon name="heart" style={{ color: '#fff' }} />
                 <Text style={{ color: '#fff' }}>我要捐赠</Text>
               </Button>
             </FooterTab>
-          </Footer>
+          </Footer> */}
         </Container>
       </Provider>
     )

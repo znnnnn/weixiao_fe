@@ -10,6 +10,8 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
+import api from '@app/api/index'
+import axios from 'axios'
 export interface State {
   phone: string
   password: string
@@ -87,7 +89,11 @@ export default class Login extends React.Component<Props, State> {
               }
             />
           </View>
-          <Button type="primary" style={styles.loginBtn}>
+          <Button type="primary" style={styles.loginBtn} onPress={()=>      api.login.login('123', '123')
+        .then(res => {
+          console.log(res)
+        }
+        )}>
             登录
           </Button>
           <View style={styles.actions}>

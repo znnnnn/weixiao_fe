@@ -10,11 +10,13 @@
   "dependencies": {
     "@ant-design/react-native": "^3.1.1",
     "@types/lodash": "^4.14.121",
+    "@types/qs": "^6.5.2",
     "@types/react-native-orientation": "^5.0.1",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-native-video": "^3.1.1",
     "@types/react-navigation": "^3.0.1",
     "@types/react-redux": "^7.0.1",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "loadsh": "0.0.3",
     "native-base": "^2.12.0",
@@ -35,7 +37,8 @@
     "redux": "^4.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.13",
+    "@types/jest": "^23.3.14",
+    "@types/node": "^11.11.3",
     "@types/react": "^16.7.21",
     "@types/react-native": "^0.57.32",
     "@types/react-test-renderer": "^16.0.3",

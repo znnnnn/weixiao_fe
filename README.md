@@ -64,3 +64,7 @@
   - https://github.com/abbasfreestyle/react-native-af-video-player#fullscreen-videos-inside-a-scrollview
   - 最外层宽度不能写死
   - 用了组件的 ScrollView 之后，不能与其他内容部分同层，不然会有内容在全屏后无法消失
+
+### 网络请求库 Axios
+
+- [官方文档](https://github.com/axios/axios)

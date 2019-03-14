@@ -1,23 +1,5 @@
 import { Checkbox, ImagePicker, List, Picker, Provider } from '@ant-design/react-native'
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Form,
-  Header,
-  Icon,
-  Input,
-  Item,
-  Label,
-  Left,
-  ListItem,
-  Right,
-  Switch,
-  Text,
-  Textarea,
-  View
-} from 'native-base'
+import { Body, Button, Container, Content, Form, Input, Item, Text } from 'native-base'
 import { Alert } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
@@ -25,8 +7,7 @@ import React, { Component } from 'react'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
-interface Props extends NavigationScreenProps {
-}
+interface Props extends NavigationScreenProps {}
 export default class ChangePhoneNumber extends Component<Props> {
   public constructor(props: Props) {
     super(props)

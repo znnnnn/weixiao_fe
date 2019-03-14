@@ -53,7 +53,18 @@ class Home extends React.Component<Props, State> {
 
   public componentDidMount() {
     if (this.props.token === '') {
-      console.log('token:', this.props.token)
+      // console.log('token:', this.props.token)
+      // console.log()
+      // axios.post('http://localhost:8080/user/login', {
+      //   userLogin: '123',
+      //   userPass: '123'
+      // })
+      // .then(function (response) {
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
       this.props.navigation.navigate('登录')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
