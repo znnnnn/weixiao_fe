@@ -48,7 +48,6 @@ class Home extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
-    
     // console.log(this.props.token)
   }
 

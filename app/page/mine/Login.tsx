@@ -1,4 +1,4 @@
-import { Button, InputItem, List } from '@ant-design/react-native'
+import { InputItem, List } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
@@ -11,16 +11,22 @@ import {
 import { NavigationScreenProps } from 'react-navigation'
 
 import { handleLogin } from '@store/action/Index'
-import { Toast } from 'native-base'
+import { Button, Toast } from 'native-base'
 import { connect, DispatchProp } from 'react-redux'
 
 import api from '@app/api/index'
 import axios from 'axios'
+
+import SendSMS from '@components/SendSMS'
 export interface State {
   phone: string
   password: string
   inputBorderColor: string
   passCanSee: boolean
+  usePasswordLogin: boolean
+  code: string
+  waitingTime: number
+  codeCanClick: boolean
 }
 
 export interface Props extends NavigationScreenProps {
@@ -33,7 +39,11 @@ class Login extends React.Component<Props, State> {
     phone: '',
     password: '',
     inputBorderColor: '#EEEEEE',
-    passCanSee: true
+    passCanSee: true,
+    usePasswordLogin: true,
+    code: '',
+    waitingTime: 60,
+    codeCanClick: false
   }
 
   // private constructor(props: {}) {
@@ -64,40 +74,57 @@ class Login extends React.Component<Props, State> {
               // onBlur={() => this.inputItemBlur()}
               style={{ borderWidth: 0 }}
             />
-            <InputItem
-              type={this.state.passCanSee ? 'password' : 'digit'}
-              value={this.state.password}
-              onChange={(value) => {
-                this.setState({
-                  password: value
-                })
-              }}
-              maxLength={16}
-              placeholder="密码"
-              // onFocus={() => this.inputItemFocus()}
-              // onBlur={() => this.inputItemBlur()}
-              extra={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Icon
-                    name="faxian_"
-                    style={{ fontSize: 24, marginRight: 10 }}
-                    onPress={() =>
-                      this.setState({
-                        passCanSee: !this.state.passCanSee
-                      })
-                    }
-                  />
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    onPress={() => this.props.navigation.navigate('忘记密码')}
-                  >
-                    <Text>忘记密码</Text>
-                  </TouchableOpacity>
-                </View>
-              }
-            />
+            {this.state.usePasswordLogin ? (
+              <InputItem
+                type={this.state.passCanSee ? 'password' : 'digit'}
+                value={this.state.password}
+                onChange={(value) => {
+                  this.setState({
+                    password: value
+                  })
+                }}
+                maxLength={16}
+                placeholder="密码"
+                // onFocus={() => this.inputItemFocus()}
+                // onBlur={() => this.inputItemBlur()}
+                extra={
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Icon
+                      name="faxian_"
+                      style={{ fontSize: 24, marginRight: 10 }}
+                      onPress={() =>
+                        this.setState({
+                          passCanSee: !this.state.passCanSee
+                        })
+                      }
+                    />
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      onPress={() => this.props.navigation.navigate('忘记密码')}
+                    >
+                      <Text>忘记密码</Text>
+                    </TouchableOpacity>
+                  </View>
+                }
+              />
+            ) : (
+              <InputItem
+                value={this.state.code}
+                onChange={(value) => {
+                  this.setState({
+                    code: value
+                  })
+                }}
+                maxLength={4}
+                type="number"
+                placeholder="验证码"
+                // onFocus={() => this.inputItemFocus()}
+                // onBlur={() => this.inputItemBlur()}
+                extra={<SendSMS />}
+              />
+            )}
           </View>
-          <Button
+          {/* <Button
             type="primary"
             style={styles.loginBtn}
             onPress={() =>
@@ -116,17 +143,26 @@ class Login extends React.Component<Props, State> {
                   this.props.navigation.navigate('首页')
                 })
                 .catch((error) =>{
-                  Toast.show({
-                    text: '密码错误',
-                    type: 'danger'
-                  })
+                  // Toast.show({
+                  //   text: '密码错误',
+                  //   type: 'danger',
+                  //   position: 'top'
+                  // })
+                  console.log('Login内部catch')
                 })
             }
           >
             登录
-          </Button>
+          </Button> */}
           <View style={styles.actions}>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => Linking.openURL('#')}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() =>
+                this.setState({
+                  usePasswordLogin: !this.state.usePasswordLogin
+                })
+              }
+            >
               <Text>验证码快速登录</Text>
             </TouchableOpacity>
 

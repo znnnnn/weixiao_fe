@@ -112,7 +112,8 @@ instance.interceptors.response.use(
     setTimeout(() => {
       // loadinginstace.close()
     }, 300)
-    return res.data.code === 200 ? Promise.resolve(res) : Promise.reject(res)
+    // console.log(res)
+    return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
   },
   // 请求失败
   (error) => {
@@ -120,6 +121,7 @@ instance.interceptors.response.use(
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围
+      // console.log('http内部',response)
       errorHandle(response.status, response.data.message)
       return Promise.reject(response)
     } else {
