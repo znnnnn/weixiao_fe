@@ -9,18 +9,39 @@ import base from '../base' // 导入接口域名列表
 // var store = createStore()
 
 const login = {
-  // 排行排名
-  login(userLogin:string, userPass:string) {
+  /**
+   * 登录
+   * @param userLogin 用户名
+   * @param userPass 密码
+   */
+  login(userLogin: string, userPass: string) {
     // console.log(qs.stringify(
     //   {
     //     userLogin,
     //     userPass
     //   }
     // ))
-    return axios.post(`${base.bd}/user/login`, JSON.stringify({
-      userLogin,
-      userPass
-    }))
+    return axios.post(
+      `${base.bd}/user/login`,
+      JSON.stringify({
+        userLogin,
+        userPass
+      })
+    )
+  },
+
+  loginByCode(phone: string, code: string) {
+    return axios.post(
+      `${base.bd}/user/login/validatecode`,
+      JSON.stringify({
+        phone,
+        code
+      })
+    )
+  },
+
+  sendLoginCode(phone: string) {
+    return axios.get(`${base.bd}/user/login/sendsms/${phone}`)
   }
   // 其他接口…………
 }

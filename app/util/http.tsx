@@ -15,9 +15,8 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
  */
 const tip = (msg:string) => {
   Toast.show({
-    text: '该功能暂未开放',
-    type: 'warning',
-    textStyle: { textAlign: 'center' }
+    text: msg,
+    type: 'danger',
   })
 }
 
@@ -48,7 +47,7 @@ const errorHandle = (status:number, other: number) => {
       break
     // 404请求不存在
     case 404:
-      tip('请求的资源不存在')
+      tip('请求出了点问题')
       break
     default:
       console.log(other)
@@ -132,11 +131,8 @@ instance.interceptors.response.use(
       // store.commit('changeNetwork', false)
       // console.log('断网了！')
       Toast.show({
-        text: '失去网络连接',
+        text: '网络似乎出现了状况/(ㄒoㄒ)/',
         type: 'danger',
-        textStyle: {
-          textAlign: 'center'
-        }
       })
     }
   }

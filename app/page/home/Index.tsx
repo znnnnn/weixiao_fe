@@ -1,13 +1,14 @@
-import {Button, InputItem, List, Provider, Toast} from '@ant-design/react-native'
+import { Button, InputItem, List, Provider, Toast } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
+// import {AliyunOSS} from 'react-native-aliyun-oss'
 
 import px2dp from '@util/px2dp'
 
 import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
-import {Container, Content} from 'native-base'
+import { Container, Content } from 'native-base'
 import React from 'react'
 import {
   Alert,
@@ -23,8 +24,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import {NavigationScreenProps} from 'react-navigation'
-import {connect} from 'react-redux'
+import { NavigationScreenProps } from 'react-navigation'
+import { connect } from 'react-redux'
 
 export interface State {
   phone: string
@@ -64,7 +65,37 @@ class Home extends React.Component<Props, State> {
       // })
       // .catch(function (error) {
       //   console.log(error);
-      // });
+      // });import AliyunOSS from 'react-native-aliyun-oss-cp'
+
+      // AliyunOSS.enableOSSLog()
+      // const config = {
+      //   AccessKey: 'LTAICq734h6sfksn', // your accessKeyId
+      //   SecretKey: 'U6zDeG1DcTb4I13JXbNOBGuA8ItUuv', // your accessKeySecret
+      // }
+      // const endPoint = 'oss-cn-shanghai.aliyuncs.com' // your endPoint
+      // // 初始化阿里云组件
+      // AliyunOSS.initWithKey(config, endPoint)
+      // // upload config
+      // const uploadConfig = {
+      //   bucketName: 'oss-miaoroom', // your bucketName
+      //   sourceFile: '../../image/404.png', // local file path
+      //   ossFile: '/weixiao' // the file path uploaded to oss
+      // }
+      // // 上传进度
+      // const uploadProgress = (p) => console.log(p.currentSize / p.totalSize)
+      // // 增加上传事件监听
+      // AliyunOSS.addEventListener('uploadProgress', uploadProgress)
+      // // 执行上传
+      // AliyunOSS.uploadObjectAsync(uploadConfig)
+      //   .then((resp) => {
+      //     // 去除事件监听
+      //     AliyunOSS.removeEventListener('uploadProgress', uploadProgress)
+      //     // 此处可以执行回调
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //     // 执行失败回调
+      //   })
       this.props.navigation.navigate('登录')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
@@ -84,32 +115,34 @@ class Home extends React.Component<Props, State> {
               borderBottomColor: '#f0f0f0'
             }}
           >
-          <Button onPress={()=>console.log(this.props.token)}><Text>111111111</Text></Button>
+            <Button onPress={() => console.log(this.props.token)}>
+              <Text>111111111</Text>
+            </Button>
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"/>
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
             </ScrollView>
           </View>
           <Content>
-            <PostCard/>
-            <PostCard/>
-            <PostCard/>
+            <PostCard />
+            <PostCard />
+            <PostCard />
           </Content>
         </Container>
       </Provider>

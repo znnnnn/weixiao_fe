@@ -18,12 +18,13 @@ import api from '@app/api/index'
 import axios from 'axios'
 
 import SendSMS from '@components/SendSMS'
+import reg from '@util/reg'
 export interface State {
   phone: string
   password: string
   inputBorderColor: string
   passCanSee: boolean
-  usePasswordLogin: boolean
+  loginByCode: boolean
   code: string
   waitingTime: number
   codeCanClick: boolean
@@ -40,12 +41,72 @@ class Login extends React.Component<Props, State> {
     password: '',
     inputBorderColor: '#EEEEEE',
     passCanSee: true,
-    usePasswordLogin: true,
+    loginByCode: true,
     code: '',
     waitingTime: 60,
     codeCanClick: false
   }
 
+  public showError(msg: string) {
+    Toast.show({
+      text: msg,
+      type: 'danger'
+    })
+  }
+
+  public validateLogin(data: string): void {
+    switch (data) {
+      case '用户名未注册':
+        this.showError('用户名未注册')
+        break
+      case '用户名密码错误':
+        this.showError('用户名密码错误')
+        break
+      case '验证码错误':
+        this.showError('验证码错误')
+        break
+      case '验证码超时':
+        this.showError('验证码超时')
+        break
+      default:
+        this.props.handleLogin(data)
+        console.log(this.props.handleLogin(data))
+        this.props.navigation.navigate('首页')
+        Toast.show({
+          text: '登录成功',
+          type: 'success'
+        })
+        break
+    }
+  }
+
+  public login() {
+    let purePhoneNumber = this.state.phone.replace(/\s*/g, '')
+    if (this.state.phone === '') {
+      this.showError('手机号不能为空')
+    } else if (!reg.checkPhone(purePhoneNumber)) {
+      // InputItem的phone类型，value中会自带空格，判断时需要去除，否则会一直错误！
+      this.showError('手机号格式错误')
+    } else if (!this.state.loginByCode && this.state.password === '') {
+      this.showError('密码不能为空')
+    } else if (this.state.loginByCode && this.state.code === '') {
+      this.showError('验证码不能为空')
+    } else {
+      if (this.state.loginByCode) {
+        api.login.loginByCode(purePhoneNumber, this.state.code).then((res) => {
+          let data = res.data.data
+          // console.log(data)
+          this.validateLogin(data)
+        })
+      } else {
+        // console.log(2222)
+        api.login.login(purePhoneNumber, this.state.password).then((res) => {
+          let data = res.data.data
+          this.validateLogin(data)
+        })
+      }
+    }
+  }
   // private constructor(props: {}) {
   //   super(props);
   // }
@@ -74,7 +135,22 @@ class Login extends React.Component<Props, State> {
               // onBlur={() => this.inputItemBlur()}
               style={{ borderWidth: 0 }}
             />
-            {this.state.usePasswordLogin ? (
+            {this.state.loginByCode ? (
+              <InputItem
+                value={this.state.code}
+                onChange={(value) => {
+                  this.setState({
+                    code: value
+                  })
+                }}
+                maxLength={4}
+                type="number"
+                placeholder="验证码"
+                // onFocus={() => this.inputItemFocus()}
+                // onBlur={() => this.inputItemBlur()}
+                extra={<SendSMS phone={this.state.phone.replace(/\s*/g, '')} />}
+              />
+            ) : (
               <InputItem
                 type={this.state.passCanSee ? 'password' : 'digit'}
                 value={this.state.password}
@@ -107,63 +183,26 @@ class Login extends React.Component<Props, State> {
                   </View>
                 }
               />
-            ) : (
-              <InputItem
-                value={this.state.code}
-                onChange={(value) => {
-                  this.setState({
-                    code: value
-                  })
-                }}
-                maxLength={4}
-                type="number"
-                placeholder="验证码"
-                // onFocus={() => this.inputItemFocus()}
-                // onBlur={() => this.inputItemBlur()}
-                extra={<SendSMS />}
-              />
             )}
           </View>
-          {/* <Button
-            type="primary"
-            style={styles.loginBtn}
-            onPress={() =>
-              api.login
-                .login(this.state.phone, this.state.password)
-                .then((res) => {
-                  console.log(res)
-                  console.log(this.props.handleLogin(res.data.data))
-                  Toast.show({
-                    text: '登录成功',
-                    type: 'success'
-                  })
-                  // mapDispatchToProps.handleLogin(res.data.data)
-                })
-                .then((res) => {
-                  this.props.navigation.navigate('首页')
-                })
-                .catch((error) =>{
-                  // Toast.show({
-                  //   text: '密码错误',
-                  //   type: 'danger',
-                  //   position: 'top'
-                  // })
-                  console.log('Login内部catch')
-                })
-            }
+          <Button
+            // type="primary"
+            block
+            // style={styles.loginBtn}
+            onPress={() => this.login()}
           >
-            登录
-          </Button> */}
+            <Text style={{ color: '#fff' }}>登录</Text>
+          </Button>
           <View style={styles.actions}>
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() =>
                 this.setState({
-                  usePasswordLogin: !this.state.usePasswordLogin
+                  loginByCode: !this.state.loginByCode
                 })
               }
             >
-              <Text>验证码快速登录</Text>
+              <Text>{!this.state.loginByCode ?  '验证码快速登录' : '密码登录'}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -192,25 +231,18 @@ class Login extends React.Component<Props, State> {
               onPress={() => console.log('weibo')}
             />
           </View>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('首页')}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.handleLogin('')
+              this.props.navigation.navigate('首页')
+            }}
+          >
             <Text style={styles.visitor}>我是游客</Text>
           </TouchableOpacity>
         </View>
       </View>
     )
   }
-
-  // private inputItemFocus(): void {
-  //   this.setState({
-  //     inputBorderColor: '#29A1F7'
-  //   })
-  // }
-
-  // private inputItemBlur(): void {
-  //   this.setState({
-  //     inputBorderColor: '#EEEEEE'
-  //   })
-  // }
 }
 
 const styles = StyleSheet.create({
