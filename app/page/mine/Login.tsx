@@ -14,9 +14,10 @@ import { handleLogin } from '@store/action/Index'
 import { Button, Toast } from 'native-base'
 import { connect, DispatchProp } from 'react-redux'
 
-import api from '@app/api/index'
+import api from '@api/index'
 import axios from 'axios'
 
+import { phoneValidate, showError } from '@app/util/formValidate'
 import SendSMS from '@components/SendSMS'
 import reg from '@util/reg'
 export interface State {
@@ -47,26 +48,19 @@ class Login extends React.Component<Props, State> {
     codeCanClick: false
   }
 
-  public showError(msg: string) {
-    Toast.show({
-      text: msg,
-      type: 'danger'
-    })
-  }
-
   public validateLogin(data: string): void {
     switch (data) {
       case '用户名未注册':
-        this.showError('用户名未注册')
+        showError('用户名未注册')
         break
       case '用户名密码错误':
-        this.showError('用户名密码错误')
+        showError('用户名密码错误')
         break
       case '验证码错误':
-        this.showError('验证码错误')
+        showError('验证码错误')
         break
-      case '验证码超时':
-        this.showError('验证码超时')
+      case '验证码过期':
+        showError('验证码过期')
         break
       default:
         this.props.handleLogin(data)
@@ -80,17 +74,17 @@ class Login extends React.Component<Props, State> {
     }
   }
 
-  public login() {
+  public loginRequest() {
     let purePhoneNumber = this.state.phone.replace(/\s*/g, '')
     if (this.state.phone === '') {
-      this.showError('手机号不能为空')
+      showError('手机号不能为空')
     } else if (!reg.checkPhone(purePhoneNumber)) {
       // InputItem的phone类型，value中会自带空格，判断时需要去除，否则会一直错误！
-      this.showError('手机号格式错误')
+      showError('手机号格式错误')
     } else if (!this.state.loginByCode && this.state.password === '') {
-      this.showError('密码不能为空')
+      showError('密码不能为空')
     } else if (this.state.loginByCode && this.state.code === '') {
-      this.showError('验证码不能为空')
+      showError('验证码不能为空')
     } else {
       if (this.state.loginByCode) {
         api.login.loginByCode(purePhoneNumber, this.state.code).then((res) => {
@@ -148,7 +142,14 @@ class Login extends React.Component<Props, State> {
                 placeholder="验证码"
                 // onFocus={() => this.inputItemFocus()}
                 // onBlur={() => this.inputItemBlur()}
-                extra={<SendSMS phone={this.state.phone.replace(/\s*/g, '')} />}
+                extra={
+                  <SendSMS
+                    phone={this.state.phone.replace(/\s*/g, '')}
+                    api={() =>
+                      api.login.sendLoginCode(this.state.phone.replace(/\s*/g, '')).then((res) => console.log(res))
+                    }
+                  />
+                }
               />
             ) : (
               <InputItem
@@ -189,7 +190,7 @@ class Login extends React.Component<Props, State> {
             // type="primary"
             block
             // style={styles.loginBtn}
-            onPress={() => this.login()}
+            onPress={() => this.loginRequest()}
           >
             <Text style={{ color: '#fff' }}>登录</Text>
           </Button>
@@ -202,7 +203,7 @@ class Login extends React.Component<Props, State> {
                 })
               }
             >
-              <Text>{!this.state.loginByCode ?  '验证码快速登录' : '密码登录'}</Text>
+              <Text>{!this.state.loginByCode ? '验证码快速登录' : '密码登录'}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -313,11 +314,7 @@ const mapStateToProps = (state: any): Object => {
 // 发送行为
 function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
   return {
-    handleLogin: (token: string) =>
-      dispatch({
-        type: 'HANDLE_LOGIN',
-        token
-      })
+    handleLogin
   }
 }
 

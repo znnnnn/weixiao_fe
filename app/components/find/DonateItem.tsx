@@ -61,7 +61,7 @@ export default withNavigation(
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 4 }}>
               {this.props.data.tag.map((item, index) => (
                 <View
-                  style={{ backgroundColor: tagColor[index], padding: 4, margin: 4 }}
+                  style={{ backgroundColor: tagColor[index % tagColor.length], padding: 4, margin: 4 }}
                   key={index}
                 >
                   <Text style={{ color: '#fff', fontSize: 10 }}>{item}</Text>

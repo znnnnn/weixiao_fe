@@ -1,7 +1,12 @@
-import { Button, InputItem, List } from '@ant-design/react-native'
+import { InputItem, List } from '@ant-design/react-native'
+import api from '@api/index'
+import { phoneValidate, showError } from '@app/util/formValidate'
 import Icon from '@app/util/icon'
+import SendSMS from '@components/SendSMS'
 import px2dp from '@util/px2dp'
+import reg from '@util/reg'
 import StyleSheet from '@util/stylesheet'
+import { Button, Toast } from 'native-base'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -30,6 +35,44 @@ export default class Register extends React.Component<Props, State> {
   // private constructor(props: {}) {
   //   super(props);
   // }
+
+  public validateRegister(data: string): void {
+    switch (data) {
+      case '验证码错误':
+        showError('验证码错误')
+        break
+      case '验证码过期':
+        showError('验证码过期')
+        break
+      default:
+        // this.props.handleLogin(data)
+        // console.log(this.props.handleLogin(data))
+        this.props.navigation.navigate('设置密码')
+        // Toast.show({
+        //   text: '登录成功',
+        //   type: 'success'
+        // })
+        break
+    }
+  }
+
+  public register() {
+    let purePhoneNumber = this.state.phone.replace(/\s*/g, '')
+    if (this.state.phone === '') {
+      showError('手机号不能为空')
+    } else if (!reg.checkPhone(purePhoneNumber)) {
+      // InputItem的phone类型，value中会自带空格，判断时需要去除，否则会一直错误！
+      showError('手机号格式错误')
+    } else if (this.state.code === '') {
+      showError('验证码不能为空')
+    } else {
+      api.register.registerByCode(purePhoneNumber, this.state.code).then((res) => {
+        let data = res.data.data
+        // console.log(data)
+        this.validateRegister(data)
+      })
+    }
+  }
 
   public render() {
     return (
@@ -61,25 +104,27 @@ export default class Register extends React.Component<Props, State> {
                   code: value
                 })
               }}
-              maxLength={6}
+              type="number"
+              maxLength={4}
               placeholder="验证码"
               // onFocus={() => this.inputItemFocus()}
               // onBlur={() => this.inputItemBlur()}
               extra={
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity activeOpacity={0.5}>
-                    <Text>获取验证码</Text>
-                  </TouchableOpacity>
+                  <SendSMS
+                    phone={this.state.phone.replace(/\s*/g, '')}
+                    api={() =>
+                      api.register
+                        .sendRegisterCode(this.state.phone.replace(/\s*/g, ''))
+                        .then((res) => console.log(res))
+                    }
+                  />
                 </View>
               }
             />
           </View>
-          <Button
-            type="primary"
-            style={styles.RegisterBtn}
-            onPress={() => this.props.navigation.navigate('设置密码')}
-          >
-            下一步
+          <Button block onPress={() => this.register()}>
+            <Text style={{ color: '#fff' }}>下一步</Text>
           </Button>
           <View style={styles.actions}>
             <Text style={{ lineHeight: 20 }}>注册登录即表明你同意</Text>

@@ -1,11 +1,12 @@
-import login from '@api/account/login'
+import api from '@api/index'
 import reg from '@util/reg'
 import { Button, Toast } from 'native-base'
 import React, { Component } from 'react'
 import { Text } from 'react-native'
 
 interface Props {
-  phone: string
+  phone: string,
+  api: Function
 }
 export default class SendSMS extends Component<Props> {
   public state = {
@@ -32,9 +33,9 @@ export default class SendSMS extends Component<Props> {
       this.showError('手机号格式错误')
     } else {
       // console.log(this.props.phone)
-      login.sendLoginCode(this.props.phone).then((res) => console.log(res))
+      this.props.api()
       this.setState({
-        codeCanClick: true
+        codeCantClick: true
       })
       let time = setInterval(() => {
         this.setState(
