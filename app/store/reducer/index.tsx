@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import handleLogin from './HandleLogin'
+import handleLogin from './mine/HandleLogin'
+import handleRegister from './mine/HandleRegister'
 
 export default combineReducers({
-  handleLogin
+  handleLogin,
+  handleRegister
 })

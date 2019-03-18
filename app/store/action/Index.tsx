@@ -1,14 +1,8 @@
-// 初始化 CHECK_LOGIN 对象
-export const handleLogin = (token: string) => {
-  // console.log('token:',token)
-  return {
-    type: 'HANDLE_LOGIN',
-    token
-  }
-}
+import login from './mine/login'
+import register from './mine/register'
 
-export const handleLogout = () => {
-  return {
-    type: 'HANDLE_LOGOUT'
-  }
+// 导出接口
+export default {
+  login,
+  register
 }

@@ -15,26 +15,33 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
+import actions from '@store/action/Index'
+import { connect, DispatchProp } from 'react-redux'
+
 export interface State {
   phone: string
   code: string
   inputBorderColor: string
 }
 
+export interface Props {
+  validateCode:Function
+}
+
 export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
-export default class Register extends React.Component<Props, State> {
+ class Register extends React.Component<Props, State> {
   public state = {
     phone: '',
     code: '',
     inputBorderColor: '#EEEEEE'
   }
 
-  // private constructor(props: {}) {
-  //   super(props);
-  // }
+ public constructor(props: Props) {
+    super(props);
+  }
 
   public validateRegister(data: string): void {
     switch (data) {
@@ -45,8 +52,8 @@ export default class Register extends React.Component<Props, State> {
         showError('验证码过期')
         break
       default:
-        // this.props.handleLogin(data)
-        // console.log(this.props.handleLogin(data))
+        this.props.validateCode(this.state.phone.replace(/\s*/g, ''))
+        console.log(this.props.validateCode(this.state.phone.replace(/\s*/g, '')))
         this.props.navigation.navigate('设置密码')
         // Toast.show({
         //   text: '登录成功',
@@ -190,3 +197,28 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   }
 })
+
+
+// 获取store中的state，并传入容器组件的Props中
+const mapStateToProps = (state: any): Object => {
+  // console.log(state)
+  return {
+    // 获取 state 变化
+    phone: state.handleRegister.phone
+  }
+}
+
+// 将本发送action的函数绑定到容器组件的Props中
+// 发送行为
+function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
+  let validateCode = actions.register.validateCode
+  return {
+    validateCode
+  }
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register)

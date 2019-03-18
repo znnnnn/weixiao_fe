@@ -10,8 +10,9 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
-import { handleLogin } from '@store/action/Index'
 import { Button, Toast } from 'native-base'
+
+import actions from '@store/action/Index'
 import { connect, DispatchProp } from 'react-redux'
 
 import api from '@api/index'
@@ -313,6 +314,7 @@ const mapStateToProps = (state: any): Object => {
 // 将本发送action的函数绑定到容器组件的Props中
 // 发送行为
 function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
+  let handleLogin = actions.login.handleLogin
   return {
     handleLogin
   }
