@@ -1,7 +1,8 @@
-import {Button, InputItem, List} from '@ant-design/react-native'
+import { InputItem, List} from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
+import {Button} from 'native-base'
 import React from 'react'
 import {Text, TouchableOpacity, View} from 'react-native'
 import {
@@ -71,9 +72,9 @@ export default class SetPwd extends React.Component <Props, State> {
               }
             />
           </View>
-          <Button type="primary" style={styles.nextBtn}
+          <Button block style={styles.nextBtn}
                   onPress={() => this.props.navigation.navigate('完善资料')}>
-            下一步
+            <Text style={{color: "#fff"}}>下一步</Text>
           </Button>
           <View style={styles.actions}>
             <Text style={{lineHeight: 20}}>
