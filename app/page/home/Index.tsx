@@ -96,7 +96,7 @@ class Home extends React.Component<Props, State> {
       //     console.log(err)
       //     // 执行失败回调
       //   })
-      this.props.navigation.navigate('注册')
+      this.props.navigation.navigate('完善资料')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }
@@ -115,9 +115,9 @@ class Home extends React.Component<Props, State> {
               borderBottomColor: '#f0f0f0'
             }}
           >
-            <Button onPress={() => console.log(this.props.token)}>
+            {/* <Button onPress={() => console.log(this.props.token)}>
               <Text>111111111</Text>
-            </Button>
+            </Button> */}
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}

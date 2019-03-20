@@ -18,7 +18,6 @@
     "@types/react-redux": "^7.0.1",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
-    "loadsh": "0.0.3",
     "native-base": "^2.12.0",
     "randomcolor": "^0.5.4",
     "react": "16.6.3",
