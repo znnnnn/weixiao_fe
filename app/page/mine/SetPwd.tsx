@@ -68,9 +68,6 @@ class SetPwd extends React.Component<Props, State> {
                       })
                     }
                   />
-                  <TouchableOpacity activeOpacity={0.5}>
-                    <Text>忘记密码</Text>
-                  </TouchableOpacity>
                 </View>
               }
             />
@@ -156,11 +153,9 @@ const mapStateToProps = (state: any): Object => {
 
 // 将本发送action的函数绑定到容器组件的Props中
 // 发送行为
-function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
-  let handleSetPwd = actions.setPwd.handleSetPwd
-  return {
-    handleSetPwd
-  }
+let handleSetPwd = actions.setPwd.handleSetPwd
+const mapDispatchToProps = {
+  handleSetPwd
 }
 
 // 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力

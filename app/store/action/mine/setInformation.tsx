@@ -8,7 +8,7 @@ interface Information {
 const setInformation = {
   handleSetInformation(information: Information) {
     return {
-      type: 'HANDLE_SETPWD',
+      type: 'HANDLE_SETINFORMATION',
       information
     }
   }

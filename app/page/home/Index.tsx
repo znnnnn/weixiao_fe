@@ -96,7 +96,7 @@ class Home extends React.Component<Props, State> {
       //     console.log(err)
       //     // 执行失败回调
       //   })
-      this.props.navigation.navigate('完善资料')
+      this.props.navigation.navigate('登录')
       // this.props.navigation.navigate('测试')
       // Toast.info('您还没有登录哦', 3, undefined, false)
     }

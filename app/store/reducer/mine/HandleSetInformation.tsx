@@ -1,15 +1,19 @@
 interface Information {
-  avatarbase64: string
-  nickName: string
-  trueName: string
-  sex: boolean
+  information: {
+    avatarbase64: string
+    nickName: string
+    trueName: string
+    sex: boolean
+  }
 }
 
-let information : Information = {
-  avatarbase64: '',
-  nickName: '',
-  trueName: '',
-  sex: true
+let information: Information = {
+  information: {
+    avatarbase64: '',
+    nickName: '',
+    trueName: '',
+    sex: true
+  }
 }
 
 const handleSetInformation = (state = information, action: any) => {

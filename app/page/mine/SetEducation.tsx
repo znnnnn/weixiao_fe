@@ -1,5 +1,6 @@
-import { Button, DatePicker, InputItem, List, Picker, Provider } from '@ant-design/react-native'
+import { DatePicker, InputItem, List, Picker, Provider } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
+import { Button, Toast } from 'native-base'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -7,6 +8,10 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
+
+import actions from '@store/action/Index'
+import { Education } from '@store/action/mine/setEducation'
+import { connect, DispatchProp } from 'react-redux'
 
 const MAJOR_DATA = require('./SetEducationMajor.json')
 const SCHOOL_DATA = require('./SetEducationSchool.json')
@@ -23,7 +28,7 @@ const data = require('./data.json')
 // ]
 
 export interface Props extends NavigationScreenProps {
-  defalutProps: string
+  handleSetEducation: Function
 }
 
 // const CustomChildren = (props: any) => (
@@ -44,7 +49,7 @@ export interface Props extends NavigationScreenProps {
 //   </TouchableOpacity>
 // );
 
-export default class SetEducation extends React.Component<Props> /*State*/ {
+class SetEducation extends React.Component<Props> /*State*/ {
   public state = {
     // value: ["温州职业技术学院", "温州大学"]
     data: [],
@@ -67,6 +72,12 @@ export default class SetEducation extends React.Component<Props> /*State*/ {
         data
       })
     }, 500)
+  }
+
+  public getText(data: any, state: any) {
+    return `${data[Math.floor(Number(state[1]) / 10) - 1].label},${
+      data[Math.floor(Number(state[1]) / 10) - 1].children[(Number(state[1]) % 10) - 1].label
+    }`
   }
 
   public render() {
@@ -154,11 +165,45 @@ export default class SetEducation extends React.Component<Props> /*State*/ {
               {/*</Picker>*/}
             </List>
             <Button
-              type="primary"
-              style={styles.nextBtn}
-              onPress={() => this.props.navigation.navigate('登录')}
+              block
+              onPress={() => {
+                // console.log('props', this.props)
+                // console.log(
+                //   Math.floor(Number(this.state.major[1]) / 10),
+                //   Number(this.state.major[1]) % 10
+                // )
+                if (
+                  this.state.school !== [] &&
+                  this.state.major !== [] &&
+                  this.state.edu !== [] &&
+                  this.state.admission !== undefined &&
+                  this.state.work !== ''
+                ) {
+                  let schoolText = SCHOOL_DATA[Number(this.state.school[0]) - 1].label
+                  let majorText = this.getText(MAJOR_DATA, this.state.major)
+                  let eduText = EDU_DATA[Number(this.state.edu[0]) - 1].label
+                  let admissionText = this.state.admission
+                  this.props.handleSetEducation({
+                    education: {
+                      admission: admissionText,
+                      edu: eduText,
+                      major: majorText,
+                      school: schoolText,
+                      worker: this.state.work
+                    }
+                  })
+
+                  console.log(this.props)
+                  this.props.navigation.navigate('登录')
+                } else {
+                  Toast.show({
+                    text: '信息未填写完整哦^_^',
+                    type: 'danger'
+                  })
+                }
+              }}
             >
-              下一步
+              <Text style={{ color: '#fff' }}>完成</Text>
             </Button>
           </View>
         </View>
@@ -184,3 +229,33 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
+
+// 获取store中的state，并传入容器组件的Props中
+const mapStateToProps = (state: any): Object => {
+  console.log(state)
+  let handleSetEducation: Education = state.HandleSetEducation
+  // console.log(handleSetEducation)
+  return {
+    // 获取 state 变化
+    education: {
+      admission: handleSetEducation.admission,
+      edu: handleSetEducation.edu,
+      major: handleSetEducation.major,
+      school: handleSetEducation.school,
+      worker: handleSetEducation.work
+    }
+  }
+}
+
+// 将本发送action的函数绑定到容器组件的Props中
+// 发送行为
+let handleSetEducation = actions.setEducation.handleSetEducation
+const mapDispatchToProps = {
+  handleSetEducation
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SetEducation)

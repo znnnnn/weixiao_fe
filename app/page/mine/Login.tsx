@@ -10,7 +10,7 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
-import { Button, Toast } from 'native-base'
+import { Button, Container ,Content,Toast} from 'native-base'
 
 import actions from '@store/action/Index'
 import { connect, DispatchProp } from 'react-redux'
@@ -108,7 +108,7 @@ class Login extends React.Component<Props, State> {
 
   public render() {
     return (
-      <View style={styles.root}>
+      <Container style={styles.root}>
         <View style={styles.container}>
           {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
           <Image source={require('../../image/logo.png')} />
@@ -242,7 +242,7 @@ class Login extends React.Component<Props, State> {
             <Text style={styles.visitor}>我是游客</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Container>
     )
   }
 }

@@ -188,7 +188,8 @@ const RouteMineConfig: NavigationRouteConfigMap = {
   登录: {
     screen: Login,
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
-      headerTruncatedBackTitle: '登录'
+      headerTruncatedBackTitle: '登录',
+      header: null
     })
   },
   注册: {

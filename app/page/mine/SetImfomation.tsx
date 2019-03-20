@@ -2,7 +2,7 @@ import { Checkbox, ImagePicker, InputItem, Radio } from '@ant-design/react-nativ
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import _ from 'lodash'
-import { Button } from 'native-base'
+import { Button, Toast } from 'native-base'
 // import StyleSheet from '@util/stylesheet'
 import React from 'react'
 import { Image, NativeModules, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -160,21 +160,26 @@ class SetInformation extends React.Component<Props, State> {
           <Button
             block
             onPress={() => {
-              this.props.handleSetInformation({
-                avatarbase64: this.state.avatarbase64,
-                nickName: this.state.nickName,
-                trueName: this.state.trueName,
-                sex: this.state.sex
-              })
-              console.log(
+              if (
+                this.state.avatarbase64 !== '' &&
+                this.state.nickName !== '' &&
+                this.state.trueName !== ''
+              ) {
                 this.props.handleSetInformation({
-                  avatarbase64: this.state.avatarbase64,
-                  nickName: this.state.nickName,
-                  trueName: this.state.trueName,
-                  sex: this.state.sex
+                  information: {
+                    avatarbase64: this.state.avatarbase64,
+                    nickName: this.state.nickName,
+                    trueName: this.state.trueName,
+                    sex: this.state.sex
+                  }
                 })
-              )
-              this.props.navigation.navigate('完善学历信息')
+                this.props.navigation.navigate('完善学历信息')
+              } else {
+                Toast.show({
+                  text: '信息未填写完整哦^_^',
+                  type: 'danger'
+                })
+              }
             }}
           >
             <Text style={{ color: '#fff' }}>下一步</Text>
@@ -225,17 +230,20 @@ const mapStateToProps = (state: any): Object => {
   console.log(state)
   return {
     // 获取 state 变化
-    loginPass: state.handleSetInformation.information
+    information: {
+      avatarbase64: state.handleSetInformation.avatarbase64,
+      nickName: state.handleSetInformation.nickName,
+      trueName: state.handleSetInformation.trueName,
+      sex: state.handleSetInformation.sex
+    }
   }
 }
 
 // 将本发送action的函数绑定到容器组件的Props中
 // 发送行为
-function mapDispatchToProps(dispatch: DispatchProp['dispatch']) {
-  let handleSetInformation = actions.setInformation.handleSetInformation
-  return {
-    handleSetInformation
-  }
+let handleSetInformation = actions.setInformation.handleSetInformation
+const mapDispatchToProps = {
+  handleSetInformation
 }
 
 // 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力

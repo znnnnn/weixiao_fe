@@ -1,5 +1,6 @@
 import login from './mine/login'
 import register from './mine/register'
+import setEducation from './mine/setEducation'
 import setInformation from './mine/setInformation'
 import setPwd from './mine/setPwd'
 
@@ -8,5 +9,6 @@ export default {
   login,
   register,
   setPwd,
-  setInformation
+  setInformation,
+  setEducation
 }
