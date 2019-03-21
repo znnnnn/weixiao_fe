@@ -171,7 +171,7 @@ class SetInformation extends React.Component<Props, State> {
                   avatar: this.state.avatarbase64,
                   nickName: this.state.nickName,
                   trueName: this.state.trueName,
-                  sex: this.state.sex
+                  sex: this.state.sex ? '1': '0'
                 })
                 this.props.navigation.navigate('完善学历信息')
               } else {

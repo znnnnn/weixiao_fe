@@ -3,7 +3,7 @@ interface Information {
     avatar: string
     nickName: string
     trueName: string
-    sex: boolean
+    sex: string
   }
 }
 
@@ -12,7 +12,7 @@ let information: Information = {
     avatar: '',
     nickName: '',
     trueName: '',
-    sex: true
+    sex: '1'
   }
 }
 

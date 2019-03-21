@@ -2,7 +2,7 @@ interface Information {
   avatar: string
   nickName: string
   trueName: string
-  sex: boolean
+  sex: string
 }
 
 const setInformation = {
