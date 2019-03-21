@@ -2,9 +2,9 @@ interface Education {
   education: {
     school: string
     major: string
-    edu: string
+    education: string
     // pickerValue: [],
-    work: string
+    job: string
     admission: string
   }
 }
@@ -13,8 +13,8 @@ let education: Education = {
   education: {
     school: '',
     major: '',
-    edu: '',
-    work: '',
+    education: '',
+    job: '',
     admission: ''
   }
 }

@@ -1,6 +1,6 @@
 interface Information {
   information: {
-    avatarbase64: string
+    avatar: string
     nickName: string
     trueName: string
     sex: boolean
@@ -9,7 +9,7 @@ interface Information {
 
 let information: Information = {
   information: {
-    avatarbase64: '',
+    avatar: '',
     nickName: '',
     trueName: '',
     sex: true

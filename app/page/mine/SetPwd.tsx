@@ -2,7 +2,7 @@ import { InputItem, List } from '@ant-design/react-native'
 import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
-import { Button } from 'native-base'
+import { Button ,Toast} from 'native-base'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -75,9 +75,16 @@ class SetPwd extends React.Component<Props, State> {
           <Button
             block
             onPress={() => {
-              this.props.handleSetPwd(this.state.loginPass)
+              if(this.state.loginPass !== ''){
+                this.props.handleSetPwd(this.state.loginPass)
               console.log(this.props.handleSetPwd(this.state.loginPass))
               this.props.navigation.navigate('完善资料')
+              } else {
+                Toast.show({
+                  text: '密码不能为空',
+                  type: 'danger'
+                })
+              }
             }}
           >
             <Text style={{ color: '#fff' }}>下一步</Text>
@@ -147,7 +154,7 @@ const mapStateToProps = (state: any): Object => {
   console.log(state)
   return {
     // 获取 state 变化
-    loginPass: state.handleSetPwd.loginPass
+    userPass: state.handleSetPwd.userPass
   }
 }
 

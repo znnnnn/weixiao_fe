@@ -1,8 +1,8 @@
 const setPwd = {
-  handleSetPwd(loginPass: string) {
+  handleSetPwd(userPass: string) {
     return {
       type: 'HANDLE_SETPWD',
-      loginPass
+      userPass
     }
   }
 }

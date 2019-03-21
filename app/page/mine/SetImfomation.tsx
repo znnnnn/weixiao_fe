@@ -66,14 +66,16 @@ class SetInformation extends React.Component<Props, State> {
         this.forceUpdate()
       }
     )
-    NativeModules.ReadImageData.readImage(avatar[0].url, (image: any) => {
-      // console.log(`data:image/png;base64,${image}`)
-      this.setState({
-        avatarbase64: `data:image/png;base64,${image}`
+    if (avatar.length > 0) {
+      NativeModules.ReadImageData.readImage(avatar[0].url, (image: any) => {
+        // console.log(`data:image/png;base64,${image}`)
+        this.setState({
+          avatarbase64: `data:image/png;base64,${image}`
+        })
+        // console.log(JSON.stringify({ file: image }))
+        // api.file.upload(JSON.stringify({ file: image }))
       })
-      // console.log(JSON.stringify({ file: image }))
-      api.file.upload(JSON.stringify({ file: image }))
-    })
+    }
     // let formdata = new FormData()
     // let uri = avatar[0].url
     // formdata.append('file', { type: 'multipart/form-data', name: 'a.jpg', uri, })
@@ -166,15 +168,14 @@ class SetInformation extends React.Component<Props, State> {
                 this.state.trueName !== ''
               ) {
                 this.props.handleSetInformation({
-                  information: {
-                    avatarbase64: this.state.avatarbase64,
-                    nickName: this.state.nickName,
-                    trueName: this.state.trueName,
-                    sex: this.state.sex
-                  }
+                  avatar: this.state.avatarbase64,
+                  nickName: this.state.nickName,
+                  trueName: this.state.trueName,
+                  sex: this.state.sex
                 })
                 this.props.navigation.navigate('完善学历信息')
               } else {
+                console.log(this.props)
                 Toast.show({
                   text: '信息未填写完整哦^_^',
                   type: 'danger'
@@ -225,17 +226,10 @@ const styles = StyleSheet.create({
 })
 
 // 获取store中的state，并传入容器组件的Props中
-const mapStateToProps = (state: any): Object => {
-  // console.log(state)
+const mapStateToProps = (state: any) => {
   console.log(state)
   return {
-    // 获取 state 变化
-    information: {
-      avatarbase64: state.handleSetInformation.avatarbase64,
-      nickName: state.handleSetInformation.nickName,
-      trueName: state.handleSetInformation.trueName,
-      sex: state.handleSetInformation.sex
-    }
+    ...state.HandleInformation
   }
 }
 

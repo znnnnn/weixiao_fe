@@ -1,5 +1,5 @@
 interface Information {
-  avatarbase64: string
+  avatar: string
   nickName: string
   trueName: string
   sex: boolean

@@ -1,9 +1,9 @@
 interface RegisterState {
-  phone: string
+  userLogin: string
 }
 
 const registerState: RegisterState = {
-  phone: ''
+  userLogin: ''
 }
 
 const handleRegister = (state = registerState, action: any) => {
@@ -11,9 +11,9 @@ const handleRegister = (state = registerState, action: any) => {
   switch (action.type) {
     case 'VALIDATE_CODE':
       // return { ...state, token: action.token }
-      return { ...state, phone: action.phone }
+      return { ...state, userLogin: action.phone }
     case 'HANDLE_LOGOUT':
-      return { ...state, phone: '' }
+      return { ...state, userLogin: '' }
     default:
       return state
   }

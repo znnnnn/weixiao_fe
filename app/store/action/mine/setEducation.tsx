@@ -1,8 +1,8 @@
 export interface Education {
     school: string,
     major: string,
-    edu: string,
-    work: string,
+    education: string,
+    job: string,
     admission: string
 }
 

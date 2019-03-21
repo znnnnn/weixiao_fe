@@ -5,10 +5,12 @@
 import file from './file'
 import login from './mine/login'
 import register from './mine/register'
+import setUsermeta from './mine/setUsermeta'
 
 // 导出接口
 export default {
   login,
   register,
-  file
+  file,
+  setUsermeta
 }

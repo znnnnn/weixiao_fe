@@ -9,6 +9,7 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
+import api from '@api/index'
 import actions from '@store/action/Index'
 import { Education } from '@store/action/mine/setEducation'
 import { connect, DispatchProp } from 'react-redux'
@@ -29,6 +30,7 @@ const data = require('./data.json')
 
 export interface Props extends NavigationScreenProps {
   handleSetEducation: Function
+  setUsermeta: any
 }
 
 // const CustomChildren = (props: any) => (
@@ -184,16 +186,17 @@ class SetEducation extends React.Component<Props> /*State*/ {
                   let eduText = EDU_DATA[Number(this.state.edu[0]) - 1].label
                   let admissionText = this.state.admission
                   this.props.handleSetEducation({
-                    education: {
-                      admission: admissionText,
-                      edu: eduText,
-                      major: majorText,
-                      school: schoolText,
-                      worker: this.state.work
-                    }
+                    admission: admissionText,
+                    education: eduText,
+                    major: majorText,
+                    school: schoolText,
+                    job: this.state.work
                   })
 
-                  console.log(this.props)
+                  setTimeout(() => {
+                    console.log('props', this.props)
+                    api.setUsermeta.setUsermeta(this.props.setUsermeta)
+                  }, 1000)
                   this.props.navigation.navigate('登录')
                 } else {
                   Toast.show({
@@ -231,19 +234,13 @@ const styles = StyleSheet.create({
 })
 
 // 获取store中的state，并传入容器组件的Props中
-const mapStateToProps = (state: any): Object => {
+const mapStateToProps = (state: any) => {
   console.log(state)
-  let handleSetEducation: Education = state.HandleSetEducation
-  // console.log(handleSetEducation)
+  console.log(state.HandleSetEducation)
   return {
-    // 获取 state 变化
-    education: {
-      admission: handleSetEducation.admission,
-      edu: handleSetEducation.edu,
-      major: handleSetEducation.major,
-      school: handleSetEducation.school,
-      worker: handleSetEducation.work
-    }
+    setUsermeta: {...state.HandleSetEducation.education, ...state.handleRegister, ...state.handleSetInformation.information, ...state.handleSetPwd}
+    // ...state.HandleSetEducation,
+    // setUsermeta:{...state.}
   }
 }
 

@@ -1,17 +1,17 @@
 interface RegisterState {
-  loginPass: string
+  userPass: string
 }
 
 const registerState: RegisterState = {
-  loginPass: ''
+  userPass: ''
 }
 
 const handleSetPwd = (state = registerState, action: any) => {
-  console.log('store里:',action)
+  // console.log('store里:',action)
   switch (action.type) {
     case 'HANDLE_SETPWD':
       // return { ...state, token: action.token }
-      return { ...state, loginPass: action.loginPass }
+      return { ...state, userPass: action.userPass }
     default:
       return state
   }
