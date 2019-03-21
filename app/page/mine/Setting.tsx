@@ -19,18 +19,28 @@ import {
   Toast,
   View
 } from 'native-base'
-import { Alert, AppRegistry } from 'react-native'
+import { Alert, AppRegistry,AsyncStorage } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import React, { Component } from 'react'
 
+import actions from '@store/action/Index'
+import { connect } from 'react-redux'
 interface Props extends NavigationScreenProps {
+  handleLogout: Function
 }
-export default class Setting extends Component<Props> {
+class Setting extends Component<Props> {
   public constructor(props: Props) {
     super(props)
   }
 
+  public _removeAsynToken = async () => {
+    try {
+      const value = await AsyncStorage.removeItem('token');
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
   public render() {
     return (
@@ -76,7 +86,11 @@ export default class Setting extends Component<Props> {
                 </Left>
               </ListItem>
               <ListItem itemDivider />
-              <ListItem onPress={() => this.props.navigation.navigate('登录')}>
+              <ListItem onPress={() => {
+                this._removeAsynToken()
+                this.props.handleLogout()
+                this.props.navigation.navigate('登录')
+              }}>
                 <Left>
                   <Text>退出</Text>
                 </Left>
@@ -87,5 +101,27 @@ export default class Setting extends Component<Props> {
     )
   }
 }
+
+
+const mapStateToProps = (state: any): Object => {
+  console.log(state)
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token
+  }
+}
+
+// 发送行为
+let handleLogout = actions.login.handleLogout
+const mapDispatchToProps = {
+  handleLogout
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Setting)
+
 
 AppRegistry.registerComponent('Setting', () => Setting);

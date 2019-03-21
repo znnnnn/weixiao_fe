@@ -3,7 +3,7 @@ import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { Image, Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { AsyncStorage, Image,Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -66,6 +66,7 @@ class Login extends React.Component<Props, State> {
       default:
         this.props.handleLogin(data)
         console.log(this.props.handleLogin(data))
+        this._storeData(data)
         this.props.navigation.navigate('首页')
         Toast.show({
           text: '登录成功',
@@ -105,6 +106,14 @@ class Login extends React.Component<Props, State> {
   // private constructor(props: {}) {
   //   super(props);
   // }
+
+  public _storeData = async (token:string) => {
+    try {
+      await AsyncStorage.setItem('token', token);
+    } catch (error) {
+      // Error saving data
+    }
+  };
 
   public render() {
     return (
