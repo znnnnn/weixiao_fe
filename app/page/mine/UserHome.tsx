@@ -1,14 +1,5 @@
 import { Tabs } from '@ant-design/react-native'
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Footer,
-  FooterTab,
-  Text,
-  Thumbnail
-} from 'native-base'
+import { Body, Button, Container, Content, Footer, FooterTab, Text, Thumbnail } from 'native-base'
 import React, { Component } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import {
@@ -18,12 +9,32 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+import api from '@api/index'
+import { connect } from 'react-redux'
+
 const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
 
-interface Props extends NavigationScreenProps {}
-export default class UserHome extends Component<Props> {
+interface Props extends NavigationScreenProps {
+  token: string
+}
+class UserHome extends Component<Props> {
+  public state = {
+    avatar: ' ',
+    nickname: ' '
+  }
   public constructor(props: Props) {
     super(props)
+  }
+
+  public componentWillMount() {
+    api.userHome.myhome(this.props.token).then((res) => {
+      console.log(res)
+      this.setState({
+        avatar: res.data.data.avatar,
+        nickname: res.data.data.nickname
+      })
+      console.log(this.state.avatar)
+    })
   }
 
   public render() {
@@ -39,10 +50,10 @@ export default class UserHome extends Component<Props> {
             <Thumbnail
               large
               source={{
-                uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+                uri: this.state.avatar
               }}
             />
-            <Text>ZNNNNNNN</Text>
+            <Text>{this.state.nickname}</Text>
             <Text note style={{ fontSize: 12 }}>
               16级温州职业技术学院
             </Text>
@@ -78,10 +89,7 @@ export default class UserHome extends Component<Props> {
         <Footer>
           <FooterTab>
             <Button vertical>
-              <Icon
-                name="message"
-                style={{fontSize:20}}
-              />
+              <Icon name="message" style={{ fontSize: 20 }} />
               <Text>和他聊天</Text>
             </Button>
           </FooterTab>
@@ -107,3 +115,19 @@ const styles = StyleSheet.create({
     padding: 5
   }
 })
+
+const mapStateToProps = (state: any): Object => {
+  console.log('用户中心',state)
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token
+  }
+}
+
+// 发送行为
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps
+  // mapDispatchToProps
+)(UserHome)

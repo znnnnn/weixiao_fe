@@ -4,26 +4,26 @@ import base from '../base' // 导入接口域名列表
 // import createStore from '../../store/index'
 // var store = createStore()
 
-const register = {
+const userHome = {
   /**
    * 登录
    * @param userLogin 用户名
    * @param userPass 密码
    */
-  setUsermeta(usermeta:Object) {
+  myhome(token: string) {
     // console.log(qs.stringify(
     //   {
     //     userLogin,
     //     userPass
     //   }
     // ))
-    console.log(JSON.stringify(usermeta))
-    return axios.post(
-      `${base.bd}/usermeta/set`,
-      JSON.stringify(usermeta)
-    )
+    return axios.get(`${base.bd}/usermeta/myhome`, {
+      params: { // 请求参数
+        token
+      }
+    })
   }
   // 其他接口…………
 }
 
-export default register
+export default userHome

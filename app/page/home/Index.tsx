@@ -53,6 +53,7 @@ class Home extends React.Component<Props, State> {
         // We have data!!
         this.props.handleLogin(value)
         // return value
+        this.props.navigation.navigate('用户中心')
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(() => Toast.show({

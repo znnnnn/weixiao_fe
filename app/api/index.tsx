@@ -6,11 +6,13 @@ import file from './file'
 import login from './mine/login'
 import register from './mine/register'
 import setUsermeta from './mine/setUsermeta'
+import userHome from './mine/userHome'
 
 // 导出接口
 export default {
   login,
   register,
   file,
-  setUsermeta
+  setUsermeta,
+  userHome
 }
