@@ -20,11 +20,14 @@ import { NavigationScreenProps } from 'react-navigation'
 import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 
+import api from '@api/index'
+
 export interface State {
   phone: string
   password: string
   inputBorderColor: string
   passCanSee: boolean
+  avatarList: Array<any>
 }
 
 export interface Props extends NavigationScreenProps {
@@ -37,7 +40,8 @@ class Home extends React.Component<Props, State> {
     phone: '',
     password: '',
     inputBorderColor: '#EEEEEE',
-    passCanSee: true
+    passCanSee: true,
+    avatarList: []
   }
 
   public constructor(props: Props) {
@@ -48,25 +52,40 @@ class Home extends React.Component<Props, State> {
   public _getAsynToken = async () => {
     try {
       const value = await AsyncStorage.getItem('token')
-      console.log('token AsyncStorage', value)
+      // console.log('token AsyncStorage', value)
       if (value !== null) {
         // We have data!!
         this.props.handleLogin(value)
         // return value
-        this.props.navigation.navigate('用户中心')
+        // this.props.navigation.navigate('我的主页')
       } else {
         this.props.navigation.navigate('登录')
-        setTimeout(() => Toast.show({
-          text: '您还没有登录哦',
-          type: 'danger'
-        }), 700)
+        setTimeout(
+          () =>
+            Toast.show({
+              text: '您还没有登录哦',
+              type: 'danger'
+            }),
+          700
+        )
       }
     } catch (error) {
       // Error retrieving data
     }
   }
 
-  public componentWillMount(){
+  public componentWillMount() {
+    api.home.getUsermetaList().then((res) => {
+      this.setState({
+        avatarList: res.data.data.list
+      })
+      // return res.data.data.list.map((item: any) => <Avatar uri={item.avatar} />)
+      // return <Avatar uri={res.data.data.list[0].avatar} />
+    })
+  }
+
+  public componentDidMount() {
+    // 获取本地存储的登录状态
     this._getAsynToken()
   }
 
@@ -89,22 +108,14 @@ class Home extends React.Component<Props, State> {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{
+                width: wp('95%')
+              }}
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
-              <Avatar uri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" />
+              {this.state.avatarList.map((item, index) => (
+                <Avatar usermeta={item} key={index} />
+              ))}
             </ScrollView>
           </View>
           <Content>
@@ -184,7 +195,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state: any): Object => {
-  console.log(state)
+  console.log('store中', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token

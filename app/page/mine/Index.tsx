@@ -56,7 +56,7 @@ export default class MineIndex extends Component<Props> {
                 <Button
                   hasText
                   transparent
-                  onPress={() => this.props.navigation.navigate('用户中心')}
+                  onPress={() => this.props.navigation.navigate('我的主页')}
                 >
                   <Text style={{ color: '#333' }}>个人主页 ></Text>
                 </Button>

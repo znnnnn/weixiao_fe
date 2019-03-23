@@ -12,6 +12,7 @@ import FeedBack from '@page/mine/FeedBack'
 import ForgetPassword from '@page/mine/ForgetPassword'
 import Gerneral from '@page/mine/Gerneral'
 import Login from '@page/mine/Login'
+import myHome from '@page/mine/myHome'
 import Privacy from '@page/mine/Privacy'
 import PrivacyContact from '@page/mine/PrivacyContact'
 import PrivacyRadio from '@page/mine/PrivacyRadio'
@@ -43,7 +44,14 @@ const RouteMineConfig: NavigationRouteConfigMap = {
     screen: UserHome,
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       headerTruncatedBackTitle: '用户中心',
-      headerTitle: '用户中心'
+      headerTitle: `${navigation.getParam('usermeta').nickname}`
+    })
+  },
+  我的主页:{
+    screen: myHome,
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '我的主页',
+      headerTitle: '我的主页'
     })
   },
   编辑个人资料: {

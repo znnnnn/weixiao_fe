@@ -3,6 +3,7 @@
  */
 // account的模块接口
 import file from './file'
+import home from './home/index'
 import login from './mine/login'
 import register from './mine/register'
 import setUsermeta from './mine/setUsermeta'
@@ -14,5 +15,6 @@ export default {
   register,
   file,
   setUsermeta,
-  userHome
+  userHome,
+  home
 }
