@@ -9,6 +9,8 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
+import { ListItem } from 'native-base'
+
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import getTimeDiff from '@util/time'
@@ -21,14 +23,15 @@ export interface State {
   initIndex: number
 }
 
-interface Props extends NavigationScreenProps {
-}
+interface Props extends NavigationScreenProps {}
 class PostCard extends Component<Props> {
   public state = {
     images: [
-      { url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
+      {
+        url: 'https://oss.miaoroom.com/wp-content/uploads/2019/03/1553149106-3eaff542a49a8af4.png'
+      },
+      { url: 'https://ws2.sinaimg.cn/large/0069wGDkly1fypt7tqu36j30u0190u11.jpg' },
+      { url: 'https://ws4.sinaimg.cn/large/0069wGDkly1fypu1pvnxmj30qo0hswhv.jpg' }
     ],
     modalVisible: false,
     initIndex: 0
@@ -142,6 +145,8 @@ class PostCard extends Component<Props> {
               <Text style={styles.actions}>333</Text>
             </View>
           </TouchableOpacity>
+        </View>
+        <View style={{ width: wp('100%'), height: 15, backgroundColor: '#f4f4f4',borderTopWidth:1,borderTopColor:'#e5e5e5' }}>
         </View>
       </View>
     )
