@@ -21,7 +21,7 @@ import { string } from 'prop-types'
 import React, { Component } from 'react'
 import { NavigationScreenProps } from 'react-navigation'
 
-// import CameraButton from '@app/components/CameraButton'
+import CameraButton from '@app/components/CameraButton'
 import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 
@@ -51,6 +51,7 @@ class UserInfoSetting extends Component<Props> {
 
   public constructor(props: Props) {
     super(props)
+    console.log(111111111111111111)
   }
 
   public handleFileChange = (avatar: any) => {
@@ -70,18 +71,19 @@ class UserInfoSetting extends Component<Props> {
     // console.log(avatar)
   }
 
-  // public onFileUpload(file, fileName) {
-  //   return this.props.uploadAvatar(
-  //     {
-  //       id: this.props.user.ID,
-  //       type: 'logo',
-  //       obj: 'user',
-  //       corpId: this.props.cropId
-  //     },
-  //     file,
-  //     fileName
-  //   )
-  // }
+  public onFileUpload(file, fileName) {
+    // return this.props.uploadAvatar(
+    //   {
+    //     id: this.props.user.ID,
+    //     type: 'logo',
+    //     obj: 'user',
+    //     corpId: this.props.cropId
+    //   },
+    //   file,
+    //   fileName
+    // )
+    return ()=>console.log(file,fileName)
+  }
 
   public render() {
     return (
@@ -94,11 +96,11 @@ class UserInfoSetting extends Component<Props> {
               </Left>
               <Body />
               <Right style={{ marginLeft: -300 }}>
-                {/* <CameraButton
+                <CameraButton
                   // style={styles.cameraBtn}
                   photos={[]}
-                  // onFileUpload={this.onFileUpload}
-                /> */}
+                  onFileUpload={this.onFileUpload}
+                />
               </Right>
             </ListItem>
             <ListItem icon>

@@ -3,6 +3,7 @@ package com.weixiao_fe;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.dskj.dscj.aliyunoss.aliyunossPackage;
 import com.ksyun.media.reactnative.ReactKSYVideoPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
             new aliyunossPackage(),
             new ReactKSYVideoPackage(),
             new MapsPackage(),

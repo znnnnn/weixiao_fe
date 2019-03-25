@@ -94,11 +94,12 @@ class CameraButton extends React.Component<Props> {
         this.setState({
           loading: true
         })
-        this.props.onFileUpload(file, response.fileName || '未命名文件.jpg').then((result) => {
-          this.setState({
-            loading: false
-          })
-        })
+        // this.props.onFileUpload(file, response.fileName || '未命名文件.jpg').then((result) => {
+        //   this.setState({
+        //     loading: false
+        //   })
+        // })
+        console.log(file, response.fileName)
       }
     })
   }
