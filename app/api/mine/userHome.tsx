@@ -6,9 +6,8 @@ import base from '../base' // 导入接口域名列表
 
 const userHome = {
   /**
-   * 登录
-   * @param userLogin 用户名
-   * @param userPass 密码
+   *
+   * @param token 用户加密签名
    */
   myhome(token: string) {
     // console.log(qs.stringify(

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import handleLogin from './mine/HandleLogin'
+import HandleMyUsermeta from './mine/HandleMyUsermeta'
 import handleRegister from './mine/HandleRegister'
 import HandleSetEducation from './mine/HandleSetEducation'
 import handleSetInformation from './mine/HandleSetInformation'
@@ -11,5 +12,6 @@ export default combineReducers({
   handleRegister,
   handleSetPwd,
   handleSetInformation,
-  HandleSetEducation
+  HandleSetEducation,
+  HandleMyUsermeta
 })

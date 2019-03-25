@@ -16,26 +16,27 @@ const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图�
 
 interface Props extends NavigationScreenProps {
   token: string
+  myUsermeta: any
 }
 class UserHome extends Component<Props> {
-  public state = {
-    avatar:
-      'https://cn.gravatar.com/avatar/d28a39eb534d6d92d5320bdd92f525ae?d=https%3A%2F%2Fwww.miaoroom.com%2Fwp-content%2Fthemes%2FCute_0130%2Fassets%2Fimg%2Favatar%2Favatar_medium.png&s=64',
-    nickname: '匿名用户'
-  }
+  // public state = {
+  //   avatar:
+  //     'https://cn.gravatar.com/avatar/d28a39eb534d6d92d5320bdd92f525ae?d=https%3A%2F%2Fwww.miaoroom.com%2Fwp-content%2Fthemes%2FCute_0130%2Fassets%2Fimg%2Favatar%2Favatar_medium.png&s=64',
+  //   nickname: '匿名用户'
+  // }
   public constructor(props: Props) {
     super(props)
   }
 
   public componentDidMount() {
-    api.userHome.myhome(this.props.token).then((res) => {
-      console.log(res)
-      this.setState({
-        avatar: res.data.data.avatar,
-        nickname: res.data.data.nickname
-      })
-      console.log(this.state.avatar)
-    })
+    // api.userHome.myhome(this.props.token).then((res) => {
+    //   console.log(res)
+    //   this.setState({
+    //     avatar: res.data.data.avatar,
+    //     nickname: res.data.data.nickname
+    //   })
+    //   console.log(this.state.avatar)
+    // })
   }
 
   public render() {
@@ -51,12 +52,14 @@ class UserHome extends Component<Props> {
             <Thumbnail
               large
               source={{
-                uri: this.state.avatar
+                uri: this.props.myUsermeta.avatar
               }}
             />
-            <Text>{this.state.nickname}</Text>
+            <Text style={{ lineHeight:24 }}>{this.props.myUsermeta.nickname}</Text>
             <Text note style={{ fontSize: 12 }}>
-              16级温州职业技术学院
+              {this.props.myUsermeta.school === ''
+                ? '加利福尼亚大学'
+                : this.props.myUsermeta.school}
             </Text>
             <Button
               style={{ margin: 5, alignSelf: 'center' }}
@@ -121,7 +124,7 @@ const mapStateToProps = (state: any): Object => {
   console.log('用户中心', state)
   return {
     // 获取 state 变化
-    token: state.handleLogin.token
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
   }
 }
 

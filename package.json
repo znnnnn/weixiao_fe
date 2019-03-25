@@ -22,7 +22,6 @@
     "randomcolor": "^0.5.4",
     "react": "16.6.3",
     "react-native": "^0.58.6",
-    "react-native-aliyun-oss": "git+https://github.com/lesonli/react-native-aliyun-oss.git",
     "react-native-alphabetlistview": "^0.3.0",
     "react-native-device-info": "^0.26.3",
     "react-native-elements": "^1.1.0",

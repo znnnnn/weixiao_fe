@@ -1,4 +1,5 @@
 import login from './mine/login'
+import myUsermeta from './mine/myUsermeta'
 import register from './mine/register'
 import setEducation from './mine/setEducation'
 import setInformation from './mine/setInformation'
@@ -10,5 +11,6 @@ export default {
   register,
   setPwd,
   setInformation,
-  setEducation
+  setEducation,
+  myUsermeta
 }

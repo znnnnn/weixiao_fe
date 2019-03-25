@@ -28,6 +28,7 @@ import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 interface Props extends NavigationScreenProps {
   handleLogout: Function
+  cleanUsermeta: Function
 }
 class Setting extends Component<Props> {
   public constructor(props: Props) {
@@ -90,6 +91,7 @@ class Setting extends Component<Props> {
                 this._removeAsynToken()
                 this.props.handleLogout()
                 this.props.navigation.navigate('登录')
+                this.props.cleanUsermeta()
               }}>
                 <Left>
                   <Text>退出</Text>
@@ -113,8 +115,10 @@ const mapStateToProps = (state: any): Object => {
 
 // 发送行为
 let handleLogout = actions.login.handleLogout
+let cleanUsermeta = actions.myUsermeta.cleanUsermeta
 const mapDispatchToProps = {
-  handleLogout
+  handleLogout,
+  cleanUsermeta
 }
 
 // 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力

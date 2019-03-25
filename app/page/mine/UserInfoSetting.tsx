@@ -19,20 +19,38 @@ import {
 } from 'native-base'
 import { string } from 'prop-types'
 import React, { Component } from 'react'
+import { NavigationScreenProps } from 'react-navigation'
+
+// import CameraButton from '@app/components/CameraButton'
+import actions from '@store/action/Index'
+import { connect } from 'react-redux'
+
+import api from '@api/index'
 
 const DATA = require('./data.json')
 
-export default class UserInfoSetting extends Component {
+interface Props extends NavigationScreenProps {
+  myUsermeta: any
+}
+
+class UserInfoSetting extends Component<Props> {
   public state = {
-    avatar: [
-      // {
-      //   url: 'https://zos.alipayobjects.com/rmsportal/WCxfiPKoDDHwLBM.png',
-      //   id: '2121',
-      // }
-    ],
+    avatar:
+      this.props.myUsermeta.avatar === ''
+        ? [
+            // {
+            //   url: 'https://zos.alipayobjects.com/rmsportal/WCxfiPKoDDHwLBM.png',
+            //   id: '2121',
+            // }
+          ]
+        : [{ url: this.props.myUsermeta.avatar }],
     avatarSelectable: true,
     sex: true,
     address: []
+  }
+
+  public constructor(props: Props) {
+    super(props)
   }
 
   public handleFileChange = (avatar: any) => {
@@ -52,6 +70,19 @@ export default class UserInfoSetting extends Component {
     // console.log(avatar)
   }
 
+  // public onFileUpload(file, fileName) {
+  //   return this.props.uploadAvatar(
+  //     {
+  //       id: this.props.user.ID,
+  //       type: 'logo',
+  //       obj: 'user',
+  //       corpId: this.props.cropId
+  //     },
+  //     file,
+  //     fileName
+  //   )
+  // }
+
   public render() {
     return (
       <Provider>
@@ -63,20 +94,11 @@ export default class UserInfoSetting extends Component {
               </Left>
               <Body />
               <Right style={{ marginLeft: -300 }}>
-                <ImagePicker
-                  files={this.state.avatar}
-                  selectable={this.state.avatarSelectable}
-                  onChange={this.handleFileChange}
-                />
-              </Right>
-            </ListItem>
-            <ListItem icon>
-              <Left>
-                <Text>姓名</Text>
-              </Left>
-              <Body />
-              <Right>
-                <Text>znnnnn</Text>
+                {/* <CameraButton
+                  // style={styles.cameraBtn}
+                  photos={[]}
+                  // onFileUpload={this.onFileUpload}
+                /> */}
               </Right>
             </ListItem>
             <ListItem icon>
@@ -122,6 +144,10 @@ export default class UserInfoSetting extends Component {
               </Picker>
             </View>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
+              <Icon active name="person" />
+              <Input placeholder="姓名" value={this.props.myUsermeta.truename} />
+            </Item>
+            <Item style={{ marginLeft: 15, paddingRight: 15 }}>
               <Icon active name="home" />
               <Input placeholder="公司" />
             </Item>
@@ -134,9 +160,33 @@ export default class UserInfoSetting extends Component {
                 <Textarea rowSpan={5} placeholder="我的格言" />
               </Form>
             </Item>
+            <Button block style={{ margin: 10 }} onPress={() => console.log(this.state)}>
+              <Text>保存</Text>
+            </Button>
           </Content>
         </Container>
       </Provider>
     )
   }
 }
+
+const mapStateToProps = (state: any): Object => {
+  console.log('store中', state)
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token,
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 发送行为
+let handleUsermeta = actions.myUsermeta.handleUsermeta
+const mapDispatchToProps = {
+  handleUsermeta
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserInfoSetting)

@@ -181,6 +181,9 @@ tabNavigation.navigationOptions = ({navigation, screenProps}: NavigationScreenPr
   // 设置的变量需在这里return
 
   switch (routeName) {
+    case '首页':
+      headerTitle = '首页'
+      break
     case '发现':
       header = null
       break

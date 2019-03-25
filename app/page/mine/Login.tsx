@@ -35,6 +35,7 @@ export interface State {
 export interface Props extends NavigationScreenProps {
   defalutProps: string
   handleLogin: Function
+  handleUsermeta: Function
 }
 
 class Login extends React.Component<Props, State> {
@@ -65,13 +66,19 @@ class Login extends React.Component<Props, State> {
         break
       default:
         this.props.handleLogin(data)
-        console.log(this.props.handleLogin(data))
+        // 保存token信息到asyncStorage中
         this._storeData(data)
         this.props.navigation.navigate('首页')
         Toast.show({
           text: '登录成功',
           type: 'success'
         })
+        api.userHome
+          .myhome(data)
+          .then((res) => {
+            console.log('登录时请求用户信息!!')
+            this.props.handleUsermeta(res.data.data)
+          })
         break
     }
   }
@@ -316,15 +323,18 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: any): Object => {
   return {
     // 获取 state 变化
-    token: state.handleLogin.token
+    token: state.handleLogin.token,
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
   }
 }
 
 // 将本发送action的函数绑定到容器组件的Props中
 // 发送行为
 let handleLogin = actions.login.handleLogin
+let handleUsermeta = actions.myUsermeta.handleUsermeta
 const mapDispatchToProps = {
-  handleLogin
+  handleLogin,
+  handleUsermeta
 }
 
 // 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力

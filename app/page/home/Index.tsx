@@ -33,6 +33,8 @@ export interface State {
 export interface Props extends NavigationScreenProps {
   handleLogin: Function
   token: string
+  handleUsermeta: Function
+  myUsermeta: any
 }
 
 class Home extends React.Component<Props, State> {
@@ -46,18 +48,22 @@ class Home extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
-    // console.log(this.props.token)
   }
 
   public _getAsynToken = async () => {
     try {
-      const value = await AsyncStorage.getItem('token')
-      // console.log('token AsyncStorage', value)
-      if (value !== null) {
-        // We have data!!
-        this.props.handleLogin(value)
-        // return value
-        // this.props.navigation.navigate('我的主页')
+      const asyncToken = await AsyncStorage.getItem('token')
+      if (asyncToken !== null && this.props.token === '') {
+        // console.log('asyncToken', asyncToken)
+        // 获取登录的用户信息
+        api.userHome
+          .myhome(asyncToken)
+          .then((res) => {
+            // console.log(asyncToken,'第一次请求用户信息!!',res.data.data)
+            this.props.handleUsermeta(res.data.data)
+          })
+          .then(() => this.props.handleLogin(asyncToken))
+        this.props.navigation.navigate('设置')
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -102,20 +108,19 @@ class Home extends React.Component<Props, State> {
               borderBottomColor: '#f0f0f0'
             }}
           >
-            {/* <Button onPress={() => console.log(this.props.token)}>
-              <Text>111111111</Text>
-            </Button> */}
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{
-                width: wp('95%')
+                width: wp('100%')
               }}
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
-              {this.state.avatarList.map((item, index) => (
-                <Avatar usermeta={item} key={index} />
-              ))}
+              {this.state.avatarList.map((item, index) => {
+                if (item.userId !== this.props.myUsermeta.userId) {
+                return <Avatar usermeta={item} key={index} />
+                }
+              })}
             </ScrollView>
           </View>
           <Content>
@@ -194,18 +199,21 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state: any): Object => {
-  console.log('store中', state)
+const mapStateToProps = (state: any) => {
+  // console.log('state', state)
   return {
     // 获取 state 变化
-    token: state.handleLogin.token
+    token: state.handleLogin.token,
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
   }
 }
 
 // 发送行为
 let handleLogin = actions.login.handleLogin
+let handleUsermeta = actions.myUsermeta.handleUsermeta
 const mapDispatchToProps = {
-  handleLogin
+  handleLogin,
+  handleUsermeta
 }
 
 // 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力

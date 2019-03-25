@@ -5,11 +5,6 @@ import base from '../base' // 导入接口域名列表
 // var store = createStore()
 
 const register = {
-  /**
-   * 登录
-   * @param userLogin 用户名
-   * @param userPass 密码
-   */
   setUsermeta(usermeta:Object) {
     // console.log(qs.stringify(
     //   {

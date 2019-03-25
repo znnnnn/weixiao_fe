@@ -15,16 +15,27 @@ import { connect } from 'react-redux'
 const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
 
 interface Props extends NavigationScreenProps {
-  usermeta: any
+  token: string
 }
-
-/**
- * 本页面的所有数据通过react navigation进行传递
- */
 class UserHome extends Component<Props> {
-  public state = {}
+  public state = {
+    avatar:
+      'https://cn.gravatar.com/avatar/d28a39eb534d6d92d5320bdd92f525ae?d=https%3A%2F%2Fwww.miaoroom.com%2Fwp-content%2Fthemes%2FCute_0130%2Fassets%2Fimg%2Favatar%2Favatar_medium.png&s=64',
+    nickname: '匿名用户'
+  }
   public constructor(props: Props) {
     super(props)
+  }
+
+  public componentDidMount() {
+    api.userHome.myhome(this.props.token).then((res) => {
+      console.log(res)
+      this.setState({
+        avatar: res.data.data.avatar,
+        nickname: res.data.data.nickname
+      })
+      console.log(this.state.avatar)
+    })
   }
 
   public render() {
@@ -40,23 +51,21 @@ class UserHome extends Component<Props> {
             <Thumbnail
               large
               source={{
-                uri: this.props.navigation.getParam('usermeta').avatar
+                uri: this.state.avatar
               }}
             />
-            <Text style={{ lineHeight: 24 }}>
-              {this.props.navigation.getParam('usermeta').nickname}
-            </Text>
+            <Text>{this.state.nickname}</Text>
             <Text note style={{ fontSize: 12 }}>
               16级温州职业技术学院
             </Text>
-            {/* <Button
+            <Button
               style={{ margin: 5, alignSelf: 'center' }}
               small
               primary
               onPress={() => this.props.navigation.navigate('编辑个人资料')}
             >
               <Text>编辑个人资料</Text>
-            </Button> */}
+            </Button>
             <View style={styles.underLine}>
               <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
                 {1}关注 {12}粉丝 {2}动态 {0}收藏
@@ -78,14 +87,14 @@ class UserHome extends Component<Props> {
             </View>
           </Tabs>
         </Content>
-        <Footer>
+        {/* <Footer>
           <FooterTab>
             <Button vertical>
               <Icon name="message" style={{ fontSize: 20 }} />
               <Text>和他聊天</Text>
             </Button>
           </FooterTab>
-        </Footer>
+        </Footer> */}
       </Container>
     )
   }
