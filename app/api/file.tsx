@@ -9,28 +9,19 @@ import base from './base' // 导入接口域名列表
 
 const file = {
   upload(file: any) {
-    return axios.post(
-      `${base.bd}/upload`,
-      JSON.stringify({
-        file
-      }),
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data'
-          // 'Content-Language': React.NativeModules.RNI18n.locale,
-        },
+    return axios.post(`${base.bd}/upload`, file, {
+      headers: {
+        'content-type': 'multipart/form-data'
       }
-    )
+    })
   },
 
   uploads(files: any[]) {
-    return axios.post(
-      `${base.bd}/uploads`,
-      JSON.stringify({
-        files
-      })
-    )
+    return axios.post(`${base.bd}/uploads`, files, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   }
 
   // 其他接口…………

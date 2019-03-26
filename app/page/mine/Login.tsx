@@ -155,7 +155,7 @@ class Login extends React.Component<Props, State> {
                   })
                 }}
                 maxLength={4}
-                type="number"
+                // type="number"
                 placeholder="验证码"
                 // onFocus={() => this.inputItemFocus()}
                 // onBlur={() => this.inputItemBlur()}

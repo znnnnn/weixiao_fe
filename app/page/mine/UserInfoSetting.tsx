@@ -25,6 +25,7 @@ import CameraButton from '@app/components/CameraButton'
 import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 
+
 import api from '@api/index'
 
 const DATA = require('./data.json')
@@ -51,7 +52,6 @@ class UserInfoSetting extends Component<Props> {
 
   public constructor(props: Props) {
     super(props)
-    console.log(111111111111111111)
   }
 
   public handleFileChange = (avatar: any) => {
@@ -71,19 +71,10 @@ class UserInfoSetting extends Component<Props> {
     // console.log(avatar)
   }
 
-  public onFileUpload(file, fileName) {
-    // return this.props.uploadAvatar(
-    //   {
-    //     id: this.props.user.ID,
-    //     type: 'logo',
-    //     obj: 'user',
-    //     corpId: this.props.cropId
-    //   },
-    //   file,
-    //   fileName
-    // )
-    return ()=>console.log(file,fileName)
-  }
+  // public componentDidMount(){
+  //   console.log('constructor',this.props)
+  // }
+
 
   public render() {
     return (
@@ -98,8 +89,9 @@ class UserInfoSetting extends Component<Props> {
               <Right style={{ marginLeft: -300 }}>
                 <CameraButton
                   // style={styles.cameraBtn}
-                  photos={[]}
-                  onFileUpload={this.onFileUpload}
+                  photos={[this.props.myUsermeta.avatar]}
+                  maxPhotoLength={1}
+                  // onFileUpload={this.onFileUpload}
                 />
               </Right>
             </ListItem>

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/react-native": "^3.1.1",
+    "@types/form-data": "^2.2.1",
     "@types/lodash": "^4.14.121",
     "@types/qs": "^6.5.2",
     "@types/react-native-orientation": "^5.0.1",
@@ -18,6 +19,7 @@
     "@types/react-redux": "^7.0.1",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
+    "form-data": "^2.3.3",
     "native-base": "^2.12.0",
     "randomcolor": "^0.5.4",
     "react": "16.6.3",
