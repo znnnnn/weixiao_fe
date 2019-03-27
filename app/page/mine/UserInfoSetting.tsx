@@ -15,6 +15,7 @@ import {
   Switch,
   Text,
   Textarea,
+  Toast,
   View
 } from 'native-base'
 import { string } from 'prop-types'
@@ -25,56 +26,49 @@ import CameraButton from '@app/components/CameraButton'
 import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 
-
 import api from '@api/index'
 
 const DATA = require('./data.json')
 
 interface Props extends NavigationScreenProps {
-  myUsermeta: any
+  myUsermeta: any,
+  handleUsermeta: Function
 }
 
 class UserInfoSetting extends Component<Props> {
   public state = {
-    avatar:
-      this.props.myUsermeta.avatar === ''
-        ? [
-            // {
-            //   url: 'https://zos.alipayobjects.com/rmsportal/WCxfiPKoDDHwLBM.png',
-            //   id: '2121',
-            // }
-          ]
-        : [{ url: this.props.myUsermeta.avatar }],
-    avatarSelectable: true,
-    sex: true,
-    address: []
+    avatar: this.props.myUsermeta.avatar === '' ? [''] : [this.props.myUsermeta.avatar],
+    nickname: this.props.myUsermeta.nickname,
+    truename: this.props.myUsermeta.truename,
+    job : this.props.myUsermeta.job,
+    school: this.props.myUsermeta.school,
+    sex: this.props.myUsermeta.sex,
+    education: this.props.myUsermeta.education,
+    userIntroduce: this.props.myUsermeta.userIntroduce
   }
 
   public constructor(props: Props) {
     super(props)
   }
 
-  public handleFileChange = (avatar: any) => {
-    this.setState(
-      {
-        avatar
-      },
-      () => {
-        // console.log(this.state.avatar.length === 0);
-        this.state.avatar.length === 0
-          ? (this.state.avatarSelectable = true)
-          : (this.state.avatarSelectable = false)
-        // 强制刷新组件
-        this.forceUpdate()
-      }
-    )
-    // console.log(avatar)
+  public uploadAvtar(formData: any) {
+    api.file.upload(formData).then((res) => {
+      console.log(res)
+      this.setState(
+        {
+          avatar: this.state.avatar.concat(res.data.data)
+        },
+        () => console.log(this.state.avatar)
+      )
+    })
   }
 
-  // public componentDidMount(){
-  //   console.log('constructor',this.props)
-  // }
-
+  public removeAvtar(index: number) {
+    this.setState({
+      avatar: this.state.avatar.splice(index + 1, 1)
+    })
+    // console.log(this.state.sex)
+  }
 
   public render() {
     return (
@@ -89,9 +83,10 @@ class UserInfoSetting extends Component<Props> {
               <Right style={{ marginLeft: -300 }}>
                 <CameraButton
                   // style={styles.cameraBtn}
-                  photos={[this.props.myUsermeta.avatar]}
+                  photos={this.state.avatar}
                   maxPhotoLength={1}
-                  // onFileUpload={this.onFileUpload}
+                  onFileUpload={this.uploadAvtar.bind(this)}
+                  removeFileUpload={this.removeAvtar.bind(this)}
                 />
               </Right>
             </ListItem>
@@ -102,20 +97,20 @@ class UserInfoSetting extends Component<Props> {
               <Body />
               <Right>
                 <Checkbox
-                  checked={this.state.sex === true}
+                  checked={this.state.sex === '1'}
                   onChange={(event) => {
                     if (event.target.checked) {
-                      this.setState({ sex: true })
+                      this.setState({ sex: '1' })
                     }
                   }}
                 >
                   <Icon name="male" style={{ color: '#29A1F7', fontSize: 20, marginRight: 10 }} />
                 </Checkbox>
                 <Checkbox
-                  checked={this.state.sex === false}
+                  checked={this.state.sex === '0'}
                   onChange={(event) => {
                     if (event.target.checked) {
-                      this.setState({ sex: false })
+                      this.setState({ sex: '0' })
                     }
                   }}
                 >
@@ -123,7 +118,7 @@ class UserInfoSetting extends Component<Props> {
                 </Checkbox>
               </Right>
             </ListItem>
-            <View>
+            {/* <View>
               <Picker
                 data={DATA}
                 cols={2}
@@ -136,25 +131,82 @@ class UserInfoSetting extends Component<Props> {
               >
                 <List.Item arrow="horizontal">所在地区</List.Item>
               </Picker>
-            </View>
+            </View> */}
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
-              <Icon active name="person" />
-              <Input placeholder="姓名" value={this.props.myUsermeta.truename} />
+              <Icon active name="leaf" />
+              <Input
+                placeholder="昵称"
+                value={this.state.nickname}
+                onChangeText={(nickname) => this.setState({ nickname })}
+              />
             </Item>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
-              <Icon active name="home" />
-              <Input placeholder="公司" />
+              <Icon active name="contact" />
+              <Input
+                placeholder="真名"
+                value={this.state.truename}
+                onChangeText={(truename) => this.setState({ truename })}
+              />
+            </Item>
+            <Item style={{ marginLeft: 15, paddingRight: 15 }}>
+              <Icon active name="apps" />
+              <Input placeholder="工作" value={this.state.job}
+                onChangeText={(job) => this.setState({ job })}/>
             </Item>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
               <Icon active name="school" />
-              <Input placeholder="学校" />
+              <Input
+                placeholder="学校"
+                value={this.state.school}
+                onChangeText={(school) => this.setState({ school })}
+              />
+            </Item>
+            <Item style={{ marginLeft: 15, paddingRight: 15 }}>
+              <Icon active name="paper-plane" />
+              <Input
+                placeholder="学历"
+                value={this.state.education}
+                onChangeText={(education) => this.setState({ education })}
+              />
             </Item>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
               <Form>
-                <Textarea rowSpan={5} placeholder="我的格言" />
+                <Textarea
+                  rowSpan={5}
+                  placeholder="我的介绍"
+                  value={this.state.userIntroduce}
+                  onChangeText={(userIntroduce) => this.setState({ userIntroduce })}
+                />
               </Form>
             </Item>
-            <Button block style={{ margin: 10 }} onPress={() => console.log(this.state)}>
+            {/* <Button block style={{ margin: 10 }} onPress={() => console.log(this.props.myUsermeta)}>
+              <Text>保存</Text>
+            </Button> */}
+            <Button
+              block
+              style={{ margin: 10 }}
+              onPress={() =>
+                api.userHome.updateUserInfo({
+                  umetaId: this.props.myUsermeta.umetaId,
+                  ...this.state
+                  // avatar: this.state.avatar[0],
+                  // sex: this.state.sex ? 1 : 0,
+                  // nickname: this.state.nickname,
+                  // truename: this.state.truename,
+                  // job: this.state.job,
+                  // school: this.state.school,
+                  // education: this.state.education,
+                  // userIntroduce: this.state.userIntroduce
+                }).then(res=> {
+                  this.props.handleUsermeta(this.state)
+                  Toast.show({
+                    text: '保存成功',
+                    type: 'success'
+                  })
+                  this.props.navigation.goBack()
+                })
+              }
+            >
               <Text>保存</Text>
             </Button>
           </Content>

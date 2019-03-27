@@ -46,8 +46,19 @@ class UserHome extends Component<Props> {
             <Text style={{ lineHeight: 24 }}>
               {this.props.navigation.getParam('usermeta').nickname}
             </Text>
-            <Text note style={{ fontSize: 12 }}>
+            {/* <Text note style={{ fontSize: 12 }}>
               16级温州职业技术学院
+            </Text> */}
+            <Text note style={{ fontSize: 12 }}>
+              {`${
+                this.props.navigation.getParam('usermeta').school === ''
+                  ? '加利福尼亚大学'
+                  : this.props.navigation.getParam('usermeta').school
+              } · ${
+                this.props.navigation.getParam('usermeta').job === ''
+                  ? '在校学生'
+                  : this.props.navigation.getParam('usermeta').job
+              }`}
             </Text>
             {/* <Button
               style={{ margin: 5, alignSelf: 'center' }}

@@ -21,6 +21,9 @@ const userHome = {
         token
       }
     })
+  },
+  updateUserInfo(usermeta:any){
+    return axios.put(`${base.bd}/usermeta`, JSON.stringify(usermeta))
   }
   // 其他接口…………
 }

@@ -55,11 +55,13 @@ class UserHome extends Component<Props> {
                 uri: this.props.myUsermeta.avatar
               }}
             />
-            <Text style={{ lineHeight:24 }}>{this.props.myUsermeta.nickname}</Text>
+            <Text style={{ lineHeight: 24 }}>{this.props.myUsermeta.nickname}</Text>
             <Text note style={{ fontSize: 12 }}>
-              {this.props.myUsermeta.school === ''
-                ? '加利福尼亚大学'
-                : this.props.myUsermeta.school}
+              {`${
+                this.props.myUsermeta.school === ''
+                  ? '加利福尼亚大学'
+                  : this.props.myUsermeta.school
+              } · ${this.props.myUsermeta.job === '' ? '在校学生' : this.props.myUsermeta.job}`}
             </Text>
             <Button
               style={{ margin: 5, alignSelf: 'center' }}
