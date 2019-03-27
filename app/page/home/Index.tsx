@@ -63,7 +63,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-          .then(()=>this.props.navigation.navigate('编辑个人资料'))
+          .then(()=>this.props.navigation.navigate('完善资料'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(

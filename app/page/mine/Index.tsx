@@ -53,10 +53,21 @@ class MineIndex extends Component<Props> {
             </Left>
             <Body>
               <Text style={{ lineHeight: 30, fontSize: 16 }}>{this.props.myUsermeta.nickname}</Text>
-              <Text note style={{ lineHeight: 14, fontSize: 10 }}>
-                {this.props.myUsermeta.school === ''
-                  ? '加利福尼亚大学'
-                  : this.props.myUsermeta.school}
+              <Text>
+                <Text style={{ lineHeight: 14, fontSize: 10 }}> 就读于 </Text>
+                <Text note style={{ lineHeight: 14, fontSize: 10 }}>
+                  {this.props.myUsermeta.school === ''
+                    ? '加利福尼亚大学'
+                    : this.props.myUsermeta.school}
+                </Text>
+              </Text>
+              <Text>
+                <Text style={{ lineHeight: 14, fontSize: 10 }}> 就职于 </Text>
+                <Text note style={{ lineHeight: 14, fontSize: 10 }}>
+                  {this.props.myUsermeta.school === ''
+                    ? '加利福尼亚大学'
+                    : this.props.myUsermeta.school}
+                </Text>
               </Text>
               <Text note style={{ lineHeight: 14, fontSize: 10 }}>
                 {this.props.myUsermeta.job === '' ? '在校学生' : this.props.myUsermeta.job}

@@ -29,12 +29,16 @@ import {
 import { string } from 'prop-types'
 import React, { Component } from 'react'
 
+import actions from '@store/action/Index'
+import { connect } from 'react-redux'
+
 const EDU_DATA = require('./SetEducationEdu.json')
 const MAJOR_DATA = require('./SetEducationMajor.json')
 const SCHOOL_DATA = require('./SetEducationSchool.json')
-
-export default class UserExperience extends Component {
+class UserExperience extends Component {
+  
   public state = {
+    truename: '',
     edu: [],
     admission: undefined,
     school: [],
@@ -60,7 +64,7 @@ export default class UserExperience extends Component {
                 // extra="元"
                 // placeholder="有标签"
               >
-                工作经验
+                真名
               </InputItem>
               <Picker
                 data={EDU_DATA}
@@ -133,3 +137,25 @@ export default class UserExperience extends Component {
     )
   }
 }
+
+
+const mapStateToProps = (state: any): Object => {
+  console.log('store中', state)
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token,
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 发送行为
+let handleUsermeta = actions.myUsermeta.handleUsermeta
+const mapDispatchToProps = {
+  handleUsermeta
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserExperience)
