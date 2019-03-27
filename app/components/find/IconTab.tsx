@@ -188,7 +188,7 @@ export default withNavigation(
                   }
                 >
                   <View style={styles.iconItem}>
-                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Image style={styles.icon} source={require('@image/find/topic.png')} />
                     <Text>话题</Text>
                   </View>
                 </TouchableOpacity>
@@ -198,7 +198,7 @@ export default withNavigation(
                   }
                 >
                   <View style={styles.iconItem}>
-                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Image style={styles.icon} source={require('@image/find/offer.png')} />
                     <Text>招聘</Text>
                   </View>
                 </TouchableOpacity>
@@ -208,7 +208,7 @@ export default withNavigation(
                   }
                 >
                   <View style={styles.iconItem}>
-                    <Image style={styles.icon} source={require('@image/find/kaihei.png')} />
+                    <Image style={styles.icon} source={require('@image/find/donate.png')} />
                     <Text>捐赠</Text>
                   </View>
                 </TouchableOpacity>

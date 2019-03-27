@@ -17,13 +17,13 @@ import {
   Icon,
   Input,
   Item,
-  Label,
   Left,
   ListItem,
   Right,
   Switch,
   Text,
   Textarea,
+  Toast,
   View
 } from 'native-base'
 import { string } from 'prop-types'
@@ -32,18 +32,32 @@ import React, { Component } from 'react'
 import actions from '@store/action/Index'
 import { connect } from 'react-redux'
 
+import { NavigationScreenProps } from 'react-navigation'
+
+import api from '@api/index'
+
 const EDU_DATA = require('./SetEducationEdu.json')
 const MAJOR_DATA = require('./SetEducationMajor.json')
 const SCHOOL_DATA = require('./SetEducationSchool.json')
-class UserExperience extends Component {
-  
+
+interface Props extends NavigationScreenProps {
+  myUsermeta: any
+  handleUsermeta: Function
+}
+
+class UserExperience extends Component<Props> {
   public state = {
-    truename: '',
-    edu: [],
-    admission: undefined,
-    school: [],
-    major: [],
-    value: ''
+    truename: this.props.myUsermeta.truename,
+    education: this.props.myUsermeta.education,
+    admission: new Date(this.props.myUsermeta.admission),
+    school: this.props.myUsermeta.school,
+    major: this.props.myUsermeta.major,
+    job: this.props.myUsermeta.job
+  }
+
+  public constructor(props: Props) {
+    super(props)
+    // console.log(this.props.myUsermeta.admission)
   }
 
   public render() {
@@ -52,77 +66,84 @@ class UserExperience extends Component {
         <Container>
           <Content>
             <Form>
-            <InputItem
+              <InputItem
                 clear
                 // error
-                value={this.state.value}
-                onChange={(value) => {
+                value={this.state.truename}
+                onChange={(truename) => {
                   this.setState({
-                    value
+                    truename
+                  })
+                }}
+                // extra={this.state.truename}
+                // placeholder="有标签"
+              >
+                真名
+              </InputItem>
+              <InputItem
+                clear
+                // error
+                value={this.state.education}
+                onChange={(education) => {
+                  this.setState({
+                    education
                   })
                 }}
                 // extra="元"
                 // placeholder="有标签"
               >
-                真名
+                学历
               </InputItem>
-              <Picker
-                data={EDU_DATA}
-                cols={1}
-                value={this.state.edu}
-                onChange={(value) => {
-                  this.setState({
-                    edu: value
-                  })
-                }}
-              >
-                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>学历</List.Item>
-              </Picker>
               <DatePicker
                 value={this.state.admission}
                 mode="date"
                 minDate={new Date(1960, 1, 1)}
                 maxDate={new Date()}
-                onChange={(value) => {
+                onChange={(admission) => {
                   this.setState({
-                    admission: value
+                    admission
                   })
+                  console.log(admission)
                 }}
                 format="YYYY-MM-DD"
               >
                 <List.Item arrow="horizontal">入学时间</List.Item>
               </DatePicker>
-              <Picker
-                data={SCHOOL_DATA}
-                cols={1}
-                value={this.state.school}
-                onChange={(value) => {
-                  this.setState({
-                    school: value
-                  })
-                }}
-              >
-                <List.Item arrow="horizontal">学校</List.Item>
-              </Picker>
-              <Picker
-                data={MAJOR_DATA}
-                cols={2}
-                value={this.state.major}
-                onChange={(value) => {
-                  this.setState({
-                    major: value
-                  })
-                }}
-              >
-                <List.Item arrow="horizontal" /*onPress={this.onPress}*/>专业</List.Item>
-              </Picker>
               <InputItem
                 clear
                 // error
-                value={this.state.value}
-                onChange={(value) => {
+                value={this.state.school}
+                onChange={(school) => {
                   this.setState({
-                    value
+                    school
+                  })
+                }}
+                // extra="元"
+                // placeholder="有标签"
+              >
+                学校
+              </InputItem>
+              <InputItem
+                clear
+                // error
+                value={this.state.major}
+                onChange={(major) => {
+                  this.setState({
+                    major
+                  })
+                }}
+                // extra="元"
+                // placeholder="有标签"
+              >
+                专业
+              </InputItem>
+              <InputItem
+                clear
+                // error
+                value={this.state.job}
+                onChange={(job) => {
+                  this.setState({
+                    job
                   })
                 }}
                 // extra="元"
@@ -131,13 +152,41 @@ class UserExperience extends Component {
                 就业岗位
               </InputItem>
             </Form>
+            <Button
+              block
+              style={{ margin: 10 }}
+              onPress={() =>
+                api.userHome
+                  .updateUserInfo({
+                    umetaId: this.props.myUsermeta.umetaId,
+                    ...this.state
+                    // avatar: this.state.avatar[0],
+                    // sex: this.state.sex ? 1 : 0,
+                    // nickname: this.state.nickname,
+                    // truename: this.state.truename,
+                    // job: this.state.job,
+                    // school: this.state.school,
+                    // education: this.state.education,
+                    // userIntroduce: this.state.userIntroduce
+                  })
+                  .then((res) => {
+                    this.props.handleUsermeta(this.state)
+                    Toast.show({
+                      text: '保存成功',
+                      type: 'success'
+                    })
+                    this.props.navigation.goBack()
+                  })
+              }
+            >
+              <Text>保存</Text>
+            </Button>
           </Content>
         </Container>
       </Provider>
     )
   }
 }
-
 
 const mapStateToProps = (state: any): Object => {
   console.log('store中', state)
