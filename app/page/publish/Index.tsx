@@ -27,26 +27,19 @@ import {
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+import CameraButton from '@app/components/CameraButton'
+
+import api from '@api/index'
 export interface State {
   inputContent: string | undefined
-  images: { url: string; id: string }[]
+  photos: Array<string>
 }
 
-interface Props extends NavigationScreenProps {
-}
+interface Props extends NavigationScreenProps {}
 class Publish extends React.Component<Props, State> {
   public state: State = {
     inputContent: '',
-    images: [
-      {
-        url: 'https://zos.alipayobjects.com/rmsportal/WCxfiPKoDDHwLBM.png',
-        id: '2121'
-      },
-      {
-        url: 'https://zos.alipayobjects.com/rmsportal/WCxfiPKoDDHwLBM.png',
-        id: '2122'
-      }
-    ]
+    photos: []
   }
 
   public constructor(props: Props) {
@@ -58,18 +51,31 @@ class Publish extends React.Component<Props, State> {
   }
   public publish = () => {
     console.log(this.state.inputContent)
-    console.log(this.props.navigation)
-    console.log('publish内部')
+    // console.log(this.props.navigation)
+    // console.log('publish内部')
   }
 
-  public handleFileChange = (images: any) => {
-    if (this.state.images.length <= 8) {
-      this.setState({
-        images
-      })
-    } else {
-      Toast.info('最多只能上传9张图片哦^_^')
-    }
+  public uploadAvtar(formData: any) {
+    api.file.upload(formData).then((res) => {
+      // console.log(res)
+      this.setState(
+        {
+          photos: this.state.photos.concat(res.data.data)
+        }
+        // () => console.log(this.state.photos)
+      )
+    })
+  }
+
+  public removeAvtar(index: number) {
+    this.state.photos.splice(index, 1)
+    this.setState(
+      {
+        photos: this.state.photos
+      },
+      // () => console.log(this.state.photos)
+    )
+    // console.log(this.state.photos.splice(index, 1))
   }
 
   public render() {
@@ -88,8 +94,20 @@ class Publish extends React.Component<Props, State> {
             rows={4}
             style={{ height: 200, width: wp('100%') }}
           />
-          <View style={{ width: wp('83%'),/* borderWidth: 1, borderColor: 'red',*/ marginTop: 5 }}>
-            <ImagePicker onChange={this.handleFileChange} files={this.state.images} />
+          <View
+            style={{
+              width: wp('83%'),
+              /* borderWidth: 1, borderColor: 'red',*/ marginTop: 5,
+              flexDirection: 'row'
+            }}
+          >
+            <CameraButton
+              style={{ width: 65, height: 65 }}
+              photos={this.state.photos}
+              maxPhotoLength={9}
+              onFileUpload={this.uploadAvtar.bind(this)}
+              removeFileUpload={this.removeAvtar.bind(this)}
+            />
           </View>
         </View>
       </Provider>

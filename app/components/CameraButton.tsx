@@ -66,53 +66,67 @@ class CameraButton extends React.Component<Props, State> {
 
   public render() {
     return (
-      <TouchableOpacity
-        onPress={
-          this.props.photos.length < this.props.maxPhotoLength
-            ? this.showImagePicker.bind(this)
-            : () =>
-                Toast.show({
-                  text: '不能再上传更多了哦',
-                  type: 'danger'
-                })
-        }
-        style={[this.props.style, styles.cameraBtn]}
-      >
-        <View>
+      <View style={[this.props.style, styles.cameraBtn, { flexDirection: 'row' }]}>
+        <View style={{ flexDirection: 'row' }}>
           {this.renderItem()}
           {/* {conText} */}
         </View>
-      </TouchableOpacity>
+      </View>
     )
   }
 
   public renderItem() {
     let photos = this.props.photos
     // console.log('photos', photos)
-    return photos.length >= 1 ? (
-      photos.slice(0, this.props.maxPhotoLength).map((item, index) => (
-        <View key={index}>
-          <Image
-            source={{
-              uri: item
-            }}
-            key={index}
-            style={{ width: 65, height: 65 }}
-          />
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        {photos.slice(0, this.props.maxPhotoLength).map((item, index) => (
+          <View key={index} style={{ flexDirection: 'row' }}>
+            <Image
+              source={{
+                uri: item
+              }}
+              key={index}
+              style={{ width: 65, height: 65, margin: 4, flexDirection: 'row' }}
+            />
+            <TouchableOpacity
+              style={styles.countBox}
+              activeOpacity={0.7}
+              onPress={() => {
+                this.props.removeFileUpload(index)
+              }}
+            >
+              {/* <Text style={styles.count}>{photos.length}</Text> */}
+              {/* <Text style={styles.count}>×</Text> */}
+              <Icon name="ios-close" style={{ color: '#FFF', fontSize: 20 }} />
+            </TouchableOpacity>
+          </View>
+        ))}
+        {photos.length >= this.props.maxPhotoLength ? null : (
           <TouchableOpacity
-            style={styles.countBox}
-            onPress={() => {
-              this.props.removeFileUpload(index)
+            activeOpacity={0.7}
+            onPress={
+              this.props.photos.length < this.props.maxPhotoLength
+                ? this.showImagePicker.bind(this)
+                : () =>
+                    Toast.show({
+                      text: '不能再上传更多了哦',
+                      type: 'danger'
+                    })
+            }
+            style={{
+              width: 65,
+              height: 65,
+              margin: 4,
+              borderWidth: 1,
+              borderColor: '#bababa',
+              justifyContent: 'center'
             }}
           >
-            {/* <Text style={styles.count}>{photos.length}</Text> */}
-            {/* <Text style={styles.count}>×</Text> */}
-            <Icon name="ios-close" style={{ color: '#FFF', fontSize: 24 }} />
+            <Icon name="md-camera" color="#aaa" size={34} style={{ alignSelf: 'center' }} />
           </TouchableOpacity>
-        </View>
-      ))
-    ) : (
-      <Icon name="md-camera" color="#aaa" size={34} />
+        )}
+      </View>
     )
   }
 
@@ -174,13 +188,13 @@ const styles = StyleSheet.create({
   },
   countBox: {
     position: 'absolute',
-    right: -5,
+    right: -3,
     top: -5,
     alignItems: 'center',
-    backgroundColor: 'red',
-    width: 22,
-    height: 22,
-    borderRadius: 11,
+    backgroundColor: '#bababa',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
     justifyContent: 'center',
     zIndex: 99
   }

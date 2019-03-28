@@ -53,12 +53,12 @@ class UserInfoSetting extends Component<Props> {
 
   public uploadAvtar(formData: any) {
     api.file.upload(formData).then((res) => {
-      console.log(res)
+      // console.log(res)
       this.setState(
         {
           avatar: this.state.avatar.concat(res.data.data)
         },
-        () => console.log(this.state.avatar)
+        // () => console.log(this.state.avatar)
       )
     })
   }
@@ -186,25 +186,30 @@ class UserInfoSetting extends Component<Props> {
               block
               style={{ margin: 10 }}
               onPress={() =>
-                api.userHome.updateUserInfo({
-                  umetaId: this.props.myUsermeta.umetaId,
-                  ...this.state
-                  // avatar: this.state.avatar[0],
-                  // sex: this.state.sex ? 1 : 0,
-                  // nickname: this.state.nickname,
-                  // truename: this.state.truename,
-                  // job: this.state.job,
-                  // school: this.state.school,
-                  // education: this.state.education,
-                  // userIntroduce: this.state.userIntroduce
-                }).then(res=> {
-                  this.props.handleUsermeta(this.state)
-                  Toast.show({
-                    text: '保存成功',
-                    type: 'success'
+                {
+                  const myUsermeta = {
+                    umetaId: this.props.myUsermeta.umetaId,
+                    // ...this.state,
+                    avatar: this.state.avatar[0],
+                    sex: this.state.sex ? 1 : 0,
+                    nickname: this.state.nickname,
+                    truename: this.state.truename,
+                    job: this.state.job,
+                    school: this.state.school,
+                    education: this.state.education,
+                    userIntroduce: this.state.userIntroduce
+                  }
+                  api.userHome.updateUserInfo({
+                    ...myUsermeta
+                  }).then(res=> {
+                    this.props.handleUsermeta(myUsermeta)
+                    Toast.show({
+                      text: '保存成功',
+                      type: 'success'
+                    })
+                    this.props.navigation.goBack()
                   })
-                  this.props.navigation.goBack()
-                })
+                }
               }
             >
               <Text>保存</Text>
@@ -217,7 +222,7 @@ class UserInfoSetting extends Component<Props> {
 }
 
 const mapStateToProps = (state: any): Object => {
-  console.log('store中', state)
+  // console.log('store中', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token,

@@ -103,7 +103,7 @@ class UserExperience extends Component<Props> {
                   this.setState({
                     admission
                   })
-                  console.log(admission)
+                  // console.log(admission)
                 }}
                 format="YYYY-MM-DD"
               >
@@ -189,7 +189,7 @@ class UserExperience extends Component<Props> {
 }
 
 const mapStateToProps = (state: any): Object => {
-  console.log('store中', state)
+  // console.log('store中', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token,
