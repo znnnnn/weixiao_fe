@@ -31,7 +31,7 @@ import api from '@api/index'
 const DATA = require('./data.json')
 
 interface Props extends NavigationScreenProps {
-  myUsermeta: any,
+  myUsermeta: any
   handleUsermeta: Function
 }
 
@@ -40,7 +40,7 @@ class UserInfoSetting extends Component<Props> {
     avatar: this.props.myUsermeta.avatar === '' ? [''] : [this.props.myUsermeta.avatar],
     nickname: this.props.myUsermeta.nickname,
     truename: this.props.myUsermeta.truename,
-    job : this.props.myUsermeta.job,
+    job: this.props.myUsermeta.job,
     school: this.props.myUsermeta.school,
     sex: this.props.myUsermeta.sex,
     education: this.props.myUsermeta.education,
@@ -57,7 +57,7 @@ class UserInfoSetting extends Component<Props> {
       this.setState(
         {
           avatar: this.state.avatar.concat(res.data.data)
-        },
+        }
         // () => console.log(this.state.avatar)
       )
     })
@@ -150,8 +150,11 @@ class UserInfoSetting extends Component<Props> {
             </Item>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
               <Icon active name="apps" />
-              <Input placeholder="工作" value={this.state.job}
-                onChangeText={(job) => this.setState({ job })}/>
+              <Input
+                placeholder="工作"
+                value={this.state.job}
+                onChangeText={(job) => this.setState({ job })}
+              />
             </Item>
             <Item style={{ marginLeft: 15, paddingRight: 15 }}>
               <Icon active name="school" />
@@ -185,32 +188,40 @@ class UserInfoSetting extends Component<Props> {
             <Button
               block
               style={{ margin: 10 }}
-              onPress={() =>
-                {
-                  const myUsermeta = {
-                    umetaId: this.props.myUsermeta.umetaId,
-                    // ...this.state,
-                    avatar: this.state.avatar[0],
-                    sex: this.state.sex ? 1 : 0,
-                    nickname: this.state.nickname,
-                    truename: this.state.truename,
-                    job: this.state.job,
-                    school: this.state.school,
-                    education: this.state.education,
-                    userIntroduce: this.state.userIntroduce
-                  }
-                  api.userHome.updateUserInfo({
-                    ...myUsermeta
-                  }).then(res=> {
-                    this.props.handleUsermeta(myUsermeta)
-                    Toast.show({
-                      text: '保存成功',
-                      type: 'success'
-                    })
-                    this.props.navigation.goBack()
-                  })
+              onPress={() => {
+                const myUsermeta = {
+                  umetaId: this.props.myUsermeta.umetaId,
+                  // ...this.state,
+                  avatar: this.state.avatar[0],
+                  sex: this.state.sex ? 1 : 0,
+                  nickname: this.state.nickname,
+                  truename: this.state.truename,
+                  job: this.state.job,
+                  school: this.state.school,
+                  education: this.state.education,
+                  userIntroduce: this.state.userIntroduce
                 }
-              }
+                api.userHome
+                  .updateUserInfo({
+                    ...myUsermeta
+                  })
+                  .then((res) => {
+                    api.usermeta
+                      .getUsermeta(this.props.myUsermeta.umetaId)
+                      .then((res) => {
+                        // console.log(asyncToken,'第一次请求用户信息!!',res.data.data)
+                        // console.log(res.data.data)
+                        this.props.handleUsermeta(res.data.data)
+                      })
+                      .then(() => {
+                        Toast.show({
+                          text: '保存成功',
+                          type: 'success'
+                        })
+                        this.props.navigation.goBack()
+                      })
+                  })
+              }}
             >
               <Text>保存</Text>
             </Button>

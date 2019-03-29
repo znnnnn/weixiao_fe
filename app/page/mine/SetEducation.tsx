@@ -195,7 +195,7 @@ class SetEducation extends React.Component<Props> /*State*/ {
 
                   setTimeout(() => {
                     console.log('props', this.props)
-                    api.setUsermeta.setUsermeta(this.props.setUsermeta)
+                    api.usermeta.setUsermeta(this.props.setUsermeta)
                   }, 1000)
                   this.props.navigation.navigate('登录')
                 } else {

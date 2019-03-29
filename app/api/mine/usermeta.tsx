@@ -4,7 +4,7 @@ import base from '../base' // 导入接口域名列表
 // import createStore from '../../store/index'
 // var store = createStore()
 
-const register = {
+const usermeta = {
   setUsermeta(usermeta:Object) {
     // console.log(qs.stringify(
     //   {
@@ -17,8 +17,14 @@ const register = {
       `${base.bd}/usermeta/set`,
       JSON.stringify(usermeta)
     )
+  },
+
+  getUsermeta(umetaId:number){
+    return axios.get(
+      `${base.bd}/usermeta/${umetaId}`,
+    )
   }
   // 其他接口…………
 }
 
-export default register
+export default usermeta

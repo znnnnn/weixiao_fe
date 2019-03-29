@@ -170,12 +170,17 @@ class UserExperience extends Component<Props> {
                     // userIntroduce: this.state.userIntroduce
                   })
                   .then((res) => {
-                    this.props.handleUsermeta(this.state)
-                    Toast.show({
-                      text: '保存成功',
-                      type: 'success'
+                    api.usermeta.getUsermeta(this.props.myUsermeta.umetaId).then((res) => {
+                      // console.log(asyncToken,'第一次请求用户信息!!',res.data.data)
+                      // console.log(res.data.data)
+                      this.props.handleUsermeta(res.data.data)
+                    }).then(() => {
+                      Toast.show({
+                        text: '保存成功',
+                        type: 'success'
+                      })
+                      this.props.navigation.goBack()
                     })
-                    this.props.navigation.goBack()
                   })
               }
             >
@@ -189,7 +194,7 @@ class UserExperience extends Component<Props> {
 }
 
 const mapStateToProps = (state: any): Object => {
-  // console.log('store中', state)
+  console.log('store中', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token,
