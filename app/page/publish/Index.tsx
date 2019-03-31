@@ -7,20 +7,9 @@ import {
   TextareaItem,
   Toast
 } from '@ant-design/react-native'
-import Icon from '@app/util/icon'
-import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import {
-  Alert,
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native'
+import { View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -30,12 +19,20 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 import CameraButton from '@app/components/CameraButton'
 
 import api from '@api/index'
+import actions from '@store/action/Index'
+import { connect } from 'react-redux'
+
 export interface State {
   inputContent: string | undefined
   photos: Array<string>
 }
 
-interface Props extends NavigationScreenProps {}
+interface Props extends NavigationScreenProps {
+  handleLogin: Function
+  token: string
+  handleUsermeta: Function
+  myUsermeta: any
+}
 class Publish extends React.Component<Props, State> {
   public state: State = {
     inputContent: '',
@@ -47,10 +44,18 @@ class Publish extends React.Component<Props, State> {
   }
   public componentDidMount() {
     this.props.navigation.setParams({ publish: this.publish })
-    console.log(this.state.inputContent)
+    // console.log(this.state.inputContent)
   }
   public publish = () => {
-    console.log(this.state.inputContent)
+    // console.log(this.state.inputContent)
+    let posts = {
+      postAuthor: this.props.myUsermeta.userId,
+      postStatus: 1,
+      postContent: this.state.inputContent,
+      postCat: 'dynamic',
+      postImage: this.state.photos
+    }
+    api.publish.post(posts).then(res=> console.log(res))
     // console.log(this.props.navigation)
     // console.log('publish内部')
   }
@@ -72,7 +77,7 @@ class Publish extends React.Component<Props, State> {
     this.setState(
       {
         photos: this.state.photos
-      },
+      }
       // () => console.log(this.state.photos)
     )
     // console.log(this.state.photos.splice(index, 1))
@@ -125,4 +130,23 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Publish
+const mapStateToProps = (state: any) => {
+  // console.log('state', state)
+  return {
+    // 获取 state 变化
+    token: state.handleLogin.token,
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 发送行为
+let handleUsermeta = actions.myUsermeta.handleUsermeta
+const mapDispatchToProps = {
+  handleUsermeta
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Publish)

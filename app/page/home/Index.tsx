@@ -28,6 +28,7 @@ export interface State {
   inputBorderColor: string
   passCanSee: boolean
   avatarList: Array<any>
+  postsList: Array<any>
 }
 
 export interface Props extends NavigationScreenProps {
@@ -43,7 +44,8 @@ class Home extends React.Component<Props, State> {
     password: '',
     inputBorderColor: '#EEEEEE',
     passCanSee: true,
-    avatarList: []
+    avatarList: [],
+    postsList: []
   }
 
   public constructor(props: Props) {
@@ -63,7 +65,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-          .then(()=>this.props.navigation.navigate('个人经历'))
+          // .then(() => this.props.navigation.navigate('微校正文'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -80,6 +82,17 @@ class Home extends React.Component<Props, State> {
     }
   }
 
+  public getPostsList() {
+    api.home.getPostsList().then((res) => {
+      this.setState(
+        {
+          postsList: res.data.data.list
+        },
+        () => console.log(this.state.postsList)
+      )
+    })
+  }
+
   public componentWillMount() {
     api.home.getUsermetaList().then((res) => {
       this.setState({
@@ -93,6 +106,7 @@ class Home extends React.Component<Props, State> {
   public componentDidMount() {
     // 获取本地存储的登录状态
     this._getAsynToken()
+    this.getPostsList()
   }
 
   public render() {
@@ -118,15 +132,15 @@ class Home extends React.Component<Props, State> {
             >
               {this.state.avatarList.map((item, index) => {
                 if (item.userId !== this.props.myUsermeta.userId) {
-                return <Avatar usermeta={item} key={index} />
+                  return <Avatar usermeta={item} key={index} />
                 }
               })}
             </ScrollView>
           </View>
           <Content>
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {this.state.postsList.map((item, index) => (
+              <PostCard postsItemData={item} key={index} />
+            ))}
           </Content>
         </Container>
       </Provider>

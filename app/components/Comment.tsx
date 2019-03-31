@@ -9,7 +9,7 @@ const deviceName = DeviceInfo.getDeviceName()
 import CommentListItem from '@components/CommentListItem'
 
 const renderContent = (tab: any, index: any) => {
-  const content = [1, 2, 3, 4, 5, 6, 7, 8].map((i) => {
+  const content = [1, 2, 3, 4, 5, 6, 7, 8].map((i,index) => {
     return (
       <CommentListItem
         avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
@@ -17,6 +17,7 @@ const renderContent = (tab: any, index: any) => {
         tag="工程师"
         postTime={getTimeDiff(1356470770)}
         deviceName={deviceName}
+        key={index}
       />
     )
   })

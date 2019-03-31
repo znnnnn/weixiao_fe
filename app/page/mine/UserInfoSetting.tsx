@@ -37,6 +37,7 @@ interface Props extends NavigationScreenProps {
 
 class UserInfoSetting extends Component<Props> {
   public state = {
+    // 避免报错
     avatar: this.props.myUsermeta.avatar === '' ? [''] : [this.props.myUsermeta.avatar],
     nickname: this.props.myUsermeta.nickname,
     truename: this.props.myUsermeta.truename,

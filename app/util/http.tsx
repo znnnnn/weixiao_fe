@@ -4,7 +4,7 @@
  */
 // import createStore from '@src/store/index'
 import axios,{AxiosRequestConfig} from 'axios'
-import { Toast } from 'native-base'
+import { Spinner,Toast } from 'native-base'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 // import { Toast } from 'vant'
 

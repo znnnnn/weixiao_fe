@@ -17,7 +17,6 @@ import {
   View,
   WebView
 } from 'react-native'
-import KSYVideo from 'react-native-ksyvideo'
 // import Video from 'react-native-af-video-player'
 // import Video, { Container, ScrollView } from 'react-native-af-video-player'
 import Orientation from 'react-native-orientation'
@@ -27,7 +26,7 @@ import {
 } from 'react-native-responsive-screen'
 // import VideoPlayer from 'react-native-video-controls'
 import Video from 'react-native-video'
-import { NavigationScreenProps } from 'react-navigation'
+import { NavigationScreenProps,withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import getTimeDiff from '@util/time'
@@ -45,45 +44,49 @@ export interface State {
   videoWidth: number
   videoHeight: number
   isFullScreen: boolean
+  inputContent: string
+  postsItemData: any
 }
 
 export interface Props extends NavigationScreenProps {
   defalutProps: string
   token: string
 }
-
-export default class SingPost extends React.Component<Props, State> {
-  public static navigationOptions = ({ navigation }) => {
-    const { state } = navigation
-    // Setup the header and tabBarVisible status
-    const header = state.params && (state.params.fullscreen ? undefined : null)
-    const tabBarVisible = state.params ? state.params.fullscreen : true
-    return {
-      // For stack navigators, you can hide the header bar like so
-      header,
-      // For the tab navigators, you can hide the tab bar like so
-      tabBarVisible
-    }
-  }
+class SingPost extends React.Component<Props, State> {
+  // public static navigationOptions = ({ navigation }) => {
+  //   const { state } = navigation
+  //   // Setup the header and tabBarVisible status
+  //   const header = state.params && (state.params.fullscreen ? undefined : null)
+  //   const tabBarVisible = state.params ? state.params.fullscreen : true
+  //   return {
+  //     // For stack navigators, you can hide the header bar like so
+  //     header,
+  //     // For the tab navigators, you can hide the tab bar like so
+  //     tabBarVisible
+  //   }
+  // }
   public state: State = {
     videoWidth: 40,
     videoHeight: 40,
-    isFullScreen: false
+    isFullScreen: false,
+    inputContent: '',
+    postsItemData: this.props.navigation.getParam('postsItemData')
   }
 
   public constructor(props: Props) {
     super(props)
-    // console.log(this.props.token)
   }
 
-  public onFullScreen(status) {
+  public onFullScreen(status:boolean) {
     // Set the params to pass in fullscreen status to navigationOptions
     this.props.navigation.setParams({
       fullscreen: !status
     })
   }
 
-  public componentDidMount() {}
+  public componentDidMount() {
+    console.log(this.props)
+  }
 
   public render() {
     return (
@@ -94,22 +97,20 @@ export default class SingPost extends React.Component<Props, State> {
               flex: 1,
               width: wp('100%'),
               backgroundColor: '#fff',
-              // borderColor: 'red',
-              // borderWidth: 1,
               alignItems: 'center'
             }}
           >
             <View style={{ alignItems: 'flex-start', width: wp('90%'), marginTop: 15 }}>
               <PostUserCard
-                avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-                nickname="Alice"
-                tag="工程师"
-                postTime={getTimeDiff(1356470770)}
-                deviceName={deviceName}
+                avatarUri={this.state.postsItemData.usermeta.avatar}
+                nickname={this.state.postsItemData.usermeta.nickname}
+                tag={this.state.postsItemData.usermeta.job}
+                postTime={getTimeDiff(this.state.postsItemData.postDate)}
+                deviceName={this.state.postsItemData.postAuthorDevice}
               />
             </View>
             <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
-              我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程我爱编程。
+              {this.state.postsItemData.postContent}
             </Text>
           </View>
           <View
@@ -123,26 +124,7 @@ export default class SingPost extends React.Component<Props, State> {
               paddingTop: 15
             }}
           >
-            {/* <WebView
-              style={{ height: 150,width: wp('90%') }}
-              source={{
-                html:
-                  "<video controls src='http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'></video>"
-              }}
-              allowsInlineMediaPlayback={true}
-              mediaPlaybackRequiresUserAction={true}
-            /> */}
-            {/* <WebView
-              style={{ width: wp('90%'), height: 150 }}
-              javaScriptEnabled={true}
-              domStorageEnabled={true}
-              allowsInlineMediaPlayback={true}
-              mediaPlaybackRequiresUserAction={true}
-              source={{
-                uri: 'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'
-              }}
-            /> */}
-            <Video
+            {/* <Video
               source={{ uri: 'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4' }} // Can be a URL or a local file.
               // ref={(ref) => {
               //   this.player = ref
@@ -151,25 +133,6 @@ export default class SingPost extends React.Component<Props, State> {
               // onError={this.videoError} // Callback when video cannot be loaded
               controls
               style={{width: wp('90%'),height:150}}
-            />
-
-            {/* <Video
-              // autoPlay
-              url={'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4'}
-              // title={title}
-              // logo={logo}
-              // placeholder={placeholder}
-              // onMorePress={() => this.onMorePress()}
-              resizeMode="contain"
-              rotateToFullScreen={true}
-              onFullScreen={(status) => this.onFullScreen(status)}
-              // fullScreenOnly
-              style={{
-                height: 150,
-                borderRadius: 10,
-                width: wp('90%'),
-                overflow: 'hidden'
-              }}
             /> */}
           </View>
           <View style={styles.shareText}>
@@ -225,3 +188,5 @@ const styles = StyleSheet.create({
     fontSize: 24
   }
 })
+
+export default withNavigation(SingPost)

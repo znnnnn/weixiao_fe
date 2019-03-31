@@ -4,25 +4,21 @@ import base from '../base' // 导入接口域名列表
 // import createStore from '../../store/index'
 // var store = createStore()
 
-const Home = {
+const publish = {
   /**
-   * 登录
-   * @param userLogin 用户名
-   * @param userPass 密码
+   *
+   * @param token 用户加密签名
    */
-  getUsermetaList() {
+  post(posts: any) {
     // console.log(qs.stringify(
     //   {
     //     userLogin,
     //     userPass
     //   }
     // ))
-    return axios.get(`${base.bd}/usermeta/`)
-  },
-  getPostsList(){
-    return axios.get(`${base.bd}/posts/`)
+    return axios.post(`${base.bd}/posts`, JSON.stringify(posts))
   }
   // 其他接口…………
 }
 
-export default Home
+export default publish

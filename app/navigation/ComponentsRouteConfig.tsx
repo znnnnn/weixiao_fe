@@ -24,7 +24,10 @@ import React from 'react'
 const RouteComponentsConfig: NavigationRouteConfigMap = {
   微校正文: {
     screen: SinglePost,
-    navigationOptions: ({ navigation }: NavigationScreenProps) => ({ headerTruncatedBackTitle: '' })
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '微校正文',
+      headerTitle: '微校正文'
+    })
   },
   卡片文章列表: {
     screen: SinglePostCardList,

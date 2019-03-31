@@ -19,9 +19,19 @@ const usermeta = {
     )
   },
 
+  /**
+   * 通过用户信息ID查找用户信息
+   * @param umetaId number
+   */
   getUsermeta(umetaId:number){
     return axios.get(
       `${base.bd}/usermeta/${umetaId}`,
+    )
+  },
+
+  getUsermetaByUserId(userId:number){
+    return axios.get(
+      `${base.bd}/usermeta/user/${userId}`,
     )
   }
   // 其他接口…………

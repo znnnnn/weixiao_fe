@@ -9,6 +9,8 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
+import api from '@api/index'
+
 import { ListItem } from 'native-base'
 
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
@@ -23,15 +25,17 @@ export interface State {
   initIndex: number
 }
 
-interface Props extends NavigationScreenProps {}
+interface Props extends NavigationScreenProps {
+  postsItemData: any
+}
 class PostCard extends Component<Props> {
   public state = {
     images: [
-      {
-        url: 'https://oss.miaoroom.com/wp-content/uploads/2019/03/1553149106-3eaff542a49a8af4.png'
-      },
-      { url: 'https://ws2.sinaimg.cn/large/0069wGDkly1fypt7tqu36j30u0190u11.jpg' },
-      { url: 'https://ws4.sinaimg.cn/large/0069wGDkly1fypu1pvnxmj30qo0hswhv.jpg' }
+      // {
+      //   url: 'https://oss.miaoroom.com/weixiao/2019/3/29/4DBFCE27F33C44FA8B2F54A8535FE033.JPG?Expires=1869204625&OSSAccessKeyId=LTAICq734h6sfksn&Signature=WuudwCIJllIzstA8NWkLMFq5KFc%3D'
+      // }
+      // { url: 'https://ws2.sinaimg.cn/large/0069wGDkly1fypt7tqu36j30u0190u11.jpg' },
+      // { url: 'https://ws4.sinaimg.cn/large/0069wGDkly1fypu1pvnxmj30qo0hswhv.jpg' }
     ],
     modalVisible: false,
     initIndex: 0
@@ -39,6 +43,27 @@ class PostCard extends Component<Props> {
 
   public constructor(props: Props) {
     super(props)
+    // console.log(this.props.postsItemData)
+    // api.usermeta.getUsermetaByUserId(this.props.postsItemData.postAuthor).then(
+    //   res => console.log('用户信息：',res.data.data)
+    // )
+  }
+
+  public componentWillMount() {
+    // console.log(this.state.images)
+    if (this.props.postsItemData.postImage !== null) {
+      JSON.parse(this.props.postsItemData.postImage).map((item: string) => {
+        this.state.images.push({ url: item })
+        this.setState({
+          images: this.state.images
+        })
+      })
+    }
+
+    /**
+     * 文章数据通过react navigation传递
+     */
+    // this.props.navigation.setParams({ postsItemData: this.props.postsItemData })
   }
 
   public render() {
@@ -58,21 +83,28 @@ class PostCard extends Component<Props> {
             width: wp('90%')
           }}
         >
-          <PostUserCard
-            avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-            nickname="Alice"
-            tag="工程师"
-            postTime={getTimeDiff(1356470770)}
-            deviceName={deviceName}
-          />
+          {
+            <PostUserCard
+              avatarUri={this.props.postsItemData.usermeta.avatar}
+              nickname={this.props.postsItemData.usermeta.nickname}
+              tag={this.props.postsItemData.usermeta.job}
+              postTime={getTimeDiff(this.props.postsItemData.postDate)}
+              deviceName={this.props.postsItemData.postAuthorDevice}
+            />
+          }
           <Text
             style={{ marginTop: 20, marginBottom: 20 }}
-            onPress={() => this.props.navigation.navigate('微校正文')}
+            onPress={() =>
+              this.props.navigation.navigate('微校正文', {
+                postsItemData: this.props.postsItemData
+              })
+            }
           >
-            我爱编程我爱编程我爱编程我爱编程我爱编程！
+            {this.props.postsItemData.postContent}
           </Text>
           <View style={{ width: wp('90%'), alignItems: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
+              {/* {this.props.postsItemData.postImage.map((item, index) => { */}
               {this.state.images.map((item, index) => {
                 return (
                   <TouchableOpacity
@@ -136,18 +168,27 @@ class PostCard extends Component<Props> {
           <TouchableOpacity>
             <View style={styles.actionButton}>
               <Icon name="pinglun" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>555</Text>
+              <Text style={styles.actions}>
+                {this.props.postsItemData.commentsUsermetaDTOList.length}
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.actionButton}>
               <Icon name="dianzan" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>333</Text>
+              <Text style={styles.actions}>{this.props.postsItemData.upvoteList.length}</Text>
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ width: wp('100%'), height: 15, backgroundColor: '#f4f4f4',borderTopWidth:1,borderTopColor:'#e5e5e5' }}>
-        </View>
+        <View
+          style={{
+            width: wp('100%'),
+            height: 15,
+            backgroundColor: '#f4f4f4',
+            borderTopWidth: 1,
+            borderTopColor: '#e5e5e5'
+          }}
+        />
       </View>
     )
   }
