@@ -4,12 +4,13 @@ import {
   InputItem,
   List,
   Provider,
-  TextareaItem,
-  Toast
+  TextareaItem
 } from '@ant-design/react-native'
 import StyleSheet from '@util/stylesheet'
+import { Toast } from 'native-base'
 import React from 'react'
 import { View } from 'react-native'
+import DeviceInfo from 'react-native-device-info'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -20,10 +21,11 @@ import CameraButton from '@app/components/CameraButton'
 
 import api from '@api/index'
 import actions from '@store/action/Index'
+import fontLength from '@util/fontLength'
 import { connect } from 'react-redux'
 
 export interface State {
-  inputContent: string | undefined
+  inputContent: string
   photos: Array<string>
 }
 
@@ -53,9 +55,30 @@ class Publish extends React.Component<Props, State> {
       postStatus: 1,
       postContent: this.state.inputContent,
       postCat: 'dynamic',
-      postImage: this.state.photos
+      postImage: this.state.photos,
+      postAuthorDevice: DeviceInfo.getDeviceName()
     }
-    api.publish.post(posts).then(res=> console.log(res))
+    if (fontLength(this.state.inputContent) >= 20) {
+      api.publish
+        .post(posts)
+        .then((res) => {
+          Toast.show({
+            text: '发布成功',
+            type: 'success'
+          })
+        })
+        .then(() =>
+          this.setState({
+            inputContent: '',
+            photos: []
+          })
+        )
+    } else {
+      Toast.show({
+        text: '字数最少为20字',
+        type: 'danger'
+      })
+    }
     // console.log(this.props.navigation)
     // console.log('publish内部')
   }
@@ -90,11 +113,12 @@ class Publish extends React.Component<Props, State> {
           <TextareaItem
             placeholder="这一刻你想说..."
             count={1000}
-            onChange={(value) =>
+            onChange={(value: any) =>
               this.setState({
                 inputContent: value
               })
             }
+            value={this.state.inputContent}
             clear={true}
             rows={4}
             style={{ height: 200, width: wp('100%') }}
