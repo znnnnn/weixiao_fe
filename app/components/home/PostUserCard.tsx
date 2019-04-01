@@ -1,21 +1,22 @@
 // import StyleSheet from '@util/stylesheet'
-import {string} from 'prop-types'
-import React, {Component} from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
-
+import { string } from 'prop-types'
+import React, { Component } from 'react'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 // console.log(model)
 
-export interface Props {
-  avatarUri: string
-  nickname: string,
-  tag: string,
-  postTime: string,
+export interface Props extends NavigationScreenProps {
+  // avatarUri: string
+  // nickname: string
+  // tag: string
+  postTime: string
   deviceName: string
+  usermeta: any
 }
 
 class PostUserCard extends Component<Props> {
-  private constructor(props: Props) {
+  public constructor(props: Props) {
     super(props)
     // console.log(11111)
     // console.log(this.props.uri)
@@ -23,24 +24,31 @@ class PostUserCard extends Component<Props> {
 
   public render() {
     return (
-      <View style={{alignItems: 'center', flexDirection: 'row'}}>
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate('用户中心', {
+            usermeta: this.props.usermeta
+          })
+        }
+        style={{ alignItems: 'center', flexDirection: 'row' }}
+      >
         <Image
           source={{
-            uri: this.props.avatarUri
+            uri: this.props.usermeta.avatar
           }}
-          style={{width: 35, height: 35, borderRadius: 17.5}}
+          style={{ width: 35, height: 35, borderRadius: 17.5 }}
         />
-        <View style={{marginLeft: 5, marginTop: 3}}>
-          <View style={{flexDirection: 'row'}}>
-            <Text>{this.props.nickname}</Text>
-            <Text style={styles.tag}>{this.props.tag}</Text>
+        <View style={{ marginLeft: 5, marginTop: 3 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text>{this.props.usermeta.nickname}</Text>
+            <Text style={styles.tag}>{this.props.usermeta.job}</Text>
           </View>
-          <View style={{flexDirection: 'row', marginTop: 3}}>
-            <Text style={[styles.postFrom, {marginRight: 5}]}>{this.props.postTime}</Text>
+          <View style={{ flexDirection: 'row', marginTop: 3 }}>
+            <Text style={[styles.postFrom, { marginRight: 5 }]}>{this.props.postTime}</Text>
             <Text style={styles.postFrom}>来自 {this.props.deviceName}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
@@ -63,4 +71,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default PostUserCard
+export default withNavigation(PostUserCard)

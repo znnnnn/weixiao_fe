@@ -102,9 +102,10 @@ class SingPost extends React.Component<Props, State> {
           >
             <View style={{ alignItems: 'flex-start', width: wp('90%'), marginTop: 15 }}>
               <PostUserCard
-                avatarUri={this.state.postsItemData.usermeta.avatar}
-                nickname={this.state.postsItemData.usermeta.nickname}
-                tag={this.state.postsItemData.usermeta.job}
+                // avatarUri={this.state.postsItemData.usermeta.avatar}
+                // nickname={this.state.postsItemData.usermeta.nickname}
+                // tag={this.state.postsItemData.usermeta.job}
+                usermeta={this.state.postsItemData.usermeta}
                 postTime={getTimeDiff(this.state.postsItemData.postDate)}
                 deviceName={this.state.postsItemData.postAuthorDevice}
               />

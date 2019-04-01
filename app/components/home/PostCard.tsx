@@ -85,9 +85,10 @@ class PostCard extends Component<Props> {
         >
           {
             <PostUserCard
-              avatarUri={this.props.postsItemData.usermeta.avatar}
-              nickname={this.props.postsItemData.usermeta.nickname}
-              tag={this.props.postsItemData.usermeta.job}
+              // avatarUri={this.props.postsItemData.usermeta.avatar}
+              // nickname={this.props.postsItemData.usermeta.nickname}
+              // tag={this.props.postsItemData.usermeta.job}
+              usermeta={this.props.postsItemData.usermeta}
               postTime={getTimeDiff(this.props.postsItemData.postDate)}
               deviceName={this.props.postsItemData.postAuthorDevice}
             />
@@ -103,10 +104,16 @@ class PostCard extends Component<Props> {
             {this.props.postsItemData.postContent}
           </Text>
           <View style={{ width: wp('90%'), alignItems: 'center' }}>
-            <View style={{ flexDirection: 'row' }}>
-              {/* {this.props.postsItemData.postImage.map((item, index) => { */}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                // borderWidth: 1,
+                width: wp('90%')
+              }}
+            >
               {this.state.images.map((item, index) => {
-                return (
+                return index <= 8 ? (
                   <TouchableOpacity
                     onPress={() => {
                       console.log(index)
@@ -128,7 +135,7 @@ class PostCard extends Component<Props> {
                       }}
                     />
                   </TouchableOpacity>
-                )
+                ) : null
               })}
             </View>
           </View>
