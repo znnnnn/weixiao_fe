@@ -26,7 +26,7 @@ import {
 } from 'react-native-responsive-screen'
 // import VideoPlayer from 'react-native-video-controls'
 import Video from 'react-native-video'
-import { NavigationScreenProps,withNavigation } from 'react-navigation'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import getTimeDiff from '@util/time'
@@ -75,9 +75,10 @@ class SingPost extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
+    // console.log(typeof this.state.postsItemData.postImage)
   }
 
-  public onFullScreen(status:boolean) {
+  public onFullScreen(status: boolean) {
     // Set the params to pass in fullscreen status to navigationOptions
     this.props.navigation.setParams({
       fullscreen: !status
@@ -113,6 +114,15 @@ class SingPost extends React.Component<Props, State> {
             <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
               {this.state.postsItemData.postContent}
             </Text>
+            <View style={{ width: wp('90%'), flexDirection: 'row', justifyContent: 'flex-start',marginTop:10 }}>
+              {JSON.parse(this.state.postsItemData.postImage).map((item: string, index: number) => (
+                <Image
+                  source={{ uri: item }}
+                  key={index}
+                  style={{ width: wp('30%')-5, height: wp('30%')-5, margin: 2.5 }}
+                />
+              ))}
+            </View>
           </View>
           <View
             style={{
@@ -187,6 +197,9 @@ const styles = StyleSheet.create({
   },
   shareIcon: {
     fontSize: 24
+  },
+  entry: {
+    width: wp('90%')
   }
 })
 

@@ -30,6 +30,7 @@ class PostUserCard extends Component<Props> {
             usermeta: this.props.usermeta
           })
         }
+        activeOpacity={0.7}
         style={{ alignItems: 'center', flexDirection: 'row' }}
       >
         <Image

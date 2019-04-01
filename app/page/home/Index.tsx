@@ -88,7 +88,7 @@ class Home extends React.Component<Props, State> {
         {
           postsList: res.data.data.list
         },
-        () => console.log(this.state.postsList)
+        // () => console.log(this.state.postsList)
       )
     })
   }

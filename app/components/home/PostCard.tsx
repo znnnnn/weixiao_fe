@@ -47,6 +47,8 @@ class PostCard extends Component<Props> {
     // api.usermeta.getUsermetaByUserId(this.props.postsItemData.postAuthor).then(
     //   res => console.log('用户信息：',res.data.data)
     // )
+    // result = this.props.postsItemData.commentsUsermetaDTOList.length> 0 ? this.props.postsItemData.commentsUsermetaDTOList.filter(res => res.commentType === 'share').length : 0
+    // console.log(result)
   }
 
   public componentWillMount() {
@@ -122,6 +124,7 @@ class PostCard extends Component<Props> {
                         initIndex: index
                       })
                     }}
+                    activeOpacity={0.7}
                     key={index}
                   >
                     <Image
@@ -169,14 +172,22 @@ class PostCard extends Component<Props> {
           <TouchableOpacity>
             <View style={styles.actionButton}>
               <Icon name="fenxiang" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>666</Text>
+              <Text style={styles.actions}>{this.props.postsItemData.commentsUsermetaDTOList.length > 0
+                  ? this.props.postsItemData.commentsUsermetaDTOList.filter(
+                      (res:any) => res.commentType === 'share'
+                    ).length
+                  : 0}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.actionButton}>
               <Icon name="pinglun" style={styles.actions} onPress={() => console.log('QQ')} />
               <Text style={styles.actions}>
-                {this.props.postsItemData.commentsUsermetaDTOList.length}
+                {this.props.postsItemData.commentsUsermetaDTOList.length > 0
+                  ? this.props.postsItemData.commentsUsermetaDTOList.filter(
+                      (res:any) => res.commentType === 'comment'
+                    ).length
+                  : 0}
               </Text>
             </View>
           </TouchableOpacity>
