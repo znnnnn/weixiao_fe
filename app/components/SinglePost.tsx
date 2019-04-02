@@ -122,7 +122,7 @@ class SingPost extends React.Component<Props, State> {
                 marginTop: 10
               }}
             >
-              {JSON.parse(this.state.postsItemData.postImage).length > 0
+              {JSON.parse(this.state.postsItemData.postImage) !== null
                 ? JSON.parse(this.state.postsItemData.postImage).map(
                     (item: string, index: number) => (
                       <Image

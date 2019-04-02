@@ -117,7 +117,7 @@ class PostCard extends Component<Props> {
   }
 
   public render() {
-    console.log(this.state.UpvoteCount)
+    // console.log(this.props.postsItemData)
     return (
       <View
         style={{
