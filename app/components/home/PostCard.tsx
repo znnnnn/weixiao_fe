@@ -10,6 +10,8 @@ import {
 } from 'react-native-responsive-screen'
 
 import api from '@api/index'
+import actions from '@store/action/Index'
+import { connect } from 'react-redux'
 
 import { ListItem } from 'native-base'
 
@@ -23,10 +25,12 @@ export interface State {
   modalVisible: boolean
   images: { url: string }[]
   initIndex: number
+  isUpvoted: number
 }
 
 interface Props extends NavigationScreenProps {
   postsItemData: any
+  myUsermeta: any
 }
 class PostCard extends Component<Props> {
   public state = {
@@ -38,17 +42,14 @@ class PostCard extends Component<Props> {
       // { url: 'https://ws4.sinaimg.cn/large/0069wGDkly1fypu1pvnxmj30qo0hswhv.jpg' }
     ],
     modalVisible: false,
-    initIndex: 0
+    initIndex: 0,
+    UpvoteCount: this.props.postsItemData.upvoteList.length,
+    isUpvoted: 0
   }
 
   public constructor(props: Props) {
     super(props)
-    // console.log(this.props.postsItemData)
-    // api.usermeta.getUsermetaByUserId(this.props.postsItemData.postAuthor).then(
-    //   res => console.log('用户信息：',res.data.data)
-    // )
-    // result = this.props.postsItemData.commentsUsermetaDTOList.length> 0 ? this.props.postsItemData.commentsUsermetaDTOList.filter(res => res.commentType === 'share').length : 0
-    // console.log(result)
+    // console.log(this.props.postsItemData.upvoteList[0].upvoteUserId  === this.props.myUsermeta.userId)
   }
 
   public componentWillMount() {
@@ -65,10 +66,58 @@ class PostCard extends Component<Props> {
     /**
      * 文章数据通过react navigation传递
      */
-    // this.props.navigation.setParams({ postsItemData: this.props.postsItemData })
+  }
+
+  public upvoteByUserId() {
+    api.upvote
+      .upvote({
+        upvotePostId: this.props.postsItemData.postId,
+        upvoteUserId: this.props.myUsermeta.userId
+      })
+      .then((res) => {
+        console.log('点赞',res)
+        if (res.data.message === 'SUCCESS') {
+          this.setState({
+            UpvoteCount: ++this.state.UpvoteCount,
+            isUpvoted: 1
+            // is
+          })
+        }
+      })
+  }
+
+  public deleteUpvoteByUserId() {
+    api.upvote.deleteUpvoteByUserId(this.props.postsItemData.postId,this.props.myUsermeta.userId).then((res) => {
+      console.log('取消点赞',res)
+      if (res.data.data > 0) {
+        this.setState({
+          UpvoteCount: --this.state.UpvoteCount,
+          isUpvoted: 0
+          // is
+        })
+      }
+    })
+  }
+  public upvote(){
+    return this.state.isUpvoted === 0 ? this.upvoteByUserId() : this.deleteUpvoteByUserId()
+  }
+
+  public componentWillReceiveProps() {
+    setTimeout(() => {
+      this.setState({
+        isUpvoted:
+          this.props.postsItemData.upvoteList.length > 0
+            ? this.props.postsItemData.upvoteList.filter(
+                (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
+              ).length
+            : 0,
+            UpvoteCount: this.props.postsItemData.upvoteList.length
+      })
+    }, 0)
   }
 
   public render() {
+    console.log(this.state.UpvoteCount)
     return (
       <View
         style={{
@@ -105,6 +154,10 @@ class PostCard extends Component<Props> {
           >
             {this.props.postsItemData.postContent}
           </Text>
+          {/* {(()=> {
+            console.log(this.props)
+            return <Text>1</Text>
+          })()} */}
           <View style={{ width: wp('90%'), alignItems: 'center' }}>
             <View
               style={{
@@ -169,23 +222,23 @@ class PostCard extends Component<Props> {
             borderTopColor: '#f0f0f0'
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log(this.props.myUsermeta)}>
             <View style={styles.actionButton}>
-              <Icon name="fenxiang" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>{this.props.postsItemData.commentsUsermetaDTOList.length > 0
-                  ? this.props.postsItemData.commentsUsermetaDTOList.filter(
-                      (res:any) => res.commentType === 'share'
-                    ).length
-                  : 0}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.actionButton}>
-              <Icon name="pinglun" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>
+              <Icon
+                name="fenxiang"
+                style={[
+                  styles.actions,
+                ]}
+                onPress={() => console.log('QQ')}
+              />
+              <Text
+                style={[
+                  styles.actions,
+                ]}
+              >
                 {this.props.postsItemData.commentsUsermetaDTOList.length > 0
                   ? this.props.postsItemData.commentsUsermetaDTOList.filter(
-                      (res:any) => res.commentType === 'comment'
+                      (res: any) => res.commentType === 'share'
                     ).length
                   : 0}
               </Text>
@@ -193,8 +246,47 @@ class PostCard extends Component<Props> {
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.actionButton}>
-              <Icon name="dianzan" style={styles.actions} onPress={() => console.log('QQ')} />
-              <Text style={styles.actions}>{this.props.postsItemData.upvoteList.length}</Text>
+              <Icon
+                name="pinglun"
+                style={[
+                  styles.actions,
+                ]}
+                onPress={() => console.log('QQ')}
+              />
+              <Text
+                style={[
+                  styles.actions,
+                ]}
+              >
+                {this.props.postsItemData.commentsUsermetaDTOList.length > 0
+                  ? this.props.postsItemData.commentsUsermetaDTOList.filter(
+                      (res: any) => res.commentType === 'comment'
+                    ).length
+                  : 0}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* 点赞 */}
+
+          <TouchableOpacity onPress={() => this.upvote()}>
+            <View style={styles.actionButton}>
+              <Icon
+                name="dianzan"
+                style={[
+                  styles.actions,
+                  { color: this.state.isUpvoted > 0 ? '#29A1F7' : '#000000' }
+                ]}
+                // onPress={() => console.log('upvote')}
+              />
+              <Text
+                style={[
+                  styles.actions,
+                  { color: this.state.isUpvoted > 0 ? '#29A1F7' : '#000000' }
+                ]}
+              >
+                {this.state.UpvoteCount}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -239,7 +331,7 @@ const styles = StyleSheet.create({
   },
   actions: {
     fontSize: 14,
-    color: '#9E9E9E',
+    // color: '#9E9E9E',
     // marginRight: 4,
     lineHeight: 14,
     justifyContent: 'center',
@@ -248,4 +340,22 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(PostCard)
+// export default
+const mapStateToProps = (state: any) => {
+  // console.log('state', state)
+  return {
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 发送行为
+let handleUsermeta = actions.myUsermeta.handleUsermeta
+const mapDispatchToProps = {
+  handleUsermeta
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withNavigation(PostCard))

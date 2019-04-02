@@ -91,7 +91,7 @@ class UserHome extends Component<Props> {
         </Content>
         <Footer>
           <FooterTab>
-            <Button vertical>
+            <Button vertical onPress={()=>this.props.navigation.navigate('聊天')}>
               <Icon name="message" style={{ fontSize: 20 }} />
               <Text>和他聊天</Text>
             </Button>
