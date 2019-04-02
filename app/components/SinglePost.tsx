@@ -114,14 +114,25 @@ class SingPost extends React.Component<Props, State> {
             <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
               {this.state.postsItemData.postContent}
             </Text>
-            <View style={{ width: wp('90%'), flexDirection: 'row', justifyContent: 'flex-start',marginTop:10 }}>
-              {JSON.parse(this.state.postsItemData.postImage).map((item: string, index: number) => (
-                <Image
-                  source={{ uri: item }}
-                  key={index}
-                  style={{ width: wp('30%')-5, height: wp('30%')-5, margin: 2.5 }}
-                />
-              ))}
+            <View
+              style={{
+                width: wp('90%'),
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                marginTop: 10
+              }}
+            >
+              {JSON.parse(this.state.postsItemData.postImage).length > 0
+                ? JSON.parse(this.state.postsItemData.postImage).map(
+                    (item: string, index: number) => (
+                      <Image
+                        source={{ uri: item }}
+                        key={index}
+                        style={{ width: wp('30%') - 5, height: wp('30%') - 5, margin: 2.5 }}
+                      />
+                    )
+                  )
+                : null}
             </View>
           </View>
           <View

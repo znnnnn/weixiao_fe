@@ -10,7 +10,7 @@ import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import { Container, Content, Toast } from 'native-base'
 import React from 'react'
-import { AsyncStorage, ScrollView, View } from 'react-native'
+import { AsyncStorage, RefreshControl, ScrollView,View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -29,6 +29,7 @@ export interface State {
   passCanSee: boolean
   avatarList: Array<any>
   postsList: Array<any>
+  isRefreshing: boolean
 }
 
 export interface Props extends NavigationScreenProps {
@@ -45,7 +46,8 @@ class Home extends React.Component<Props, State> {
     inputBorderColor: '#EEEEEE',
     passCanSee: true,
     avatarList: [],
-    postsList: []
+    postsList: [],
+    isRefreshing: true
   }
 
   public constructor(props: Props) {
@@ -83,10 +85,15 @@ class Home extends React.Component<Props, State> {
   }
 
   public getPostsList() {
+    this.setState({
+      isRefreshing: true
+    })
+    // console.log(111)
     api.home.getPostsList().then((res) => {
       this.setState(
         {
-          postsList: res.data.data.list
+          postsList: res.data.data.list,
+          isRefreshing: false
         },
         // () => console.log(this.state.postsList)
       )
@@ -137,7 +144,13 @@ class Home extends React.Component<Props, State> {
               })}
             </ScrollView>
           </View>
-          <Content>
+          <Content refreshControl={<RefreshControl
+              // 是否刷新
+              refreshing={this.state.isRefreshing}
+              onRefresh={this.getPostsList.bind(this)}
+              tintColor={"#29A1F7"}
+              title={"拼命加载中..."}
+            />}>
             {this.state.postsList.map((item, index) => (
               <PostCard postsItemData={item} key={index} />
             ))}
