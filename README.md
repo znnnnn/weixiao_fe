@@ -77,3 +77,7 @@
 ### 图像上传
 
 - [react-native-image-picker图片上传](https://www.jianshu.com/p/c2aecf93e1af)
+
+### 下拉刷新
+
+- [React Native开发之——组件RefreshControl](https://blog.csdn.net/calvin_zhou/article/details/79680056)

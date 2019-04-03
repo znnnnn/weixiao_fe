@@ -246,7 +246,11 @@ class PostCard extends Component<Props> {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity  onPress={() =>
+              this.props.navigation.navigate('微校正文', {
+                postsItemData: this.props.postsItemData
+              })
+            }>
             <View style={styles.actionButton}>
               <Icon
                 name="pinglun"

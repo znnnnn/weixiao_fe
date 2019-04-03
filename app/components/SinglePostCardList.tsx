@@ -32,7 +32,7 @@ import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
 
 export interface Props extends NavigationScreenProps {
-  defalutProps: string
+  // commentList: any
 }
 
 const users = [

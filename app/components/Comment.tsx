@@ -6,25 +6,42 @@ import { ScrollView, Text, View } from 'react-native'
 import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 const deviceName = DeviceInfo.getDeviceName()
+import Item from '@ant-design/react-native/lib/list/ListItem'
 import CommentListItem from '@components/CommentListItem'
 
-const renderContent = (tab: any, index: any) => {
-  const content = [1, 2, 3, 4, 5, 6, 7, 8].map((i,index) => {
-    return (
-      <CommentListItem
-        avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-        nickname="Alice"
-        tag="工程师"
-        postTime={getTimeDiff(1356470770)}
-        deviceName={deviceName}
-        key={index}
-      />
-    )
-  })
-  return <View style={{ backgroundColor: '#fff' }}>{content}</View>
+interface Props {
+  commentList: any
 }
 
-export default class Comment extends React.Component<any, any> {
+export default class Comment extends React.Component<Props, any> {
+  public constructor(props: Props) {
+    super(props)
+    // console.log(this.props.commentList)
+  }
+
+  public renderContent = (type: string) => {
+    const content = this.props.commentList.map((item: any, index: number) => {
+      if(item.commentType===type){
+        return (
+          <CommentListItem
+            avatarUri={item.usermeta.avatar}
+            nickname={item.usermeta.nickname}
+            tag={item.usermeta.job}
+            postTime={getTimeDiff(item.commentDate)}
+            commentContent={item.commentContent}
+            // deviceName={item.}
+            key={index}
+          />
+        )
+      }
+    })
+    if(content.length>0){
+      return <View style={{ backgroundColor: '#fff' }}>{content}</View>
+    } else{
+      return <Text style={{textAlign:'center',marginTop:50, fontSize: 16, color:'#333'}}>这里的沙发还空着哟</Text>
+    }
+  }
+
   public render() {
     // const tabs = [{ title: 'First Tab' }, { title: 'Second Tab' }, { title: 'Third Tab' }]
     const tabs2 = [{ title: '评论' }, { title: '转发' }]
@@ -48,8 +65,9 @@ export default class Comment extends React.Component<any, any> {
           </View>
         </Tabs> */}
         <View style={{ flex: 2 }}>
-          <Tabs tabs={tabs2} initialPage={1} tabBarPosition="top">
-            {renderContent}
+          <Tabs tabs={tabs2} initialPage={0} tabBarPosition="top">
+            {this.renderContent('comment')}
+            {this.renderContent('share')}
           </Tabs>
         </View>
       </View>

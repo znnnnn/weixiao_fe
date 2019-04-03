@@ -180,7 +180,7 @@ class SingPost extends React.Component<Props, State> {
               onPress={() => console.log('weibo')}
             />
           </View>
-          <Comment />
+          <Comment commentList={this.state.postsItemData.commentsUsermetaDTOList} />
         </Content>
       </Provider>
     )

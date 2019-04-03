@@ -15,7 +15,8 @@ export interface Props {
   nickname: string
   tag: string
   postTime: string
-  deviceName: string
+  deviceName?: string
+  commentContent: string
 }
 
 class CommentList extends Component<Props> {
@@ -59,7 +60,7 @@ class CommentList extends Component<Props> {
               marginBottom: 10
             }}
           >
-            好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看好看！！！！
+            {this.props.commentContent}
           </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
