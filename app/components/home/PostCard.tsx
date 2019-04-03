@@ -104,6 +104,7 @@ class PostCard extends Component<Props> {
 
   public componentWillReceiveProps() {
     setTimeout(() => {
+      console.log(this.props.postsItemData)
       this.setState({
         isUpvoted:
           this.props.postsItemData.upvoteList.length > 0
@@ -113,6 +114,7 @@ class PostCard extends Component<Props> {
             : 0,
             UpvoteCount: this.props.postsItemData.upvoteList.length
       })
+      // console.log(this.state.isUpvoted)
     }, 0)
   }
 

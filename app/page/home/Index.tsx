@@ -47,7 +47,7 @@ class Home extends React.Component<Props, State> {
     passCanSee: true,
     avatarList: [],
     postsList: [],
-    isRefreshing: true
+    isRefreshing: true,
   }
 
   public constructor(props: Props) {
@@ -84,19 +84,21 @@ class Home extends React.Component<Props, State> {
     }
   }
 
+  /**
+   * 下拉刷新获取数据
+   */
   public getPostsList() {
     this.setState({
       isRefreshing: true
     })
-    // console.log(111)
     api.home.getPostsList().then((res) => {
-      this.setState(
+      setTimeout(()=>this.setState(
         {
           postsList: res.data.data.list,
           isRefreshing: false
         },
         // () => console.log(this.state.postsList)
-      )
+      ),800)
     })
   }
 
@@ -113,7 +115,16 @@ class Home extends React.Component<Props, State> {
   public componentDidMount() {
     // 获取本地存储的登录状态
     this._getAsynToken()
-    this.getPostsList()
+    // this.getPostsList()
+    // 初始化获取数据
+    api.home.getPostsList().then((res) => {
+      this.setState(
+        {
+          postsList: res.data.data.list,
+          isRefreshing: false
+        },
+      )
+    })
   }
 
   public render() {
