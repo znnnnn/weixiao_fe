@@ -2,6 +2,8 @@
  * api接口的统一出口
  */
 // account的模块接口
+import comment from './components/comment'
+import commentSender from './components/commentSender'
 import upvote from './components/upvote'
 import file from './file'
 import home from './home/index'
@@ -20,5 +22,7 @@ export default {
   userHome,
   home,
   publish,
-  upvote
+  upvote,
+  commentSender,
+  comment
 }

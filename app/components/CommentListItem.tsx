@@ -1,29 +1,37 @@
 // import StyleSheet from '@util/stylesheet'
 import Icon from '@app/util/icon'
+import { Toast } from 'native-base'
 import { string } from 'prop-types'
 import React, { Component } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { connect } from 'react-redux'
+
+import api from '@app/api'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 // console.log(model)
 
-export interface Props {
+export interface Props extends NavigationScreenProps {
   avatarUri: string
   nickname: string
   tag: string
   postTime: string
   deviceName?: string
   commentContent: string
+  usermeta: any
+  myUsermeta?: any
+  commentId: number
+  fresh: Function
 }
 
 class CommentList extends Component<Props> {
-  private constructor(props: Props) {
+  public constructor(props: Props) {
     super(props)
-    // console.log(11111)
-    // console.log(this.props.uri)
+    // console.log(this.props.myUsermeta)
   }
 
   public render() {
@@ -40,15 +48,33 @@ class CommentList extends Component<Props> {
           borderBottomColor: '#EEEEEE'
         }}
       >
-        <Image
-          source={{
-            uri: this.props.avatarUri
-          }}
-          style={{ width: 35, height: 35, borderRadius: 17.5, marginTop: 5 }}
-        />
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() =>
+            this.props.navigation.navigate('用户中心', {
+              usermeta: this.props.usermeta
+            })
+          }
+        >
+          <Image
+            source={{
+              uri: this.props.avatarUri
+            }}
+            style={{ width: 35, height: 35, borderRadius: 17.5, marginTop: 5 }}
+          />
+        </TouchableOpacity>
         <View style={{ marginLeft: 5, marginTop: 3, flex: 9 }}>
-          <View style={{ flexDirection: 'row',marginTop:5 }}>
-            <Text>{this.props.nickname}</Text>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() =>
+                this.props.navigation.navigate('用户中心', {
+                  usermeta: this.props.usermeta
+                })
+              }
+            >
+              <Text>{this.props.nickname}</Text>
+            </TouchableOpacity>
             <Text style={styles.tag}>{this.props.tag}</Text>
           </View>
           <Text
@@ -70,7 +96,7 @@ class CommentList extends Component<Props> {
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+                justifyContent: 'flex-end',
                 flex: 1
                 // borderWidth: 1,
                 // borderColor: 'red'
@@ -79,7 +105,37 @@ class CommentList extends Component<Props> {
                 // borderTopColor: '#f0f0f0'
               }}
             >
-              <TouchableOpacity>
+              {this.props.usermeta.userId === this.props.myUsermeta.userId && (
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    Alert.alert('提示', '确认删除吗', [
+                      { text: '取消' },
+                      {
+                        text: '确认',
+                        onPress: () =>
+                          api.comment
+                            .delete(this.props.commentId)
+                            .then((res) => {
+                              console.log(res)
+                              setTimeout(this.props.fresh(), 500)
+                            })
+                            .then(() =>
+                              Toast.show({
+                                text: '删除成功',
+                                type: 'success'
+                              })
+                            )
+                      }
+                    ])
+                  }
+                >
+                  <View style={styles.actionButton}>
+                    <Text style={{ color: 'red', fontSize: 14 }}>删除</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+              {/* <TouchableOpacity>
                 <View style={styles.actionButton}>
                   <Icon
                     name="fenxiang"
@@ -98,8 +154,8 @@ class CommentList extends Component<Props> {
                   />
                   <Text style={styles.actions}>555</Text>
                 </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
+              </TouchableOpacity> */}
+              {/* <TouchableOpacity>
                 <View style={styles.actionButton}>
                   <Icon
                     name="dianzan"
@@ -108,7 +164,7 @@ class CommentList extends Component<Props> {
                   />
                   <Text style={styles.actions}>333</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
@@ -153,4 +209,15 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CommentList
+const mapStateToProps = (state: any): Object => {
+  return {
+    // 获取 state 变化
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps
+  // mapDispatchToProps
+)(withNavigation(CommentList))

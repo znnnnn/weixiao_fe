@@ -11,6 +11,7 @@ import CommentListItem from '@components/CommentListItem'
 
 interface Props {
   commentList: any
+  fresh:Function
 }
 
 export default class Comment extends React.Component<Props, any> {
@@ -29,8 +30,11 @@ export default class Comment extends React.Component<Props, any> {
             tag={item.usermeta.job}
             postTime={getTimeDiff(item.commentDate)}
             commentContent={item.commentContent}
+            usermeta={item.usermeta}
+            commentId={item.commentId}
             // deviceName={item.}
             key={index}
+            fresh={()=>this.props.fresh()}
           />
         )
       }

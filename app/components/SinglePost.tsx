@@ -5,6 +5,7 @@ import PostUserCard from '@components/home/PostUserCard'
 
 // import Video from 'react-native-video'
 
+import actions from '@store/action/Index'
 import {
   Button,
   Container,
@@ -24,7 +25,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  WebView
+  WebView,
 } from 'react-native'
 // import Video from 'react-native-af-video-player'
 // import Video, { Container, ScrollView } from 'react-native-af-video-player'
@@ -41,8 +42,10 @@ import { connect } from 'react-redux'
 import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
 
+import api from '@app/api'
 import PostCard from '@app/components/home/PostCard'
 import Comment from '@components/Comment'
+import CommentSender from '@components/CommentSender'
 // import VideoPlayerScreen from '@page/home/VideoPlayerScreen'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
@@ -55,11 +58,11 @@ export interface State {
   isFullScreen: boolean
   inputContent: string
   postsItemData: any
+  commentList: Array<any>
 }
 
 export interface Props extends NavigationScreenProps {
-  defalutProps: string
-  token: string
+  myUsermeta: any
 }
 class SingPost extends React.Component<Props, State> {
   // public static navigationOptions = ({ navigation }) => {
@@ -79,7 +82,8 @@ class SingPost extends React.Component<Props, State> {
     videoHeight: 40,
     isFullScreen: false,
     inputContent: '',
-    postsItemData: this.props.navigation.getParam('postsItemData')
+    postsItemData: this.props.navigation.getParam('postsItemData'),
+    commentList: this.props.navigation.getParam('postsItemData').commentsUsermetaDTOList
   }
 
   public constructor(props: Props) {
@@ -94,9 +98,22 @@ class SingPost extends React.Component<Props, State> {
     })
   }
 
-  public componentDidMount() {
-    console.log(this.props)
+  public fresh() {
+    // console.log(1111111111)
+    api.comment.get(this.state.postsItemData.postId).then((res) => {
+      this.setState(
+        {
+          commentList: res.data.data
+        },
+        () => this.forceUpdate()
+      )
+      console.log(res.data.data)
+    })
   }
+
+  // public componentDidMount() {
+  //   setTimeout(()=>console.log(this.state.postsItemData),1000)
+  // }
 
   public render() {
     return (
@@ -187,28 +204,19 @@ class SingPost extends React.Component<Props, State> {
               <Icon
                 name="qq"
                 style={[styles.shareIcon, { color: '#5EAADE' }]}
-                onPress={() => console.log('weibo')}
+                onPress={() => console.log(this.state.postsItemData)}
               />
             </View>
-            <Comment commentList={this.state.postsItemData.commentsUsermetaDTOList} />
+            <Comment commentList={this.state.commentList} fresh={() => this.fresh.bind(this)} />
           </Content>
-          <Footer>
-            <FooterTab>
-              <Input placeholder="写下你的评论" style={{ flex: 4, backgroundColor: '#fff' }} />
-              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
-                <IconBase name="chatboxes" style={{ color: '#333' }} />
-                <Text style={{ color: '#333' }}>发送</Text>
-              </Button>
-              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
-                <IconBase name="share-alt" style={{ color: '#333' }} />
-                <Text style={{ color: '#333' }}>转发</Text>
-              </Button>
-              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
-                <IconBase name="thumbs-up" style={{ color: '#333' }} />
-                <Text style={{ color: '#333' }}>点赞</Text>
-              </Button>
-            </FooterTab>
-          </Footer>
+          <CommentSender
+            commentAuthor={this.props.myUsermeta.nickname}
+            commentPostId={this.state.postsItemData.postId}
+            commentParent={null}
+            commentUserId={this.props.myUsermeta.userId}
+            postsItemData={this.state.postsItemData}
+            fresh={() => this.fresh.bind(this)}
+          />
         </Container>
       </Provider>
     )
@@ -242,4 +250,22 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(SingPost)
+// export default
+const mapStateToProps = (state: any) => {
+  // console.log('state', state)
+  return {
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
+  }
+}
+
+// 发送行为
+let handleUsermeta = actions.myUsermeta.handleUsermeta
+const mapDispatchToProps = {
+  handleUsermeta
+}
+
+// 进行第二层包装,生成的新组件拥有 接收和发送 数据的能力
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withNavigation(SingPost))
