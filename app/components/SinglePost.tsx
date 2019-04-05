@@ -5,7 +5,16 @@ import PostUserCard from '@components/home/PostUserCard'
 
 // import Video from 'react-native-video'
 
-import { Content } from 'native-base'
+import {
+  Button,
+  Container,
+  Content,
+  Footer,
+  FooterTab,
+  Icon as IconBase,
+  Input,
+  Item
+} from 'native-base'
 import React from 'react'
 import {
   Alert,
@@ -92,61 +101,62 @@ class SingPost extends React.Component<Props, State> {
   public render() {
     return (
       <Provider>
-        <Content style={styles.root}>
-          <View
-            style={{
-              flex: 1,
-              width: wp('100%'),
-              backgroundColor: '#fff',
-              alignItems: 'center'
-            }}
-          >
-            <View style={{ alignItems: 'flex-start', width: wp('90%'), marginTop: 15 }}>
-              <PostUserCard
-                // avatarUri={this.state.postsItemData.usermeta.avatar}
-                // nickname={this.state.postsItemData.usermeta.nickname}
-                // tag={this.state.postsItemData.usermeta.job}
-                usermeta={this.state.postsItemData.usermeta}
-                postTime={getTimeDiff(this.state.postsItemData.postDate)}
-                deviceName={this.state.postsItemData.postAuthorDevice}
-              />
-            </View>
-            <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
-              {this.state.postsItemData.postContent}
-            </Text>
+        <Container>
+          <Content style={styles.root}>
             <View
               style={{
-                width: wp('90%'),
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                marginTop: 10
+                flex: 1,
+                width: wp('100%'),
+                backgroundColor: '#fff',
+                alignItems: 'center'
               }}
             >
-              {JSON.parse(this.state.postsItemData.postImage) !== null
-                ? JSON.parse(this.state.postsItemData.postImage).map(
-                    (item: string, index: number) => (
-                      <Image
-                        source={{ uri: item }}
-                        key={index}
-                        style={{ width: wp('30%') - 5, height: wp('30%') - 5, margin: 2.5 }}
-                      />
+              <View style={{ alignItems: 'flex-start', width: wp('90%'), marginTop: 15 }}>
+                <PostUserCard
+                  // avatarUri={this.state.postsItemData.usermeta.avatar}
+                  // nickname={this.state.postsItemData.usermeta.nickname}
+                  // tag={this.state.postsItemData.usermeta.job}
+                  usermeta={this.state.postsItemData.usermeta}
+                  postTime={getTimeDiff(this.state.postsItemData.postDate)}
+                  deviceName={this.state.postsItemData.postAuthorDevice}
+                />
+              </View>
+              <Text style={{ width: wp('90%'), marginTop: 15, lineHeight: 18 }}>
+                {this.state.postsItemData.postContent}
+              </Text>
+              <View
+                style={{
+                  width: wp('90%'),
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  marginTop: 10
+                }}
+              >
+                {JSON.parse(this.state.postsItemData.postImage) !== null
+                  ? JSON.parse(this.state.postsItemData.postImage).map(
+                      (item: string, index: number) => (
+                        <Image
+                          source={{ uri: item }}
+                          key={index}
+                          style={{ width: wp('30%') - 5, height: wp('30%') - 5, margin: 2.5 }}
+                        />
+                      )
                     )
-                  )
-                : null}
+                  : null}
+              </View>
             </View>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              width: wp('100%'),
-              // borderWidth: 1,
-              // borderColor: 'red',
-              backgroundColor: '#fff',
-              paddingLeft: wp('5%'),
-              paddingTop: 15
-            }}
-          >
-            {/* <Video
+            <View
+              style={{
+                flex: 1,
+                width: wp('100%'),
+                // borderWidth: 1,
+                // borderColor: 'red',
+                backgroundColor: '#fff',
+                paddingLeft: wp('5%'),
+                paddingTop: 15
+              }}
+            >
+              {/* <Video
               source={{ uri: 'http://111.231.116.130/wp-content/uploads/2019/02/1551058086154076.mp4' }} // Can be a URL or a local file.
               // ref={(ref) => {
               //   this.player = ref
@@ -156,32 +166,50 @@ class SingPost extends React.Component<Props, State> {
               controls
               style={{width: wp('90%'),height:150}}
             /> */}
-          </View>
-          <View style={styles.shareText}>
-            <Text style={{ color: '#CCCCCC', fontSize: 14, lineHeight: 24 }}>分享到</Text>
-            <Icon
-              name="weixin"
-              style={[styles.shareIcon, { color: '#50B674' }]}
-              onPress={() => console.log('weibo')}
-            />
-            <Icon
-              name="pengyouquan"
-              style={[styles.shareIcon, { color: '#50B674' }]}
-              onPress={() => console.log('weibo')}
-            />
-            <Icon
-              name="kongjian"
-              style={[styles.shareIcon, { color: '#F7D11E' }]}
-              onPress={() => console.log('weibo')}
-            />
-            <Icon
-              name="qq"
-              style={[styles.shareIcon, { color: '#5EAADE' }]}
-              onPress={() => console.log('weibo')}
-            />
-          </View>
-          <Comment commentList={this.state.postsItemData.commentsUsermetaDTOList} />
-        </Content>
+            </View>
+            <View style={styles.shareText}>
+              <Text style={{ color: '#CCCCCC', fontSize: 14, lineHeight: 24 }}>分享到</Text>
+              <Icon
+                name="weixin"
+                style={[styles.shareIcon, { color: '#50B674' }]}
+                onPress={() => console.log('weibo')}
+              />
+              <Icon
+                name="pengyouquan"
+                style={[styles.shareIcon, { color: '#50B674' }]}
+                onPress={() => console.log('weibo')}
+              />
+              <Icon
+                name="kongjian"
+                style={[styles.shareIcon, { color: '#F7D11E' }]}
+                onPress={() => console.log('weibo')}
+              />
+              <Icon
+                name="qq"
+                style={[styles.shareIcon, { color: '#5EAADE' }]}
+                onPress={() => console.log('weibo')}
+              />
+            </View>
+            <Comment commentList={this.state.postsItemData.commentsUsermetaDTOList} />
+          </Content>
+          <Footer>
+            <FooterTab>
+              <Input placeholder="写下你的评论" style={{ flex: 4, backgroundColor: '#fff' }} />
+              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
+                <IconBase name="chatboxes" style={{ color: '#333' }} />
+                <Text style={{ color: '#333' }}>发送</Text>
+              </Button>
+              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
+                <IconBase name="share-alt" style={{ color: '#333' }} />
+                <Text style={{ color: '#333' }}>转发</Text>
+              </Button>
+              <Button vertical style={{ flex: 1, backgroundColor: '#fff' }}>
+                <IconBase name="thumbs-up" style={{ color: '#333' }} />
+                <Text style={{ color: '#333' }}>点赞</Text>
+              </Button>
+            </FooterTab>
+          </Footer>
+        </Container>
       </Provider>
     )
   }
@@ -190,7 +218,7 @@ class SingPost extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   root: {
     // alignItems: 'center',
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#fff',
     flex: 1,
     height: hp('100%')
     // width: wp('100%')
