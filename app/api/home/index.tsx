@@ -35,6 +35,9 @@ const Home = {
    */
   getPostByPostId(postId: number){
     return axios.get(`${base.bd}/posts/${postId}`)
+  },
+  deletePostByPostId(postId: number){
+    return axios.delete(`${base.bd}/posts/${postId}`)
   }
   // 其他接口…………
 }

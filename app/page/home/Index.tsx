@@ -23,10 +23,6 @@ import { connect } from 'react-redux'
 import api from '@api/index'
 
 export interface State {
-  phone: string
-  password: string
-  inputBorderColor: string
-  passCanSee: boolean
   avatarList: Array<any>
   postsList: Array<any>
   isRefreshing: boolean
@@ -41,10 +37,6 @@ export interface Props extends NavigationScreenProps {
 
 class Home extends React.Component<Props, State> {
   public state: State = {
-    phone: '',
-    password: '',
-    inputBorderColor: '#EEEEEE',
-    passCanSee: true,
     avatarList: [],
     postsList: [],
     isRefreshing: true,
@@ -171,18 +163,6 @@ class Home extends React.Component<Props, State> {
         </Container>
       </Provider>
     )
-  }
-
-  private inputItemFocus(): void {
-    this.setState({
-      inputBorderColor: '#29A1F7'
-    })
-  }
-
-  private inputItemBlur(): void {
-    this.setState({
-      inputBorderColor: '#EEEEEE'
-    })
   }
 }
 
