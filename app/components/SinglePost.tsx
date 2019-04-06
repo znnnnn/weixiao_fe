@@ -100,7 +100,6 @@ class SingPost extends React.Component<Props, State> {
   }
 
   public fresh() {
-    // console.log(1111111111)
     api.comment.get(this.state.postsItemData.postId).then((res) => {
       this.setState(
         {
@@ -108,7 +107,7 @@ class SingPost extends React.Component<Props, State> {
         },
         () => this.forceUpdate()
       )
-      console.log(res.data.data)
+      // console.log(res.data.data)
     })
   }
 

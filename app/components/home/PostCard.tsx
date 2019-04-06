@@ -2,7 +2,7 @@ import Icon from '@app/util/icon'
 import PostUserCard from '@components/home/PostUserCard'
 import ImageCard from '@components/ImageCard'
 import React, { Component } from 'react'
-import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   heightPercentageToDP as hp,
@@ -42,6 +42,7 @@ export interface State {
 interface Props extends NavigationScreenProps {
   postsItemData: any
   myUsermeta: any
+  fresh: Function
 }
 class PostCard extends Component<Props> {
   public state = {
@@ -126,7 +127,8 @@ class PostCard extends Component<Props> {
                 (res: any) => res.commentType === 'comment'
               ).length
             : 0,
-        UpvoteCount: this.state.postsItemData.upvoteList.length
+        UpvoteCount: this.state.postsItemData.upvoteList.length,
+        postsItemData: this.props.postsItemData
       })
     }, 0)
   }
@@ -201,7 +203,7 @@ class PostCard extends Component<Props> {
           type: 'success'
         })
       })
-    .then(() => setTimeout(()=>this.fresh(), 500))
+      .then(() => setTimeout(() => this.fresh(), 500))
   }
 
   public fresh() {
@@ -307,6 +309,30 @@ class PostCard extends Component<Props> {
               })
             }
           />
+          <TouchableOpacity
+            onPress={() =>
+              Alert.alert('提示', '确认删除吗', [
+                { text: '取消' },
+                {
+                  text: '确认',
+                  onPress: () =>
+                    api.home
+                      .deletePostByPostId(this.props.postsItemData.postId)
+                      .then(() => {
+                        setTimeout(this.props.fresh(), 500)
+                      })
+                      .then(() =>
+                        Toast.show({
+                          text: '删除成功',
+                          type: 'success'
+                        })
+                      )
+                }
+              ])
+            }
+          >
+            <Text style={{ color: 'red', lineHeight: 30, margin: 4 }}>删除</Text>
+          </TouchableOpacity>
         </View>
         <View
           style={{

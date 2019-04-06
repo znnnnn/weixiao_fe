@@ -10,7 +10,7 @@ import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import { Container, Content, Toast } from 'native-base'
 import React from 'react'
-import { AsyncStorage, RefreshControl, ScrollView,View } from 'react-native'
+import { AsyncStorage, RefreshControl, ScrollView, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -39,7 +39,7 @@ class Home extends React.Component<Props, State> {
   public state: State = {
     avatarList: [],
     postsList: [],
-    isRefreshing: true,
+    isRefreshing: true
   }
 
   public constructor(props: Props) {
@@ -59,7 +59,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-          .then(() => this.props.navigation.navigate('发现'))
+        // .then(() => this.props.navigation.navigate('发现'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -85,13 +85,17 @@ class Home extends React.Component<Props, State> {
       isRefreshing: true
     })
     api.home.getPostsOfType('dynamic').then((res) => {
-      setTimeout(()=>this.setState(
-        {
-          postsList: res.data.data.list,
-          isRefreshing: false
-        },
-        // () => console.log(this.state.postsList)
-      ),800)
+      setTimeout(
+        () =>
+          this.setState(
+            {
+              postsList: res.data.data.list,
+              isRefreshing: false
+            }
+            // () => console.log(this.state.postsList)
+          ),
+        800
+      )
     })
   }
 
@@ -112,13 +116,13 @@ class Home extends React.Component<Props, State> {
     // 初始化获取数据
     api.home.getPostsOfType('dynamic').then((res) => {
       // console.log(res.data.data)
-      this.setState(
-        {
-          postsList: res.data.data.list,
-          isRefreshing: false
-        },
-      )
+      this.setState({
+        postsList: res.data.data.list,
+        isRefreshing: false
+      })
     })
+
+    this.props.navigation.setParams({ getPostsList: this.getPostsList })
   }
 
   public render() {
@@ -149,15 +153,23 @@ class Home extends React.Component<Props, State> {
               })}
             </ScrollView>
           </View>
-          <Content refreshControl={<RefreshControl
-              // 是否刷新
-              refreshing={this.state.isRefreshing}
-              onRefresh={this.getPostsList.bind(this)}
-              tintColor={"#29A1F7"}
-              title={"拼命加载中..."}
-            />}>
+          <Content
+            refreshControl={
+              <RefreshControl
+                // 是否刷新
+                refreshing={this.state.isRefreshing}
+                onRefresh={this.getPostsList.bind(this)}
+                tintColor={'#29A1F7'}
+                title={'拼命加载中...'}
+              />
+            }
+          >
             {this.state.postsList.map((item, index) => (
-              <PostCard postsItemData={item} key={index} />
+              <PostCard
+                fresh={() => this.getPostsList.bind(this)}
+                postsItemData={item}
+                key={index}
+              />
             ))}
           </Content>
         </Container>
