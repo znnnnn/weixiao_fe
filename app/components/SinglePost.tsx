@@ -14,7 +14,8 @@ import {
   FooterTab,
   Icon as IconBase,
   Input,
-  Item
+  Item,
+  Toast
 } from 'native-base'
 import React from 'react'
 import {
@@ -25,7 +26,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  WebView,
+  WebView
 } from 'react-native'
 // import Video from 'react-native-af-video-player'
 // import Video, { Container, ScrollView } from 'react-native-af-video-player'
@@ -189,22 +190,42 @@ class SingPost extends React.Component<Props, State> {
               <Icon
                 name="weixin"
                 style={[styles.shareIcon, { color: '#50B674' }]}
-                onPress={() => console.log('weibo')}
+                onPress={() =>
+                  Toast.show({
+                    text: '微信：分享成功',
+                    type: 'success'
+                  })
+                }
               />
               <Icon
                 name="pengyouquan"
                 style={[styles.shareIcon, { color: '#50B674' }]}
-                onPress={() => console.log('weibo')}
+                onPress={() =>
+                  Toast.show({
+                    text: '朋友圈：分享成功',
+                    type: 'success'
+                  })
+                }
               />
               <Icon
                 name="kongjian"
                 style={[styles.shareIcon, { color: '#F7D11E' }]}
-                onPress={() => console.log('weibo')}
+                onPress={() =>
+                  Toast.show({
+                    text: 'QQ空间：分享成功',
+                    type: 'success'
+                  })
+                }
               />
               <Icon
                 name="qq"
                 style={[styles.shareIcon, { color: '#5EAADE' }]}
-                onPress={() => console.log(this.state.postsItemData)}
+                onPress={() =>
+                  Toast.show({
+                    text: 'QQ：分享成功',
+                    type: 'success'
+                  })
+                }
               />
             </View>
             <Comment commentList={this.state.commentList} fresh={() => this.fresh.bind(this)} />

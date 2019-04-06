@@ -21,6 +21,13 @@ const Home = {
   },
   getPostsList(){
     return axios.get(`${base.bd}/posts/`)
+  },
+  /**
+   * 根据文章ID获取文章内容、评论、分享等信息
+   * @param postId 文章ID
+   */
+  getPostByPostId(postId: number){
+    return axios.get(`${base.bd}/posts/${postId}`)
   }
   // 其他接口…………
 }
