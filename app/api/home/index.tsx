@@ -22,6 +22,13 @@ const Home = {
   getPostsList(){
     return axios.get(`${base.bd}/posts/`)
   },
+  getPostsOfType(type: string){
+    return axios.get(`${base.bd}/posts/type/`,{
+      params:{
+        type
+      }
+    })
+  },
   /**
    * 根据文章ID获取文章内容、评论、分享等信息
    * @param postId 文章ID

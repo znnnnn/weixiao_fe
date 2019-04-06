@@ -89,11 +89,9 @@ const RouteFindConfig: NavigationRouteConfigMap = {
           size="small"
           style={{ height: 30, width: 50, marginRight: 10 }}
           onPress={() => {
+            const {params}: any = navigation.state
             // console.log(params)
-            navigation.goBack()
-            // console.log(navigation)
-            // console.log(navigation.getParam('publish'))
-            // navigation.state.routes[2].params._publish()
+            params.publish(navigation.getParam('publishType'))
           }}
         >
           保存

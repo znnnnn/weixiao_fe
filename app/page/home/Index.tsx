@@ -67,7 +67,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-          // .then(() => this.props.navigation.navigate('微校正文'))
+          .then(() => this.props.navigation.navigate('发现'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -86,12 +86,13 @@ class Home extends React.Component<Props, State> {
 
   /**
    * 下拉刷新获取数据
+   * 获取动态数据
    */
   public getPostsList() {
     this.setState({
       isRefreshing: true
     })
-    api.home.getPostsList().then((res) => {
+    api.home.getPostsOfType('dynamic').then((res) => {
       setTimeout(()=>this.setState(
         {
           postsList: res.data.data.list,
@@ -117,7 +118,8 @@ class Home extends React.Component<Props, State> {
     this._getAsynToken()
     // this.getPostsList()
     // 初始化获取数据
-    api.home.getPostsList().then((res) => {
+    api.home.getPostsOfType('dynamic').then((res) => {
+      // console.log(res.data.data)
       this.setState(
         {
           postsList: res.data.data.list,
