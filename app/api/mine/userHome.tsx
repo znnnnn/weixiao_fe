@@ -17,13 +17,31 @@ const userHome = {
     //   }
     // ))
     return axios.get(`${base.bd}/usermeta/myhome`, {
-      params: { // 请求参数
+      params: {
+        // 请求参数
         token
       }
     })
   },
-  updateUserInfo(usermeta:any){
+  updateUserInfo(usermeta: any) {
     return axios.put(`${base.bd}/usermeta`, JSON.stringify(usermeta))
+  },
+  addFollow(follow: any) {
+    return axios.post(`${base.bd}/follow`, JSON.stringify(follow))
+  },
+  findFollowByUserId(userId: number) {
+    return axios.get(`${base.bd}/follow/user/${userId}`)
+  },
+  findMineFollowByUserId(userId: number) {
+    return axios.get(`${base.bd}/follow/user/mine/${userId}`)
+  },
+  deleteFollowByUserId(userId: number, followUserId: number) {
+    return axios.delete(`${base.bd}/follow`, {
+      params: {
+        userId,
+        followUserId
+      }
+    })
   }
   // 其他接口…………
 }

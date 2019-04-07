@@ -1,7 +1,7 @@
 import { Tabs } from '@ant-design/react-native'
 import { Body, Button, Container, Content, Footer, FooterTab, Text, Thumbnail } from 'native-base'
 import React, { Component } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, RefreshControl, StyleSheet ,View} from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -24,27 +24,126 @@ class UserHome extends Component<Props> {
   //     'https://cn.gravatar.com/avatar/d28a39eb534d6d92d5320bdd92f525ae?d=https%3A%2F%2Fwww.miaoroom.com%2Fwp-content%2Fthemes%2FCute_0130%2Fassets%2Fimg%2Favatar%2Favatar_medium.png&s=64',
   //   nickname: '匿名用户'
   // }
+  public state = {
+    followCount: 0,
+    mineFollowCount: 0,
+    isFollowed: 0,
+    dynamic: [],
+    dynamicCount: 0,
+    isRefreshing: false
+  }
   public constructor(props: Props) {
     super(props)
   }
 
   public componentDidMount() {
-    // api.userHome.myhome(this.props.token).then((res) => {
-    //   console.log(res)
-    //   this.setState({
-    //     avatar: res.data.data.avatar,
-    //     nickname: res.data.data.nickname
-    //   })
-    //   console.log(this.state.avatar)
-    // })
+    this.getFollowInfo()
+    this.getPostsInfo()
   }
+
+  public getFollowInfo() {
+    this.setState({
+      isRefreshing: true
+    })
+    api.userHome.findFollowByUserId(this.props.myUsermeta.userId).then((res) =>
+      this.setState({
+        followCount: res.data.data.list.length,
+        isFollowed:
+          res.data.data.list.length > 0
+            ? res.data.data.list.filter(
+                (item: any) => item.followUserId === this.props.myUsermeta.userId
+              ).length
+            : 0
+      })
+    )
+
+    api.userHome
+      .findMineFollowByUserId(this.props.myUsermeta.userId)
+      .then((res) =>
+        this.setState({
+          mineFollowCount: res.data.data.list.length
+        })
+      )
+      .then(() =>
+        setTimeout(
+          () =>
+            this.setState({
+              isRefreshing: false
+            }),
+          300
+        )
+      )
+  }
+
+  public getPostsInfo(){
+    /**
+     * 获取动态信息
+     */
+    // api.home.getPostsOfTypeAndPostAuthor(null,this.props.myUsermeta.userId).then(res => {
+    //   console.log(res.data.data.list)
+    //   this.setState({
+    //     // dynamic: res.data.data.list,
+    //     dynamicCount: res.data.data.list.length
+    //   })
+    // })
+    api.home.getPostsByPostAuthor(this.props.myUsermeta.userId).then(res => {
+      // console.log(res)
+      let dynamic = res.data.data.filter((item:any) => item.postCat === 'dynamic')
+      // console.log(dynamic)
+      this.setState({
+        // dynamic: res.data.data.list,
+        dynamicCount: dynamic.length
+      })
+    })
+  }
+
+  // public FollowAction() {
+  //   this.state.isFollowed === 0
+  //     ? api.userHome
+  //         .addFollow({
+  //           followStatus: 1,
+  //           followUserId: this.props.myUsermeta.userId,
+  //           userId: this.props.navigation.getParam('usermeta').userId
+  //         })
+  //         .then((res) => {
+  //           if (res.data.message === 'SUCCESS') {
+  //             this.setState({
+  //               followCount: ++this.state.followCount,
+  //               isFollowed: 1
+  //             })
+  //           }
+  //         })
+  //     : api.userHome
+  //         .deleteFollowByUserId(
+  //           this.props.navigation.getParam('usermeta').userId,
+  //           this.props.myUsermeta.userId
+  //         )
+  //         .then((res) => {
+  //           if (res.data.message === 'SUCCESS') {
+  //             this.setState({
+  //               followCount: --this.state.followCount,
+  //               isFollowed: 0
+  //             })
+  //           }
+  //         })
+  // }
 
   public render() {
     return (
       <Container>
         {/* <Separa
         +tor/> */}
-        <Content>
+        <Content
+          refreshControl={
+            <RefreshControl
+              // 是否刷新
+              refreshing={this.state.isRefreshing}
+              onRefresh={this.getFollowInfo.bind(this)}
+              tintColor={'#29A1F7'}
+              title={'拼命加载中...'}
+            />
+          }
+        >
           <View style={{ height: 165 }}>
             <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
           </View>
@@ -73,7 +172,7 @@ class UserHome extends Component<Props> {
             </Button>
             <View style={styles.underLine}>
               <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
-                {1}关注 {12}粉丝 {2}动态 {0}收藏
+                {this.state.mineFollowCount}关注 {this.state.followCount}粉丝 {this.state.dynamicCount}动态{/*{0}收藏*/}
               </Text>
             </View>
           </Body>

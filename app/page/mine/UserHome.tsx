@@ -1,7 +1,7 @@
 import { Tabs } from '@ant-design/react-native'
 import { Body, Button, Container, Content, Footer, FooterTab, Text, Thumbnail } from 'native-base'
 import React, { Component } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, RefreshControl, StyleSheet, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -16,15 +16,90 @@ const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图�
 
 interface Props extends NavigationScreenProps {
   usermeta: any
+  myUsermeta: any
 }
 
 /**
  * 本页面的所有数据通过react navigation进行传递
  */
 class UserHome extends Component<Props> {
-  public state = {}
+  public state = {
+    followCount: 0,
+    mineFollowCount: 0,
+    isFollowed: 0,
+    isRefreshing: false
+  }
   public constructor(props: Props) {
     super(props)
+  }
+
+  public componentDidMount() {
+    this.getFollowInfo()
+  }
+
+  public getFollowInfo() {
+    this.setState({
+      isRefreshing: true
+    })
+    api.userHome.findFollowByUserId(this.props.navigation.getParam('usermeta').userId).then((res) =>
+      this.setState({
+        followCount: res.data.data.list.length,
+        isFollowed:
+          res.data.data.list.length > 0
+            ? res.data.data.list.filter(
+                (item: any) => item.followUserId === this.props.myUsermeta.userId
+              ).length
+            : 0
+      })
+    )
+
+    api.userHome
+      .findMineFollowByUserId(this.props.navigation.getParam('usermeta').userId)
+      .then((res) =>
+        this.setState({
+          mineFollowCount: res.data.data.list.length
+        })
+      )
+      .then(() =>
+        setTimeout(
+          () =>
+            this.setState({
+              isRefreshing: false
+            }),
+          300
+        )
+      )
+  }
+
+  public FollowAction() {
+    this.state.isFollowed === 0
+      ? api.userHome
+          .addFollow({
+            followStatus: 1,
+            followUserId: this.props.myUsermeta.userId,
+            userId: this.props.navigation.getParam('usermeta').userId
+          })
+          .then((res) => {
+            if (res.data.message === 'SUCCESS') {
+              this.setState({
+                followCount: ++this.state.followCount,
+                isFollowed: 1
+              })
+            }
+          })
+      : api.userHome
+          .deleteFollowByUserId(
+            this.props.navigation.getParam('usermeta').userId,
+            this.props.myUsermeta.userId
+          )
+          .then((res) => {
+            if (res.data.message === 'SUCCESS') {
+              this.setState({
+                followCount: --this.state.followCount,
+                isFollowed: 0
+              })
+            }
+          })
   }
 
   public render() {
@@ -32,7 +107,17 @@ class UserHome extends Component<Props> {
       <Container>
         {/* <Separa
         +tor/> */}
-        <Content>
+        <Content
+          refreshControl={
+            <RefreshControl
+              // 是否刷新
+              refreshing={this.state.isRefreshing}
+              onRefresh={this.getFollowInfo.bind(this)}
+              tintColor={'#29A1F7'}
+              title={'拼命加载中...'}
+            />
+          }
+        >
           <View style={{ height: 165 }}>
             <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
           </View>
@@ -70,7 +155,7 @@ class UserHome extends Component<Props> {
             </Button> */}
             <View style={styles.underLine}>
               <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
-                {1}关注 {12}粉丝 {2}动态 {0}收藏
+                {this.state.mineFollowCount}关注 {this.state.followCount}粉丝 {2}动态{/*{0}收藏*/}
               </Text>
             </View>
           </Body>
@@ -91,9 +176,15 @@ class UserHome extends Component<Props> {
         </Content>
         <Footer>
           <FooterTab>
-            <Button vertical onPress={()=>this.props.navigation.navigate('聊天')}>
+            <Button vertical onPress={() => this.props.navigation.navigate('聊天')}>
               <Icon name="message" style={{ fontSize: 20 }} />
               <Text>和他聊天</Text>
+            </Button>
+          </FooterTab>
+          <FooterTab>
+            <Button vertical onPress={() => this.FollowAction()}>
+              <Icon name="star" style={{ fontSize: 20 }} />
+              <Text>{this.state.isFollowed > 0 ? '取消关注' : '关注'}</Text>
             </Button>
           </FooterTab>
         </Footer>
@@ -120,10 +211,10 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state: any): Object => {
-  console.log('用户中心', state)
+  // console.log('用户中心', state)
   return {
     // 获取 state 变化
-    token: state.handleLogin.token
+    myUsermeta: state.HandleMyUsermeta.myUsermeta
   }
 }
 

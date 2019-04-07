@@ -46,13 +46,11 @@ interface Props extends NavigationScreenProps {
 }
 class PostCard extends Component<Props> {
   public state = {
-    images: [
-      // {
-      //   url: 'https://oss.miaoroom.com/weixiao/2019/3/29/4DBFCE27F33C44FA8B2F54A8535FE033.JPG?Expires=1869204625&OSSAccessKeyId=LTAICq734h6sfksn&Signature=WuudwCIJllIzstA8NWkLMFq5KFc%3D'
-      // }
-      // { url: 'https://ws2.sinaimg.cn/large/0069wGDkly1fypt7tqu36j30u0190u11.jpg' },
-      // { url: 'https://ws4.sinaimg.cn/large/0069wGDkly1fypu1pvnxmj30qo0hswhv.jpg' }
-    ],
+    images:
+      this.props.postsItemData.postImage === null ||
+      this.props.postsItemData.postImage === undefined
+        ? []
+        : JSON.parse(this.props.postsItemData.postImage),
     modalVisible: false,
     initIndex: 0,
     postsItemData: this.props.postsItemData,
@@ -78,16 +76,6 @@ class PostCard extends Component<Props> {
   }
 
   public componentWillMount() {
-    // console.log(this.state.images)
-    if (this.state.postsItemData.postImage !== null) {
-      JSON.parse(this.state.postsItemData.postImage).map((item: string) => {
-        this.state.images.push({ url: item })
-        this.setState({
-          images: this.state.images
-        })
-      })
-    }
-
     /**
      * 文章数据通过react navigation传递
      */
@@ -99,6 +87,16 @@ class PostCard extends Component<Props> {
         IP
       })
     )
+
+    // if (this.state.postsItemData.postImage !== null) {
+    //   JSON.parse(this.state.postsItemData.postImage).map((item: string) => {
+    //     this.state.images.push({ url: item })
+    //     this.setState({
+    //       images: this.state.images
+    //     })
+    //   })
+    // }
+    // console.log(this.state.images)
   }
 
   /**
@@ -128,8 +126,15 @@ class PostCard extends Component<Props> {
               ).length
             : 0,
         UpvoteCount: this.state.postsItemData.upvoteList.length,
-        postsItemData: this.props.postsItemData
+        postsItemData: this.props.postsItemData,
+        images:
+          this.props.postsItemData.postImage === null ||
+          this.props.postsItemData.postImage === undefined
+            ? []
+            : JSON.parse(this.props.postsItemData.postImage)
       })
+      // console.log(this.state.images)
+      // console.log(Array.isArray(JSON.parse(this.props.postsItemData.postImage)))
     }, 0)
   }
 
@@ -143,7 +148,7 @@ class PostCard extends Component<Props> {
         upvoteUserId: this.props.myUsermeta.userId
       })
       .then((res) => {
-        console.log('点赞', res)
+        // console.log('点赞', res)
         if (res.data.message === 'SUCCESS') {
           this.setState({
             UpvoteCount: ++this.state.UpvoteCount,
@@ -161,7 +166,7 @@ class PostCard extends Component<Props> {
     api.upvote
       .deleteUpvoteByUserId(this.state.postsItemData.postId, this.props.myUsermeta.userId)
       .then((res) => {
-        console.log('取消点赞', res)
+        // console.log('取消点赞', res)
         if (res.data.data > 0) {
           this.setState({
             UpvoteCount: --this.state.UpvoteCount,
@@ -203,13 +208,20 @@ class PostCard extends Component<Props> {
           type: 'success'
         })
       })
-      .then(() => setTimeout(() => this.fresh(), 500))
+      .then(() => setTimeout(() => this.fresh(), 200))
+    // .then(()=> console.log(this.state))
   }
 
   public fresh() {
     api.home.getPostByPostId(this.state.postsItemData.postId).then((res) => {
       this.setState({
-        postsItemData: res.data.data
+        postsItemData: res.data.data,
+        shareCount:
+          res.data.data.commentsUsermetaDTOList.length > 0
+            ? res.data.data.commentsUsermetaDTOList.filter(
+                (res: any) => res.commentType === 'share'
+              ).length
+            : 0
       })
     })
   }
@@ -265,11 +277,12 @@ class PostCard extends Component<Props> {
                 width: wp('90%')
               }}
             >
-              {this.state.images.map((item, index) => {
+              {this.state.images.map((item: any, index: number) => {
+                // console.log(item)
                 return index <= 8 ? (
                   <TouchableOpacity
                     onPress={() => {
-                      console.log(index)
+                      // console.log(index)
                       this.setState({
                         modalVisible: true,
                         initIndex: index
@@ -279,7 +292,7 @@ class PostCard extends Component<Props> {
                     key={index}
                   >
                     <Image
-                      source={{ uri: item.url }}
+                      source={{ uri: item }}
                       key={index}
                       style={{
                         width: 110,
@@ -367,7 +380,7 @@ class PostCard extends Component<Props> {
             }
           >
             <View style={styles.actionButton}>
-              <Icon name="fenxiang" style={[styles.actions]} onPress={() => console.log('QQ')} />
+              <Icon name="fenxiang" style={[styles.actions]} />
               <Text style={[styles.actions]}>{this.state.shareCount}</Text>
             </View>
           </TouchableOpacity>
@@ -379,7 +392,7 @@ class PostCard extends Component<Props> {
             }
           >
             <View style={styles.actionButton}>
-              <Icon name="pinglun" style={[styles.actions]} onPress={() => console.log('QQ')} />
+              <Icon name="pinglun" style={[styles.actions]} />
               <Text style={[styles.actions]}>{this.state.commentCount}</Text>
             </View>
           </TouchableOpacity>

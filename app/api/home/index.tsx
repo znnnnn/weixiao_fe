@@ -19,12 +19,12 @@ const Home = {
     // ))
     return axios.get(`${base.bd}/usermeta/`)
   },
-  getPostsList(){
+  getPostsList() {
     return axios.get(`${base.bd}/posts/`)
   },
-  getPostsOfType(type: string){
-    return axios.get(`${base.bd}/posts/type/`,{
-      params:{
+  getPostsOfType(type: string) {
+    return axios.get(`${base.bd}/posts/type/`, {
+      params: {
         type
       }
     })
@@ -33,12 +33,24 @@ const Home = {
    * 根据文章ID获取文章内容、评论、分享等信息
    * @param postId 文章ID
    */
-  getPostByPostId(postId: number){
+  getPostByPostId(postId: number) {
     return axios.get(`${base.bd}/posts/${postId}`)
   },
-  deletePostByPostId(postId: number){
+  deletePostByPostId(postId: number) {
     return axios.delete(`${base.bd}/posts/${postId}`)
+  },
+  getPostsByPostAuthor(postsAuthor: number) {
+    return axios.get(`${base.bd}/posts/user/${postsAuthor}`)
+  },
+  getPostsOfTypeAndPostAuthor(type: string | null, postsAuthor: number) {
+    return axios.get(`${base.bd}/posts/type/user`, {
+      params: {
+        type,
+        postsAuthor
+      }
+    })
   }
+
   // 其他接口…………
 }
 
