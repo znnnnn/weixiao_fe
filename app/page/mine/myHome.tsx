@@ -1,7 +1,7 @@
 import { Tabs } from '@ant-design/react-native'
 import { Body, Button, Container, Content, Footer, FooterTab, Text, Thumbnail } from 'native-base'
 import React, { Component } from 'react'
-import { Image, RefreshControl, StyleSheet ,View} from 'react-native'
+import { Image, RefreshControl, StyleSheet, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -12,7 +12,10 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 import api from '@api/index'
 import { connect } from 'react-redux'
 
-const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
+import PostCard from '@components/home/PostCard'
+import SinglePostCardItem from '@components/SinglePostCardItem'
+
+const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '发现' }]
 
 interface Props extends NavigationScreenProps {
   token: string
@@ -28,9 +31,11 @@ class UserHome extends Component<Props> {
     followCount: 0,
     mineFollowCount: 0,
     isFollowed: 0,
-    dynamic: [],
+    dynamicList: [],
     dynamicCount: 0,
-    isRefreshing: false
+    isRefreshing: true,
+    postsList: [],
+    findList: []
   }
   public constructor(props: Props) {
     super(props)
@@ -75,7 +80,7 @@ class UserHome extends Component<Props> {
       )
   }
 
-  public getPostsInfo(){
+  public getPostsInfo() {
     /**
      * 获取动态信息
      */
@@ -86,47 +91,37 @@ class UserHome extends Component<Props> {
     //     dynamicCount: res.data.data.list.length
     //   })
     // })
-    api.home.getPostsByPostAuthor(this.props.myUsermeta.userId).then(res => {
+
+    api.home.getPostsByPostAuthor(this.props.myUsermeta.userId).then((res) => {
       // console.log(res)
-      let dynamic = res.data.data.filter((item:any) => item.postCat === 'dynamic')
+      let dynamic = res.data.data.filter((item: any) => item.postCat === 'dynamic')
+      let find = res.data.data.filter((item: any) => item.postCat !== 'dynamic')
+      // console.log(find)
       // console.log(dynamic)
       this.setState({
-        // dynamic: res.data.data.list,
-        dynamicCount: dynamic.length
+        dynamicList: dynamic,
+        postsList: res.data.data,
+        dynamicCount: dynamic.length,
+        findList: find
       })
     })
   }
 
-  // public FollowAction() {
-  //   this.state.isFollowed === 0
-  //     ? api.userHome
-  //         .addFollow({
-  //           followStatus: 1,
-  //           followUserId: this.props.myUsermeta.userId,
-  //           userId: this.props.navigation.getParam('usermeta').userId
-  //         })
-  //         .then((res) => {
-  //           if (res.data.message === 'SUCCESS') {
-  //             this.setState({
-  //               followCount: ++this.state.followCount,
-  //               isFollowed: 1
-  //             })
-  //           }
-  //         })
-  //     : api.userHome
-  //         .deleteFollowByUserId(
-  //           this.props.navigation.getParam('usermeta').userId,
-  //           this.props.myUsermeta.userId
-  //         )
-  //         .then((res) => {
-  //           if (res.data.message === 'SUCCESS') {
-  //             this.setState({
-  //               followCount: --this.state.followCount,
-  //               isFollowed: 0
-  //             })
-  //           }
-  //         })
-  // }
+  public refresh() {
+    this.getFollowInfo()
+    this.getPostsInfo()
+  }
+
+  public noData() {
+    return (
+      <View
+        style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), padding: 30 }}
+      >
+        <Icon name="cube" style={{ fontSize: 40 }} />
+        <Text style={{ fontSize: 24 }}>无数据</Text>
+      </View>
+    )
+  }
 
   public render() {
     return (
@@ -138,7 +133,7 @@ class UserHome extends Component<Props> {
             <RefreshControl
               // 是否刷新
               refreshing={this.state.isRefreshing}
-              onRefresh={this.getFollowInfo.bind(this)}
+              onRefresh={this.refresh.bind(this)}
               tintColor={'#29A1F7'}
               title={'拼命加载中...'}
             />
@@ -172,7 +167,8 @@ class UserHome extends Component<Props> {
             </Button>
             <View style={styles.underLine}>
               <Text style={{ fontSize: 12, color: '#3E3E3E' }}>
-                {this.state.mineFollowCount}关注 {this.state.followCount}粉丝 {this.state.dynamicCount}动态{/*{0}收藏*/}
+                {this.state.mineFollowCount}关注 {this.state.followCount}粉丝{' '}
+                {this.state.dynamicCount}动态{/*{0}收藏*/}
               </Text>
             </View>
           </Body>
@@ -185,10 +181,42 @@ class UserHome extends Component<Props> {
                 // paddingLeft: wp('5%'),
                 flexWrap: 'wrap'
               }}
-            />
-            <View>
-              <Text>Content of Second Tab</Text>
+            >
+              {/* 主页 */}
+              {this.state.postsList.length > 0
+                ? this.state.postsList.map((item, index) => (
+                    <PostCard
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  ))
+                : this.noData()}
             </View>
+            {/* 动态 */}
+            <View>
+              {this.state.dynamicList.length > 0
+                ? this.state.dynamicList.map((item, index) => (
+                    <PostCard
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  ))
+                : this.noData()}
+            </View>
+            {/* 发现 */}
+            {this.state.findList.length > 0
+              ? this.state.findList.map((item: any, index: number) => {
+                  return (
+                    <SinglePostCardItem
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  )
+                })
+              : this.noData()}
           </Tabs>
         </Content>
         {/* <Footer>

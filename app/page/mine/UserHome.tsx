@@ -9,6 +9,9 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
+import PostCard from '@components/home/PostCard'
+import SinglePostCardItem from '@components/SinglePostCardItem'
+
 import api from '@api/index'
 import { connect } from 'react-redux'
 
@@ -27,7 +30,11 @@ class UserHome extends Component<Props> {
     followCount: 0,
     mineFollowCount: 0,
     isFollowed: 0,
-    isRefreshing: false
+    isRefreshing: true,
+    dynamicList: [],
+    dynamicCount: 0,
+    postsList: [],
+    findList: []
   }
   public constructor(props: Props) {
     super(props)
@@ -35,6 +42,7 @@ class UserHome extends Component<Props> {
 
   public componentDidMount() {
     this.getFollowInfo()
+    this.getPostsInfo()
   }
 
   public getFollowInfo() {
@@ -102,6 +110,47 @@ class UserHome extends Component<Props> {
           })
   }
 
+  public getPostsInfo() {
+    /**
+     * 获取动态信息
+     */
+    // api.home.getPostsOfTypeAndPostAuthor(null,this.props.myUsermeta.userId).then(res => {
+    //   console.log(res.data.data.list)
+    //   this.setState({
+    //     // dynamic: res.data.data.list,
+    //     dynamicCount: res.data.data.list.length
+    //   })
+    // })
+
+    api.home.getPostsByPostAuthor(this.props.navigation.getParam('usermeta').userId).then((res) => {
+      // console.log(res)
+      let dynamic = res.data.data.filter((item: any) => item.postCat === 'dynamic')
+      let find = res.data.data.filter((item: any) => item.postCat !== 'dynamic')
+      // console.log(find)
+      // console.log(dynamic)
+      this.setState({
+        dynamicList: dynamic,
+        postsList: res.data.data,
+        dynamicCount: dynamic.length,
+        findList: find
+      })
+    })
+  }
+
+  public refresh() {
+    this.getFollowInfo()
+    this.getPostsInfo()
+  }
+
+  public noData() {
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center',width: wp('100%'),padding: 30 }}>
+        <Icon name="cube" style={{ fontSize: 40 }} />
+        <Text style={{ fontSize: 24 }}>无数据</Text>
+      </View>
+    )
+  }
+
   public render() {
     return (
       <Container>
@@ -112,7 +161,7 @@ class UserHome extends Component<Props> {
             <RefreshControl
               // 是否刷新
               refreshing={this.state.isRefreshing}
-              onRefresh={this.getFollowInfo.bind(this)}
+              onRefresh={this.refresh.bind(this)}
               tintColor={'#29A1F7'}
               title={'拼命加载中...'}
             />
@@ -168,10 +217,42 @@ class UserHome extends Component<Props> {
                 // paddingLeft: wp('5%'),
                 flexWrap: 'wrap'
               }}
-            />
-            <View>
-              <Text>Content of Second Tab</Text>
+            >
+              {/* 主页 */}
+              {this.state.postsList.length > 0
+                ? this.state.postsList.map((item, index) => (
+                    <PostCard
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  ))
+                : this.noData()}
             </View>
+            {/* 动态 */}
+            <View>
+              {this.state.dynamicList.length > 0
+                ? this.state.dynamicList.map((item, index) => (
+                    <PostCard
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  ))
+                : this.noData()}
+            </View>
+            {/* 发现 */}
+            {this.state.findList.length > 0
+              ? this.state.findList.map((item: any, index: number) => {
+                  return (
+                    <SinglePostCardItem
+                      fresh={() => this.getPostsInfo.bind(this)}
+                      postsItemData={item}
+                      key={index}
+                    />
+                  )
+                })
+              : this.noData()}
           </Tabs>
         </Content>
         <Footer>

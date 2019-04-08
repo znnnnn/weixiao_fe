@@ -10,7 +10,7 @@ import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import { Container, Content, Toast } from 'native-base'
 import React from 'react'
-import { AsyncStorage, RefreshControl, ScrollView, View } from 'react-native'
+import { AsyncStorage, RefreshControl, ScrollView, Text, View } from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -23,6 +23,7 @@ import { connect } from 'react-redux'
 import api from '@api/index'
 
 export interface State {
+  avatarNofilter: Array<any>
   avatarList: Array<any>
   postsList: Array<any>
   isRefreshing: boolean
@@ -37,6 +38,7 @@ export interface Props extends NavigationScreenProps {
 
 class Home extends React.Component<Props, State> {
   public state: State = {
+    avatarNofilter: [],
     avatarList: [],
     postsList: [],
     isRefreshing: true
@@ -59,7 +61,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-        .then(() => this.props.navigation.navigate('我的'))
+        // .then(() => this.props.navigation.navigate('我的'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -102,11 +104,19 @@ class Home extends React.Component<Props, State> {
   public componentWillMount() {
     api.home.getUsermetaList().then((res) => {
       this.setState({
-        avatarList: res.data.data.list
+        avatarNofilter: res.data.data.list
       })
-      // return res.data.data.list.map((item: any) => <Avatar uri={item.avatar} />)
-      // return <Avatar uri={res.data.data.list[0].avatar} />
     })
+  }
+
+  public componentWillReceiveProps() {
+    setTimeout(() => {
+      this.setState({
+        avatarList: this.state.avatarNofilter.filter(
+          (item: any) => item.userId !== this.props.myUsermeta.userId
+        )
+      })
+    }, 0)
   }
 
   public componentDidMount() {
@@ -123,6 +133,17 @@ class Home extends React.Component<Props, State> {
     })
 
     this.props.navigation.setParams({ getPostsList: this.getPostsList })
+  }
+
+  public noData() {
+    return (
+      <View
+        style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), padding: 30 }}
+      >
+        <Icon name="cube" style={{ fontSize: 40 }} />
+        <Text style={{ fontSize: 24 }}>无数据</Text>
+      </View>
+    )
   }
 
   public render() {
@@ -147,9 +168,7 @@ class Home extends React.Component<Props, State> {
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
               {this.state.avatarList.map((item, index) => {
-                if (item.userId !== this.props.myUsermeta.userId) {
-                  return <Avatar usermeta={item} key={index} />
-                }
+                return <Avatar usermeta={item} key={index} />
               })}
             </ScrollView>
           </View>
@@ -164,13 +183,15 @@ class Home extends React.Component<Props, State> {
               />
             }
           >
-            {this.state.postsList.map((item, index) => (
-              <PostCard
-                fresh={() => this.getPostsList.bind(this)}
-                postsItemData={item}
-                key={index}
-              />
-            ))}
+            {this.state.postsList.length > 0
+              ? this.state.postsList.map((item, index) => (
+                  <PostCard
+                    fresh={() => this.getPostsList.bind(this)}
+                    postsItemData={item}
+                    key={index}
+                  />
+                ))
+              : null}
           </Content>
         </Container>
       </Provider>

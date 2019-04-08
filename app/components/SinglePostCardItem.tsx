@@ -103,8 +103,6 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
         IP
       })
     )
-
-    console.log(this.state.shareCount)
   }
 
   /**
@@ -113,7 +111,6 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
    */
   public componentWillReceiveProps() {
     setTimeout(() => {
-      // console.log(this.state.postsItemData)
       this.setState({
         isUpvoted:
           this.props.postsItemData.upvoteList.length > 0
@@ -148,7 +145,7 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
         upvoteUserId: this.props.myUsermeta.userId
       })
       .then((res) => {
-        console.log('点赞', res)
+        // console.log('点赞', res)
         if (res.data.message === 'SUCCESS') {
           this.setState({
             upvoteCount: ++this.state.upvoteCount,
@@ -166,7 +163,6 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
     api.upvote
       .deleteUpvoteByUserId(this.state.postsItemData.postId, this.props.myUsermeta.userId)
       .then((res) => {
-        console.log('取消点赞', res)
         if (res.data.data > 0) {
           this.setState({
             upvoteCount: --this.state.upvoteCount,
@@ -211,7 +207,26 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
   public fresh() {
     api.home.getPostByPostId(this.state.postsItemData.postId).then((res) => {
       this.setState({
-        postsItemData: res.data.data
+        postsItemData: res.data.data,
+        upvoteCount: res.data.data.upvoteList.length,
+        shareCount:
+          res.data.data.commentsUsermetaDTOList.length > 0
+            ? res.data.data.commentsUsermetaDTOList.filter(
+                (res: any) => res.commentType === 'share'
+              ).length
+            : 0,
+        commentCount:
+          res.data.data.commentsUsermetaDTOList.length > 0
+            ? res.data.data.commentsUsermetaDTOList.filter(
+                (res: any) => res.commentType === 'comment'
+              ).length
+            : 0,
+        isUpvoted:
+          res.data.data.upvoteList.length > 0
+            ? res.data.data.upvoteList.filter(
+                (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
+              ).length
+            : 0
       })
     })
   }
@@ -219,21 +234,30 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
   public render() {
     return (
       <Card>
-        <CardItem>
-          <Left>
-            <Thumbnail
-              source={{
-                uri: this.state.postsItemData.usermeta.avatar
-              }}
-            />
-            <Body>
-              <Text>{this.state.postsItemData.usermeta.nickname}</Text>
-              <Text>{this.state.postsItemData.usermeta.job}</Text>
-            </Body>
-          </Left>
-        </CardItem>
         <TouchableOpacity
-          activeOpacity={0.7}
+          onPress={() =>
+            this.props.navigation.navigate('用户中心', {
+              usermeta: this.state.postsItemData.usermeta
+            })
+          }
+          activeOpacity={0.9}
+        >
+          <CardItem>
+            <Left>
+              <Thumbnail
+                source={{
+                  uri: this.state.postsItemData.usermeta.avatar
+                }}
+              />
+              <Body>
+                <Text>{this.state.postsItemData.usermeta.nickname}</Text>
+                <Text>{this.state.postsItemData.usermeta.job}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.9}
           onPress={() =>
             this.props.navigation.navigate('微校正文', {
               postsItemData: this.state.postsItemData
@@ -270,7 +294,15 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
                 style={[styles.action, { color: this.state.isUpvoted > 0 ? '#29A1F7' : '#333' }]}
               >{`${this.state.upvoteCount}个赞`}</Text>
             </Button>
-            <Button transparent small onPress={() => {}}>
+            <Button
+              transparent
+              small
+              onPress={() =>
+                this.props.navigation.navigate('微校正文', {
+                  postsItemData: this.state.postsItemData
+                })
+              }
+            >
               <Icon
                 name="chatbubbles"
                 style={[{ height: 16, width: 16, fontSize: 16, color: '#333' }]}
@@ -359,7 +391,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state: any) => {
-  // console.log('state', state)
   return {
     // 获取 state 变化
     myUsermeta: state.HandleMyUsermeta.myUsermeta

@@ -130,9 +130,22 @@ class SinglePostCardList extends React.Component<Props, State> /*<Props, State>*
             />
           }
         >
-          {this.state.postsList.length>0 ? this.state.postsList.map((item: any, index: number) => {
-            return <SinglePostCardItem fresh={() => this.getPostsList.bind(this)} postsItemData={item} key={index} />
-          }): <View style={{justifyContent:'center', alignItems: 'center',height:hp('80%')}}><Icon name="cube" style={{fontSize:40}}></Icon><Text style={{fontSize: 24}}>无数据</Text></View>}
+          {this.state.postsList.length > 0 ? (
+            this.state.postsList.map((item: any, index: number) => {
+              return (
+                <SinglePostCardItem
+                  fresh={() => this.getPostsList.bind(this)}
+                  postsItemData={item}
+                  key={index}
+                />
+              )
+            })
+          ) : (
+            <View style={{ justifyContent: 'center', alignItems: 'center', height: hp('80%') }}>
+              <Icon name="cube" style={{ fontSize: 40 }} />
+              <Text style={{ fontSize: 24 }}>无数据</Text>
+            </View>
+          )}
 
           {/* <Body style={{ paddingTop: (hp('100%')-300)/2}}>
             <Image source={require('@image/404.png')} style={{width:150, height:150}}></Image>
