@@ -5,6 +5,7 @@
 import FindPublish from '@page/find/FindPublish'
 
 import Topic from '@app/page/find/Topic'
+import TopicPublish from '@app/page/find/TopicPublish'
 
 import Donate from '@page/find/Donate'
 import DonateComment from '@page/find/DonateComment'
@@ -39,32 +40,43 @@ const RouteFindConfig: NavigationRouteConfigMap = {
   话题: {
     screen: Topic,
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
-      header: null,
+      // header: null,
       headerTruncatedBackTitle: '',
       headerTitle: navigation.getParam('headerTitle', '话题'),
+      // headerRight: (
+      //   <BaseIcon
+      //     active
+      //     name="brush"
+      //     style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
+      //     onPress={() => {
+      //       navigation.navigate('发现发布', {
+      //         findPublishTitle: navigation.getParam('headerTitle'),
+      //         publishType: navigation.getParam('headerTitle')
+      //       })
+      //     }}
+      //   />
+      // )
+    })
+  },
+  话题发布:{
+    screen: TopicPublish,
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '',
+      headerTitle: `话题发布`,
+      tabBarVisible: false,
       headerRight: (
-        // <Button
-        //   type="primary"
-        //   size="small"
-        //   style={{ height: 30, width: 50, marginRight: 10 }}
-        //   onPress={() => {
-        //     // console.log(params)
-        //     navigation.goBack()
-        //     // console.log(navigation)
-        //     // console.log(navigation.getParam('publish'))
-        //     // navigation.state.routes[2].params._publish()
-        //   }}
-        // >
-        //   保存
-        // </Button>
-        <BaseIcon
-          active
-          name="brush"
-          style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
+        <Button
+          type="primary"
+          size="small"
+          style={{ height: 30, width: 50, marginRight: 10 }}
           onPress={() => {
-            navigation.navigate('发布')
+            const {params}: any = navigation.state
+            // console.log(params)
+            params.publish('话题')
           }}
-        />
+        >
+          保存
+        </Button>
       )
     })
   },
@@ -81,7 +93,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       // header: null,
       headerTruncatedBackTitle: '',
-      headerTitle: `${navigation.getParam('findPublishTitle', '发布')} - 发布`,
+      headerTitle: `${navigation.getParam('findPublishTitle', '美食')} - 发布`,
       tabBarVisible: false,
       headerRight: (
         <Button

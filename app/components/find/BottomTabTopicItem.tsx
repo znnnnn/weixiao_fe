@@ -1,6 +1,8 @@
 import { ListView } from '@ant-design/react-native'
+import api from '@app/api'
+import { Container, Content } from 'native-base'
 import React from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, RefreshControl, Text, TouchableOpacity, View } from 'react-native'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 interface Item {
   thumb: string
@@ -15,7 +17,9 @@ interface Props extends NavigationScreenProps {
 export default withNavigation(
   class BottomTabTopicItem extends React.Component<Props> {
     public state = {
-      layout: 'list'
+      layout: 'list',
+      topicList: [],
+      isRefreshing: false
     }
 
     public constructor(props: Props) {
@@ -81,14 +85,94 @@ export default withNavigation(
       )
     }
 
+    public componentDidMount() {
+      this.refresh()
+    }
+    public refresh() {
+      // console.log('刷新')
+      this.setState({
+        isRefreshing: true
+      })
+      api.topic
+        .getTopicNameList()
+        .then((res) => {
+          this.setState({
+            topicList: res.data.data.list
+          })
+        })
+        .then(() =>
+          setTimeout(() => {
+            // 至少加载500ms
+            this.setState({
+              isRefreshing: false
+            })
+          }, 500)
+        )
+    }
+
     public render() {
       return (
-        <ListView
-          onFetch={this.onFetch}
-          keyExtractor={(item, index) => `${this.state.layout} - ${item} - ${index}`}
-          renderItem={this.renderItem}
-          numColumns={this.state.layout === 'list' ? 1 : 3}
-        />
+        <Content
+          style={{ flex: 1 }}
+          refreshControl={
+            <RefreshControl
+              // 是否刷新
+              refreshing={this.state.isRefreshing}
+              onRefresh={this.refresh.bind(this)}
+              tintColor={'#29A1F7'}
+              title={'拼命加载中...'}
+            />
+          }
+        >
+          {this.state.topicList.map((item: any, index: number) => {
+            // console.log(JSON.parse(item.topicThumb))
+            return (
+              <TouchableOpacity
+                key={index}
+                style={{
+                  padding: 10,
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}
+                onPress={() =>
+                  this.props.navigation.navigate('话题', {
+                    topicName: item.topicName,
+                    topicThumb: item.topicThumb !== '[]'
+                    ? JSON.parse(item.topicThumb)[0]
+                    : 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+                    topicHot: item.topicHot
+                  })
+                }
+              >
+                <View style={{ justifyContent: 'space-around' }}>
+                  <Text style={{ fontSize: 16, color: '#3E3E3E' }}>{item.topicName}</Text>
+                  <Text style={{ fontSize: 10, color: '#C7C7C7' }}>
+                    {item.hot > 10000 ? `${item.hot / 10000}万` : item.topicHot}热度
+                  </Text>
+                </View>
+                {/* <Text>https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg</Text> */}
+                <Image
+                  source={{
+                    uri:
+                      // item.topicThumb !== null ||item.topicThumb !== '[]'
+                      item.topicThumb !== '[]'
+                        ? JSON.parse(item.topicThumb)[0]
+                        : 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+                  }}
+                  style={{ height: 50, width: 70 }}
+                />
+              </TouchableOpacity>
+            )
+          })}
+        </Content>
+        // <ListView
+        //   onFetch={this.onFetch}
+        //   keyExtractor={(item, index) => `${this.state.layout} - ${item} - ${index}`}
+        //   renderItem={this.renderItem}
+        //   numColumns={this.state.layout === 'list' ? 1 : 3}
+        // />
       )
     }
   }

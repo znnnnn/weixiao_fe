@@ -139,8 +139,24 @@ class UserHome extends Component<Props> {
             />
           }
         >
-          <View style={{ height: 165 }}>
-            <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
+          <View style={{ height: 155 }}>
+            {/* <Image
+              source={require('@image/logo-pendding.png')}
+              style={{
+                zIndex: 1,
+                width: 50,
+                height: 50,
+                alignSelf: 'center',
+                marginTop: 75,
+                opacity: 0.6
+              }}
+            /> */}
+            <Image
+              source={{
+                uri: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+              }}
+              style={styles.backImage}
+            />
           </View>
           <Body>
             <Thumbnail
@@ -189,6 +205,7 @@ class UserHome extends Component<Props> {
                       fresh={() => this.getPostsInfo.bind(this)}
                       postsItemData={item}
                       key={index}
+                      isLast={index === this.state.postsList.length - 1}
                     />
                   ))
                 : this.noData()}
@@ -201,6 +218,7 @@ class UserHome extends Component<Props> {
                       fresh={() => this.getPostsInfo.bind(this)}
                       postsItemData={item}
                       key={index}
+                      isLast={index === this.state.postsList.length - 1}
                     />
                   ))
                 : this.noData()}
@@ -237,7 +255,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: wp('100%'),
     height: 200,
-    position: 'absolute'
+    position: 'absolute',
+    zIndex: 99,
+    backgroundColor: '#e9e9e9'
   },
   underLine: {
     width: wp('90%'),

@@ -15,7 +15,7 @@ import SinglePostCardItem from '@components/SinglePostCardItem'
 import api from '@api/index'
 import { connect } from 'react-redux'
 
-const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '视频图片' }]
+const iconTab = [{ title: '主页' }, { title: '动态' }, { title: '发现' }]
 
 interface Props extends NavigationScreenProps {
   usermeta: any
@@ -144,7 +144,9 @@ class UserHome extends Component<Props> {
 
   public noData() {
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center',width: wp('100%'),padding: 30 }}>
+      <View
+        style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), padding: 30 }}
+      >
         <Icon name="cube" style={{ fontSize: 40 }} />
         <Text style={{ fontSize: 24 }}>无数据</Text>
       </View>
@@ -168,7 +170,12 @@ class UserHome extends Component<Props> {
           }
         >
           <View style={{ height: 165 }}>
-            <Image source={require('@image/find/Detail/food.png')} style={styles.backImage} />
+            <Image
+              source={{
+                uri: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+              }}
+              style={styles.backImage}
+            />
           </View>
           <Body>
             <Thumbnail
@@ -180,9 +187,6 @@ class UserHome extends Component<Props> {
             <Text style={{ lineHeight: 24 }}>
               {this.props.navigation.getParam('usermeta').nickname}
             </Text>
-            {/* <Text note style={{ fontSize: 12 }}>
-              16级温州职业技术学院
-            </Text> */}
             <Text note style={{ fontSize: 12 }}>
               {`${
                 this.props.navigation.getParam('usermeta').school === ''
@@ -225,6 +229,7 @@ class UserHome extends Component<Props> {
                       fresh={() => this.getPostsInfo.bind(this)}
                       postsItemData={item}
                       key={index}
+                      isLast={index===this.state.postsList.length-1}
                     />
                   ))
                 : this.noData()}
@@ -237,6 +242,7 @@ class UserHome extends Component<Props> {
                       fresh={() => this.getPostsInfo.bind(this)}
                       postsItemData={item}
                       key={index}
+                      isLast={index===this.state.postsList.length-1}
                     />
                   ))
                 : this.noData()}

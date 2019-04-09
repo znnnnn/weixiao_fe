@@ -43,6 +43,7 @@ interface Props extends NavigationScreenProps {
   postsItemData: any
   myUsermeta: any
   fresh: Function
+  isLast: boolean
 }
 class PostCard extends Component<Props> {
   public state = {
@@ -76,6 +77,7 @@ class PostCard extends Component<Props> {
   }
 
   public componentWillMount() {
+    // console.log('islast', this.props.isLast)
     /**
      * 文章数据通过react navigation传递
      */
@@ -108,8 +110,8 @@ class PostCard extends Component<Props> {
       // console.log(this.state.postsItemData)
       this.setState({
         isUpvoted:
-          this.state.postsItemData.upvoteList.length > 0
-            ? this.state.postsItemData.upvoteList.filter(
+          this.props.postsItemData.upvoteList.length > 0
+            ? this.props.postsItemData.upvoteList.filter(
                 (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
               ).length
             : 0,
@@ -125,7 +127,7 @@ class PostCard extends Component<Props> {
                 (res: any) => res.commentType === 'comment'
               ).length
             : 0,
-        UpvoteCount: this.state.postsItemData.upvoteList.length,
+        UpvoteCount: this.props.postsItemData.upvoteList.length,
         postsItemData: this.props.postsItemData,
         images:
           this.props.postsItemData.postImage === null ||
@@ -420,15 +422,17 @@ class PostCard extends Component<Props> {
             </View>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            width: wp('100%'),
-            height: 15,
-            backgroundColor: '#f4f4f4',
-            borderTopWidth: 1,
-            borderTopColor: '#e5e5e5'
-          }}
-        />
+        {!this.props.isLast && (
+          <View
+            style={{
+              width: wp('100%'),
+              height: 15,
+              backgroundColor: '#EEEEEE',
+              borderTopWidth: 1,
+              borderTopColor: '#e5e5e5'
+            }}
+          />
+        )}
       </View>
     )
   }

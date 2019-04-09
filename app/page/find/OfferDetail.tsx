@@ -54,7 +54,7 @@ export default class OfferDetail extends React.Component<Props, State> {
             </View>
             <View style={{ flexDirection: 'row', marginTop: 15 }}>
               <Icon name="pin" style={styles.icon} />
-              <Text style={styles.iconText}>温州</Text>
+              <Text style={styles.iconText}>程度</Text>
               <Icon name="briefcase" style={styles.icon} />
               <Text style={styles.iconText}>经验不限</Text>
               <Icon name="school" style={styles.icon} />

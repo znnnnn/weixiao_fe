@@ -20,10 +20,10 @@ const EDU_DATA = require('./SetEducationEdu.json')
 
 const data = require('./data.json')
 // const data = [{
-//   label: "温州职业技术学院",
+//   label: "华东师范大学",
 //   value: "1"
 // }, {
-//   label: "温州大学",
+//   label: "复旦大学",
 //   value: "2"
 // }
 // ]
@@ -53,7 +53,6 @@ export interface Props extends NavigationScreenProps {
 
 class SetEducation extends React.Component<Props> /*State*/ {
   public state = {
-    // value: ["温州职业技术学院", "温州大学"]
     data: [],
     school: [],
     major: [],

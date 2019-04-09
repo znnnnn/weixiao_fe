@@ -1,7 +1,8 @@
-import { InputItem, List, Provider, Toast } from '@ant-design/react-native'
+import { InputItem, List, Provider } from '@ant-design/react-native'
 import Avatar from '@components/home/Avatar'
 import PostUserCard from '@components/home/PostUserCard'
 import {
+  ActionSheet,
   Body,
   Button,
   Container,
@@ -16,76 +17,149 @@ import {
   ListItem,
   Right,
   Text,
-  Thumbnail
+  Thumbnail,
+  Toast
 } from 'native-base'
 
 import px2dp from '@util/px2dp'
 
+import api from '@app/api'
 import PostCard from '@app/components/home/PostCard'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { Alert, Image, Linking, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
+import {
+  Alert,
+  Image,
+  Linking,
+  Platform,
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+  View
+} from 'react-native'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
+
+let BUTTONS = [
+  { text: 'QQ', icon: 'american-football', iconColor: '#2c8ef4' },
+  { text: 'QQ空间', icon: 'american-football', iconColor: '#2c8ef4' },
+  { text: '微信', icon: 'analytics', iconColor: '#f42ced' },
+  { text: '朋友圈', icon: 'aperture', iconColor: '#ea943b' },
+  { text: '取消', icon: 'aperture', iconColor: '#ea943b' }
+]
+let DESTRUCTIVE_INDEX = 3
+let CANCEL_INDEX = 4
 
 export interface State {
   thumb: string
   title: string
   pv: number
   comment: number
+  isRefreshing: boolean
+  postsList: Array<any>
 }
 
 interface Props extends NavigationScreenProps {}
 
 class OfferTopic extends React.Component<Props, State> {
   public state: State = {
-    thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-    title: '温州职业学院元旦晚会',
-    pv: 6660000,
-    comment: 20000
+    thumb: this.props.navigation.state.params.topicThumb,
+    title: '',
+    pv: 0,
+    comment: 0,
+    isRefreshing: true,
+    postsList: []
   }
 
   public constructor(props: Props) {
     super(props)
-    // console.log(this.props.token)
+    // console.log(this.props.navigation)
   }
 
-  // public componentDidMount() {
-  //   if (this.props.token === '') {
-  //     console.log('token:', this.props.token)
-  //   }
-  // }
+  public componentDidMount() {
+    // this.getTopicByTopicName(topicName)
+    this.fresh()
+  }
+
+  public getTopicByTopicName(topicName: string) {
+    const { topicThumb }: any = this.props.navigation.state.params
+    api.topic.getTopicByTopicName(topicName).then((res: any) => {
+      this.setState({
+        title: res.data.data.topicName,
+        pv: res.data.data.topicHot
+        // thumb: topicThumb
+      })
+    })
+  }
+
+  public getPostsInfo(topicName: string) {
+    this.setState({
+      isRefreshing: true
+    })
+    api.topic
+      .getTopicList(topicName)
+      .then((res) => {
+        console.log(res)
+        this.setState({
+          postsList: res.data.data.list
+        })
+      })
+      .then(() =>
+        setTimeout(
+          () =>
+            this.setState({
+              isRefreshing: false
+            }),
+          300
+        )
+      )
+  }
+
+  public noData() {
+    return (
+      <View
+        style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), padding: 30 }}
+      >
+        <Icon name="cube" style={{ fontSize: 40 }} />
+        <Text style={{ fontSize: 24 }}>无数据</Text>
+      </View>
+    )
+  }
+
+  public fresh() {
+    const { topicName }: any = this.props.navigation.state.params
+    this.getPostsInfo(topicName)
+    this.getTopicByTopicName(topicName)
+  }
 
   public render() {
     return (
       <Provider>
         <Container>
-          <Header searchBar rounded>
+          {/* <Header searchBar rounded>
             <Item>
               <Icon name="ios-search" />
               <Input placeholder="Search" value={this.state.title} />
               <Icon name="ios-people" />
             </Item>
-            {/* <Button small style={{paddingLeft: 0, paddingRight: 0,marginLeft:5}}>
-              <Text>搜索</Text>
-            </Button> */}
-            <Button transparent>
-              <Icon
-                active
-                name="add-circle"
-                style={{ color: '#333', fontSize: 24, alignSelf: 'center', marginRight: 10 }}
-                onPress={() => {
-                  // this.props.navigation.navigation.navigate('发布')
-                  this.props.navigation.navigate('发现发布', {
-                    headerTruncatedBackTitle: '参与话题'
-                  })
-                }}
+          </Header> */}
+          <Content
+            refreshControl={
+              <RefreshControl
+                // 是否刷新
+                refreshing={this.state.isRefreshing}
+                onRefresh={this.fresh.bind(this)}
+                tintColor={'#29A1F7'}
+                title={'拼命加载中...'}
               />
-            </Button>
-          </Header>
-          <Content>
+            }
+          >
             <ListItem thumbnail>
-              <Left style={{ borderWidth: 1, borderColor: 'red' }}>
+              <Left>
                 <Thumbnail
                   source={{
                     uri: this.state.thumb
@@ -113,17 +187,52 @@ class OfferTopic extends React.Component<Props, State> {
               {/*</Right>*/}
             </ListItem>
             <ListItem itemDivider />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {this.state.postsList.length > 0
+              ? this.state.postsList.map((item, index) => (
+                  <PostCard
+                    fresh={() => this.getPostsInfo.bind(this)}
+                    postsItemData={item}
+                    key={index}
+                    isLast={index === this.state.postsList.length - 1}
+                  />
+                ))
+              : this.noData()}
           </Content>
           <Footer>
             <FooterTab>
-              <Button>
+              <Button
+                onPress={() =>
+                  ActionSheet.show(
+                    {
+                      options: BUTTONS,
+                      cancelButtonIndex: CANCEL_INDEX,
+                      // destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                      title: '分享'
+                    },
+                    (buttonIndex) => {
+                      // this.setState({ clicked: BUTTONS[buttonIndex] })
+                      if (BUTTONS[buttonIndex].text !== '取消') {
+                        Toast.show({
+                          text: '分享成功',
+                          type: 'success'
+                        })
+                      }
+                    }
+                  )
+                }
+              >
                 <Icon name="share-alt" />
                 <Text>分享</Text>
               </Button>
-              <Button active>
+              <Button
+                active
+                onPress={() => {
+                  this.props.navigation.navigate('话题发布', {
+                    findPublishTitle: this.state.title,
+                    publishType: this.state.title
+                  })
+                }}
+              >
                 <Icon name="brush" />
                 <Text>参与讨论</Text>
               </Button>
@@ -138,3 +247,5 @@ class OfferTopic extends React.Component<Props, State> {
 const styles = StyleSheet.create({})
 
 export default OfferTopic
+
+// TODO 阅读数

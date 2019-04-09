@@ -60,9 +60,7 @@ export default class IconTab extends React.Component<any, any> {
       >
         <View style={{ flex: 1 }}>
           <Tabs tabs={iconTab} initialPage={0} tabBarPosition="top">
-            <List>
-              <BottomTabTopicItem />
-            </List>
+            <BottomTabTopicItem />
             <List>
               <BottomtabOfferItem />
             </List>

@@ -127,7 +127,7 @@ class Login extends React.Component<Props, State> {
       <Container style={styles.root}>
         <View style={styles.container}>
           {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
-          <Image source={require('../../image/logo.png')} />
+          <Image source={require('../../image/logo.png')} style={{width:100,height:100}} />
           <View style={styles.inputContainer}>
             <InputItem
               clear

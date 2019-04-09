@@ -6,6 +6,7 @@ import comment from './components/comment'
 import commentSender from './components/commentSender'
 import upvote from './components/upvote'
 import file from './file'
+import topic from './find/topic'
 import home from './home/index'
 import login from './mine/login'
 import register from './mine/register'
@@ -24,5 +25,6 @@ export default {
   publish,
   upvote,
   commentSender,
-  comment
+  comment,
+  topic
 }

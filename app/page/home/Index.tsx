@@ -61,7 +61,7 @@ class Home extends React.Component<Props, State> {
             this.props.handleUsermeta(res.data.data)
           })
           .then(() => this.props.handleLogin(asyncToken))
-        // .then(() => this.props.navigation.navigate('我的'))
+        .then(() => this.props.navigation.navigate('发现'))
       } else {
         this.props.navigation.navigate('登录')
         setTimeout(
@@ -189,6 +189,7 @@ class Home extends React.Component<Props, State> {
                     fresh={() => this.getPostsList.bind(this)}
                     postsItemData={item}
                     key={index}
+                    isLast={index===this.state.postsList.length-1}
                   />
                 ))
               : null}

@@ -56,7 +56,7 @@ class UserHome extends Component<Props> {
             />
             <Text>{this.state.nickname}</Text>
             <Text note style={{ fontSize: 12 }}>
-              16级温州职业技术学院
+              16级清华大学 计算机科学与技术
             </Text>
             <Button
               style={{ margin: 5, alignSelf: 'center' }}
