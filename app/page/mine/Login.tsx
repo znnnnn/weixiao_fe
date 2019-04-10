@@ -3,14 +3,23 @@ import Icon from '@app/util/icon'
 import px2dp from '@util/px2dp'
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { AsyncStorage, Image,Linking, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import {
+  AsyncStorage,
+  Image,
+  Linking,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 
-import { Button, Container ,Content,Toast} from 'native-base'
+import { Button, Container, Content, Toast } from 'native-base'
 
 import actions from '@store/action/Index'
 import { connect, DispatchProp } from 'react-redux'
@@ -73,12 +82,10 @@ class Login extends React.Component<Props, State> {
           text: '登录成功',
           type: 'success'
         })
-        api.userHome
-          .myhome(data)
-          .then((res) => {
-            console.log('登录时请求用户信息!!')
-            this.props.handleUsermeta(res.data.data)
-          })
+        api.userHome.myhome(data).then((res) => {
+          console.log('登录时请求用户信息!!')
+          this.props.handleUsermeta(res.data.data)
+        })
         break
     }
   }
@@ -114,150 +121,154 @@ class Login extends React.Component<Props, State> {
   //   super(props);
   // }
 
-  public _storeData = async (token:string) => {
+  public _storeData = async (token: string) => {
     try {
-      await AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem('token', token)
     } catch (error) {
       // Error saving data
     }
-  };
+  }
 
   public render() {
     return (
-      <Container style={styles.root}>
-        <View style={styles.container}>
-          {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
-          <Image source={require('../../image/logo.png')} style={{width:100,height:100}} />
-          <View style={styles.inputContainer}>
-            <InputItem
-              clear
-              type="phone"
-              value={this.state.phone}
-              onChange={(value) => {
-                this.setState({
-                  phone: value
-                })
-              }}
-              editable={true}
-              disabled={false}
-              // autoFocus={true}
-              placeholder="手机号"
-              // onFocus={() => this.inputItemFocus()}
-              // onBlur={() => this.inputItemBlur()}
-              style={{ borderWidth: 0 }}
-            />
-            {this.state.loginByCode ? (
+      <Container>
+        <Content contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled" >
+          <View>
+            {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
+            <Image source={require('../../image/logo.png')} style={{ width: 100, height: 100, alignSelf: 'center' }} />
+            <View style={styles.inputContainer}>
               <InputItem
-                value={this.state.code}
+                clear
+                type="phone"
+                value={this.state.phone}
                 onChange={(value) => {
                   this.setState({
-                    code: value
+                    phone: value
                   })
                 }}
-                maxLength={4}
-                // type="number"
-                placeholder="验证码"
+                editable={true}
+                disabled={false}
+                // autoFocus={true}
+                placeholder="手机号"
                 // onFocus={() => this.inputItemFocus()}
                 // onBlur={() => this.inputItemBlur()}
-                extra={
-                  <SendSMS
-                    phone={this.state.phone.replace(/\s*/g, '')}
-                    api={() =>
-                      api.login.sendLoginCode(this.state.phone.replace(/\s*/g, '')).then((res) => console.log(res))
-                    }
-                  />
-                }
+                style={{ borderWidth: 0 }}
               />
-            ) : (
-              <InputItem
-                type={this.state.passCanSee ? 'password' : 'digit'}
-                value={this.state.password}
-                onChange={(value) => {
-                  this.setState({
-                    password: value
-                  })
-                }}
-                maxLength={16}
-                placeholder="密码"
-                // onFocus={() => this.inputItemFocus()}
-                // onBlur={() => this.inputItemBlur()}
-                extra={
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Icon
-                      name="faxian_"
-                      style={{ fontSize: 24, marginRight: 10 }}
-                      onPress={() =>
-                        this.setState({
-                          passCanSee: !this.state.passCanSee
-                        })
+              {this.state.loginByCode ? (
+                <InputItem
+                  value={this.state.code}
+                  onChange={(value) => {
+                    this.setState({
+                      code: value
+                    })
+                  }}
+                  maxLength={4}
+                  // type="number"
+                  placeholder="验证码"
+                  // onFocus={() => this.inputItemFocus()}
+                  // onBlur={() => this.inputItemBlur()}
+                  extra={
+                    <SendSMS
+                      phone={this.state.phone.replace(/\s*/g, '')}
+                      api={() =>
+                        api.login
+                          .sendLoginCode(this.state.phone.replace(/\s*/g, ''))
+                          .then((res) => console.log(res))
                       }
                     />
-                    <TouchableOpacity
-                      activeOpacity={0.5}
-                      onPress={() => this.props.navigation.navigate('忘记密码')}
-                    >
-                      <Text>忘记密码</Text>
-                    </TouchableOpacity>
-                  </View>
+                  }
+                />
+              ) : (
+                <InputItem
+                  type={this.state.passCanSee ? 'password' : 'digit'}
+                  value={this.state.password}
+                  onChange={(value) => {
+                    this.setState({
+                      password: value
+                    })
+                  }}
+                  maxLength={16}
+                  placeholder="密码"
+                  // onFocus={() => this.inputItemFocus()}
+                  // onBlur={() => this.inputItemBlur()}
+                  extra={
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <Icon
+                        name="faxian_"
+                        style={{ fontSize: 24, marginRight: 10 }}
+                        onPress={() =>
+                          this.setState({
+                            passCanSee: !this.state.passCanSee
+                          })
+                        }
+                      />
+                      <TouchableOpacity
+                        activeOpacity={0.5}
+                        onPress={() => this.props.navigation.navigate('忘记密码')}
+                      >
+                        <Text>忘记密码</Text>
+                      </TouchableOpacity>
+                    </View>
+                  }
+                />
+              )}
+            </View>
+            <Button
+              // type="primary"
+              block
+              // style={styles.loginBtn}
+              onPress={() => this.loginRequest()}
+            >
+              <Text style={{ color: '#fff' }}>登录</Text>
+            </Button>
+            <View style={styles.actions}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() =>
+                  this.setState({
+                    loginByCode: !this.state.loginByCode
+                  })
                 }
-              />
-            )}
-          </View>
-          <Button
-            // type="primary"
-            block
-            // style={styles.loginBtn}
-            onPress={() => this.loginRequest()}
-          >
-            <Text style={{ color: '#fff' }}>登录</Text>
-          </Button>
-          <View style={styles.actions}>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() =>
-                this.setState({
-                  loginByCode: !this.state.loginByCode
-                })
-              }
-            >
-              <Text>{!this.state.loginByCode ? '验证码快速登录' : '密码登录'}</Text>
-            </TouchableOpacity>
+              >
+                <Text>{!this.state.loginByCode ? '验证码快速登录' : '密码登录'}</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => this.props.navigation.navigate('注册')}
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => this.props.navigation.navigate('注册')}
+              >
+                <Text>注册</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.socialLogin}>
+            <View style={styles.social}>
+              <Icon
+                name="qq"
+                style={[styles.socialIcon, { color: '#5EAADE' }]}
+                onPress={() => console.log('QQ')}
+              />
+              <Icon
+                name="weixin"
+                style={[styles.socialIcon, { color: '#50B674' }]}
+                onPress={() => console.log('weixin')}
+              />
+              <Icon
+                name="weibo"
+                style={[styles.socialIcon, { color: '#EA5D5C' }]}
+                onPress={() => console.log('weibo')}
+              />
+            </View>
+            {/* <TouchableOpacity
+              onPress={() => {
+                this.props.handleLogin('')
+                this.props.navigation.navigate('首页')
+              }}
             >
-              <Text>注册</Text>
-            </TouchableOpacity>
+              <Text style={styles.visitor}>我是游客</Text>
+            </TouchableOpacity> */}
           </View>
-        </View>
-        <View style={styles.socialLogin}>
-          <View style={styles.social}>
-            <Icon
-              name="qq"
-              style={[styles.socialIcon, { color: '#5EAADE' }]}
-              onPress={() => console.log('QQ')}
-            />
-            <Icon
-              name="weixin"
-              style={[styles.socialIcon, { color: '#50B674' }]}
-              onPress={() => console.log('weixin')}
-            />
-            <Icon
-              name="weibo"
-              style={[styles.socialIcon, { color: '#EA5D5C' }]}
-              onPress={() => console.log('weibo')}
-            />
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.handleLogin('')
-              this.props.navigation.navigate('首页')
-            }}
-          >
-            <Text style={styles.visitor}>我是游客</Text>
-          </TouchableOpacity>
-        </View>
+        </Content>
       </Container>
     )
   }
@@ -271,7 +282,9 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp('10%'),
-    alignItems: 'center'
+    flex:1,
+    alignItems: 'center',
+    // borderWidth:1
   },
   inputContainer: {
     height: 140,
@@ -303,6 +316,7 @@ const styles = StyleSheet.create({
   },
   social: {
     width: wp('80%'),
+    paddingBottom: hp('6%'),
     flexDirection: 'row',
     justifyContent: 'space-between'
   },

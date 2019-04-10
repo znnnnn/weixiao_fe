@@ -75,7 +75,7 @@ class UserHome extends Component<Props> {
             this.setState({
               isRefreshing: false
             }),
-          300
+          800
         )
       )
   }

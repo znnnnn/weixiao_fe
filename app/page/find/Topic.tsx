@@ -105,7 +105,8 @@ class OfferTopic extends React.Component<Props, State> {
       .then((res) => {
         console.log(res)
         this.setState({
-          postsList: res.data.data.list
+          postsList: res.data.data.list,
+          comment: res.data.data.list.length
         })
       })
       .then(() =>

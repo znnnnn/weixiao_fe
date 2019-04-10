@@ -163,7 +163,7 @@ class Home extends React.Component<Props, State> {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{
-                width: wp('100%')
+                // width: wp('100%')
               }}
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >

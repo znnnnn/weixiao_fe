@@ -60,6 +60,7 @@ export default class ContactIndex extends Component<Props> {
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/shetuan.png') }}
           onPress={()=> this.props.navigation.navigate('通讯录', { part: '社团' })}
+          bottomDivider
         />
         <ListItem
           title={'工作室'}
@@ -87,7 +88,7 @@ export default class ContactIndex extends Component<Props> {
                 subtitleStyle={{ color: '#848484' }}
                 leftAvatar={{ source: { uri: data.avatar_url } }}
                 badge={{ value: 3 }}
-                rightTitle={new Date().getTime().toString()}
+                rightTitle={new Date().toLocaleDateString()}
                 bottomDivider
                 onPress={()=>this.props.navigation.navigate('聊天',{
                   headerTitle: data.name

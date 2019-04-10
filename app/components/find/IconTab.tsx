@@ -182,7 +182,7 @@ export default withNavigation(
                     <Text>约开黑</Text>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('话题')
                   }
@@ -191,7 +191,7 @@ export default withNavigation(
                     <Image style={styles.icon} source={require('@image/find/topic.png')} />
                     <Text>话题</Text>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('招聘')

@@ -6,7 +6,7 @@ import SendSMS from '@components/SendSMS'
 import px2dp from '@util/px2dp'
 import reg from '@util/reg'
 import StyleSheet from '@util/stylesheet'
-import { Button, Toast } from 'native-base'
+import { Button, Container, Content, Toast } from 'native-base'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -25,22 +25,22 @@ export interface State {
 }
 
 export interface Props {
-  validateCode:Function
+  validateCode: Function
 }
 
 export interface Props extends NavigationScreenProps {
   defalutProps: string
 }
 
- class Register extends React.Component<Props, State> {
+class Register extends React.Component<Props, State> {
   public state = {
     phone: '',
     code: '',
     inputBorderColor: '#EEEEEE'
   }
 
- public constructor(props: Props) {
-    super(props);
+  public constructor(props: Props) {
+    super(props)
   }
 
   public validateRegister(data: string): void {
@@ -83,8 +83,8 @@ export interface Props extends NavigationScreenProps {
 
   public render() {
     return (
-      <View style={styles.root}>
-        <View style={styles.container}>
+      <Container>
+        <Content contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
           <Text style={{ fontSize: 35 }}>注册</Text>
           <View style={styles.inputContainer}>
             <InputItem
@@ -130,7 +130,11 @@ export interface Props extends NavigationScreenProps {
               }
             />
           </View>
-          <Button block onPress={() => this.register()}>
+          <Button
+            style={{ width: wp('90%'), alignSelf: 'center' }}
+            block
+            onPress={() => this.register()}
+          >
             <Text style={{ color: '#fff' }}>下一步</Text>
           </Button>
           <View style={styles.actions}>
@@ -144,8 +148,8 @@ export interface Props extends NavigationScreenProps {
             </TouchableOpacity>
             <Text style={{ lineHeight: 20 }}>中的全部内容</Text>
           </View>
-        </View>
-      </View>
+        </Content>
+      </Container>
     )
   }
 
@@ -170,6 +174,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp('10%'),
+    flex: 1,
     alignItems: 'center'
   },
   inputContainer: {
@@ -198,7 +203,6 @@ const styles = StyleSheet.create({
   }
 })
 
-
 // 获取store中的state，并传入容器组件的Props中
 const mapStateToProps = (state: any): Object => {
   // console.log(state)
@@ -211,7 +215,7 @@ const mapStateToProps = (state: any): Object => {
 // 将本发送action的函数绑定到容器组件的Props中
 // 发送行为
 let validateCode = actions.register.validateCode
-const mapDispatchToProps ={
+const mapDispatchToProps = {
   validateCode
 }
 

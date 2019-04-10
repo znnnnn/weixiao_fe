@@ -7,7 +7,7 @@
 const base = {
   // sq: '/api', // 在线地址api -> '/api'在'webpack.config.client.js中映射为'http://101.132.141.130:82/api/'
   sq: 'http://101.132.141.130:82/api', // 在线地址api -> '/api'在'webpack.config.client.js中映射为'http://101.132.141.130:82/api/'
-  bd: 'http://localhost:8080' // '本地开发api  数据mock模拟'
+  bd: 'http://172.20.10.3:8080' // '本地开发api  数据mock模拟'
   // token: store.state.token
 }
 

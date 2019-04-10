@@ -39,13 +39,7 @@ export default class Comment extends React.Component<Props, any> {
         )
       }
     })
-    if(content[0] !== undefined ){
-      // console.log('true', content)
-      return <View style={{ backgroundColor: '#fff' }}>{content}</View>
-    } else{
-      // console.log('false', content)
-      return <Text style={{textAlign:'center',marginTop:50, fontSize: 16, color:'#333'}}>这里的沙发还空着哟</Text>
-    }
+    return <View style={{ backgroundColor: '#fff' }}>{content}</View>
   }
 
   public render() {

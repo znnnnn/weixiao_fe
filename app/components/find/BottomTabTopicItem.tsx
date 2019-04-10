@@ -106,7 +106,7 @@ export default withNavigation(
             this.setState({
               isRefreshing: false
             })
-          }, 500)
+          }, 800)
         )
     }
 
