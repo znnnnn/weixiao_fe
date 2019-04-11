@@ -128,7 +128,7 @@ export default class DonateDetail extends Component<Props> {
                 note
                 onPress={() =>
                   this.setState({
-                    aliPay: !this.state.aliPay
+                    noName: !this.state.noName
                   })
                 }
               >
@@ -179,7 +179,7 @@ export default class DonateDetail extends Component<Props> {
                 note
                 onPress={() =>
                   this.setState({
-                    aliPay: !this.state.aliPay
+                    agreeRule: !this.state.agreeRule
                   })
                 }
               >

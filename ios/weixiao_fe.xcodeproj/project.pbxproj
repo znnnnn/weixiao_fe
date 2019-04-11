@@ -59,6 +59,7 @@
 		AA5058073F584146957048CE /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2404A57AD047B9A956B0E4 /* libRNGestureHandler.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B3D8789E5CB4426DA4E97BAF /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B1997B609054F8EA5356A2F /* EvilIcons.ttf */; };
+		C03C1BFE225F70F2004FBAB3 /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = C03C1BFD225F70F2004FBAB3 /* bundle */; };
 		C066C5032218738A008D6EC0 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C066C5022218738A008D6EC0 /* iconfont.ttf */; };
 		C09A4F152228CC03008ABA98 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A4F142228CBFD008ABA98 /* libRCTCameraRoll.a */; };
 		C0A807A02232CB7800CE55D3 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A807822232CAFA00CE55D3 /* libRCTVideo.a */; };
@@ -467,6 +468,7 @@
 		B5D440C9C6694F4A8EBA9B5E /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		B6A0E27BBB6A44F08E28F2AB /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		BC0FE0675305487FA63D8FF7 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
+		C03C1BFD225F70F2004FBAB3 /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundle; sourceTree = "<group>"; };
 		C066C5022218738A008D6EC0 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		C09A4F0F2228CBFD008ABA98 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		C6F1E14FC7B3456B9F3183FE /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 		13B07FAE1A68108700A75B9A /* weixiao_fe */ = {
 			isa = PBXGroup;
 			children = (
+				C03C1BFD225F70F2004FBAB3 /* bundle */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1439,6 +1442,7 @@
 				C0F9758828FE4F8383D77FA0 /* MaterialCommunityIcons.ttf in Resources */,
 				51B3F955CD1946B9885493C4 /* MaterialIcons.ttf in Resources */,
 				1D8FDCE556974701BA8FD5B3 /* Octicons.ttf in Resources */,
+				C03C1BFE225F70F2004FBAB3 /* bundle in Resources */,
 				0BF9AD46DFCE4233812ADC06 /* Roboto_medium.ttf in Resources */,
 				A2935B649E7B46BEAEB883F2 /* Roboto.ttf in Resources */,
 				60AA15E3BE2E4B5F87326D9E /* rubicon-icon-font.ttf in Resources */,
@@ -1713,6 +1717,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = weixiao_fe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				VALID_ARCHS = "arm64 arm64e armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1750,6 +1755,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1758,6 +1764,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = weixiao_fe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				VALID_ARCHS = "arm64 arm64e armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

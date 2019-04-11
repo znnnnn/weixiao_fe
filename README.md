@@ -81,3 +81,13 @@
 ### 下拉刷新
 
 - [React Native开发之——组件RefreshControl](https://blog.csdn.net/calvin_zhou/article/details/79680056)
+
+### 真机调试 + 离线打包
+
+- [真机调试](https://github.com/facebook/react-native/issues/21480#issuecomment-428547909)
+
+- [React Native 中设置 APP 名称、图标和启动页](https://www.jianshu.com/p/727c6057fc0a)
+
+- [React Native ios离线打包并上传App Store](http://www.huangyuhong.com/2018/03/react-native-ios%E7%A6%BB%E7%BA%BF%E6%89%93%E5%8C%85/)
+
+- [ReactNative - 打离线包 (一) 原生RN命令打包](https://www.jianshu.com/p/bb7c5f1d304e)

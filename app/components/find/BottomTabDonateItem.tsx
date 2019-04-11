@@ -92,7 +92,7 @@ export default withNavigation(
               '安全饮水',
               '留守建设'
             ],
-            thumb: 'https://uploadbeta.com/api/pictures/random/'
+            thumb: ''
           }}
         />
       )

@@ -306,9 +306,9 @@ class PostCard extends Component<Props> {
                 ) : null
               })}
             </View>
-            {this.state.images.map((item: string, index: number) => {
-              return <Image source={{ uri: item }} key={index}/>
-            })}
+            {/* {this.state.images.map((item: string, index: number) => {
+              return <Image source={{ uri: 'https://uploadbeta.com/api/pictures/random/' }} key={index} style={{width: 100,height:100}} />
+            })} */}
           </View>
           {this.state.postsItemData.usermeta.userId === this.props.myUsermeta.userId && (
             <TouchableOpacity
