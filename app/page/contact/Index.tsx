@@ -1,6 +1,6 @@
 import { Button, Container, Content, Header, Icon, List, Text } from 'native-base'
 import React, { Component } from 'react'
-import { ListView,ScrollView } from 'react-native'
+import { ListView, ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { NavigationScreenProps, withNavigation } from 'react-navigation'
 const datas = [
@@ -16,19 +16,18 @@ const datas = [
 
 const data = [
   {
-    name: 'Amy Farha',
-    avatar_url: 'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png',
-    msg: 'Vice President'
+    name: '张三',
+    avatar_url: 'https://uploadbeta.com/api/pictures/random/',
+    subtitle: '中国移动 浙江代理负责人'
   },
   {
-    name: 'Chris Jackson',
-    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-    msg: 'Vice Chairman'
+    name: '李四',
+    avatar_url: 'https://uploadbeta.com/api/pictures/random/',
+    subtitle: '中石油 CEO'
   }
 ]
 
-interface Props extends NavigationScreenProps {
-}
+interface Props extends NavigationScreenProps {}
 export default class ContactIndex extends Component<Props> {
   public constructor(props: Props) {
     super(props)
@@ -52,28 +51,28 @@ export default class ContactIndex extends Component<Props> {
           title={'团学'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/tuanxue.png') }}
-          onPress={()=> this.props.navigation.navigate('通讯录', { part: '团学' })}
+          onPress={() => this.props.navigation.navigate('通讯录', { part: '团学' })}
           bottomDivider
         />
         <ListItem
           title={'社团'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/shetuan.png') }}
-          onPress={()=> this.props.navigation.navigate('通讯录', { part: '社团' })}
+          onPress={() => this.props.navigation.navigate('通讯录', { part: '社团' })}
           bottomDivider
         />
         <ListItem
           title={'工作室'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/gongzuoshi.png') }}
-          onPress={()=> this.props.navigation.navigate('通讯录', { part: '工作室' })}
+          onPress={() => this.props.navigation.navigate('通讯录', { part: '工作室' })}
           bottomDivider
         />
         <ListItem
           title={'校友圈'}
           // subtitle={item.subtitle}
           leftAvatar={{ source: require('@image/contact/xiaoyouquan.png') }}
-          onPress={()=> this.props.navigation.navigate('通讯录', { part: '校友圈' })}
+          onPress={() => this.props.navigation.navigate('通讯录', { part: '校友圈' })}
           bottomDivider
         />
         <Content>
@@ -90,9 +89,11 @@ export default class ContactIndex extends Component<Props> {
                 badge={{ value: 3 }}
                 rightTitle={new Date().toLocaleDateString()}
                 bottomDivider
-                onPress={()=>this.props.navigation.navigate('聊天',{
-                  headerTitle: data.name
-                })}
+                onPress={() =>
+                  this.props.navigation.navigate('聊天', {
+                    headerTitle: data.name
+                  })
+                }
               />
             )}
             renderLeftHiddenRow={(data) => (

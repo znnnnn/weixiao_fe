@@ -112,37 +112,37 @@ export default class Contact extends React.Component {
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
         subtitle: 'Vice Chairman'
       }
     ]

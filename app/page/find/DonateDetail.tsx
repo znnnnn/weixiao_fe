@@ -1,4 +1,4 @@
-import CommentListItem from '@components/CommentListItem'
+import CommentListItem from '@components/CommentListItemNoBe'
 import {
   Body,
   Button,
@@ -35,7 +35,7 @@ export default class DonateDetail extends Component<Props> {
         <Content>
           <Image
             source={{
-              uri: 'http://111.231.116.130/wp-content/uploads/2019/03/microsoft_office_2019.jpg'
+              uri: 'https://uploadbeta.com/api/pictures/random/'
             }}
             style={{ height: 150 }}
           />
@@ -53,24 +53,23 @@ export default class DonateDetail extends Component<Props> {
             </Body>
           </ListItem>
           <List>
+          {/* <CommentListItem
+            avatarUri={'http://111.231.116.130/wp-content/uploads/2019/03/3.jpg'}
+            nickname={'王女士'}
+            tag={'CEO'}
+            postTime={getTimeDiff(1356470770)}
+            deviceName={deviceName}
+            // commentContent={item.commentContent}
+            // usermeta={item.usermeta}
+            // commentId={item.commentId}
+            // deviceName={item.}
+            // key={index}
+            // fresh={()=>this.props.fresh()}
+            /> */}
             <CommentListItem
-              avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-              nickname="Alice"
-              tag="工程师"
-              postTime={getTimeDiff(1356470770)}
-              deviceName={deviceName}
-            />
-            <CommentListItem
-              avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-              nickname="Alice"
-              tag="工程师"
-              postTime={getTimeDiff(1356470770)}
-              deviceName={deviceName}
-            />
-            <CommentListItem
-              avatarUri="https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
-              nickname="Alice"
-              tag="工程师"
+              avatarUri="http://111.231.116.130/wp-content/uploads/2019/03/3.jpg"
+              nickname="王女士"
+              tag="CEO"
               postTime={getTimeDiff(1356470770)}
               deviceName={deviceName}
             />

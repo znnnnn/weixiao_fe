@@ -41,9 +41,7 @@ export default class About extends Component<Props> {
             <Thumbnail
               square
               large
-              source={{
-                uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-              }}
+              source={require('@image/logo.png')}
               style={{ alignSelf: 'center', marginTop: 30 }}
             />
 

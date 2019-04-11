@@ -18,6 +18,7 @@ import {
   Right,
   Text,
   Thumbnail,
+  Toast,
   View
 } from 'native-base'
 import React, { Component } from 'react'
@@ -32,7 +33,10 @@ interface Props extends NavigationScreenProps {}
 
 export default class DonateDetail extends Component<Props> {
   public state = {
-    money: 0
+    money: 0,
+    noName: false,
+    aliPay: false,
+    agreeRule: false
   }
   public constructor(props: Props) {
     super(props)
@@ -110,12 +114,26 @@ export default class DonateDetail extends Component<Props> {
           </Item>
           <ListItem>
             <CheckBox
-              checked={false}
+              checked={this.state.noName}
+              onPress={() =>
+                this.setState({
+                  noName: !this.state.noName
+                })
+              }
               color="green"
               style={{ flexDirection: 'row', marginLeft: -20 }}
             />
             <Body>
-              <Text note>匿名捐赠</Text>
+              <Text
+                note
+                onPress={() =>
+                  this.setState({
+                    aliPay: !this.state.aliPay
+                  })
+                }
+              >
+                匿名捐赠
+              </Text>
             </Body>
           </ListItem>
 
@@ -123,22 +141,48 @@ export default class DonateDetail extends Component<Props> {
 
           <ListItem>
             <CheckBox
-              checked={false}
+              checked={this.state.aliPay}
+              onPress={() =>
+                this.setState({
+                  aliPay: !this.state.aliPay
+                })
+              }
               color="green"
               style={{ flexDirection: 'row', marginLeft: -20 }}
             />
             <Body>
-              <Text note>支付宝</Text>
+              <Text
+                note
+                onPress={() =>
+                  this.setState({
+                    aliPay: !this.state.aliPay
+                  })
+                }
+              >
+                支付宝
+              </Text>
             </Body>
           </ListItem>
           <ListItem>
             <CheckBox
-              checked={false}
+              checked={this.state.agreeRule}
+              onPress={() =>
+                this.setState({
+                  agreeRule: !this.state.agreeRule
+                })
+              }
               color="green"
               style={{ flexDirection: 'row', marginLeft: -20 }}
             />
             <Body style={{ flexDirection: 'row' }}>
-              <Text note>
+              <Text
+                note
+                onPress={() =>
+                  this.setState({
+                    aliPay: !this.state.aliPay
+                  })
+                }
+              >
                 同意<Text style={{ color: '#29A1F7', fontSize: 14 }}>《微校捐赠协议》</Text>
               </Text>
             </Body>
@@ -148,7 +192,21 @@ export default class DonateDetail extends Component<Props> {
           <FooterTab>
             <Button
               style={{ backgroundColor: '#3CB881' }}
-              onPress={() => this.props.navigation.navigate('个人经历')}
+              onPress={() => {
+                if (!this.state.agreeRule) {
+                  Toast.show({
+                    text: '请先同意《微校捐赠协议》',
+                    type: 'danger'
+                  })
+                } else if (this.state.money === 0) {
+                  Toast.show({
+                    text: '捐赠金额不能为0',
+                    type: 'danger'
+                  })
+                } else {
+                  this.props.navigation.navigate('捐款成功')
+                }
+              }}
             >
               {/* <Icon name="heart" style={{ color: '#fff' }} /> */}
               <Text style={{ color: '#fff', fontSize: 16 }}>立即捐赠 {this.state.money} 元</Text>

@@ -17,7 +17,7 @@ import { NavigationScreenProps, withNavigation } from 'react-navigation'
 import { ItemProps } from './BottomTabOfferItem'
 
 interface Props extends NavigationScreenProps {
-data: ItemProps
+data: any
 onPress: Function
 }
 

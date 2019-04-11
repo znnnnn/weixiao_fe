@@ -18,12 +18,12 @@ import {
 } from 'native-base'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { NavigationScreenProps,withNavigation } from 'react-navigation'
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
 
 import api from '@app/api'
 import OfferItem from './OfferItem'
 
-export interface ItemProps extends NavigationScreenProps{
+export interface ItemProps extends NavigationScreenProps {
   job: string
   address: {
     value: string
@@ -49,21 +49,21 @@ const EDU_DATA = require('@page/mine/SetEducationEdu.json')
 class BottomtabOfferItem extends React.Component<any, State> {
   public state: State = {
     data: [
-      {
-        job: '平面设计师',
-        address: {
-          value: '杭州',
-          children: {
-            value: '长河'
-          }
-        },
-        experience: '1-3年',
-        edu: EDU_DATA[_.random(0, 7)].label,
-        salary: '5K - 8K',
-        thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        HR: 'alice',
-        HRPosition: 'CEO'
-      }
+      // {
+      //   job: '平面设计师',
+      //   address: {
+      //     value: '杭州',
+      //     children: {
+      //       value: '长河'
+      //     }
+      //   },
+      //   experience: '1-3年',
+      //   edu: EDU_DATA[_.random(0, 7)].label,
+      //   salary: '5K - 8K',
+      //   thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+      //   HR: 'alice',
+      //   HRPosition: 'CEO'
+      // }
     ],
     layout: 'list',
     avatar: [],

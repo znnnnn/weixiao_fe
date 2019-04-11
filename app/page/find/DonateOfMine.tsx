@@ -36,7 +36,7 @@ export default class DonateOfMine extends Component<Props> {
           <Image
             style={{ height: 80, width: 150 }}
             source={{
-              uri: 'http://111.231.116.130/wp-content/uploads/2019/03/microsoft_office_2019.jpg'
+              uri: 'https://uploadbeta.com/api/pictures/random/'
             }}
           />
           <Text

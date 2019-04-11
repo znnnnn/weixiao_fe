@@ -23,7 +23,11 @@ import {
 
 import StyleSheet from '@util/stylesheet'
 import React from 'react'
-import { View } from 'react-native'
+import { Image, View } from 'react-native'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import { NavigationScreenProps } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -55,7 +59,7 @@ class Donate extends React.Component<Props, State> {
           '安全饮水',
           '留守建设'
         ],
-        thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+        thumb: 'https://uploadbeta.com/api/pictures/random/'
       }
     ],
     layout: 'list'
@@ -77,7 +81,7 @@ class Donate extends React.Component<Props, State> {
           <Header searchBar rounded>
             <Item>
               <Icon name="ios-search" />
-              <Input placeholder="Search" />
+              <Input placeholder="查找" />
               <Icon name="ios-people" />
             </Item>
             {/* <Button small style={{paddingLeft: 0, paddingRight: 0,marginLeft:5}}>
@@ -106,25 +110,133 @@ class Donate extends React.Component<Props, State> {
               afterChange={this.onHorizontalSelectedIndexChange}
             >
               <View style={[styles.containerHorizontal, { backgroundColor: 'red' }]}>
-                <Text>Carousel 1</Text>
+                <Image
+                  source={{
+                    uri: 'https://uploadbeta.com/api/pictures/random/'
+                  }}
+                  style={{ height: 200, width: wp('100%') }}
+                />
               </View>
               <View style={[styles.containerHorizontal, { backgroundColor: 'blue' }]}>
-                <Text>Carousel 2</Text>
+                <Image
+                  source={{
+                    uri: 'https://uploadbeta.com/api/pictures/random/'
+                  }}
+                  style={{ height: 200, width: wp('100%') }}
+                />
               </View>
               <View style={[styles.containerHorizontal, { backgroundColor: 'yellow' }]}>
-                <Text>Carousel 3</Text>
+                <Image
+                  source={{
+                    uri: 'https://uploadbeta.com/api/pictures/random/'
+                  }}
+                  style={{ height: 200, width: wp('100%') }}
+                />
               </View>
               <View style={[styles.containerHorizontal, { backgroundColor: 'aqua' }]}>
-                <Text>Carousel 4</Text>
+                <Image
+                  source={{
+                    uri: 'https://uploadbeta.com/api/pictures/random/'
+                  }}
+                  style={{ height: 200, width: wp('100%') }}
+                />
               </View>
-              <View style={[styles.containerHorizontal, { backgroundColor: 'fuchsia' }]}>
-                <Text>Carousel 5</Text>
+              <View
+                style={[
+                  styles.containerHorizontal,
+                  { backgroundColor: 'fuchsia', overflow: 'hidden' }
+                ]}
+              >
+                <Image
+                  source={{
+                    uri: 'https://uploadbeta.com/api/pictures/random/'
+                  }}
+                  style={{ height: 200, width: wp('100%') }}
+                />
               </View>
             </Carousel>
-            <DonateItem data={this.state.data[0]} />
-            <DonateItem data={this.state.data[0]} />
-            <DonateItem data={this.state.data[0]} />
-            <DonateItem data={this.state.data[0]} />
+            <DonateItem
+              onPress={() => this.props.navigation.navigate('捐赠详情')}
+              data={{
+                title: '校园安全饮水计划',
+                subTitle: '修建校园安全饮水工程，改善农村在校中小学生的饮水...',
+                count: 542324,
+                tag: [
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设'
+                ],
+                thumb: 'https://uploadbeta.com/api/pictures/random/'
+              }}
+            />
+            <DonateItem
+              onPress={() => this.props.navigation.navigate('捐赠详情')}
+              data={{
+                title: '校园安全饮水计划',
+                subTitle: '修建校园安全饮水工程，改善农村在校中小学生的饮水...',
+                count: 542324,
+                tag: [
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设'
+                ],
+                thumb: 'https://uploadbeta.com/api/pictures/random/'
+              }}
+            />
+            <DonateItem
+              onPress={() => this.props.navigation.navigate('捐赠详情')}
+              data={{
+                title: '校园安全饮水计划',
+                subTitle: '修建校园安全饮水工程，改善农村在校中小学生的饮水...',
+                count: 542324,
+                tag: [
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设'
+                ],
+                thumb: 'https://uploadbeta.com/api/pictures/random/'
+              }}
+            />
+            <DonateItem
+              onPress={() => this.props.navigation.navigate('捐赠详情')}
+              data={{
+                title: '校园安全饮水计划',
+                subTitle: '修建校园安全饮水工程，改善农村在校中小学生的饮水...',
+                count: 542324,
+                tag: [
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设',
+                  '山区儿童',
+                  '安全饮水',
+                  '留守建设'
+                ],
+                thumb: 'https://uploadbeta.com/api/pictures/random/'
+              }}
+            />
+            {/* <DonateItem data={this.state.data[0]} />
+            <DonateItem data={this.state.data[0]} /> */}
           </Content>
           {/* <Footer>
             <FooterTab>

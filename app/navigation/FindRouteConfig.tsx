@@ -84,6 +84,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
     screen: Offer,
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
       header: null,
+      headerTruncatedBackTitle: '招聘',
       // headerTruncatedBackTitle: '',
       headerTitle: navigation.getParam('headerTitle', '招聘')
     })
@@ -162,6 +163,7 @@ const RouteFindConfig: NavigationRouteConfigMap = {
   捐赠: {
     screen: Donate,
     navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      headerTruncatedBackTitle: '捐赠',
       header: null,
       tabBarVisible: false
     })

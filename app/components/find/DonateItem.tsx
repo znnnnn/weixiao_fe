@@ -23,6 +23,7 @@ import { ItemProps } from './BottomTabDonateItem'
 
 interface Props extends NavigationScreenProps {
   data: ItemProps
+  onPress: Function
 }
 
 const tagColor = ['#ff5e5c', '#ffbb50', '#1ac756', '#19B5FE', '#fb7da9', '#666', '#a26ff9']
@@ -37,15 +38,15 @@ export default withNavigation(
       return (
         <ListItem
           style={{ flexDirection: 'row', flexWrap: 'wrap' }}
-          onPress={() => this.props.navigation.navigate('捐赠')}
+          onPress={() => this.props.onPress()}
         >
           <Left style={{ flexDirection: 'column', width: wp('70%') }}>
             <Title style={{ fontSize: 18, color: '#3E3E3E', fontWeight: '400' }}>
               {this.props.data.title}
             </Title>
-            <Text numberOfLines={2} style={styles.subTitle}>
+            <Subtitle style={styles.subTitle}>
               {this.props.data.subTitle}
-            </Text>
+            </Subtitle>
             <Subtitle style={{ fontSize: 10, color: '#848484', lineHeight: 10, height: 10 }}>
               已有..
               <Text style={{ fontSize: 10, lineHeight: 10, height: 10, color: '#29A1F7' }}>
@@ -80,10 +81,8 @@ export default withNavigation(
 
 const styles = StyleSheet.create({
   subTitle: {
-    fontSize: 12,
     color: '#848484',
     lineHeight: 30,
     height: 30,
-    flexWrap: 'wrap'
   }
 })

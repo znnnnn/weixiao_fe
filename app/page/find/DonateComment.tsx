@@ -1,7 +1,12 @@
 import { Button, Container, Content, Text, Textarea, Toast } from 'native-base'
 import React, { Component } from 'react'
 
-export default class DonateComment extends Component {
+import { NavigationScreenProps, withNavigation } from 'react-navigation'
+interface Props extends NavigationScreenProps {}
+export default class DonateComment extends Component<Props> {
+  public constructor(props: Props) {
+    super(props)
+  }
   public render() {
     return (
       <Container>
@@ -11,7 +16,10 @@ export default class DonateComment extends Component {
             success
             block
             style={{ marginTop: 15 }}
-            onPress={() => Toast.show({ text: '留言成功！',type:'success' })}
+            onPress={() => {
+              Toast.show({ text: '留言成功！', type: 'success' })
+              this.props.navigation.navigate('捐赠')
+            }}
           >
             <Text>提交留言</Text>
           </Button>

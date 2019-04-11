@@ -71,19 +71,19 @@ export default class Contact extends React.Component {
   public state = {
     data: [
       {
-        name: 'Amy Farha',
+        name: '张三',
         avatar_url:
-          'http://111.231.116.130/wp-content/uploads/2019/02/googlelogo_color_272x92dp.png',
-        subtitle: 'Vice President'
+          'https://uploadbeta.com/api/pictures/random/',
+        subtitle: '中国移动 浙江代理负责人'
       },
       {
-        name: 'Chris Jackson',
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
-        subtitle: 'Vice Chairman'
+        name: '李四',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
+        subtitle: '中石油 CEO'
       },
     ]
   }
-  public constructor(props, context) {
+  public constructor(props:any, context:any) {
     super(props, context)
   }
 
