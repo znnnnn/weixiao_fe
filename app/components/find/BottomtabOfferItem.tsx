@@ -1,4 +1,5 @@
 import { ListView } from '@ant-design/react-native'
+import _ from 'lodash'
 import {
   Body,
   Container,
@@ -16,11 +17,13 @@ import {
   View
 } from 'native-base'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { NavigationScreenProps,withNavigation } from 'react-navigation'
 
+import api from '@app/api'
 import OfferItem from './OfferItem'
 
-export interface ItemProps {
+export interface ItemProps extends NavigationScreenProps{
   job: string
   address: {
     value: string
@@ -39,9 +42,11 @@ export interface ItemProps {
 interface State {
   data: ItemProps[]
   layout: string
+  avatar: any
+  avatarLength: number
 }
-
-export default class BottomtabOfferItem extends React.Component<any, State> {
+const EDU_DATA = require('@page/mine/SetEducationEdu.json')
+class BottomtabOfferItem extends React.Component<any, State> {
   public state: State = {
     data: [
       {
@@ -53,14 +58,16 @@ export default class BottomtabOfferItem extends React.Component<any, State> {
           }
         },
         experience: '1-3年',
-        edu: '大专',
+        edu: EDU_DATA[_.random(0, 7)].label,
         salary: '5K - 8K',
         thumb: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
         HR: 'alice',
         HRPosition: 'CEO'
       }
     ],
-    layout: 'list'
+    layout: 'list',
+    avatar: [],
+    avatarLength: 0
   }
 
   public sleep = (time: any) => new Promise((resolve) => setTimeout(() => resolve(), time))
@@ -95,11 +102,38 @@ export default class BottomtabOfferItem extends React.Component<any, State> {
   }
 
   public renderItem = (data: State) => {
+    let index = _.random(0, this.state.avatarLength)
     return (
       <List>
-        <OfferItem data={this.state.data[0]} />
+        <OfferItem
+          onPress={() => this.props.navigation.navigate('招聘')}
+          data={{
+            job: '平面设计师',
+            address: {
+              value: '杭州',
+              children: {
+                value: '长河'
+              }
+            },
+            experience: '1-3年',
+            edu: this.state.avatar[index].education,
+            salary: `${_.random(3, 5)}K - ${_.random(7, 10)}K`,
+            thumb: this.state.avatar[index].avatar,
+            HR: this.state.avatar[index].nickname,
+            HRPosition: 'CEO'
+          }}
+        />
       </List>
     )
+  }
+
+  public componentWillMount() {
+    api.home.getUsermetaList().then((res) => {
+      this.setState({
+        avatar: res.data.data.list,
+        avatarLength: res.data.data.list.length - 1
+      })
+    })
   }
 
   public render() {
@@ -122,3 +156,5 @@ const styles = StyleSheet.create({
     height: 30
   }
 })
+
+export default withNavigation(BottomtabOfferItem)

@@ -103,7 +103,7 @@ class OfferTopic extends React.Component<Props, State> {
     api.topic
       .getTopicList(topicName)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           postsList: res.data.data.list,
           comment: res.data.data.list.length

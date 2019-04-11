@@ -67,7 +67,7 @@ class Donate extends React.Component<Props, State> {
 
   public onHorizontalSelectedIndexChange(index: number) {
     /* tslint:disable: no-console */
-    console.log('horizontal change to', index)
+    // console.log('horizontal change to', index)
   }
 
   public render() {

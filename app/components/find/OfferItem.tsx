@@ -18,6 +18,7 @@ import { ItemProps } from './BottomTabOfferItem'
 
 interface Props extends NavigationScreenProps {
 data: ItemProps
+onPress: Function
 }
 
 export default withNavigation(class OfferItem extends React.Component<Props> {
@@ -27,7 +28,7 @@ export default withNavigation(class OfferItem extends React.Component<Props> {
 
   public render() {
     return (
-      <ListItem onPress={()=>this.props.navigation.navigate('招聘')}>
+      <ListItem onPress={() => this.props.onPress()}>
         <Left style={{ flexDirection: 'column' }}>
           <Title style={{ fontSize: 20, color: '#3E3E3E', fontWeight: '400' }}>
             {this.props.data.job}

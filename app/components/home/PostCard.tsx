@@ -3,7 +3,6 @@ import PostUserCard from '@components/home/PostUserCard'
 import ImageCard from '@components/ImageCard'
 import React, { Component } from 'react'
 import { Alert, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
@@ -243,7 +242,7 @@ class PostCard extends Component<Props> {
           style={{
             alignItems: 'flex-start',
             /*borderWidth: 1, borderColor: 'red',*/
-            width: wp('90%')
+            width: wp('95%')
           }}
         >
           {
@@ -256,21 +255,21 @@ class PostCard extends Component<Props> {
               deviceName={this.state.postsItemData.postAuthorDevice}
             />
           }
-          <Text
-            style={{ marginTop: 20, marginBottom: 20 }}
-            onPress={() =>
-              this.props.navigation.navigate('微校正文', {
-                postsItemData: this.state.postsItemData
-              })
-            }
-          >
-            {this.state.postsItemData.postContent}
-          </Text>
           {/* {(()=> {
             console.log(this.props)
             return <Text>1</Text>
           })()} */}
-          <View style={{ width: wp('90%'), alignItems: 'center' }}>
+          <View style={{ width: wp('90%') }}>
+            <Text
+              style={{ marginTop: 20, marginBottom: 20 }}
+              onPress={() =>
+                this.props.navigation.navigate('微校正文', {
+                  postsItemData: this.state.postsItemData
+                })
+              }
+            >
+              {this.state.postsItemData.postContent}
+            </Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -307,9 +306,37 @@ class PostCard extends Component<Props> {
                 ) : null
               })}
             </View>
+            {this.state.images.map((item: string, index: number) => {
+              return <Image source={{ uri: item }} key={index}/>
+            })}
           </View>
-
-          <ImageCard
+          {this.state.postsItemData.usermeta.userId === this.props.myUsermeta.userId && (
+            <TouchableOpacity
+              onPress={() =>
+                Alert.alert('提示', '确认删除吗', [
+                  { text: '取消' },
+                  {
+                    text: '确认',
+                    onPress: () =>
+                      api.home
+                        .deletePostByPostId(this.props.postsItemData.postId)
+                        .then(() => {
+                          setTimeout(this.props.fresh(), 500)
+                        })
+                        .then(() =>
+                          Toast.show({
+                            text: '删除成功',
+                            type: 'success'
+                          })
+                        )
+                  }
+                ])
+              }
+            >
+              <Text style={{ color: 'red', lineHeight: 30, margin: 4 }}>删除</Text>
+            </TouchableOpacity>
+          )}
+          {/* <ImageCard
             modalVisible={this.state.modalVisible}
             images={this.state.images}
             initIndex={this.state.initIndex}
@@ -323,32 +350,9 @@ class PostCard extends Component<Props> {
                 modalVisible: !this.state.modalVisible
               })
             }
-          />
-          <TouchableOpacity
-            onPress={() =>
-              Alert.alert('提示', '确认删除吗', [
-                { text: '取消' },
-                {
-                  text: '确认',
-                  onPress: () =>
-                    api.home
-                      .deletePostByPostId(this.props.postsItemData.postId)
-                      .then(() => {
-                        setTimeout(this.props.fresh(), 500)
-                      })
-                      .then(() =>
-                        Toast.show({
-                          text: '删除成功',
-                          type: 'success'
-                        })
-                      )
-                }
-              ])
-            }
-          >
-            <Text style={{ color: 'red', lineHeight: 30, margin: 4 }}>删除</Text>
-          </TouchableOpacity>
+          /> */}
         </View>
+
         <View
           style={{
             flexDirection: 'row',

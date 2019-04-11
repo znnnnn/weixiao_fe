@@ -64,7 +64,10 @@ export default class OfferDetail extends React.Component<Props, State> {
               5K-8K
             </Text>
           </Item>
-          <ListItem thumbnail onPress={() => this.props.navigation.navigate('用户中心')}>
+          <ListItem
+            thumbnail
+            // onPress={() => this.props.navigation.navigate('用户中心')}
+          >
             <Left>
               <Thumbnail
                 source={{ uri: 'http://111.231.116.130/wp-content/uploads/2019/03/3.jpg' }}
@@ -81,17 +84,21 @@ export default class OfferDetail extends React.Component<Props, State> {
           </ListItem>
           <Item style={styles.descriptionContainer}>
             <H3 style={{ margin: 5, marginTop: 20 }}>职位详情</H3>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
+            <Text style={styles.description}>·做事认真负责</Text>
+            <Text style={styles.description}>·学习主动</Text>
+            <Text style={styles.description}>·没有不良嗜好</Text>
           </Item>
           <View style={styles.descriptionContainer}>
             <H3 style={{ margin: 5, marginTop: 20 }}>技能要求</H3>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
-            <Text style={styles.description}>·做事认真负责，学习主动，没有不良嗜好</Text>
+            <Text style={styles.description}>·熟练运用PS进行平面设计</Text>
+            <Text style={styles.description}>·熟练使用AI进行Logo等矢量图形设计</Text>
+            <Text style={styles.description}>·表达能力过关，能够清晰的表达自己的想法</Text>
           </View>
-          <Button block style={{ margin: 10 }} onPress={() => this.props.navigation.navigate('聊天')}>
+          <Button
+            block
+            style={{ margin: 10 }}
+            onPress={() => this.props.navigation.navigate('聊天')}
+          >
             <Text>立即沟通</Text>
           </Button>
         </Content>
