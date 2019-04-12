@@ -1,7 +1,12 @@
 /* tslint:disable:no-console */
 import { Tabs } from '@ant-design/react-native'
+import { Icon } from 'native-base'
 import React from 'react'
 import { ScrollView, Text, View } from 'react-native'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 
 import getTimeDiff from '@util/time'
 import DeviceInfo from 'react-native-device-info'
@@ -11,7 +16,7 @@ import CommentListItem from '@components/CommentListItem'
 
 interface Props {
   commentList: any
-  fresh:Function
+  fresh: Function
 }
 
 export default class Comment extends React.Component<Props, any> {
@@ -22,7 +27,8 @@ export default class Comment extends React.Component<Props, any> {
 
   public renderContent = (type: string) => {
     const content = this.props.commentList.map((item: any, index: number) => {
-      if(item.commentType===type){
+      if (item.commentType === type && item !== undefined) {
+        // console.log('内部',item)
         return (
           <CommentListItem
             avatarUri={item.usermeta.avatar}
@@ -34,12 +40,28 @@ export default class Comment extends React.Component<Props, any> {
             commentId={item.commentId}
             // deviceName={item.}
             key={index}
-            fresh={()=>this.props.fresh()}
+            fresh={() => this.props.fresh()}
           />
         )
+      } else {
+        return null
       }
     })
-    return <View style={{ backgroundColor: '#fff' }}>{content}</View>
+    // console.log(type,content)
+    // console.log(type,content.every((item:any) => item=== null))
+    return content
+    // return <View style={{ backgroundColor: '#fff' }}></View>
+  }
+
+  public noData() {
+    return (
+      <View
+        style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), padding: 30 }}
+      >
+        <Icon name="cube" style={{ fontSize: 40 }} />
+        <Text style={{ fontSize: 24 }}>无数据</Text>
+      </View>
+    )
   }
 
   public render() {
@@ -66,8 +88,18 @@ export default class Comment extends React.Component<Props, any> {
         </Tabs> */}
         <View style={{ flex: 2 }}>
           <Tabs tabs={tabs2} initialPage={0} tabBarPosition="top">
-            {this.renderContent('comment')}
-            {this.renderContent('share')}
+            <View style={{ backgroundColor: '#fff' }}>
+              {this.renderContent('comment').every((item: any) => item === null)
+                ? this.noData()
+                : this.renderContent('comment').filter((item: any) => item !== null)}
+            </View>
+            <View style={{ backgroundColor: '#fff' }}>
+              {this.renderContent('share').every((item: any) => item === null)
+                ? this.noData()
+                : this.renderContent('share').filter((item: any) => item !== null)}
+            </View>
+            {/* {this.renderContent('comment')}
+            {this.renderContent('share')} */}
           </Tabs>
         </View>
       </View>

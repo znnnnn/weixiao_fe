@@ -52,7 +52,7 @@ class Home extends React.Component<Props, State> {
     try {
       const asyncToken = await AsyncStorage.getItem('token')
       if (asyncToken !== null && this.props.token === '') {
-        // console.log('asyncToken', asyncToken)
+        console.log('asyncToken', asyncToken)
         // 获取登录的用户信息
         api.userHome
           .myhome(asyncToken)
@@ -102,11 +102,28 @@ class Home extends React.Component<Props, State> {
   }
 
   public componentWillMount() {
-    api.home.getUsermetaList().then((res) => {
-      this.setState({
-        avatarNofilter: res.data.data.list
+    api.home
+      .getUsermetaList()
+      .then((res) => {
+        this.setState({
+          avatarNofilter: res.data.data.list
+        })
       })
-    })
+      .then(() =>
+        // 获取本地存储的登录状态
+        this._getAsynToken()
+      )
+      .then(() =>
+        // 初始化获取数据
+        api.home.getPostsOfType('dynamic').then((res) => {
+          // console.log(res.data.data)
+          this.setState({
+            postsList: res.data.data.list,
+            isRefreshing: false
+          })
+        })
+      )
+    // this._getAsynToken()
   }
 
   public componentWillReceiveProps() {
@@ -120,19 +137,16 @@ class Home extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    // 获取本地存储的登录状态
-    this._getAsynToken()
     // this.getPostsList()
     // 初始化获取数据
-    api.home.getPostsOfType('dynamic').then((res) => {
-      // console.log(res.data.data)
-      this.setState({
-        postsList: res.data.data.list,
-        isRefreshing: false
-      })
-    })
-
-    this.props.navigation.setParams({ getPostsList: this.getPostsList })
+    // api.home.getPostsOfType('dynamic').then((res) => {
+    //   // console.log(res.data.data)
+    //   this.setState({
+    //     postsList: res.data.data.list,
+    //     isRefreshing: false
+    //   })
+    // })
+    // this.props.navigation.setParams({ getPostsList: this.getPostsList })
   }
 
   public noData() {

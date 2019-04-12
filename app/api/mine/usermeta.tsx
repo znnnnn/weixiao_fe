@@ -12,7 +12,7 @@ const usermeta = {
     //     userPass
     //   }
     // ))
-    console.log(JSON.stringify(usermeta))
+    // console.log(JSON.stringify(usermeta))
     return axios.post(
       `${base.bd}/usermeta/set`,
       JSON.stringify(usermeta)

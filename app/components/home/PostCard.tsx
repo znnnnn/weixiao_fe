@@ -259,57 +259,71 @@ class PostCard extends Component<Props> {
             console.log(this.props)
             return <Text>1</Text>
           })()} */}
-          <View style={{ width: wp('90%') }}>
-            <Text
-              style={{ marginTop: 20, marginBottom: 20 }}
-              onPress={() =>
-                this.props.navigation.navigate('微校正文', {
-                  postsItemData: this.state.postsItemData
-                })
-              }
-            >
-              {this.state.postsItemData.postContent}
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                // borderWidth: 1,
-                width: wp('90%')
-              }}
-            >
-              {this.state.images.map((item: any, index: number) => {
-                // console.log(item)
-                return index <= 8 ? (
-                  <TouchableOpacity
-                    onPress={() => {
-                      // console.log(index)
-                      this.setState({
-                        modalVisible: true,
-                        initIndex: index
-                      })
-                    }}
-                    activeOpacity={0.7}
-                    key={index}
-                  >
-                    <Image
-                      source={{ uri: item }}
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() =>
+              this.props.navigation.navigate('微校正文', {
+                postsItemData: this.state.postsItemData
+              })
+            }
+          >
+            <View style={{ width: wp('90%') }}>
+              <Text
+                style={{ marginTop: 20, marginBottom: 20 }}
+                onPress={() =>
+                  this.props.navigation.navigate('微校正文', {
+                    postsItemData: this.state.postsItemData
+                  })
+                }
+              >
+                {this.state.postsItemData.postContent}
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  // borderWidth: 1,
+                  width: wp('90%')
+                }}
+              >
+                {this.state.images.map((item: any, index: number) => {
+                  // console.log(item)
+                  return index <= 8 ? (
+                    <TouchableOpacity
+                      // onPress={() => {
+                      //   // console.log(index)
+                      //   this.setState({
+                      //     modalVisible: true,
+                      //     initIndex: index
+                      //   })
+                      // }}
+                      onPress={() =>
+                        this.props.navigation.navigate('微校正文', {
+                          postsItemData: this.state.postsItemData
+                        })
+                      }
+                      activeOpacity={0.7}
                       key={index}
-                      style={{
-                        width: 110,
-                        height: 110,
-                        marginRight: (wp('90%') - 330) / 12,
-                        marginLeft: (wp('90%') - 330) / 12
-                      }}
-                    />
-                  </TouchableOpacity>
-                ) : null
-              })}
-            </View>
-            {/* {this.state.images.map((item: string, index: number) => {
+                    >
+                      <Image
+                        source={{ uri: item }}
+                        key={index}
+                        style={{
+                          width: 110,
+                          height: 110,
+                          marginRight: (wp('90%') - 330) / 12,
+                          marginLeft: (wp('90%') - 330) / 12
+                        }}
+                      />
+                    </TouchableOpacity>
+                  ) : null
+                })}
+              </View>
+              {/* {this.state.images.map((item: string, index: number) => {
               return <Image source={{ uri: 'https://uploadbeta.com/api/pictures/random/' }} key={index} style={{width: 100,height:100}} />
             })} */}
-          </View>
+            </View>
+          </TouchableOpacity>
           {this.state.postsItemData.usermeta.userId === this.props.myUsermeta.userId && (
             <TouchableOpacity
               onPress={() =>
