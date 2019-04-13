@@ -2,7 +2,7 @@
 
 本项目用于毕业设计的前端文件，基于`React Native`和`SpringBoot`开发
 
-## 使用说明
+## 使用说明（部分界面截图在文章底部）
 
 ### 短信验证码
 
@@ -97,3 +97,53 @@
 - [React Native ios离线打包并上传App Store](http://www.huangyuhong.com/2018/03/react-native-ios%E7%A6%BB%E7%BA%BF%E6%89%93%E5%8C%85/)
 
 - [ReactNative - 打离线包 (一) 原生RN命令打包](https://www.jianshu.com/p/bb7c5f1d304e)
+
+### APP部分界面截图
+
+因为总页面数量有接近七八十个，所以挑了比较重要的截了上来
+
+![](app/image/screenshot/1.png)
+
+![](app/image/screenshot/2.png)
+
+![](app/image/screenshot/3.png)
+
+![](app/image/screenshot/4.png)
+
+![](app/image/screenshot/5.png)
+
+![](app/image/screenshot/6.png)
+
+![](app/image/screenshot/7.png)
+
+![](app/image/screenshot/8.png)
+
+![](app/image/screenshot/9.png)
+
+![](app/image/screenshot/10.png)
+
+![](app/image/screenshot/11.png)
+
+![](app/image/screenshot/12.png)
+
+![](app/image/screenshot/13.png)
+
+![](app/image/screenshot/14.png)
+
+![](app/image/screenshot/15.png)
+
+![](app/image/screenshot/16.png)
+
+![](app/image/screenshot/17.png)
+
+![](app/image/screenshot/18.png)
+
+![](app/image/screenshot/19.png)
+
+![](app/image/screenshot/20.png)
+
+![](app/image/screenshot/21.png)
+
+![](app/image/screenshot/22.png)
+
+![](app/image/screenshot/23.png)
