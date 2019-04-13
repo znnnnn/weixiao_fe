@@ -69,7 +69,7 @@ export default class IconTab extends React.Component<any, any> {
             </List>
 
             <View>
-              <H2 style={{ alignSelf: 'center', marginTop: 150 }}>更多精彩即将到来^_^</H2>
+              <H3 style={{ alignSelf: 'center', marginTop: 150 }}>该功能正在开发中</H3>
             </View>
           </Tabs>
         </View>
