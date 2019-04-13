@@ -65,7 +65,7 @@ class CommentSender extends React.Component<Props, State> {
         upvoteUserId: this.props.myUsermeta.userId
       })
       .then((res) => {
-        console.log('点赞', res)
+        // console.log('点赞', res)
         if (res.data.message === 'SUCCESS') {
           this.setState({
             UpvoteCount: ++this.state.UpvoteCount,
@@ -80,7 +80,7 @@ class CommentSender extends React.Component<Props, State> {
     api.upvote
       .deleteUpvoteByUserId(this.props.postsItemData.postId, this.props.myUsermeta.userId)
       .then((res) => {
-        console.log('取消点赞', res)
+        // console.log('取消点赞', res)
         if (res.data.data > 0) {
           this.setState({
             UpvoteCount: --this.state.UpvoteCount,
@@ -108,7 +108,7 @@ class CommentSender extends React.Component<Props, State> {
               : 0,
           UpvoteCount: this.props.postsItemData.upvoteList.length
         },
-        () => console.log(this.state.isUpvoted)
+        // () => console.log(this.state.isUpvoted)
       )
       // console.log(this.state.isUpvoted)
     }, 0)

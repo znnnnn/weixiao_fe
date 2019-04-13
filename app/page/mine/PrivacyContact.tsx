@@ -112,37 +112,37 @@ export default class Contact extends React.Component {
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       },
       {
         name: 'Chris Jackson',
-        avatar_url: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+        avatar_url: 'https://uploadbeta.com/api/pictures/random/',
         subtitle: 'Vice Chairman'
       }
     ]

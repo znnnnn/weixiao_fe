@@ -141,7 +141,7 @@ export default withNavigation(
                     topicName: item.topicName,
                     topicThumb: item.topicThumb !== '[]'
                     ? JSON.parse(item.topicThumb)[0]
-                    : 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+                    : 'hhttps://uploadbeta.com/api/pictures/random/',
                     topicHot: item.topicHot
                   })
                 }
@@ -159,7 +159,7 @@ export default withNavigation(
                       // item.topicThumb !== null ||item.topicThumb !== '[]'
                       item.topicThumb !== '[]'
                         ? JSON.parse(item.topicThumb)[0]
-                        : 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+                        : 'https://uploadbeta.com/api/pictures/random/'
                   }}
                   style={{ height: 50, width: 70 }}
                 />
