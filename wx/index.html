@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>微校手机验证码</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入样式 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3>微校手机验证码查看页面</h3>
+      <h6>只显示5分钟内的验证码</h6>
+      <template>
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          height="250"
+          highlight-current-row
+          :default-sort = "{prop: 'date', order: 'descending'}"
+        >
+          <el-table-column type="index" width="50"> </el-table-column>
+          <el-table-column prop="date" label="时间" sortable> </el-table-column>
+          <el-table-column prop="phone" label="手机号" width="180">
+          </el-table-column>
+          <el-table-column prop="code" label="验证码" width="180">
+          </el-table-column>
+        </el-table>
+      </template>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
