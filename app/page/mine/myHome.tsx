@@ -153,7 +153,7 @@ class UserHome extends Component<Props> {
             /> */}
             <Image
               source={{
-                uri: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+                uri: 'https://uploadbeta.com/api/pictures/random/'
               }}
               style={styles.backImage}
             />
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     height: 200,
     position: 'absolute',
     zIndex: 99,
-    backgroundColor: '#e9e9e9'
+    backgroundColor: '#eee'
   },
   underLine: {
     width: wp('90%'),

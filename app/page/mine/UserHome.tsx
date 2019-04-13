@@ -172,7 +172,7 @@ class UserHome extends Component<Props> {
           <View style={{ height: 165 }}>
             <Image
               source={{
-                uri: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+                uri: 'https://uploadbeta.com/api/pictures/random/'
               }}
               style={styles.backImage}
             />
@@ -285,7 +285,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: wp('100%'),
     height: 200,
-    position: 'absolute'
+    position: 'absolute',
+    backgroundColor: '#eee'
   },
   underLine: {
     width: wp('90%'),

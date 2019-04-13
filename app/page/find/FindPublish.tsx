@@ -55,14 +55,9 @@ class FindPublish extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
-  }
-  public componentDidMount() {
-    // this.props.navigation.setParams({ publish: this.publish })
-    // console.log(this.state.inputContent)
-    // console.log(this.props.navigation.getParam('headerTitle'))
-    // console.log(this.props.navigation)
     this.props.navigation.setParams({ publish: this.publish })
   }
+  public componentDidMount() {}
 
   public publish = (type: string) => {
     // console.log(this.state.inputContent)
@@ -78,12 +73,14 @@ class FindPublish extends React.Component<Props, State> {
     if (fontLength(this.state.inputContent) <= 20) {
       Toast.show({
         text: '内容字数至少大于20字',
-        type: 'danger'
+        type: 'danger',
+        position: 'top'
       })
     } else if (fontLength(this.state.title) <= 5) {
       Toast.show({
         text: '标题字数至少大于5字',
-        type: 'danger'
+        type: 'danger',
+        position: 'top'
       })
     } else {
       api.publish
@@ -91,7 +88,8 @@ class FindPublish extends React.Component<Props, State> {
         .then((res) => {
           Toast.show({
             text: '发布成功',
-            type: 'success'
+            type: 'success',
+            position: 'top'
           })
         })
         .then(() =>
@@ -101,6 +99,7 @@ class FindPublish extends React.Component<Props, State> {
             photos: []
           })
         )
+        .then(() => this.props.navigation.goBack())
     }
     // console.log(this.props.navigation)
     // console.log('publish内部')

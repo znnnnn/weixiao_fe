@@ -7,7 +7,7 @@ import {
   TextareaItem
 } from '@ant-design/react-native'
 import StyleSheet from '@util/stylesheet'
-import { Toast } from 'native-base'
+import { Content ,Toast} from 'native-base'
 import React from 'react'
 import { View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
@@ -64,7 +64,8 @@ class Publish extends React.Component<Props, State> {
         .then((res) => {
           Toast.show({
             text: '发布成功',
-            type: 'success'
+            type: 'success',
+            position: 'top'
           })
         })
         .then(() =>
@@ -76,7 +77,8 @@ class Publish extends React.Component<Props, State> {
     } else {
       Toast.show({
         text: '字数最少为20字',
-        type: 'danger'
+        type: 'danger',
+        position: 'top'
       })
     }
     // console.log(this.props.navigation)
@@ -109,7 +111,7 @@ class Publish extends React.Component<Props, State> {
   public render() {
     return (
       <Provider>
-        <View style={styles.root}>
+        <Content contentContainerStyle={styles.root}>
           <TextareaItem
             placeholder="这一刻你想说..."
             count={1000}
@@ -138,7 +140,7 @@ class Publish extends React.Component<Props, State> {
               removeFileUpload={this.removeAvtar.bind(this)}
             />
           </View>
-        </View>
+        </Content>
       </Provider>
     )
   }
