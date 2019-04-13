@@ -29,12 +29,12 @@ class UserHome extends Component<Props> {
 
   public componentDidMount() {
     api.userHome.myhome(this.props.token).then((res) => {
-      console.log(res)
+      // console.log(res)
       this.setState({
         avatar: res.data.data.avatar,
         nickname: res.data.data.nickname
       })
-      console.log(this.state.avatar)
+      // console.log(this.state.avatar)
     })
   }
 
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state: any): Object => {
-  console.log('用户中心', state)
+  // console.log('用户中心', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token

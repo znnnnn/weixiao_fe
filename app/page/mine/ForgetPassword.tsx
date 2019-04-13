@@ -36,7 +36,8 @@ export default class ForgetPassword extends Component<Props> {
               onPress={() =>
                 Toast.show({
                   text: '重置密码成功',
-                  type: 'success'
+                  type: 'success',
+                  position:'top'
                 })
               }
             >

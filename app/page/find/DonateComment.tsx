@@ -17,7 +17,8 @@ export default class DonateComment extends Component<Props> {
             block
             style={{ marginTop: 15 }}
             onPress={() => {
-              Toast.show({ text: '留言成功！', type: 'success' })
+              Toast.show({ text: '留言成功！', type: 'success',
+              position:'top' })
               this.props.navigation.navigate('捐赠')
             }}
           >

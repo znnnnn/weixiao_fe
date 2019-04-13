@@ -74,7 +74,7 @@ class Cell extends Component<CellProps> {
       {
         checked: !this.state.checked
       },
-      () => console.log(this.props)
+      // () => console.log(this.props)
     )
 
   public render() {
@@ -163,7 +163,7 @@ export default class Contact extends React.Component {
 
   public someFunction(value) {
     Alert.alert(value)
-    console.log(value)
+    // console.log(value)
   }
 
   public render() {

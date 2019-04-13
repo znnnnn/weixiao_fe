@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state: any): Object => {
-  console.log('用户中心', state)
+  // console.log('用户中心', state)
   return {
     // 获取 state 变化
     myUsermeta: state.HandleMyUsermeta.myUsermeta

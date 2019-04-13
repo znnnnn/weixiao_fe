@@ -196,12 +196,14 @@ export default class DonateDetail extends Component<Props> {
                 if (!this.state.agreeRule) {
                   Toast.show({
                     text: '请先同意《微校捐赠协议》',
-                    type: 'danger'
+                    type: 'danger',
+                    position:'top'
                   })
                 } else if (this.state.money === 0) {
                   Toast.show({
                     text: '捐赠金额不能为0',
-                    type: 'danger'
+                    type: 'danger',
+                    position:'top'
                   })
                 } else {
                   this.props.navigation.navigate('捐款成功')

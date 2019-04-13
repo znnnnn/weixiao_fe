@@ -192,7 +192,8 @@ class SingPost extends React.Component<Props, State> {
                 onPress={() =>
                   Toast.show({
                     text: '微信：分享成功',
-                    type: 'success'
+                    type: 'success',
+                    position:'top'
                   })
                 }
               />
@@ -202,7 +203,8 @@ class SingPost extends React.Component<Props, State> {
                 onPress={() =>
                   Toast.show({
                     text: '朋友圈：分享成功',
-                    type: 'success'
+                    type: 'success',
+                    position:'top'
                   })
                 }
               />
@@ -212,7 +214,8 @@ class SingPost extends React.Component<Props, State> {
                 onPress={() =>
                   Toast.show({
                     text: 'QQ空间：分享成功',
-                    type: 'success'
+                    type: 'success',
+                    position:'top'
                   })
                 }
               />
@@ -222,7 +225,8 @@ class SingPost extends React.Component<Props, State> {
                 onPress={() =>
                   Toast.show({
                     text: 'QQ：分享成功',
-                    type: 'success'
+                    type: 'success',
+                    position:'top'
                   })
                 }
               />

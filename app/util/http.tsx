@@ -17,6 +17,7 @@ const tip = (msg:string) => {
   Toast.show({
     text: msg,
     type: 'danger',
+    position:'top'
   })
 }
 
@@ -134,6 +135,7 @@ instance.interceptors.response.use(
       Toast.show({
         text: '网络似乎出现了状况/(ㄒoㄒ)/',
         type: 'danger',
+        position:'top'
       })
     }
   }

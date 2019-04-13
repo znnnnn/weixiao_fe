@@ -111,7 +111,8 @@ class CameraButton extends React.Component<Props, State> {
                 : () =>
                     Toast.show({
                       text: '不能再上传更多了哦',
-                      type: 'danger'
+                      type: 'danger',
+                      position:'top'
                     })
             }
             style={{
@@ -133,9 +134,9 @@ class CameraButton extends React.Component<Props, State> {
   public showImagePicker() {
     ImagePicker.showImagePicker(options, (response: any) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker')
+        // console.log('User cancelled image picker')
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error)
+        // console.log('ImagePicker Error: ', response.error)
       } else {
         let source
 

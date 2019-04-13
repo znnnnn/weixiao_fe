@@ -193,14 +193,15 @@ class SetEducation extends React.Component<Props> /*State*/ {
                   })
 
                   setTimeout(() => {
-                    console.log('props', this.props)
+                    // console.log('props', this.props)
                     api.usermeta.setUsermeta(this.props.setUsermeta)
                   }, 1000)
                   this.props.navigation.navigate('登录')
                 } else {
                   Toast.show({
                     text: '信息未填写完整哦^_^',
-                    type: 'danger'
+                    type: 'danger',
+                      position:'top'
                   })
                 }
               }}
@@ -234,8 +235,8 @@ const styles = StyleSheet.create({
 
 // 获取store中的state，并传入容器组件的Props中
 const mapStateToProps = (state: any) => {
-  console.log(state)
-  console.log(state.HandleSetEducation)
+  // console.log(state)
+  // console.log(state.HandleSetEducation)
   return {
     setUsermeta: {...state.HandleSetEducation.education, ...state.handleRegister, ...state.handleSetInformation.information, ...state.handleSetPwd}
     // ...state.HandleSetEducation,

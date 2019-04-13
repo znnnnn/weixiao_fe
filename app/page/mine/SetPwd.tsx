@@ -77,12 +77,13 @@ class SetPwd extends React.Component<Props, State> {
             onPress={() => {
               if(this.state.loginPass !== ''){
                 this.props.handleSetPwd(this.state.loginPass)
-              console.log(this.props.handleSetPwd(this.state.loginPass))
+              // console.log(this.props.handleSetPwd(this.state.loginPass))
               this.props.navigation.navigate('完善资料')
               } else {
                 Toast.show({
                   text: '密码不能为空',
-                  type: 'danger'
+                  type: 'danger',
+                  position:'top'
                 })
               }
             }}
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
 // 获取store中的state，并传入容器组件的Props中
 const mapStateToProps = (state: any): Object => {
   // console.log(state)
-  console.log(state)
+  // console.log(state)
   return {
     // 获取 state 变化
     userPass: state.handleSetPwd.userPass

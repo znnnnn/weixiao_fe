@@ -52,7 +52,6 @@ class Home extends React.Component<Props, State> {
     try {
       const asyncToken = await AsyncStorage.getItem('token')
       if (asyncToken !== null && this.props.token === '') {
-        console.log('asyncToken', asyncToken)
         // 获取登录的用户信息
         api.userHome
           .myhome(asyncToken)
@@ -68,7 +67,8 @@ class Home extends React.Component<Props, State> {
           () =>
             Toast.show({
               text: '您还没有登录哦',
-              type: 'danger'
+              type: 'danger',
+              position:'top'
             }),
           700
         )

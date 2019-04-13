@@ -133,14 +133,16 @@ class CommentSender extends React.Component<Props, State> {
           })
           Toast.show({
             text: '成功',
-            type: 'success'
+            type: 'success',
+            position:'top'
           })
         })
         .then(() => setTimeout(this.props.fresh(), 500))
     } else {
       Toast.show({
         text: '输入内容不能为空',
-        type: 'danger'
+        type: 'danger',
+        position:'top'
       })
     }
   }
@@ -183,7 +185,8 @@ class CommentSender extends React.Component<Props, State> {
                   if (BUTTONS[buttonIndex].text !== '取消') {
                     Toast.show({
                       text: '分享成功',
-                      type: 'success'
+                      type: 'success',
+                      position:'top'
                     })
                     this.send('share')
                   }

@@ -175,10 +175,11 @@ class SetInformation extends React.Component<Props, State> {
                 })
                 this.props.navigation.navigate('完善学历信息')
               } else {
-                console.log(this.props)
+                // console.log(this.props)
                 Toast.show({
                   text: '信息未填写完整哦^_^',
-                  type: 'danger'
+                  type: 'danger',
+                  position:'top'
                 })
               }
             }}
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
 
 // 获取store中的state，并传入容器组件的Props中
 const mapStateToProps = (state: any) => {
-  console.log(state)
+  // console.log(state)
   return {
     ...state.HandleInformation
   }

@@ -59,7 +59,8 @@ export default class About extends Component<Props> {
             </ListItem>
             <ListItem
               onPress={() => Toast.show({
-                text: '更多精彩即将到来'
+                text: '更多精彩即将到来',
+                position:'top'
               })}
             >
               <Left>

@@ -123,7 +123,7 @@ class Register extends React.Component<Props, State> {
                     api={() =>
                       api.register
                         .sendRegisterCode(this.state.phone.replace(/\s*/g, ''))
-                        .then((res) => console.log(res))
+                        // .then((res) => console.log(res))
                     }
                   />
                 </View>

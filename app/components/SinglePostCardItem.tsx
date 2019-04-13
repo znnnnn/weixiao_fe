@@ -198,7 +198,8 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
       .then((res) => {
         Toast.show({
           text: '成功',
-          type: 'success'
+          type: 'success',
+          position: 'top'
         })
       })
       .then(() => setTimeout(() => this.fresh(), 500))
@@ -325,7 +326,8 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
                     if (BUTTONS[buttonIndex].text !== '取消') {
                       Toast.show({
                         text: '分享成功',
-                        type: 'success'
+                        type: 'success',
+                        position:'top'
                       })
                       this.send()
                     }
@@ -367,7 +369,8 @@ class SinglePostCardItem extends React.Component<Props, State> /*<Props, State>*
                         .then(() =>
                           Toast.show({
                             text: '删除成功',
-                            type: 'success'
+                            type: 'success',
+                            position:'top'
                           })
                         )
                   }

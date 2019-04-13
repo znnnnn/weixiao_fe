@@ -101,7 +101,7 @@ class SinglePostCardList extends React.Component<Props, State> /*<Props, State>*
           postsList: res.data.data.list,
           isRefreshing: false
         },
-        () => console.log(this.state.postsList)
+        // () => console.log(this.state.postsList)
       )
     })
   }

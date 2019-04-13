@@ -80,10 +80,11 @@ class Login extends React.Component<Props, State> {
         this.props.navigation.navigate('首页')
         Toast.show({
           text: '登录成功',
-          type: 'success'
+          type: 'success',
+          position: 'top'
         })
         api.userHome.myhome(data).then((res) => {
-          console.log('登录时请求用户信息!!')
+          // console.log('登录时请求用户信息!!')
           this.props.handleUsermeta(res.data.data)
         })
         break
@@ -132,10 +133,13 @@ class Login extends React.Component<Props, State> {
   public render() {
     return (
       <Container>
-        <Content contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled" >
+        <Content contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
           <View>
             {/* <Text style={{ fontSize: 40 }}>微校</Text> */}
-            <Image source={require('../../image/logo.png')} style={{ width: 100, height: 100, alignSelf: 'center' }} />
+            <Image
+              source={require('../../image/logo.png')}
+              style={{ width: 100, height: 100, alignSelf: 'center' }}
+            />
             <View style={styles.inputContainer}>
               <InputItem
                 clear
@@ -246,17 +250,17 @@ class Login extends React.Component<Props, State> {
               <Icon
                 name="qq"
                 style={[styles.socialIcon, { color: '#5EAADE' }]}
-                onPress={() => console.log('QQ')}
+                // onPress={() => console.log('QQ')}
               />
               <Icon
                 name="weixin"
                 style={[styles.socialIcon, { color: '#50B674' }]}
-                onPress={() => console.log('weixin')}
+                // onPress={() => console.log('weixin')}
               />
               <Icon
                 name="weibo"
                 style={[styles.socialIcon, { color: '#EA5D5C' }]}
-                onPress={() => console.log('weibo')}
+                // onPress={() => console.log('weibo')}
               />
             </View>
             {/* <TouchableOpacity
@@ -282,8 +286,8 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp('10%'),
-    flex:1,
-    alignItems: 'center',
+    flex: 1,
+    alignItems: 'center'
     // borderWidth:1
   },
   inputContainer: {

@@ -45,12 +45,12 @@ class SetInformation extends React.Component<Props, State> {
 
   public uploadAvtar(formData: any) {
     api.file.upload(formData).then((res) => {
-      console.log(res)
+      // console.log(res)
       this.setState(
         {
           avatar: this.state.avatar.concat(res.data.data)
-        },
-        () => console.log(this.state.avatar)
+        }
+        // () => console.log(this.state.avatar)
       )
     })
   }
@@ -147,14 +147,15 @@ class SetInformation extends React.Component<Props, State> {
                   avatar: this.state.avatar[0],
                   nickName: this.state.nickName,
                   trueName: this.state.trueName,
-                  sex: this.state.sex ? '1': '0'
+                  sex: this.state.sex ? '1' : '0'
                 })
                 this.props.navigation.navigate('完善学历信息')
               } else {
                 // console.log(this.props)
                 Toast.show({
                   text: '信息未填写完整哦^_^',
-                  type: 'danger'
+                  type: 'danger',
+                  position: 'top'
                 })
               }
             }}
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
 
 // 获取store中的state，并传入容器组件的Props中
 const mapStateToProps = (state: any) => {
-  console.log(state)
+  // console.log(state)
   return {
     ...state.HandleInformation
   }

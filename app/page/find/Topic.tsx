@@ -215,7 +215,8 @@ class OfferTopic extends React.Component<Props, State> {
                       if (BUTTONS[buttonIndex].text !== '取消') {
                         Toast.show({
                           text: '分享成功',
-                          type: 'success'
+                          type: 'success',
+                          position: 'top'
                         })
                       }
                     }

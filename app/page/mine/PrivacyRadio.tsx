@@ -70,7 +70,8 @@ export default class Privacy extends Component<Props> {
                 Toast.show({
                   text: '该功能还暂未开放',
                   type: 'warning',
-                  textStyle: { textAlign: 'center' }
+                  textStyle: { textAlign: 'center' },
+                  position:'top'
                 })
               }
             >

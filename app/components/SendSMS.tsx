@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { Text } from 'react-native'
 
 interface Props {
-  phone: string,
+  phone: string
   api: Function
 }
 export default class SendSMS extends Component<Props> {
@@ -21,13 +21,14 @@ export default class SendSMS extends Component<Props> {
   public showError(msg: string) {
     Toast.show({
       text: msg,
-      type: 'danger'
+      type: 'danger',
+      position: 'top'
     })
   }
 
-  public sendSMS(phone:string) {
+  public sendSMS(phone: string) {
     if (this.props.phone === '') {
-      Toast.show({ text: '手机号不能为空', type: 'danger' })
+      Toast.show({ text: '手机号不能为空', type: 'danger', position: 'top' })
     } else if (!reg.checkPhone(phone)) {
       // InputItem的phone类型，value中会自带空格，判断时需要去除，否则会一直错误！
       this.showError('手机号格式错误')

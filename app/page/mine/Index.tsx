@@ -34,7 +34,7 @@ class MineIndex extends Component<Props> {
   }
 
   public componentDidMount() {
-    console.log('props', this.props)
+    // console.log('props', this.props)
   }
 
   public render() {
@@ -130,7 +130,8 @@ class MineIndex extends Component<Props> {
               Toast.show({
                 text: '该功能暂未开放',
                 type: 'warning',
-                textStyle: { textAlign: 'center' }
+                textStyle: { textAlign: 'center' },
+                position:'top'
               })
             }
           >
@@ -172,7 +173,7 @@ class MineIndex extends Component<Props> {
 AppRegistry.registerComponent('MineIndex', () => MineIndex)
 
 const mapStateToProps = (state: any): Object => {
-  console.log('store中', state)
+  // console.log('store中', state)
   return {
     // 获取 state 变化
     token: state.handleLogin.token,

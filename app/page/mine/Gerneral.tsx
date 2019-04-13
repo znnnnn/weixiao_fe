@@ -54,7 +54,7 @@ export default class Gerneral extends Component<Props> {
               <Switch
                 value={this.state.newMsg}
                 onValueChange={() => {
-                  console.log(1111)
+                  // console.log(1111)
                   this.setState(
                     {
                       newMsg: !this.state.newMsg

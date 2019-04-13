@@ -4,7 +4,8 @@ import reg from './reg'
 export function showError( msg : string){
   Toast.show({
     text: msg,
-    type: 'danger'
+    type: 'danger',
+    position:'top'
   })
 }
 

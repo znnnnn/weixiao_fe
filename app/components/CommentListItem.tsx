@@ -123,7 +123,8 @@ class CommentList extends Component<Props> {
                             .then(() =>
                               Toast.show({
                                 text: '删除成功',
-                                type: 'success'
+                                type: 'success',
+                                position:'top'
                               })
                             )
                       }

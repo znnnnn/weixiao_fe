@@ -217,7 +217,8 @@ class UserInfoSetting extends Component<Props> {
                       .then(() => {
                         Toast.show({
                           text: '保存成功',
-                          type: 'success'
+                          type: 'success',
+                          position: 'top'
                         })
                         this.props.navigation.goBack()
                       })
