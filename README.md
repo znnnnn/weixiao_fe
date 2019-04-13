@@ -102,4 +102,8 @@
 
 因为总页面数量有接近七八十个，所以挑了比较重要的截了上来
 
-<img src="./app/image/screenshot/1.png" width="50%" height="50%">
+<img src="./app/image/screenshot/1.png" width="40%" height="40%">
+
+<img src="./app/image/screenshot/2.png" width="40%" height="40%">
+
+<img src="./app/image/screenshot/3.png" width="40%" height="40%">
