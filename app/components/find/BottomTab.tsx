@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
 import { Tabs } from '@ant-design/react-native'
-import { H2, List } from 'native-base'
+import { H3,List } from 'native-base'
 import React from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
