@@ -185,7 +185,8 @@ tabNavigation.navigationOptions = ({ navigation, screenProps }: NavigationScreen
       // }
       break
     case '发现':
-      header = null
+      // header = null
+      headerTitle = '发现'
       break
     case '发布':
       headerTitle = '发布'

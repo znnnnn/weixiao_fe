@@ -1,10 +1,5 @@
 import { SearchBar } from '@ant-design/react-native'
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-} from 'native-base'
+import { Body, Button, Container, Content } from 'native-base'
 import React from 'react'
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -16,6 +11,7 @@ import Icon from '@app/util/icon'
 import BottomTab from '@components/find/BottomTab'
 import IconTab from '@components/find/IconTab'
 import StyleSheet from '@util/stylesheet'
+import { SafeAreaView } from 'react-navigation'
 
 export interface State {
   // phone: string
@@ -91,22 +87,24 @@ export default class Find extends React.Component<State> /*<Props, State>*/ {
 
   public render() {
     return (
-      <Container style={styles.root}>
-        <SearchBar
-          placeholder="输入你感兴趣的事"
-          onSubmit={(value) => Alert.alert(value)}
-          onCancel={() => this.setState({ searchValue: '' })}
-          onChange={(value) => {
-            this.setState({ value })
-          }}
-        />
-        <View style={{ flex: 1 }}>
-          <IconTab/>
-        </View>
-        <View style={{ flex: 2 }}>
-          <BottomTab />
-        </View>
-      </Container>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Container style={styles.root}>
+          {/* <SearchBar
+            placeholder="输入你感兴趣的事"
+            onSubmit={(value) => Alert.alert(value)}
+            onCancel={() => this.setState({ searchValue: '' })}
+            onChange={(value) => {
+              this.setState({ value })
+            }}
+          /> */}
+          <View style={{ flex: 1 }}>
+            <IconTab />
+          </View>
+          <View style={{ flex: 2 }}>
+            <BottomTab />
+          </View>
+        </Container>
+      </SafeAreaView>
     )
   }
 
