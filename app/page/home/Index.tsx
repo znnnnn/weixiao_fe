@@ -68,7 +68,7 @@ class Home extends React.Component<Props, State> {
             Toast.show({
               text: '您还没有登录哦',
               type: 'danger',
-              position:'top'
+              position: 'top'
             }),
           700
         )
@@ -113,16 +113,17 @@ class Home extends React.Component<Props, State> {
         // 获取本地存储的登录状态
         this._getAsynToken()
       )
-      .then(() =>
-        // 初始化获取数据
-        api.home.getPostsOfType('dynamic').then((res) => {
-          // console.log(res.data.data)
-          this.setState({
-            postsList: res.data.data.list,
-            isRefreshing: false
-          })
-        })
-      )
+      .then(() => this.getPostsList())
+    // .then(() =>
+    //   // 初始化获取数据
+    //   api.home.getPostsOfType('dynamic').then((res) => {
+    //     // console.log(res.data.data)
+    //     this.setState({
+    //       postsList: res.data.data.list,
+    //       isRefreshing: false
+    //     })
+    //   })
+    // )
     // this._getAsynToken()
   }
 
@@ -133,20 +134,8 @@ class Home extends React.Component<Props, State> {
           (item: any) => item.userId !== this.props.myUsermeta.userId
         )
       })
+      // this.getPostsList()
     }, 0)
-  }
-
-  public componentDidMount() {
-    // this.getPostsList()
-    // 初始化获取数据
-    // api.home.getPostsOfType('dynamic').then((res) => {
-    //   // console.log(res.data.data)
-    //   this.setState({
-    //     postsList: res.data.data.list,
-    //     isRefreshing: false
-    //   })
-    // })
-    // this.props.navigation.setParams({ getPostsList: this.getPostsList })
   }
 
   public noData() {
@@ -176,9 +165,11 @@ class Home extends React.Component<Props, State> {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{
-                // width: wp('100%')
-              }}
+              contentContainerStyle={
+                {
+                  // width: wp('100%')
+                }
+              }
               // style={{ borderColor: 'green', borderWidth: 1 }}
             >
               {this.state.avatarList.map((item, index) => {
@@ -203,7 +194,7 @@ class Home extends React.Component<Props, State> {
                     fresh={() => this.getPostsList.bind(this)}
                     postsItemData={item}
                     key={index}
-                    isLast={index===this.state.postsList.length-1}
+                    isLast={index === this.state.postsList.length - 1}
                   />
                 ))
               : null}

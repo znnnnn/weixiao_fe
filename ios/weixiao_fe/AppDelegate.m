@@ -17,14 +17,14 @@
   NSURL *jsCodeLocation;
 
 //  localhost 版本
-//  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-  #ifdef DEBUG
-    //真机调试开发包
-    jsCodeLocation = [NSURL URLWithString:@"http://172.20.10.3:8081/index.bundle?platform=ios&dev=true"];
-  #else
-    //离线包
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/index.ios" withExtension:@"jsbundle"];
-  #endif
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+//  #ifdef DEBUG
+//    //真机调试开发包
+//    jsCodeLocation = [NSURL URLWithString:@"http://172.20.10.5:8081/index.bundle?platform=ios&dev=true"];
+//  #else
+//    //离线包
+//    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/index.ios" withExtension:@"jsbundle"];
+//  #endif
 
 //  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/index.ios" withExtension:@"jsbundle"];
 

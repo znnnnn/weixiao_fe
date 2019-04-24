@@ -1715,7 +1715,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.weixiao-fe";
 				PRODUCT_NAME = weixiao_fe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 arm64e armv7s";
@@ -1763,7 +1763,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.weixiao-fe";
 				PRODUCT_NAME = weixiao_fe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 arm64e armv7s";

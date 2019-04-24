@@ -67,7 +67,12 @@ class PostCard extends Component<Props> {
           ).length
         : 0,
     UpvoteCount: this.props.postsItemData.upvoteList.length,
-    isUpvoted: 0,
+    isUpvoted:
+      this.props.postsItemData.upvoteList.length > 0
+        ? this.props.postsItemData.upvoteList.filter(
+            (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
+          ).length
+        : 0,
     IP: ''
   }
 
@@ -107,33 +112,35 @@ class PostCard extends Component<Props> {
   public componentWillReceiveProps() {
     setTimeout(() => {
       // console.log(this.state.postsItemData)
-      this.setState({
-        isUpvoted:
-          this.props.postsItemData.upvoteList.length > 0
-            ? this.props.postsItemData.upvoteList.filter(
-                (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
-              ).length
-            : 0,
-        shareCount:
-          this.props.postsItemData.commentsUsermetaDTOList.length > 0
-            ? this.props.postsItemData.commentsUsermetaDTOList.filter(
-                (res: any) => res.commentType === 'share'
-              ).length
-            : 0,
-        commentCount:
-          this.props.postsItemData.commentsUsermetaDTOList.length > 0
-            ? this.props.postsItemData.commentsUsermetaDTOList.filter(
-                (res: any) => res.commentType === 'comment'
-              ).length
-            : 0,
-        UpvoteCount: this.props.postsItemData.upvoteList.length,
-        postsItemData: this.props.postsItemData,
-        images:
-          this.props.postsItemData.postImage === null ||
-          this.props.postsItemData.postImage === undefined
-            ? []
-            : JSON.parse(this.props.postsItemData.postImage)
-      })
+      this.setState(
+        {
+          isUpvoted:
+            this.props.postsItemData.upvoteList.length > 0
+              ? this.props.postsItemData.upvoteList.filter(
+                  (item: any) => item.upvoteUserId === this.props.myUsermeta.userId
+                ).length
+              : 0,
+          shareCount:
+            this.props.postsItemData.commentsUsermetaDTOList.length > 0
+              ? this.props.postsItemData.commentsUsermetaDTOList.filter(
+                  (res: any) => res.commentType === 'share'
+                ).length
+              : 0,
+          commentCount:
+            this.props.postsItemData.commentsUsermetaDTOList.length > 0
+              ? this.props.postsItemData.commentsUsermetaDTOList.filter(
+                  (res: any) => res.commentType === 'comment'
+                ).length
+              : 0,
+          UpvoteCount: this.props.postsItemData.upvoteList.length,
+          postsItemData: this.props.postsItemData,
+          images:
+            this.props.postsItemData.postImage === null ||
+            this.props.postsItemData.postImage === undefined
+              ? []
+              : JSON.parse(this.props.postsItemData.postImage)
+        }
+      )
       // console.log(this.state.images)
       // console.log(Array.isArray(JSON.parse(this.props.postsItemData.postImage)))
     }, 0)
@@ -207,7 +214,7 @@ class PostCard extends Component<Props> {
         Toast.show({
           text: '成功',
           type: 'success',
-          position:'top'
+          position: 'top'
         })
       })
       .then(() => setTimeout(() => this.fresh(), 200))
@@ -342,7 +349,7 @@ class PostCard extends Component<Props> {
                           Toast.show({
                             text: '删除成功',
                             type: 'success',
-                            position:'top'
+                            position: 'top'
                           })
                         )
                   }
@@ -394,7 +401,7 @@ class PostCard extends Component<Props> {
                     Toast.show({
                       text: '分享成功',
                       type: 'success',
-                      position:'top'
+                      position: 'top'
                     })
                     this.send()
                   }
