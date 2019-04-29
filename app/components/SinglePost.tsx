@@ -111,10 +111,6 @@ class SingPost extends React.Component<Props, State> {
     })
   }
 
-  // public componentDidMount() {
-  //   setTimeout(()=>console.log(this.state.postsItemData),1000)
-  // }
-
   public render() {
     return (
       <Provider>
