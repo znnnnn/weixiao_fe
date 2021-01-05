@@ -676,7 +676,7 @@
 
 "@expo/react-native-action-sheet@^2.0.1":
   version "2.1.0"
-  resolved "http://r.cnpmjs.org/@expo/react-native-action-sheet/download/@expo/react-native-action-sheet-2.1.0.tgz#7c3f6def52aee15ca7bd9e03cc0529e64618592c"
+  resolved "https://r.cnpmjs.org/@expo/react-native-action-sheet/download/@expo/react-native-action-sheet-2.1.0.tgz#7c3f6def52aee15ca7bd9e03cc0529e64618592c"
   integrity sha1-fD9t71Ku4VynvZ4DzAUp5kYYWSw=
   dependencies:
     hoist-non-react-statics "^2.2.2"
@@ -704,24 +704,41 @@
     react-native-safe-area-view "^0.12.0"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
 
-"@types/jest@^23.3.13":
-  version "23.3.13"
-  resolved "http://registry.npm.taobao.org/@types/jest/download/@types/jest-23.3.13.tgz#c81484b6f4ca007bb09887ed15ecb3286d58f928"
-  integrity sha1-yBSEtvTKAHuwmIftFeyzKG1Y+Sg=
+"@types/form-data@^2.2.1":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-2.5.0.tgz#5025f7433016f923348434c40006d9a797c1b0e8"
+  integrity sha512-23/wYiuckYYtFpL+4RPWiWmRQH2BjFuqCUi2+N3amB1a1Drv+i/byTrGvlLwRVLFNAZbwpbQ7JvTK+VCAPMbcg==
+  dependencies:
+    form-data "*"
+
+"@types/jest@^23.3.14":
+  version "23.3.14"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.14.tgz#37daaf78069e7948520474c87b80092ea912520a"
+  integrity sha512-Q5hTcfdudEL2yOmluA1zaSyPbzWPmJ3XfSWeP3RyoYvS9hnje1ZyagrZOuQ6+1nQC1Gw+7gap3pLNL3xL6UBug==
 
 "@types/lodash@^4.14.121":
   version "4.14.122"
-  resolved "http://r.cnpmjs.org/@types/lodash/download/@types/lodash-4.14.122.tgz#3e31394c38cf1e5949fb54c1192cbc406f152c6c"
+  resolved "https://r.cnpmjs.org/@types/lodash/download/@types/lodash-4.14.122.tgz#3e31394c38cf1e5949fb54c1192cbc406f152c6c"
   integrity sha1-PjE5TDjPHllJ+1TBGSy8QG8VLGw=
+
+"@types/node@^11.11.3":
+  version "11.15.43"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.15.43.tgz#aacd9a70dc7c43ac4d28461faf98cefb4b759602"
+  integrity sha512-EAUAH6KQiz/aLjyaLgfcKdcNCmuPTqPeaZHMg3bxbDUeZXnAABqsT+jQLqvINEN76+0HRi9pcuZQlvV3cy4kow==
 
 "@types/prop-types@*", "@types/prop-types@^15.5.5":
   version "15.5.8"
   resolved "http://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
   integrity sha1-iuTg6iBf6Vw5AaWh339mSV46Vs4=
 
+"@types/qs@^6.5.2":
+  version "6.9.5"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.5.tgz#434711bdd49eb5ee69d90c1d67c354a9a8ecb18b"
+  integrity sha512-/JHkVHtx/REVG0VVToGRGH2+23hsYLHdyG+GrvoUGlGAd0ErauXDyvHtRI/7H7mzLm+tBCKA7pfcpkQ1lf58iQ==
+
 "@types/react-native-orientation@^5.0.1":
   version "5.0.1"
-  resolved "http://r.cnpmjs.org/@types/react-native-orientation/download/@types/react-native-orientation-5.0.1.tgz#347f7041683249f9ca7386717aa4dd66b394d3fb"
+  resolved "https://r.cnpmjs.org/@types/react-native-orientation/download/@types/react-native-orientation-5.0.1.tgz#347f7041683249f9ca7386717aa4dd66b394d3fb"
   integrity sha1-NH9wQWgySfnKc4ZxeqTdZrOU0/s=
 
 "@types/react-native-vector-icons@^4.6.4":
@@ -734,7 +751,7 @@
 
 "@types/react-native-video@^3.1.1":
   version "3.1.1"
-  resolved "http://r.cnpmjs.org/@types/react-native-video/download/@types/react-native-video-3.1.1.tgz#a1ef9c1807a0e469f3e38a520c35d03da2a6a8b5"
+  resolved "https://r.cnpmjs.org/@types/react-native-video/download/@types/react-native-video-3.1.1.tgz#a1ef9c1807a0e469f3e38a520c35d03da2a6a8b5"
   integrity sha1-oe+cGAeg5Gnz44pSDDXQPaKmqLU=
   dependencies:
     "@types/react" "*"
@@ -893,7 +910,7 @@ ansi-regex@^4.0.0:
 
 ansi-styles@^2.1.0, ansi-styles@^2.2.1:
   version "2.2.1"
-  resolved "http://r.cnpmjs.org/ansi-styles/download/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
+  resolved "https://r.cnpmjs.org/ansi-styles/download/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
   integrity sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
 
 ansi-styles@^3.2.0, ansi-styles@^3.2.1:
@@ -915,7 +932,7 @@ ansi@^0.3.0, ansi@~0.3.1:
 
 antd-mobile-demo-data@^0.2.0:
   version "0.2.0"
-  resolved "http://r.cnpmjs.org/antd-mobile-demo-data/download/antd-mobile-demo-data-0.2.0.tgz#049731dc3c48c42603185e4338724879224c8442"
+  resolved "https://r.cnpmjs.org/antd-mobile-demo-data/download/antd-mobile-demo-data-0.2.0.tgz#049731dc3c48c42603185e4338724879224c8442"
   integrity sha1-BJcx3DxIxCYDGF5DOHJIeSJMhEI=
 
 anymatch@^2.0.0:
@@ -1097,6 +1114,13 @@ aws4@^1.8.0:
   resolved "http://registry.npm.taobao.org/aws4/download/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha1-8OAD2cqef1nHpQiUXXsu+aBKVC8=
 
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-code-frame/download/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -1128,7 +1152,7 @@ babel-messages@^6.23.0:
 
 babel-plugin-check-es2015-constants@6.22.0:
   version "6.22.0"
-  resolved "http://r.cnpmjs.org/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
+  resolved "https://r.cnpmjs.org/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   integrity sha1-NRV7EBQm/S/9PaP3XH0ekYNbv4o=
   dependencies:
     babel-runtime "^6.22.0"
@@ -1288,7 +1312,7 @@ big-integer@^1.6.7:
 
 blueimp-md5@^2.5.0:
   version "2.10.0"
-  resolved "http://r.cnpmjs.org/blueimp-md5/download/blueimp-md5-2.10.0.tgz#02f0843921f90dca14f5b8920a38593201d6964d"
+  resolved "https://r.cnpmjs.org/blueimp-md5/download/blueimp-md5-2.10.0.tgz#02f0843921f90dca14f5b8920a38593201d6964d"
   integrity sha1-AvCEOSH5DcoU9biSCjhZMgHWlk0=
 
 bplist-creator@0.0.7:
@@ -1440,7 +1464,7 @@ caseless@~0.12.0:
 
 chalk@1.1.1:
   version "1.1.1"
-  resolved "http://r.cnpmjs.org/chalk/download/chalk-1.1.1.tgz#509afb67066e7499f7eb3535c77445772ae2d019"
+  resolved "https://r.cnpmjs.org/chalk/download/chalk-1.1.1.tgz#509afb67066e7499f7eb3535c77445772ae2d019"
   integrity sha1-UJr7ZwZudJn36zU1x3RFdyri0Bk=
   dependencies:
     ansi-styles "^2.1.0"
@@ -1486,7 +1510,7 @@ ci-info@^2.0.0:
 
 clamp@^1.0.1:
   version "1.0.1"
-  resolved "http://r.cnpmjs.org/clamp/download/clamp-1.0.1.tgz#66a0e64011816e37196828fdc8c8c147312c8634"
+  resolved "https://r.cnpmjs.org/clamp/download/clamp-1.0.1.tgz#66a0e64011816e37196828fdc8c8c147312c8634"
   integrity sha1-ZqDmQBGBbjcZaCj9yMjBRzEshjQ=
 
 class-utils@^0.3.5:
@@ -1549,7 +1573,7 @@ collection-visit@^1.0.0:
 
 color-convert@^1.8.2, color-convert@^1.9.0, color-convert@^1.9.1:
   version "1.9.3"
-  resolved "http://r.cnpmjs.org/color-convert/download/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
+  resolved "https://r.cnpmjs.org/color-convert/download/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha1-u3GFBpDh8TZWfeYp0tVHHe2kweg=
   dependencies:
     color-name "1.1.3"
@@ -1561,12 +1585,12 @@ color-name@1.1.3:
 
 color-name@^1.0.0:
   version "1.1.4"
-  resolved "http://r.cnpmjs.org/color-name/download/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
+  resolved "https://r.cnpmjs.org/color-name/download/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha1-wqCah6y95pVD3m9j+jmVyCbFNqI=
 
 color-string@^1.4.0, color-string@^1.5.2:
   version "1.5.3"
-  resolved "http://r.cnpmjs.org/color-string/download/color-string-1.5.3.tgz#c9bbc5f01b58b5492f3d6857459cb6590ce204cc"
+  resolved "https://r.cnpmjs.org/color-string/download/color-string-1.5.3.tgz#c9bbc5f01b58b5492f3d6857459cb6590ce204cc"
   integrity sha1-ybvF8BtYtUkvPWhXRZy2WQziBMw=
   dependencies:
     color-name "^1.0.0"
@@ -1579,7 +1603,7 @@ color-support@^1.1.3:
 
 color@^3.1.0:
   version "3.1.0"
-  resolved "http://r.cnpmjs.org/color/download/color-3.1.0.tgz#d8e9fb096732875774c84bf922815df0308d0ffc"
+  resolved "https://r.cnpmjs.org/color/download/color-3.1.0.tgz#d8e9fb096732875774c84bf922815df0308d0ffc"
   integrity sha1-2On7CWcyh1d0yEv5IoFd8DCND/w=
   dependencies:
     color-convert "^1.9.1"
@@ -1587,7 +1611,7 @@ color@^3.1.0:
 
 color@~1.0.3:
   version "1.0.3"
-  resolved "http://r.cnpmjs.org/color/download/color-1.0.3.tgz#e48e832d85f14ef694fb468811c2d5cfe729b55d"
+  resolved "https://r.cnpmjs.org/color/download/color-1.0.3.tgz#e48e832d85f14ef694fb468811c2d5cfe729b55d"
   integrity sha1-5I6DLYXxTvaU+0aIEcLVz+cptV0=
   dependencies:
     color-convert "^1.8.2"
@@ -1597,6 +1621,13 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   version "1.0.7"
   resolved "http://registry.npm.taobao.org/combined-stream/download/combined-stream-1.0.7.tgz#2d1d24317afb8abe95d6d2c0b07b57813539d828"
   integrity sha1-LR0kMXr7ir6V1tLAsHtXgTU52Cg=
+  dependencies:
+    delayed-stream "~1.0.0"
+
+combined-stream@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
+  integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
   dependencies:
     delayed-stream "~1.0.0"
 
@@ -1828,7 +1859,7 @@ deepmerge@^3.0.0:
 
 deepmerge@^3.1.0:
   version "3.2.0"
-  resolved "http://r.cnpmjs.org/deepmerge/download/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
+  resolved "https://r.cnpmjs.org/deepmerge/download/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
   integrity sha1-WO9GOlfAjTdlR/iGn9xbzulX9E4=
 
 default-require-extensions@^2.0.0:
@@ -2372,6 +2403,11 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+follow-redirects@^1.10.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/for-in/download/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2388,6 +2424,24 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/forever-agent/download/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
+
+form-data@*:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
+  integrity sha512-CKMFDglpbMi6PyN+brwB9Q/GOw0eAnsrEZDgcsH5Krhz5Od/haKHAX0NmQfha2zPPz0JpWzA7GJHGSnvCRLWsg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
+
+form-data@^2.3.3:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
+  integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.6"
+    mime-types "^2.1.12"
 
 form-data@~2.3.2:
   version "2.3.3"
@@ -2421,7 +2475,7 @@ fs-extra@^1.0.0:
 
 fs-extra@^2.0.0:
   version "2.1.2"
-  resolved "http://r.cnpmjs.org/fs-extra/download/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
+  resolved "https://r.cnpmjs.org/fs-extra/download/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
   integrity sha1-BGxwFjzvmq1GsOSn+kZ/si1x3jU=
   dependencies:
     graceful-fs "^4.1.2"
@@ -2652,7 +2706,7 @@ has@^1.0.1, has@^1.0.3:
 
 hoist-non-react-statics@^1.0.5:
   version "1.2.0"
-  resolved "http://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+  resolved "https://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
   integrity sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=
 
 hoist-non-react-statics@^2.2.2, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
@@ -2662,7 +2716,7 @@ hoist-non-react-statics@^2.2.2, hoist-non-react-statics@^2.3.1, hoist-non-react-
 
 hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1:
   version "3.3.0"
-  resolved "http://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  resolved "https://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha1-sJF48BIhhPuVrPUl2q7LTY9FlYs=
   dependencies:
     react-is "^16.7.0"
@@ -2824,7 +2878,7 @@ is-arrayish@^0.2.1:
 
 is-arrayish@^0.3.1:
   version "0.3.2"
-  resolved "http://r.cnpmjs.org/is-arrayish/download/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
+  resolved "https://r.cnpmjs.org/is-arrayish/download/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
   integrity sha1-RXSirlb3qyBolvtDHq7tBm/fjwM=
 
 is-buffer@^1.1.5:
@@ -3347,7 +3401,7 @@ jest-mock@^24.0.0:
 
 jest-react-native@^18.0.0:
   version "18.0.0"
-  resolved "http://r.cnpmjs.org/jest-react-native/download/jest-react-native-18.0.0.tgz#77dd909f069324599f227c58c61c2e62168726ba"
+  resolved "https://r.cnpmjs.org/jest-react-native/download/jest-react-native-18.0.0.tgz#77dd909f069324599f227c58c61c2e62168726ba"
   integrity sha1-d92QnwaTJFmfInxYxhwuYhaHJro=
 
 jest-regex-util@^24.0.0:
@@ -3631,7 +3685,7 @@ jsprim@^1.2.2:
 
 keymirror@0.1.1:
   version "0.1.1"
-  resolved "http://r.cnpmjs.org/keymirror/download/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
+  resolved "https://r.cnpmjs.org/keymirror/download/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
   integrity sha1-kYiJ6hP40KQufFVyUO7nE63JXDU=
 
 kind-of@^1.1.0:
@@ -3727,11 +3781,6 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
-loadsh@0.0.3:
-  version "0.0.3"
-  resolved "http://r.cnpmjs.org/loadsh/download/loadsh-0.0.3.tgz#ddd567c7820be2dca94472697c2a1a7e6144c230"
-  integrity sha1-3dVnx4IL4typRHJpfCoafmFEwjA=
-
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/locate-path/download/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -3778,7 +3827,7 @@ lodash.throttle@^4.1.1:
   resolved "http://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
-lodash@4.17.11, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.16.4, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.11, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
@@ -4228,7 +4277,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
 
 moment@^2.19.0:
   version "2.24.0"
-  resolved "http://r.cnpmjs.org/moment/download/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  resolved "https://r.cnpmjs.org/moment/download/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha1-DQVdU/UFKqZTyfbraLtdEr9cK1s=
 
 morgan@^1.9.0:
@@ -4281,7 +4330,7 @@ nanomatch@^1.2.9:
 
 native-base-shoutem-theme@0.2.3:
   version "0.2.3"
-  resolved "http://r.cnpmjs.org/native-base-shoutem-theme/download/native-base-shoutem-theme-0.2.3.tgz#4ec27c663f0aa78be36fca239e490db1811ad617"
+  resolved "https://r.cnpmjs.org/native-base-shoutem-theme/download/native-base-shoutem-theme-0.2.3.tgz#4ec27c663f0aa78be36fca239e490db1811ad617"
   integrity sha1-TsJ8Zj8Kp4vjb8ojnkkNsYEa1hc=
   dependencies:
     hoist-non-react-statics "^1.0.5"
@@ -4290,7 +4339,7 @@ native-base-shoutem-theme@0.2.3:
 
 native-base@^2.12.0:
   version "2.12.1"
-  resolved "http://r.cnpmjs.org/native-base/download/native-base-2.12.1.tgz#0ce367076fd5694f92abab6e0a69a84dc5dfa800"
+  resolved "https://r.cnpmjs.org/native-base/download/native-base-2.12.1.tgz#0ce367076fd5694f92abab6e0a69a84dc5dfa800"
   integrity sha1-DONnB2/VaU+Sq6tuCmmoTcXfqAA=
   dependencies:
     blueimp-md5 "^2.5.0"
@@ -4549,7 +4598,7 @@ onetime@^2.0.0:
 
 opencollective-postinstall@^2.0.0:
   version "2.0.2"
-  resolved "http://r.cnpmjs.org/opencollective-postinstall/download/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+  resolved "https://r.cnpmjs.org/opencollective-postinstall/download/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
   integrity sha1-Vlfxvt5ptuM6RZObBh61PTxsOok=
 
 opn@^3.0.2:
@@ -4879,7 +4928,7 @@ pretty-format@^24.0.0:
 
 print-message@^2.1.0:
   version "2.1.0"
-  resolved "http://r.cnpmjs.org/print-message/download/print-message-2.1.0.tgz#b5588ed08b0e1bf77ac7bcb5cb78004afaf9a891"
+  resolved "https://r.cnpmjs.org/print-message/download/print-message-2.1.0.tgz#b5588ed08b0e1bf77ac7bcb5cb78004afaf9a891"
   integrity sha1-tViO0IsOG/d6x7y1y3gASvr5qJE=
   dependencies:
     chalk "1.1.1"
@@ -4922,9 +4971,9 @@ prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-prop-types@^15.5.6, prop-types@^15.6.0:
+prop-types@^15.6.0:
   version "15.7.2"
-  resolved "http://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  resolved "https://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
   dependencies:
     loose-envify "^1.4.0"
@@ -4990,7 +5039,7 @@ randomatic@^3.0.0:
 
 randomcolor@^0.5.4:
   version "0.5.4"
-  resolved "http://r.cnpmjs.org/randomcolor/download/randomcolor-0.5.4.tgz#df615b13f25b89ea58c5f8f72647f0a6f07adcc3"
+  resolved "https://r.cnpmjs.org/randomcolor/download/randomcolor-0.5.4.tgz#df615b13f25b89ea58c5f8f72647f0a6f07adcc3"
   integrity sha1-32FbE/JbiepYxfj3JkfwpvB63MM=
 
 range-parser@~1.2.0:
@@ -5020,7 +5069,7 @@ react-deep-force-update@^1.0.0:
 
 react-devtools-core@^3.4.2:
   version "3.6.1"
-  resolved "http://r.cnpmjs.org/react-devtools-core/download/react-devtools-core-3.6.1.tgz#51af81ceada65209bbccb8b547a01187cd1cbf04"
+  resolved "https://r.cnpmjs.org/react-devtools-core/download/react-devtools-core-3.6.1.tgz#51af81ceada65209bbccb8b547a01187cd1cbf04"
   integrity sha1-Ua+Bzq2mUgm7zLi1R6ARh80cvwQ=
   dependencies:
     shell-quote "^1.6.1"
@@ -5038,7 +5087,7 @@ react-is@^16.6.3:
 
 react-is@^16.8.1:
   version "16.8.4"
-  resolved "http://r.cnpmjs.org/react-is/download/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
+  resolved "https://r.cnpmjs.org/react-is/download/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha1-kPM2pow6KaCWo9ZIq4DofsYUgqI=
 
 react-lifecycles-compat@^3.0.4:
@@ -5046,21 +5095,9 @@ react-lifecycles-compat@^3.0.4:
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-native-af-video-player@^0.2.1:
-  version "0.2.1"
-  resolved "http://r.cnpmjs.org/react-native-af-video-player/download/react-native-af-video-player-0.2.1.tgz#35ae17a10b9cba8465fc6a856207de773d2df723"
-  integrity sha1-Na4XoQucuoRl/GqFYgfedz0t9yM=
-  dependencies:
-    react-native-keep-awake "^2.0.6"
-    react-native-linear-gradient "^2.3.0"
-    react-native-orientation "^3.1.0"
-    react-native-slider "https://github.com/abbasfreestyle/react-native-slider.git"
-    react-native-vector-icons "^4.4.2"
-    react-native-video "^2.0.0"
-
 react-native-alphabetlistview@^0.3.0:
   version "0.3.0"
-  resolved "http://r.cnpmjs.org/react-native-alphabetlistview/download/react-native-alphabetlistview-0.3.0.tgz#b7240b90ce1f6d26bf22a4cfa1ce4621334f49b3"
+  resolved "https://r.cnpmjs.org/react-native-alphabetlistview/download/react-native-alphabetlistview-0.3.0.tgz#b7240b90ce1f6d26bf22a4cfa1ce4621334f49b3"
   integrity sha1-tyQLkM4fbSa/IqTPoc5GITNPSbM=
   dependencies:
     merge "^1.2.0"
@@ -5075,12 +5112,12 @@ react-native-collapsible@^1.4.0:
 
 react-native-communications@2.2.1:
   version "2.2.1"
-  resolved "http://r.cnpmjs.org/react-native-communications/download/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
+  resolved "https://r.cnpmjs.org/react-native-communications/download/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
   integrity sha1-eIO1ayCgAu63kMET+GFuqGksp5U=
 
 react-native-device-info@^0.26.3:
   version "0.26.4"
-  resolved "http://r.cnpmjs.org/react-native-device-info/download/react-native-device-info-0.26.4.tgz#5d747fae91d5abceff2de5430ff92749a09c62dd"
+  resolved "https://r.cnpmjs.org/react-native-device-info/download/react-native-device-info-0.26.4.tgz#5d747fae91d5abceff2de5430ff92749a09c62dd"
   integrity sha1-XXR/rpHVq87/LeVDD/knSaCcYt0=
 
 react-native-drawer-layout@~2.0.0:
@@ -5090,7 +5127,7 @@ react-native-drawer-layout@~2.0.0:
 
 react-native-drawer@2.5.1:
   version "2.5.1"
-  resolved "http://r.cnpmjs.org/react-native-drawer/download/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
+  resolved "https://r.cnpmjs.org/react-native-drawer/download/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
   integrity sha1-CLkxQYT0jHJPG0Z/iFl5c2l5hlQ=
   dependencies:
     prop-types "^15.5.8"
@@ -5098,14 +5135,14 @@ react-native-drawer@2.5.1:
 
 react-native-easy-grid@0.2.1:
   version "0.2.1"
-  resolved "http://r.cnpmjs.org/react-native-easy-grid/download/react-native-easy-grid-0.2.1.tgz#23e386db0e4d0d46d7da30f7b628e28cd354d5ad"
+  resolved "https://r.cnpmjs.org/react-native-easy-grid/download/react-native-easy-grid-0.2.1.tgz#23e386db0e4d0d46d7da30f7b628e28cd354d5ad"
   integrity sha1-I+OG2w5NDUbX2jD3tijijNNU1a0=
   dependencies:
     lodash "4.17.11"
 
 react-native-elements@^1.1.0:
   version "1.1.0"
-  resolved "http://r.cnpmjs.org/react-native-elements/download/react-native-elements-1.1.0.tgz#f99bcda4459a886f3ab4591c684c099d37aedf2b"
+  resolved "https://r.cnpmjs.org/react-native-elements/download/react-native-elements-1.1.0.tgz#f99bcda4459a886f3ab4591c684c099d37aedf2b"
   integrity sha1-+ZvNpEWaiG86tFkcaEwJnTeu3ys=
   dependencies:
     color "^3.1.0"
@@ -5127,7 +5164,7 @@ react-native-gesture-handler@^1.0.15, react-native-gesture-handler@~1.0.14:
 
 react-native-gifted-chat@^0.7.2:
   version "0.7.2"
-  resolved "http://r.cnpmjs.org/react-native-gifted-chat/download/react-native-gifted-chat-0.7.2.tgz#c97f62deda55387a24d334c2941f68cc63883f44"
+  resolved "https://r.cnpmjs.org/react-native-gifted-chat/download/react-native-gifted-chat-0.7.2.tgz#c97f62deda55387a24d334c2941f68cc63883f44"
   integrity sha1-yX9i3tpVOHok0zTClB9ozGOIP0Q=
   dependencies:
     "@expo/react-native-action-sheet" "^2.0.1"
@@ -5140,29 +5177,29 @@ react-native-gifted-chat@^0.7.2:
 
 react-native-image-pan-zoom@^2.1.9:
   version "2.1.11"
-  resolved "http://r.cnpmjs.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
+  resolved "https://r.cnpmjs.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
   integrity sha1-Yby2khnZXnapeX0j5KLo4L1lSuk=
+
+react-native-image-picker@^0.28.0:
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.1.tgz#1127460522e0c9741fc62f3d040271d298fb6a6e"
+  integrity sha512-CW2dm+cjsdW2fjBW2WD/cSufNG0x0UpljwGHrjSzyB0TckoW+tjYv44UWtckCWxr1JtCg+QrYDO/MzlRyFcjwQ==
 
 react-native-image-zoom-viewer@^2.2.25:
   version "2.2.25"
-  resolved "http://r.cnpmjs.org/react-native-image-zoom-viewer/download/react-native-image-zoom-viewer-2.2.25.tgz#61d0978b26d5a07bbbdfe04791818e49d1e538a0"
+  resolved "https://r.cnpmjs.org/react-native-image-zoom-viewer/download/react-native-image-zoom-viewer-2.2.25.tgz#61d0978b26d5a07bbbdfe04791818e49d1e538a0"
   integrity sha1-YdCXiybVoHu73+BHkYGOSdHlOKA=
   dependencies:
     react-native-image-pan-zoom "^2.1.9"
 
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.0"
-  resolved "http://r.cnpmjs.org/react-native-iphone-x-helper/download/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
+  resolved "https://r.cnpmjs.org/react-native-iphone-x-helper/download/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
   integrity sha1-n4o3brALxxIRWr/0QgMYoAY/p5Y=
-
-react-native-keep-awake@^2.0.6:
-  version "2.0.6"
-  resolved "http://r.cnpmjs.org/react-native-keep-awake/download/react-native-keep-awake-2.0.6.tgz#d8eaffe0a6377cc197469d9f06c7f317225403db"
-  integrity sha1-2Or/4KY3fMGXRp2fBsfzFyJUA9s=
 
 react-native-keyboard-aware-scroll-view@0.8.0:
   version "0.8.0"
-  resolved "http://r.cnpmjs.org/react-native-keyboard-aware-scroll-view/download/react-native-keyboard-aware-scroll-view-0.8.0.tgz#00bcaa38c91323913bb7a733059ad2bc4875f88c"
+  resolved "https://r.cnpmjs.org/react-native-keyboard-aware-scroll-view/download/react-native-keyboard-aware-scroll-view-0.8.0.tgz#00bcaa38c91323913bb7a733059ad2bc4875f88c"
   integrity sha1-ALyqOMkTI5E7t6czBZrSvEh1+Iw=
   dependencies:
     prop-types "^15.6.2"
@@ -5170,15 +5207,10 @@ react-native-keyboard-aware-scroll-view@0.8.0:
 
 react-native-lightbox@^0.7.0:
   version "0.7.0"
-  resolved "http://r.cnpmjs.org/react-native-lightbox/download/react-native-lightbox-0.7.0.tgz#e52b4d7fcc141f59d7b23f0180de535e35b20ec9"
+  resolved "https://r.cnpmjs.org/react-native-lightbox/download/react-native-lightbox-0.7.0.tgz#e52b4d7fcc141f59d7b23f0180de535e35b20ec9"
   integrity sha1-5StNf8wUH1nXsj8BgN5TXjWyDsk=
   dependencies:
     prop-types "^15.5.10"
-
-react-native-linear-gradient@^2.3.0:
-  version "2.5.3"
-  resolved "http://r.cnpmjs.org/react-native-linear-gradient/download/react-native-linear-gradient-2.5.3.tgz#d90cf19a13fcccfa8bb32025ac40a15ae1b49e99"
-  integrity sha1-2QzxmhP8zPqLsyAlrEChWuG0npk=
 
 react-native-modal-popover@^0.0.12:
   version "0.0.12"
@@ -5189,14 +5221,14 @@ react-native-modal-popover@^0.0.12:
     lodash.debounce "^4.0.8"
     prop-types "^15.6.2"
 
-react-native-orientation@^3.1.0, react-native-orientation@^3.1.3:
+react-native-orientation@^3.1.3:
   version "3.1.3"
-  resolved "http://r.cnpmjs.org/react-native-orientation/download/react-native-orientation-3.1.3.tgz#d45803841fe94b6cce9acbe904fd5ca191a3711e"
+  resolved "https://r.cnpmjs.org/react-native-orientation/download/react-native-orientation-3.1.3.tgz#d45803841fe94b6cce9acbe904fd5ca191a3711e"
   integrity sha1-1FgDhB/pS2zOmsvpBP1coZGjcR4=
 
 react-native-parsed-text@^0.0.20:
   version "0.0.20"
-  resolved "http://r.cnpmjs.org/react-native-parsed-text/download/react-native-parsed-text-0.0.20.tgz#7bd35fec88c3ca0eb0e8250a98e24092b4ee7fef"
+  resolved "https://r.cnpmjs.org/react-native-parsed-text/download/react-native-parsed-text-0.0.20.tgz#7bd35fec88c3ca0eb0e8250a98e24092b4ee7fef"
   integrity sha1-e9Nf7IjDyg6w6CUKmOJAkrTuf+8=
   dependencies:
     babel-plugin-check-es2015-constants "6.22.0"
@@ -5204,7 +5236,7 @@ react-native-parsed-text@^0.0.20:
 
 react-native-ratings@^6.3.0:
   version "6.3.0"
-  resolved "http://r.cnpmjs.org/react-native-ratings/download/react-native-ratings-6.3.0.tgz#becda9379616776a81d9d90bfc95ea40b76286fb"
+  resolved "https://r.cnpmjs.org/react-native-ratings/download/react-native-ratings-6.3.0.tgz#becda9379616776a81d9d90bfc95ea40b76286fb"
   integrity sha1-vs2pN5YWd2qB2dkL/JXqQLdihvs=
   dependencies:
     lodash "^4.17.4"
@@ -5234,15 +5266,9 @@ react-native-safe-area-view@^0.12.0:
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha1-ehIDd7Uqqbu5TQuFQaAUAmvpKJs=
 
-"react-native-slider@git+https://github.com/abbasfreestyle/react-native-slider.git":
-  version "0.11.0"
-  resolved "git+https://github.com/abbasfreestyle/react-native-slider.git#c53b4965c5e4c3ec258479417898dece367e603e"
-  dependencies:
-    prop-types "^15.5.6"
-
 react-native-status-bar-height@^2.2.0:
   version "2.2.0"
-  resolved "http://r.cnpmjs.org/react-native-status-bar-height/download/react-native-status-bar-height-2.2.0.tgz#3bd51de134660efc5f5ad136ca573c7d5790f7ed"
+  resolved "https://r.cnpmjs.org/react-native-status-bar-height/download/react-native-status-bar-height-2.2.0.tgz#3bd51de134660efc5f5ad136ca573c7d5790f7ed"
   integrity sha1-O9Ud4TRmDvxfWtE2ylc8fVeQ9+0=
 
 react-native-swipeout@^2.3.6:
@@ -5275,20 +5301,11 @@ react-native-typescript-transformer@^1.2.11:
 
 react-native-vector-icons@6.1.0:
   version "6.1.0"
-  resolved "http://r.cnpmjs.org/react-native-vector-icons/download/react-native-vector-icons-6.1.0.tgz#770a3f8ced692d75deb3afbb9829195ceed1eedd"
+  resolved "https://r.cnpmjs.org/react-native-vector-icons/download/react-native-vector-icons-6.1.0.tgz#770a3f8ced692d75deb3afbb9829195ceed1eedd"
   integrity sha1-dwo/jO1pLXXes6+7mCkZXO7R7t0=
   dependencies:
     lodash "^4.0.0"
     prop-types "^15.6.2"
-    yargs "^8.0.2"
-
-react-native-vector-icons@^4.4.2:
-  version "4.6.0"
-  resolved "http://r.cnpmjs.org/react-native-vector-icons/download/react-native-vector-icons-4.6.0.tgz#e4014311ffa6de397d914ffc31b7097a874cc8d5"
-  integrity sha1-5AFDEf+m3jl9kU/8MbcJeodMyNU=
-  dependencies:
-    lodash "^4.0.0"
-    prop-types "^15.5.10"
     yargs "^8.0.2"
 
 react-native-vector-icons@^6.2.0:
@@ -5300,24 +5317,9 @@ react-native-vector-icons@^6.2.0:
     prop-types "^15.6.2"
     yargs "^8.0.2"
 
-react-native-video-controls@^2.2.3:
-  version "2.2.3"
-  resolved "http://r.cnpmjs.org/react-native-video-controls/download/react-native-video-controls-2.2.3.tgz#f0927e11aeb2cbbb03935e21bac0caa1d46d8a67"
-  integrity sha1-8JJ+Ea6yy7sDk14husDKodRtimc=
-  dependencies:
-    lodash "^4.16.4"
-
-react-native-video@^2.0.0:
-  version "2.3.1"
-  resolved "http://r.cnpmjs.org/react-native-video/download/react-native-video-2.3.1.tgz#d0df6f984945a67a0cbfc5ad45a5156e2472ccce"
-  integrity sha1-0N9vmElFpnoMv8WtRaUVbiRyzM4=
-  dependencies:
-    keymirror "0.1.1"
-    prop-types "^15.5.10"
-
 react-native-video@^3.2.1:
   version "3.2.1"
-  resolved "http://r.cnpmjs.org/react-native-video/download/react-native-video-3.2.1.tgz#7ba3cbdfc5c747b5b00452811e98193824b16ce3"
+  resolved "https://r.cnpmjs.org/react-native-video/download/react-native-video-3.2.1.tgz#7ba3cbdfc5c747b5b00452811e98193824b16ce3"
   integrity sha1-e6PL38XHR7WwBFKBHpgZOCSxbOM=
   dependencies:
     keymirror "0.1.1"
@@ -5325,7 +5327,7 @@ react-native-video@^3.2.1:
 
 react-native@^0.58.6:
   version "0.58.6"
-  resolved "http://r.cnpmjs.org/react-native/download/react-native-0.58.6.tgz#a6d273cd2f51b0e3b141dad5f19622e0000497b3"
+  resolved "https://r.cnpmjs.org/react-native/download/react-native-0.58.6.tgz#a6d273cd2f51b0e3b141dad5f19622e0000497b3"
   integrity sha1-ptJzzS9RsOOxQdrV8ZYi4AAEl7M=
   dependencies:
     "@babel/runtime" "^7.0.0"
@@ -5447,7 +5449,7 @@ react-test-renderer@16.6.3:
 
 react-timer-mixin@^0.13.4:
   version "0.13.4"
-  resolved "http://r.cnpmjs.org/react-timer-mixin/download/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
+  resolved "https://r.cnpmjs.org/react-timer-mixin/download/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha1-daAMPJTBOr4ptD1jtMZaiPyCZNM=
 
 react-transform-hmr@^1.0.4:
@@ -5920,7 +5922,7 @@ simple-plist@^0.2.1:
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
-  resolved "http://r.cnpmjs.org/simple-swizzle/download/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
+  resolved "https://r.cnpmjs.org/simple-swizzle/download/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
   integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
   dependencies:
     is-arrayish "^0.3.1"
@@ -6554,7 +6556,7 @@ utils-merge@1.0.1:
 
 uuid@3.3.0:
   version "3.3.0"
-  resolved "http://r.cnpmjs.org/uuid/download/uuid-3.3.0.tgz#b237147804881d7b86f40a7ff8f590f15c37de32"
+  resolved "https://r.cnpmjs.org/uuid/download/uuid-3.3.0.tgz#b237147804881d7b86f40a7ff8f590f15c37de32"
   integrity sha1-sjcUeASIHXuG9Ap/+PWQ8Vw33jI=
 
 uuid@^3.3.2:

@@ -18,7 +18,7 @@
     "@types/react-native-video": "^3.1.1",
     "@types/react-navigation": "^3.0.1",
     "@types/react-redux": "^7.0.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.11.0",
     "form-data": "^2.3.3",
     "native-base": "^2.12.0",
